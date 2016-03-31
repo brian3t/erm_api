@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b195f5a30dfa2078a859fecf0cf1392b",
-    "content-hash": "dd7c40979f562b7acc20701333915c99",
+    "hash": "7f15de9f06d7d32042f61044faeeeabc",
+    "content-hash": "dae0187054f9aad934117765a58493e9",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -397,6 +397,50 @@
             "time": "2016-02-28 16:13:18"
         },
         {
+            "name": "kartik-v/bootstrap-tabs-x",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-tabs-x.git",
+                "reference": "e85a731d79f030fb7f7742e3e2e0ac828c3233a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-tabs-x/zipball/e85a731d79f030fb7f7742e3e2e0ac828c3233a1",
+                "reference": "e85a731d79f030fb7f7742e3e2e0ac828c3233a1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\plugins\\tabs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
+            "homepage": "https://github.com/kartik-v/bootstrap-tabs-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-tabs",
+                "tabs",
+                "tabs-x"
+            ],
+            "time": "2015-06-26 14:48:16"
+        },
+        {
             "name": "kartik-v/dependent-dropdown",
             "version": "v1.4.4",
             "source": {
@@ -437,6 +481,209 @@
                 "select"
             ],
             "time": "2015-12-16 18:15:01"
+        },
+        {
+            "name": "kartik-v/mpdf",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/mpdf.git",
+                "reference": "6ab0ae3a82673e514f168c8e6da02289e6d95f2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/mpdf/zipball/6ab0ae3a82673e514f168c8e6da02289e6d95f2c",
+                "reference": "6ab0ae3a82673e514f168c8e6da02289e6d95f2c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=4.3.10"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "mpdf.php",
+                    "classes"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-1.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Ian N Back"
+                }
+            ],
+            "description": "A PHP class to generate PDF files from HTML with Unicode/UTF-8 and CJK support. This is a fork of the official mPDF library.",
+            "homepage": "http://www.mpdf1.com/mpdf/index.php",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "time": "2015-05-05 07:34:49"
+        },
+        {
+            "name": "kartik-v/yii2-builder",
+            "version": "v1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-builder.git",
+                "reference": "cbeb09954b5c87ba85dbc2c6331589baa542da4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-builder/zipball/cbeb09954b5c87ba85dbc2c6331589baa542da4c",
+                "reference": "cbeb09954b5c87ba85dbc2c6331589baa542da4c",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-grid": "~3.0",
+                "kartik-v/yii2-krajee-base": "~1.7",
+                "kartik-v/yii2-widget-activeform": "~1.4"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\builder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Build forms (single-row or multi-row/tabular) easily for Yii Framework 2.0",
+            "homepage": "https://github.com/kartik-v/yii2-builder",
+            "keywords": [
+                "builder",
+                "extension",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-06-17 17:58:21"
+        },
+        {
+            "name": "kartik-v/yii2-date-range",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-date-range.git",
+                "reference": "e6303eb47d570afc73ecc931167ad2ee77004e9f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/e6303eb47d570afc73ecc931167ad2ee77004e9f",
+                "reference": "e6303eb47d570afc73ecc931167ad2ee77004e9f",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.6.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\daterange\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced Yii 2 date range picker input for based on bootstrap-daterangepicker plugin.",
+            "homepage": "https://github.com/kartik-v/yii2-date-range",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "date",
+                "date-range",
+                "extension",
+                "range",
+                "time",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-03-17 12:34:40"
+        },
+        {
+            "name": "kartik-v/yii2-export",
+            "version": "v1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-export.git",
+                "reference": "5366c8da6cddc8173feb878c4c115fbc1746cb7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/5366c8da6cddc8173feb878c4c115fbc1746cb7b",
+                "reference": "5366c8da6cddc8173feb878c4c115fbc1746cb7b",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-grid": "~3.0",
+                "phpoffice/phpexcel": "~1.8.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\export\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A library to export server/db data in various formats (e.g. excel, html, pdf, csv etc.)",
+            "homepage": "https://github.com/kartik-v/yii2-export",
+            "keywords": [
+                "OpenXML",
+                "csv",
+                "export",
+                "extension",
+                "html",
+                "json",
+                "pdf",
+                "spreadsheet",
+                "text",
+                "widget",
+                "xls",
+                "xlsx",
+                "yii2"
+            ],
+            "time": "2016-02-04 02:23:32"
         },
         {
             "name": "kartik-v/yii2-field-range",
@@ -490,6 +737,55 @@
             "time": "2014-11-25 08:52:00"
         },
         {
+            "name": "kartik-v/yii2-grid",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-grid.git",
+                "reference": "8cf8bb9ef3e9dc94933c54fcffdc91471de40ecf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-grid/zipball/8cf8bb9ef3e9dc94933c54fcffdc91471de40ecf",
+                "reference": "8cf8bb9ef3e9dc94933c54fcffdc91471de40ecf",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\grid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Yii 2 GridView on steroids. Various enhancements and utilities for the Yii 2.0 GridView widget.",
+            "homepage": "https://github.com/kartik-v/yii2-grid",
+            "keywords": [
+                "extension",
+                "grid",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-01-14 07:03:28"
+        },
+        {
             "name": "kartik-v/yii2-krajee-base",
             "version": "1.8.2",
             "source": {
@@ -534,6 +830,101 @@
                 "yii2"
             ],
             "time": "2016-01-10 12:26:29"
+        },
+        {
+            "name": "kartik-v/yii2-mpdf",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-mpdf.git",
+                "reference": "4599a1d95d7e0afb3279322e302717b7e4f52dd3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/4599a1d95d7e0afb3279322e302717b7e4f52dd3",
+                "reference": "4599a1d95d7e0afb3279322e302717b7e4f52dd3",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/mpdf": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\mpdf\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper component for the mPDF library which generates PDF files from UTF-8 encoded HTML.",
+            "homepage": "https://github.com/kartik-v/yii2-mpdf",
+            "keywords": [
+                "component",
+                "extension",
+                "html",
+                "mpdf",
+                "pdf",
+                "utf8",
+                "yii2"
+            ],
+            "time": "2014-11-10 18:09:37"
+        },
+        {
+            "name": "kartik-v/yii2-tabs-x",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-tabs-x.git",
+                "reference": "3c53773bf463a0e3f3d9eadd0231bf58f3ae08b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-tabs-x/zipball/3c53773bf463a0e3f3d9eadd0231bf58f3ae08b3",
+                "reference": "3c53773bf463a0e3f3d9eadd0231bf58f3ae08b3",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-tabs-x": "~1.3",
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\tabs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An extended bootstrap 3.0 tabs widget with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
+            "homepage": "https://github.com/kartik-v/yii2-tabs-x",
+            "keywords": [
+                "bootstrap",
+                "extended",
+                "jquery",
+                "modal",
+                "modal-tabs",
+                "tabs",
+                "tabs-x"
+            ],
+            "time": "2016-01-12 07:59:30"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -1501,6 +1892,353 @@
             "time": "2014-11-09 19:54:17"
         },
         {
+            "name": "mitalcoi/yii2-cronjobs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mitalcoi/yii2-cronjobs.git",
+                "reference": "1ad543afd5db96e015395d123a320a7e3123893b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mitalcoi/yii2-cronjobs/zipball/1ad543afd5db96e015395d123a320a7e3123893b",
+                "reference": "1ad543afd5db96e015395d123a320a7e3123893b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mitalcoi\\cronjobs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sorokin Victor",
+                    "email": "st-agrail@yandex.ru"
+                }
+            ],
+            "description": "Simple and convenient installing console commands as cron jobs for Yii framework",
+            "keywords": [
+                "cron",
+                "crontab",
+                "schedule",
+                "yii"
+            ],
+            "time": "2014-09-25 06:39:45"
+        },
+        {
+            "name": "mootensai/yii2-enhanced-gii",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-enhanced-gii.git",
+                "reference": "d32830808acf0e5e54f3653947e67af1a464390d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-enhanced-gii/zipball/d32830808acf0e5e54f3653947e67af1a464390d",
+                "reference": "d32830808acf0e5e54f3653947e67af1a464390d",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-builder": "*",
+                "kartik-v/yii2-export": "*",
+                "kartik-v/yii2-grid": "*",
+                "kartik-v/yii2-mpdf": "*",
+                "kartik-v/yii2-tabs-x": "*",
+                "kartik-v/yii2-widgets": "*",
+                "mootensai/yii2-jsblock": "*",
+                "mootensai/yii2-optimistic-lock-validator": "*",
+                "mootensai/yii2-relation-trait": "*",
+                "mootensai/yii2-uuid-behavior": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "mootensai\\enhancedgii\\Bootstrap"
+            },
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\enhancedgii\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yohanes Candrajaya",
+                    "email": "moo.tensai@gmail.com"
+                },
+                {
+                    "name": "Jiwantoro Ndaru",
+                    "email": "jiwanndaru@gmail.com"
+                }
+            ],
+            "description": "Generate Relational (has many) Models & CRUD. For nested : mootensai/yii2-enhanced-gii-nested",
+            "keywords": [
+                "Enhanced",
+                "gii",
+                "relation",
+                "yii",
+                "yii2"
+            ],
+            "time": "2016-03-05 04:36:16"
+        },
+        {
+            "name": "mootensai/yii2-jsblock",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-jsblock.git",
+                "reference": "d27864ba27760ffa634c01081f3e47ebddace9d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-jsblock/zipball/d27864ba27760ffa634c01081f3e47ebddace9d5",
+                "reference": "d27864ba27760ffa634c01081f3e47ebddace9d5",
+                "shasum": ""
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\components\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "mdmunir",
+                    "email": "misbahuldmunir@gmail.com"
+                }
+            ],
+            "description": "Embed Javascript block with IDE checking",
+            "keywords": [
+                "block",
+                "javascript",
+                "yii2"
+            ],
+            "time": "2015-06-27 03:49:10"
+        },
+        {
+            "name": "mootensai/yii2-optimistic-lock-validator",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-optimistic-lock-validator.git",
+                "reference": "422b012a87973bb296080f3572e1e45c7643a31a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-optimistic-lock-validator/zipball/422b012a87973bb296080f3572e1e45c7643a31a",
+                "reference": "422b012a87973bb296080f3572e1e45c7643a31a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\components\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yohanes Candrajaya",
+                    "email": "moo.tensai@gmail.com"
+                },
+                {
+                    "name": "Jiwantoro Ndaru",
+                    "email": "jiwanndaru@gmail.com"
+                }
+            ],
+            "description": "Yii 2 Optimistic Lock validator",
+            "keywords": [
+                "lock",
+                "optimistic",
+                "optimistic-lock",
+                "validator",
+                "yii",
+                "yii2"
+            ],
+            "time": "2015-08-15 03:27:57"
+        },
+        {
+            "name": "mootensai/yii2-relation-trait",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-relation-trait.git",
+                "reference": "0e61e70bf67cce15533e3ba02ac5bca9c59aa917"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-relation-trait/zipball/0e61e70bf67cce15533e3ba02ac5bca9c59aa917",
+                "reference": "0e61e70bf67cce15533e3ba02ac5bca9c59aa917",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\relation\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yohanes Candrajaya",
+                    "email": "moo.tensai@gmail.com"
+                }
+            ],
+            "description": "Yii 2 Models load with relation, & transaction save with relation",
+            "homepage": "http://github.com/mootensai/yii2-relation-trait",
+            "keywords": [
+                "load",
+                "loadall",
+                "loadwithrelation",
+                "related",
+                "relation",
+                "save",
+                "saveall",
+                "savewithrelation",
+                "transaction",
+                "yii2"
+            ],
+            "time": "2016-02-26 05:17:13"
+        },
+        {
+            "name": "mootensai/yii2-uuid-behavior",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mootensai/yii2-uuid-behavior.git",
+                "reference": "aaeb5c6268e77647af48ddc4757c5cb3fb726e55"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mootensai/yii2-uuid-behavior/zipball/aaeb5c6268e77647af48ddc4757c5cb3fb726e55",
+                "reference": "aaeb5c6268e77647af48ddc4757c5cb3fb726e55",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "mootensai\\behaviors\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yohanes Candrajaya",
+                    "email": "moo.tensai@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Jiwantoro Ndaru",
+                    "email": "jiwanndaru@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Set UUID before save on Yii 2 models",
+            "homepage": "http://github.com/mootensai/yii2-uuid-behavior",
+            "keywords": [
+                "before",
+                "beforesave",
+                "save",
+                "uuid",
+                "yii2"
+            ],
+            "time": "2015-06-22 02:06:14"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.1",
             "source": {
@@ -1552,6 +2290,51 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
+        },
+        {
+            "name": "vova07/yii2-console-runner-extension",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vova07/yii2-console-runner-extension.git",
+                "reference": "b67af1ff0a5de74ae06aece83d0273a92d9f657d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vova07/yii2-console-runner-extension/zipball/b67af1ff0a5de74ae06aece83d0273a92d9f657d",
+                "reference": "b67af1ff0a5de74ae06aece83d0273a92d9f657d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "vova07\\console\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Crudu Vasile",
+                    "email": "bazillio07@yandex.ru"
+                }
+            ],
+            "description": "An extension for running console commands on background in Yii framework.",
+            "homepage": "https://github.com/vova07/yii2-console-runner-extension",
+            "keywords": [
+                "background",
+                "commands",
+                "console",
+                "runner",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2014-05-27 10:35:28"
         },
         {
             "name": "yiisoft/yii2",
@@ -2104,7 +2887,11 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mitalcoi/yii2-cronjobs": 20,
+        "mootensai/yii2-enhanced-gii": 20,
+        "kartik-v/yii2-date-range": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -38,15 +38,24 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'consoleRunner' => [
+            'class' => 'vova07\console\ConsoleRunner',
+            'file' => '@my/path/to/yii' // or an absolute path to console file
+        ]
+
     ],
+    'modules' => [
+      'gridview' => [
+    'class' => '\kartik\grid\Module',
+        ]
+    ],
+
     'params' => $params,
 ];
 
@@ -60,6 +69,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs' => ['127.0.0.1', '::1', '10.0.*' ,  '192.168.*']
     ];
 }
 

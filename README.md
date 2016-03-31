@@ -1,7 +1,17 @@
 ShoeMetro Enhancer 3.0
 
 2016-03-30: Alpha version. 3.0.1 alpha
+Extra plugin:
+https://github.com/kartik-v/yii2-widgets : For widgets, forms, grids, pjax grids
+https://github.com/kartik-v/yii2-field-range : For field ranges
+https://github.com/mitalcoi/yii2-cronjobs : For combining crons into one yiicron
+https://github.com/vova07/yii2-console-runner-extension : An extension for running console commands on background in Yii framework. Also useful for a basic app to launch a console command
+https://github.com/kartik-v/yii2-widget-growl
 
+
+
+
+---
 
 Yii 2 Basic Project Template
 ============================

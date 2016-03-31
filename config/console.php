@@ -1,6 +1,7 @@
 <?php
 
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
+Yii::setAlias('@runnerScript', dirname(__DIR__) . '/yii');
 
 $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
@@ -32,6 +33,17 @@ $config = [
         ],
     ],
     */
+    'controllerMap' => [
+        'cron' => [
+            'class' => 'mitalcoi\cronjobs\CronController',
+            'cronJobs' =>[
+                'test/example1' => [
+                    'cron'      => '* * * * *',
+                ],
+
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
