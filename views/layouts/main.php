@@ -20,6 +20,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link rel="stylesheet" href="http://<?=Yii::$app->request->serverName."/".Yii::$app->request->baseUrl?>/less/stylesheets/custom.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -39,8 +40,10 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Docs', 'url' => ['/docs']],
             ['label' => 'Events', 'url' => ['/event']],
+            ['label' => 'Inventory', 'url' => ['/inventory']],
             ['label' => 'Orders', 'url' => ['/order']],
-            ['label' => 'Order Items', 'url' => ['/order-item']],
+            ['label' => 'API Order', 'url' => 'http://' . Yii::$app->request->serverName. '/api/v1/orders'],
+
 //            Yii::$app->user->isGuest ? (
 //                ['label' => 'Login', 'url' => ['/site/login']]
 //            ) : (

@@ -17,50 +17,36 @@ use kartik\grid\GridView;
     </div>
 
     <div class="row">
-<?php 
-    $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
-        'mp_id',
-        'mp_reference_number',
-        'rop_order_id',
-        'last_mp_updated',
-        'last_rop_pull',
-        'count_rop_pull',
-        'order_date_time',
-        'name',
-        'company',
-        'email:email',
-        'address',
-        'address2',
-        'city',
-        'state',
-        'zip',
-        'country',
-        'phone',
-        'ship_name',
-        'ship_company',
-        'ship_address',
-        'ship_address2',
-        'ship_city',
-        'ship_state',
-        'ship_zip',
-        'ship_country',
-        'ship_phone',
-        'pay_type',
-        'pay_transaction_id',
-        'comments:ntext',
-        'product_total',
-        'tax_total',
-        'shipping_total',
-        'grand_total',
-        'shipping',
-        'discount',
-        'status',
-    ];
-    echo DetailView::widget([
-        'model' => $model,
-        'attributes' => $gridColumn
-    ]); 
-?>
+        <?php
+        $gridColumn = [
+            ['attribute' => 'id', 'hidden' => true],
+            'rop_order_id',
+            'name',
+            'company',
+            'email:email',
+            'address',
+            'address2',
+            'city',
+            'state',
+            'zip',
+            'country',
+            'phone',
+            'pay_type',
+            'pay_transaction_id',
+            'comments:ntext',
+            'discount',
+            'status',
+            [
+                'label' => 'Note',
+                'value' => $model->getNote(),
+                'format' => 'ntext'
+            ]
+
+        ];
+        echo DetailView::widget([
+            'model' => $model,
+            'attributes' => $gridColumn
+        ]);
+        ?>
     </div>
 </div>

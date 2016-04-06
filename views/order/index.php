@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OrderSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -24,42 +25,43 @@ $this->registerJs($search);
         <?= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
-        <div class="search-form" style="display:none">
-        <?=  $this->render('_search', ['model' => $searchModel]); ?>
+    <div class="search-form" style="display:none">
+        <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
-        <?php 
+    <?php
+
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'width' => '50px',
-            'value' => function ($model, $key, $index, $column) {
-                return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function ($model, $key, $index, $column) {
-                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
-            },
-            'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true
-        ],
         ['attribute' => 'id', 'hidden' => true],
-        'mp_id',
-        'mp_reference_number',
-        'rop_order_id',
+        [
+            'label' => 'MP',
+            'attribute' => 'mp.name',
+        ],
+        [
+            'label' => 'MP Ref#',
+            'value' => function ($model, $key, $i, $c)
+            {
+                return $model->mp_reference_number . "\nItems: " . count($model->orderItems);
+            },
+        ],
+        ['class' => 'kartik\grid\ExpandRowColumn',
+        'width' => '50px',
+        'value' => function ($model, $key, $index, $column)
+        {
+            return GridView::ROW_COLLAPSED;
+        },
+        'detail' => function ($model, $key, $index, $column)
+        {
+            return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
+        },
+        'headerOptions' => ['class' => 'kartik-sheet-style'],
+        'expandOneOnly' => true
+    ],
         'last_mp_updated',
         'last_rop_pull',
         'count_rop_pull',
         'order_date_time',
-        'name',
-        'company',
-        'email:email',
-        'address',
-        'address2',
-        'city',
-        'state',
-        'zip',
-        'country',
-        'phone',
+        'shipping',
         'ship_name',
         'ship_company',
         'ship_address',
@@ -69,20 +71,14 @@ $this->registerJs($search);
         'ship_zip',
         'ship_country',
         'ship_phone',
-        'pay_type',
-        'pay_transaction_id',
-        'comments:ntext',
         'product_total',
         'tax_total',
         'shipping_total',
         'grand_total',
-        'shipping',
-        'discount',
-        'status',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -114,7 +110,7 @@ $this->registerJs($search);
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
-            ]) ,
+            ]),
         ],
     ]); ?>
 

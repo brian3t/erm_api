@@ -44,7 +44,9 @@ use Yii;
  * @property string $shipping
  * @property string $discount
  * @property string $status
+ * @property string $note
  *
+ * @property \app\models\Mp $mp
  * @property \app\models\OrderItem[] $orderItems
  */
 class Order extends \yii\db\ActiveRecord
@@ -64,7 +66,7 @@ class Order extends \yii\db\ActiveRecord
             [['comments'], 'string'],
             [['product_total', 'tax_total', 'shipping_total', 'grand_total', 'discount'], 'number'],
             [['mp_reference_number', 'status'], 'string', 'max' => 50],
-            [['name', 'company', 'email', 'address', 'address2', 'city', 'state', 'zip', 'country', 'phone', 'ship_name', 'ship_company', 'ship_address', 'ship_address2', 'ship_city', 'ship_state', 'ship_zip', 'ship_country', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipping'], 'string', 'max' => 255],
+            [['name', 'company', 'email', 'address', 'address2', 'city', 'state', 'zip', 'country', 'phone', 'ship_name', 'ship_company', 'ship_address', 'ship_address2', 'ship_city', 'ship_state', 'ship_zip', 'ship_country', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipping', 'note'], 'string', 'max' => 255],
             [['mp_id', 'mp_reference_number'], 'unique', 'targetAttribute' => ['mp_id', 'mp_reference_number'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.']
         ];
     }
@@ -85,12 +87,12 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'mp_id' => 'Mp ID',
-            'mp_reference_number' => 'Mp Reference Number',
+            'mp_reference_number' => 'Mp Ref#',
             'rop_order_id' => 'Rop Order ID',
             'last_mp_updated' => 'Last Mp Updated',
             'last_rop_pull' => 'Last Rop Pull',
             'count_rop_pull' => 'Count Rop Pull',
-            'order_date_time' => 'Order Date Time',
+            'order_date_time' => 'Order Datetime',
             'name' => 'Name',
             'company' => 'Company',
             'email' => 'Email',
@@ -113,14 +115,23 @@ class Order extends \yii\db\ActiveRecord
             'pay_type' => 'Pay Type',
             'pay_transaction_id' => 'Pay Transaction ID',
             'comments' => 'Comments',
-            'product_total' => 'Product Total',
-            'tax_total' => 'Tax Total',
-            'shipping_total' => 'Shipping Total',
-            'grand_total' => 'Grand Total',
+            'product_total' => 'Product Σ',
+            'tax_total' => 'Tax Σ',
+            'shipping_total' => 'Shipping Σ',
+            'grand_total' => 'Grand Σ',
             'shipping' => 'Shipping',
             'discount' => 'Discount',
             'status' => 'Status',
+            'note' => 'Note',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMp()
+    {
+        return $this->hasOne(\app\models\Mp::className(), ['id' => 'mp_id']);
     }
 
     /**

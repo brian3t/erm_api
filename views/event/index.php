@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -21,16 +22,18 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Event', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-        <?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
-            'value' => function ($model, $key, $index, $column) {
+            'value' => function ($model, $key, $index, $column)
+            {
                 return GridView::ROW_COLLAPSED;
             },
-            'detail' => function ($model, $key, $index, $column) {
+            'detail' => function ($model, $key, $index, $column)
+            {
                 return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
             },
             'headerOptions' => ['class' => 'kartik-sheet-style'],
@@ -41,11 +44,14 @@ $this->registerJs($search);
         'mp_id',
         'start',
         'stop',
-        'note',
+        [
+            'attribute' => 'note',
+            'format' => 'ntext'
+        ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -76,7 +82,7 @@ $this->registerJs($search);
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
-            ]) ,
+            ]),
         ],
     ]); ?>
 

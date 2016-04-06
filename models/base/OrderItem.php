@@ -11,9 +11,11 @@ use Yii;
  * @property integer $order_id
  * @property string $sku
  * @property string $product
+ * @property string $options
  * @property string $price_per_unit
  * @property integer $quantity
  * @property string $status
+ * @property string $last_mp_updated
  * @property string $mp_item_id
  *
  * @property \app\models\Order $order
@@ -32,7 +34,9 @@ class OrderItem extends \yii\db\ActiveRecord
             [['order_id', 'sku'], 'required'],
             [['order_id', 'quantity'], 'integer'],
             [['price_per_unit'], 'number'],
+            [['last_mp_updated'], 'safe'],
             [['sku', 'product'], 'string', 'max' => 255],
+            [['options'], 'string', 'max' => 2550],
             [['status'], 'string', 'max' => 250],
             [['mp_item_id'], 'string', 'max' => 50]
         ];
@@ -56,9 +60,11 @@ class OrderItem extends \yii\db\ActiveRecord
             'order_id' => 'Order ID',
             'sku' => 'Sku',
             'product' => 'Product',
+            'options' => 'Options',
             'price_per_unit' => 'Price Per Unit',
             'quantity' => 'Quantity',
             'status' => 'Status',
+            'last_mp_updated' => 'Last Mp Updated',
             'mp_item_id' => 'Mp Item ID',
         ];
     }

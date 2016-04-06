@@ -1,0 +1,13 @@
+/* line 4, ../sass/custom.scss */
+table.detail-view th {
+  width: 20%;
+}
+/* line 7, ../sass/custom.scss */
+table.detail-view td {
+  width: 80%;
+}
+
+/* line 12, ../sass/custom.scss */
+table.kv-grid-table th {
+  font-size: 88%;
+}
