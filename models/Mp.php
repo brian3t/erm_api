@@ -257,7 +257,11 @@ class Mp extends BaseMp
             //Archive
             if(!$has_error)
             {
-                rename($file_name, "archive" . DIRECTORY_SEPARATOR . $file_name);
+                try{
+                    rename($file_name, "archive" . DIRECTORY_SEPARATOR . $file_name);
+                } catch (yii\base\Exception $e){
+                    Yii::error("Cant rename files");
+                }
             }
 
             fclose($file);
