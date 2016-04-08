@@ -1,0 +1,4 @@
+Order #,Ship To Name,Ship To Address 1,Ship To Address 2,Ship To City,Ship To State,Ship To Zip,Ship Method,Product ID,Sold For,Our Cost,Qty,Description,Shipping Cost,Order Source
+10707,Mark  Pfau,208 8th Ave. ,307,Dayton,KY,41074,GRND,2320029,N/A,52.6915,1,Size: 8,0,loehmanns
+10707,Mark  Pfau,208 8th Ave. ,307,Dayton,KY,41074,GRND,2524707,N/A,61.1915,1,Size: 7.5,0,loehmanns
+10724,Satra Dee Zurita,1502 S. Northwood Ave,,Compton,CA,90220,GRND,2330376,N/A,22.9415,1,Size:,0,loehmanns

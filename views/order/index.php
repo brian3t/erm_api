@@ -45,21 +45,26 @@ $this->registerJs($search);
             },
         ],
         ['class' => 'kartik\grid\ExpandRowColumn',
-        'width' => '50px',
-        'value' => function ($model, $key, $index, $column)
-        {
-            return GridView::ROW_COLLAPSED;
-        },
-        'detail' => function ($model, $key, $index, $column)
-        {
-            return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
-        },
-        'headerOptions' => ['class' => 'kartik-sheet-style'],
-        'expandOneOnly' => true
-    ],
+            'width' => '50px',
+            'value' => function ($model, $key, $index, $column)
+            {
+                return GridView::ROW_COLLAPSED;
+            },
+            'detail' => function ($model, $key, $index, $column)
+            {
+                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
+            },
+            'headerOptions' => ['class' => 'kartik-sheet-style'],
+            'expandOneOnly' => true
+        ],
         'last_mp_updated',
         'last_rop_pull',
-        'count_rop_pull',
+        [
+            'label' => '#ROP pulled',
+            'value' => function($model, $key, $i, $c){
+                return ($model->count_rop_pull==0)?'':$model->count_rop_pull;
+            }
+        ],
         'order_date_time',
         'shipping',
         'ship_name',

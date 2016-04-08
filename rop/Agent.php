@@ -25,7 +25,7 @@ class Agent
     {
         $event = new Event();
         $event->mp_id = $mp_id;
-        $event->action = "SME order pull";
+        $event->action = "ROP ORDER PULL";
         $event->note = "Params: day_offset: $day_offset" . PHP_EOL;
         $event->start = time();
 
@@ -40,7 +40,7 @@ class Agent
         curl_setopt($ch, CURLOPT_URL, BASE_URL . 'orders');
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // grab URL and pass it to the browser
+        // grab orders
         $orders = curl_exec($ch);
 
         // close cURL resource, and free up system resources
