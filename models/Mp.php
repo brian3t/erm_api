@@ -255,6 +255,7 @@ class Mp extends BaseMp
                 }
             }
             //Archive
+            fclose($file);
             if(!$has_error)
             {
                 try{
@@ -264,7 +265,7 @@ class Mp extends BaseMp
                 }
             }
 
-            fclose($file);
+            
         }
         return $message;
 
