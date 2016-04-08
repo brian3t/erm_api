@@ -65,17 +65,21 @@ $this->registerJs($search);
                 return ($model->count_rop_pull==0)?'':$model->count_rop_pull;
             }
         ],
+        'rop_order_id',
+        [
+            'label'=>'Force ROP resend',
+            'format' => 'html',
+            'value' => function($m, $k, $i, $c){
+                if ($m->force_rop_resend){
+                    return '<span class="glyphicon glyphicon-ok text-success column_center"></span>';
+                }
+                else return '';
+            }
+
+        ],
         'order_date_time',
         'shipping',
         'ship_name',
-        'ship_company',
-        'ship_address',
-        'ship_address2',
-        'ship_city',
-        'ship_state',
-        'ship_zip',
-        'ship_country',
-        'ship_phone',
         'product_total',
         'tax_total',
         'shipping_total',

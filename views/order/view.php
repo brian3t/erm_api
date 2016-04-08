@@ -35,11 +35,15 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php 
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
-        'mp_id',
+        [
+            'attribute' => 'mp.name',
+            'label' => 'Mp',
+        ],
         'mp_reference_number',
         'rop_order_id',
         'last_mp_updated',
         'last_rop_pull',
+        'force_rop_resend',
         'count_rop_pull',
         'order_date_time',
         'name',
@@ -71,6 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'shipping',
         'discount',
         'status',
+        'note',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -91,9 +96,11 @@ if($providerOrderItem->totalCount){
         ],
             'sku',
             'product',
+            'options',
             'price_per_unit',
             'quantity',
             'status',
+            'last_mp_updated',
             'mp_item_id',
     ];
     echo Gridview::widget([

@@ -70,7 +70,7 @@ class OrderController extends ActiveController
     {
         // prepare and return a data provider for the "index" action
         $dp = new ActiveDataProvider(
-            ['query' => Order::find()->where(['rop_order_id' => null])->limit(DEBUG ? LIMIT : null)]
+            ['query' => Order::find()->where(['rop_order_id' => null])->orWhere(['force_rop_resend', 1])->limit(DEBUG ? LIMIT : null)]
         );
         if(DEBUG)
         {
@@ -113,7 +113,7 @@ class OrderAction extends IndexAction
     public function run()
     {
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
-        $query = \Yii::$app->db->createCommand('UPDATE `order` set last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL LIMIT '. LIMIT. ';')
+        $query = \Yii::$app->db->createCommand('UPDATE `order` set last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT '. LIMIT. ';')
         ->execute();
         return parent::run();
     }
