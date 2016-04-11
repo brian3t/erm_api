@@ -1,0 +1,20 @@
+{
+  "MP_REF_NUM_COL": 0,
+  "order_columns":[
+    "mp_reference_number",
+    "ship_name",
+    "ship_address",
+    "ship_address2",
+    "ship_city",
+    "ship_state",
+    "ship_zip",
+    "shipping",
+    "order_item.sku",
+    "note.sold_for",
+    "order_item.price_per_unit",
+    "order_item.quantity",
+    "order_item.options",
+    "shipping_total",
+    "note.order_source"
+  ]
+}

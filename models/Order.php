@@ -36,34 +36,34 @@ class Order extends BaseOrder
        };
 
        if (empty($this->company)){
-           $this->name = $this->ship_company;
+           $this->company = $this->ship_company;
        };
 
        if (empty($this->address)){
-           $this->name = $this->ship_address;
+           $this->address = $this->ship_address;
        };
 
        if (empty($this->address2)){
-           $this->name = $this->ship_address2;
+           $this->address2 = $this->ship_address2;
        };
 
        if (empty($this->city)){
-           $this->name = $this->ship_city;
+           $this->city = $this->ship_city;
        };
 
        if (empty($this->state)){
-           $this->name = $this->ship_state;
+           $this->state = $this->ship_state;
        };
        if (empty($this->zip)){
-           $this->name = $this->ship_zip;
+           $this->zip = $this->ship_zip;
        };
 
        if (empty($this->country)){
-           $this->name = $this->ship_country;
+           $this->country = $this->ship_country;
        };
 
        if (empty($this->phone)){
-           $this->name = $this->ship_phone;
+           $this->phone = $this->ship_phone;
        };
 
         return parent::beforeSave($insert);
@@ -96,7 +96,7 @@ class Order extends BaseOrder
      */
     public function fields()
     {
-        return ['mp_reference_number', 'rop_order_id', 'last_mp_updated', 'order_date_time', 'shipping', 'ship_name'];
+        return ['id', 'mp_reference_number', 'rop_order_id', 'last_mp_updated', 'order_date_time', 'shipping', 'ship_name'];
     }
 
     public function extraFields()

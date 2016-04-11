@@ -18,7 +18,7 @@ class EventController extends ActiveController
                                           'class' => Cors::className(),
                                           'cors' => [
                                               'Origin' => ['http://brianng', 'http://brianng:8080', 'http://localhost:8080', 'http://api.ngxtri.com',
-                                                  'http://api.brianng'],
+                                                  'http://api.brianng', 'http://localhost'],
                                           ],
                                       ],
                                   ], parent::behaviors());

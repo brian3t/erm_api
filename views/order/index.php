@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use kartik\widgets\SwitchInput;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\OrderSearch */
@@ -15,6 +16,7 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+
 ?>
 <div class="order-index">
 
@@ -39,19 +41,16 @@ $this->registerJs($search);
         ],
         [
             'label' => 'MP Ref#',
-            'value' => function ($model, $key, $i, $c)
-            {
+            'value' => function ($model, $key, $i, $c) {
                 return $model->mp_reference_number . "\nItems: " . count($model->orderItems);
             },
         ],
         ['class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
-            'value' => function ($model, $key, $index, $column)
-            {
+            'value' => function ($model, $key, $index, $column) {
                 return GridView::ROW_COLLAPSED;
             },
-            'detail' => function ($model, $key, $index, $column)
-            {
+            'detail' => function ($model, $key, $index, $column) {
                 return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
             },
             'headerOptions' => ['class' => 'kartik-sheet-style'],
@@ -61,21 +60,26 @@ $this->registerJs($search);
         'last_rop_pull',
         [
             'label' => '#ROP pulled',
-            'value' => function($model, $key, $i, $c){
-                return ($model->count_rop_pull==0)?'':$model->count_rop_pull;
+            'value' => function ($model, $key, $i, $c) {
+                return ($model->count_rop_pull == 0) ? '' : $model->count_rop_pull;
             }
         ],
         'rop_order_id',
         [
-            'label'=>'Force ROP resend',
-            'format' => 'html',
-            'value' => function($m, $k, $i, $c){
-                if ($m->force_rop_resend){
-                    return '<span class="glyphicon glyphicon-ok text-success column_center"></span>';
-                }
-                else return '';
+            'label' => 'Force ROP resend',
+            'format' => 'raw',
+            'value' => function ($model, $k, $i, $c) {
+                $html = '<label class="control-label"></label>';
+                $html .= SwitchInput::widget(['name' => 'force_rop_resend', 'value' => $model->force_rop_resend,
+                    'pluginOptions' => ['size' => 'mini',
+                        'onSwitchChange' => new \yii\web\JsExpression("
+                        function(event, state){
+                            var val = (state == true?1:0);
+                            $.post('/order/update/?id=" . $model->id . "', {Order:{force_rop_resend:val}});
+                    }")],
+                ]);
+                return $html;
             }
-
         ],
         'order_date_time',
         'shipping',

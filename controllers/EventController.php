@@ -33,7 +33,7 @@ class EventController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Event::find(),
+            'query' => Event::find()->orderBy(['start' => SORT_DESC]),
         ]);
 
         return $this->render('index', [

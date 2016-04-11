@@ -92,7 +92,10 @@ class Mp extends BaseMp
             } elseif(strpos($column, 'note.') !== false)
             {
                 $column_name = substr($column, 5);
-                $order_note[$column_name] = $row[$index];
+                if ($row[$index] !== "N/A")
+                {
+                    $order_note[$column_name] = $row[$index];
+                }
             } else
             {
                 $order->$column = $row[$index];

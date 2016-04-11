@@ -87,6 +87,9 @@ class OrderController extends Controller
         $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            if (Yii::$app->request->isAjax){
+                return '{status:success}';
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

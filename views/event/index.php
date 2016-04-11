@@ -25,20 +25,20 @@ $this->registerJs($search);
     <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'width' => '50px',
-            'value' => function ($model, $key, $index, $column)
-            {
-                return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function ($model, $key, $index, $column)
-            {
-                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
-            },
-            'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true
-        ],
+        // [
+        //     'class' => 'kartik\grid\ExpandRowColumn',
+        //     'width' => '50px',
+        //     'value' => function ($model, $key, $index, $column)
+        //     {
+        //         return GridView::ROW_COLLAPSED;
+        //     },
+        //     'detail' => function ($model, $key, $index, $column)
+        //     {
+        //         return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
+        //     },
+        //     'headerOptions' => ['class' => 'kartik-sheet-style'],
+        //     'expandOneOnly' => true
+        // ],
         ['attribute' => 'id', 'hidden' => true],
         'action',
         'mp_id',

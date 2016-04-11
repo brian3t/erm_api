@@ -33,8 +33,13 @@ $config = [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule',
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
                     'controller' => ['v1/event', 'v1/order'],
+                    'extraPatterns' => [
+                        'POST confirm' => 'confirm', // 'confirm' refers to 'actionConfirm'
+                    ],
                 ],
             ]
         ],
