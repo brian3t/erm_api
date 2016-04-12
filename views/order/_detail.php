@@ -20,7 +20,6 @@ use kartik\grid\GridView;
         <?php
         $gridColumn = [
             ['attribute' => 'id', 'hidden' => true],
-            'rop_order_id',
             'name',
             'company',
             'email:email',
@@ -31,7 +30,14 @@ use kartik\grid\GridView;
             'zip',
             'country',
             'phone',
-            'pay_type',
+            'ship_company',
+            'ship_address',
+            'ship_address2',
+            'ship_city',
+            'ship_state',
+            'ship_zip',
+            'ship_country',
+            'ship_phone',            'pay_type',
             'pay_transaction_id',
             'comments:ntext',
             'discount',

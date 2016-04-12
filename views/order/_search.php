@@ -17,7 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'mp_id')->textInput(['placeholder' => 'Mp']) ?>
+    <?= $form->field($model, 'mp_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Mp::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Mp'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'mp_reference_number')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
 
@@ -26,6 +32,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'last_mp_updated')->textInput(['placeholder' => 'Last Mp Updated']) ?>
 
     <?php /* echo $form->field($model, 'last_rop_pull')->textInput(['placeholder' => 'Last Rop Pull']) */ ?>
+
+    <?php /* echo $form->field($model, 'force_rop_resend')->textInput(['placeholder' => 'Force Rop Resend']) */ ?>
 
     <?php /* echo $form->field($model, 'count_rop_pull')->textInput(['placeholder' => 'Count Rop Pull']) */ ?>
 
@@ -94,6 +102,8 @@ use yii\widgets\ActiveForm;
     <?php /* echo $form->field($model, 'discount')->textInput(['maxlength' => true, 'placeholder' => 'Discount']) */ ?>
 
     <?php /* echo $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) */ ?>
+
+    <?php /* echo $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

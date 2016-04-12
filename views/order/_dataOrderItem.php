@@ -11,9 +11,11 @@ use yii\data\ArrayDataProvider;
         ['attribute' => 'id', 'hidden' => true],
         'sku',
         'product',
+        'options',
         'price_per_unit',
         'quantity',
         'status',
+        'last_mp_updated',
         'mp_item_id',
         [
             'class' => 'yii\grid\ActionColumn',

@@ -13,6 +13,7 @@ use Yii;
  * @property integer $rop_order_id
  * @property string $last_mp_updated
  * @property string $last_rop_pull
+ * @property integer $force_rop_resend
  * @property integer $count_rop_pull
  * @property string $order_date_time
  * @property string $name
@@ -61,7 +62,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['mp_id', 'mp_reference_number'], 'required'],
-            [['mp_id', 'rop_order_id', 'count_rop_pull'], 'integer'],
+            [['mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull'], 'integer'],
             [['last_mp_updated', 'last_rop_pull', 'order_date_time'], 'safe'],
             [['comments'], 'string'],
             [['product_total', 'tax_total', 'shipping_total', 'grand_total', 'discount'], 'number'],
@@ -91,6 +92,7 @@ class Order extends \yii\db\ActiveRecord
             'rop_order_id' => 'Rop Order ID',
             'last_mp_updated' => 'Last Mp Updated',
             'last_rop_pull' => 'Last Rop Pull',
+            'force_rop_resend' => 'Force ROP Resend',
             'count_rop_pull' => 'Count Rop Pull',
             'order_date_time' => 'Order Datetime',
             'name' => 'Name',

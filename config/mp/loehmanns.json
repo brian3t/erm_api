@@ -6,7 +6,7 @@
     "folder": "/Order Feeds/archive"
   },
   "MP_REF_NUM_COL": 0,
-  "order_columns":[
+  "order_columns": [
     "mp_reference_number",
     "ship_name",
     "ship_address",
@@ -22,5 +22,6 @@
     "order_item.options",
     "shipping_total",
     "note.order_source"
-  ]
+  ],
+  "ORDER_FILE_NAME_PRE": "SHOEMETRO-ORDER"
 }

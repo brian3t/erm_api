@@ -24,9 +24,11 @@ echo TabularForm::widget([
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
         'sku' => ['type' => TabularForm::INPUT_TEXT],
         'product' => ['type' => TabularForm::INPUT_TEXT],
+        'options' => ['type' => TabularForm::INPUT_TEXT],
         'price_per_unit' => ['type' => TabularForm::INPUT_TEXT],
         'quantity' => ['type' => TabularForm::INPUT_TEXT],
         'status' => ['type' => TabularForm::INPUT_TEXT],
+        'last_mp_updated' => ['type' => TabularForm::INPUT_TEXT],
         'mp_item_id' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',

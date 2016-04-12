@@ -26,6 +26,7 @@ $this->registerJs($search);
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         'name',
+        'end_point_name',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

@@ -34,4 +34,19 @@ class RopController extends Controller
         return 1;
     }
 
+    public function actionOrderClearRid($mp_id)
+    {
+        if(is_null($mp_id))
+        {
+            echo "Please enter marketplace id";
+            return -1;
+        }
+
+        $command = \Yii::$app->db->createCommand("UPDATE `order` SET rop_order_id = NULL WHERE mp_id=:mp_id")
+        ->bindValue(':mp_id', $mp_id);
+        $affected_rows = $command->execute();
+        \Yii::warning("Warning, ROP ID reset". $affected_rows);
+        echo "Cleared ROP Order ID for: ". $affected_rows . " records." . PHP_EOL;
+        return 1;
+    }
 }

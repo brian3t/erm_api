@@ -11,3 +11,9 @@ table.detail-view td {
 table.kv-grid-table th {
   font-size: 88%;
 }
+
+/* line 13, ../sass/custom.scss */
+.column_center {
+  width: 100%;
+  text-align: center;
+}

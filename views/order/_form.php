@@ -25,7 +25,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'mp_id')->textInput(['placeholder' => 'Mp']) ?>
+    <?= $form->field($model, 'mp_id')->widget(\kartik\widgets\Select2::className(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Mp::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Mp'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'mp_reference_number')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
 
@@ -35,9 +41,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'last_rop_pull')->textInput(['placeholder' => 'Last Rop Pull']) ?>
 
+    <?= $form->field($model, 'force_rop_resend')->textInput(['placeholder' => 'Force Rop Resend']) ?>
+
     <?= $form->field($model, 'count_rop_pull')->textInput(['placeholder' => 'Count Rop Pull']) ?>
 
-    <?= $form->field($model, 'order_date_time')->widget(\kartik\widgets\DateTimePicker::classname(), [
+    <?= $form->field($model, 'order_date_time')->widget(\kartik\widgets\DateTimePicker::className(), [
         'options' => ['placeholder' => 'Choose Order Date Time'],
         'pluginOptions' => [
             'autoclose' => true,
@@ -102,6 +110,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'discount')->textInput(['maxlength' => true, 'placeholder' => 'Discount']) ?>
 
     <?= $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) ?>
+
+    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
     <div class="form-group" id="add-order-item"></div>
 
