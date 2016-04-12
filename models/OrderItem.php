@@ -24,8 +24,13 @@ class OrderItem extends BaseOrderItem
             [['sku', 'product'], 'string', 'max' => 255],
             [['options'], 'string', 'max' => 2550],
             [['status'], 'string', 'max' => 250],
-            [['mp_item_id'], 'string', 'max' => 50]
+            [['mp_item_id'], 'string', 'max' => 50],
+            [['extra_info'], 'string', 'max' => 800]
         ]);
     }
-	
+
+    public function beforeValidate() {
+        $this->mp_item_id = strval($this->mp_item_id);
+        return parent::beforeValidate();
+    }
 }

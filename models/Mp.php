@@ -292,6 +292,7 @@ class Mp extends BaseMp
      * @return string Message
      */
     public function insert_order_from_array($order, $order_keys = \stdClass::class):string {
+        $message = '';
         $order_keys = json_decode(json_encode($order_keys), true);//make it an array
         $sme_order = new Order();
         
@@ -319,12 +320,40 @@ class Mp extends BaseMp
         }
         
         $sme_order->mp_id = $this->id;
-        if ($sme_order->save()){
-            return "Order saved";
-        } else {
-            Yii::error("aaaa". var_export($sme_order->getErrors()));
+        if (!$sme_order->save()) {
+            Yii::error("Can not save order: " . var_export($sme_order->getErrors()));
             return "Order not saved";
         }
+        //order saved. Processing order items
+        $order_item_array = $this->config->order_item_array;
+        $order_item_array = explode('.', $order_item_array);
+        $order_items = $order;
+        foreach ($order_item_array as $key) {
+            $order_items = $order_items[$key];
+        }
+        //map array, in case each item is represented by a key => value; instead of just a plain array
+        if ($this->config->order_item_array_key) {
+            //flatten array one level
+            $order_items = call_user_func_array('array_merge', $order_items);
+            // $order_items = yii\helpers\ArrayHelper::getColumn($order_items, $this->config->order_item_array_key);
+        }
+        $order_item_keys = yii\helpers\ArrayHelper::toArray($this->config->order_item_keys);
+        //loop through each order item
+        foreach ($order_items as $order_item) {
+            $sme_order_item = new OrderItem();
+            $sme_order_item->order_id = $sme_order->id;
+            foreach ($order_item_keys as $order_item_key => $sme_order_item_column) {
+                $sme_order_item->{$sme_order_item_column} = $order_item[$order_item_key];
+            }
+            if (!$sme_order_item->save()) {
+                $message .= "Can not save order item\n";
+                Yii::error("Can not save order item: " . $sme_order_item->getErrors() . json_encode($sme_order_item));
+            } else {
+                $message .= "Order item " . $sme_order_item->id . "saved.\n";
+            }
+        }
+        
+        return $message;
     }
     
     public function order_import_api($day_offset = 0) {
@@ -343,7 +372,6 @@ class Mp extends BaseMp
         //extract returned data
         
         $orders = $this->extract_orders_from_array($returned_data, $this->config->api->actions->get_orders->return_params);
-        echo json_encode($orders);
         foreach ($orders as $order) {
             $message .= $this->insert_order_from_array($order, $this->config->order_keys);
         }

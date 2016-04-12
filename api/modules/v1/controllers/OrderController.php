@@ -145,7 +145,7 @@ class OrderController extends ActiveController
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             foreach ($data as $sme_order_id => $rop_order_id) {
-                $command = \Yii::$app->db->createCommand('UPDATE `order` SET `rop_order_id` = :rop_order_id WHERE `id` = :id')
+                $command = \Yii::$app->db->createCommand('UPDATE `order` SET `rop_order_id` = :rop_order_id, `force_rop_resend` = NULL WHERE `id` = :id')
                     ->bindValues([':rop_order_id' => $rop_order_id, ':id' => $sme_order_id]);
                 $command->execute();
                 \Yii::error("db: " . $command->rawSql);

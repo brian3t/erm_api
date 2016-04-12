@@ -46,10 +46,13 @@ $this->registerJs($search);
             ],
         'sku',
         'product',
+        'options',
         'price_per_unit',
         'quantity',
         'status',
+        'last_mp_updated',
         'mp_item_id',
+        'extra_info',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

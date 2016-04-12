@@ -31,7 +31,7 @@ class Order extends BaseOrder
 
     public function beforeValidate() {
         if (!is_string($this->mp_reference_number)){
-            \Yii::warning("This order has bad mp reference nu7mber: ". var_export($this));
+            \Yii::warning("This order has bad mp reference number: ". json_encode($this));
         }
         $this->mp_reference_number = (string)($this->mp_reference_number);
         return parent::beforeValidate();

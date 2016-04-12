@@ -59,16 +59,18 @@
       "shippingDetails.shippingService": "shipping",
       "total": "grand_total",
       "amountSaved": "discount",
-      "checkoutStatus.status": "status",
+      "checkoutStatus.status": "status"
     }
   },
-  "order_item_array": "order.itemArray.item",
-  "order_item_keys":{
+  "order_item_array": "itemArray",
+  "order_item_array_key": "item",
+  "order_item_keys": {
     "sku": "sku",
-    "prooduct":"product."
-    "itemID":"mp_item_id",
-    ""
-  }
+    "title": "product",
+    "itemID": "mp_item_id",
+    "price": "price_per_unit",
+    "quantity": "quantity"
+  },
   "_comments": "$this->args['requesterCredentials']['bonanzleAuthToken'] = Vi4VNUZLDl;"
 }
 

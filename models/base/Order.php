@@ -3,6 +3,7 @@
 namespace app\models\base;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the base model class for table "order".
@@ -142,6 +143,22 @@ class Order extends \yii\db\ActiveRecord
     public function getOrderItems()
     {
         return $this->hasMany(\app\models\OrderItem::className(), ['order_id' => 'id']);
+    }
+
+    /**
+     * @inheritdoc
+     * @return type mixed
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => false,
+                'updatedAtAttribute' => 'last_mp_updated',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+        ];
     }
 
     /**

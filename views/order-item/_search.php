@@ -29,13 +29,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'product')->textInput(['maxlength' => true, 'placeholder' => 'Product']) ?>
 
-    <?= $form->field($model, 'price_per_unit')->textInput(['maxlength' => true, 'placeholder' => 'Price Per Unit']) ?>
+    <?= $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) ?>
+
+    <?php /* echo $form->field($model, 'price_per_unit')->textInput(['maxlength' => true, 'placeholder' => 'Price Per Unit']) */ ?>
 
     <?php /* echo $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) */ ?>
 
     <?php /* echo $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) */ ?>
 
+    <?php /* echo $form->field($model, 'last_mp_updated')->textInput(['placeholder' => 'Last Mp Updated']) */ ?>
+
     <?php /* echo $form->field($model, 'mp_item_id')->textInput(['maxlength' => true, 'placeholder' => 'Mp Item']) */ ?>
+
+    <?php /* echo $form->field($model, 'extra_info')->textInput(['maxlength' => true, 'placeholder' => 'Extra Info']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -17,6 +17,7 @@ use Yii;
  * @property string $status
  * @property string $last_mp_updated
  * @property string $mp_item_id
+ * @property string $extra_info
  *
  * @property \app\models\Order $order
  */
@@ -38,7 +39,8 @@ class OrderItem extends \yii\db\ActiveRecord
             [['sku', 'product'], 'string', 'max' => 255],
             [['options'], 'string', 'max' => 2550],
             [['status'], 'string', 'max' => 250],
-            [['mp_item_id'], 'string', 'max' => 50]
+            [['mp_item_id'], 'string', 'max' => 50],
+            [['extra_info'], 'string', 'max' => 800]
         ];
     }
     
@@ -66,6 +68,7 @@ class OrderItem extends \yii\db\ActiveRecord
             'status' => 'Status',
             'last_mp_updated' => 'Last Mp Updated',
             'mp_item_id' => 'Mp Item ID',
+            'extra_info' => 'Extra Info',
         ];
     }
 

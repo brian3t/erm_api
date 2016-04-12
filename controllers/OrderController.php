@@ -14,8 +14,7 @@ use yii\filters\VerbFilter;
  */
 class OrderController extends Controller
 {
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -30,10 +29,12 @@ class OrderController extends Controller
      * Lists all Order models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex($all =null) {
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (!isset($all)){
+            $dataProvider->query = $dataProvider->query->andWhere(['rop_order_id' => null]);
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -46,8 +47,7 @@ class OrderController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         $model = $this->findModel($id);
         $providerOrderItem = new \yii\data\ArrayDataProvider([
             'allModels' => $model->orderItems,
@@ -63,8 +63,7 @@ class OrderController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new Order();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
@@ -82,12 +81,11 @@ class OrderController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            if (Yii::$app->request->isAjax){
+            if (Yii::$app->request->isAjax) {
                 return '{status:success}';
             }
             return $this->redirect(['view', 'id' => $model->id]);
@@ -104,8 +102,7 @@ class OrderController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->deleteWithRelated();
 
         return $this->redirect(['index']);
@@ -118,8 +115,7 @@ class OrderController extends Controller
      * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = Order::findOne($id)) !== null) {
             return $model;
         } else {
@@ -128,18 +124,17 @@ class OrderController extends Controller
     }
     
     /**
-    * Action to load a tabular form grid
-    * for OrderItem
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddOrderItem()
-    {
+     * Action to load a tabular form grid
+     * for OrderItem
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddOrderItem() {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('OrderItem');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formOrderItem', ['row' => $row]);
         } else {
