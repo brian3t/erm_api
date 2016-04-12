@@ -29,8 +29,19 @@ class Order extends BaseOrder
             ]);
     }
 
+    public function beforeValidate() {
+        if (!is_string($this->mp_reference_number)){
+            \Yii::warning("This order has bad mp reference nu7mber: ". var_export($this));
+        }
+        $this->mp_reference_number = (string)($this->mp_reference_number);
+        return parent::beforeValidate();
+    }
+    
     public function beforeSave($insert)
     {
+        
+        //standardize date time
+        $this->order_date_time = date('Y-m-d H:i:s', strtotime($this->order_date_time));
        if (empty($this->name)){
            $this->name = $this->ship_name;
        };

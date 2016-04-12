@@ -19,7 +19,8 @@ use yii\db\Expression;
 class Agent
 {
     /**
-     * @param string $mp_id
+     * Simulate ROP pulls order from SME
+     * @param string $mp_id Marketplace id
      * @param integer $day_offset Days ago. Giving 2 will import orders two days ago
      * @return array Orders
      */

@@ -1,8 +1,8 @@
-<?
+<?php
     include("class.bonanza.php");
     $myBonanza = new BonanzaAPI();
-    $response = $myBonanza->getOrders("2016-04-06");
-    
+    $response = $myBonanza->getOrders("2016-01-04");
+
     foreach($response["getOrdersResponse"]["orderArray"] as $r){
         $theOrder = $r["order"];
         extract($theOrder);
@@ -27,14 +27,14 @@
             $data["Shipping Cost"] = 0;
             $data["Order Source"] = "Bonanza";
             //$data["OrderTotal"] = $amountPaid;
-                       
-            
+
+
             $arrData[]=$data;
         }
-        
-        
+
+
     }
-    print_r($arrData);
+    var_dump($arrData);
 
     $handle = fopen("SHOEMETRO-ORDER-".date("Ymd-his").".csv","w");
     fputcsv($handle,array_keys($arrData[0]));

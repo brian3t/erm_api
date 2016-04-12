@@ -1,4 +1,4 @@
-<?
+<?php
     class BonanzaAPI{
         public $dev_name = "ht8sOGbEl34L9jg";
         public $cert_name = "AqTWp2Let1R8DSO";
@@ -67,6 +67,3 @@
         
     }
     
-    
-    
-?>

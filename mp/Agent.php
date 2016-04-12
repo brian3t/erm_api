@@ -19,12 +19,12 @@ class Agent
      * @param string $mp_id
      * @param integer $day_offset Days ago. Giving 2 will import orders two days ago
      */
-    public function order_import($mp_id, $day_offset = 0)
-    {
+    public function order_import($mp_id, $day_offset = 0) {
+        $message = "";
         $event = new Event();
         $event->mp_id = $mp_id;
         $event->action = "MP order import";
-        $event->note = "Params: day_offset: $day_offset".PHP_EOL;
+        $event->note = "Params: day_offset: $day_offset" . PHP_EOL;
         $event->start = time();
 
         echo "Marketplace id: $mp_id \n";
@@ -32,10 +32,15 @@ class Agent
         $mp = Mp::findOne($mp_id);
         echo $mp->name ?? "Marketplace not found. Wrong id?\n";
         echo $mp->config->ftp->host ?? "FTP host missing\n";
+        echo $mp->config->api->url ?? "API Url missing\n";
         echo "\n";
-        echo "Start pulling..";
-        $message = $mp->order_import($day_offset). PHP_EOL;
-        echo PHP_EOL.$message.PHP_EOL;
+        echo "Start pulling..\n";
+        if (isset($mp->config->ftp)) {
+            $message = $mp->order_import_ftp($day_offset) . PHP_EOL;
+        } elseif (is_object($mp->config->api)) {
+            $message = $mp->order_import_api($day_offset) . PHP_EOL;
+        }
+        echo PHP_EOL . $message . PHP_EOL;
         $event->note = $message;
         $event->stop = new Expression('NOW()');
         $event->save();
@@ -46,8 +51,7 @@ class Agent
      * @param $mp_id
      * @param int $day_offset
      */
-    public function order_flush($mp_id, $day_offset = 0)
-    {
+    public function order_flush($mp_id, $day_offset = 0) {
         $mp = Mp::findOne($mp_id);
         echo "\n" . $mp->order_flush($day_offset);
     }
