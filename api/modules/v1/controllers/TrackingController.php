@@ -19,11 +19,11 @@ use yii\filters\Cors;
 use yii\rest\IndexAction;
 
 
-class OrderController extends ActiveController
+class TrackingController extends ActiveController
 {
     // We are using the regular web app modules:
-    public $modelClass = 'app\models\Order';
-
+    public $modelClass = 'app\models\Tracking';
+    
     /**
      * @var callable a PHP callable that will be called when running an action to determine
      * if the current user has the permission to execute the action. If not set, the access
@@ -37,7 +37,7 @@ class OrderController extends ActiveController
      * ```
      */
     public $checkAccess;
-
+    
     /**
      * @var callable a PHP callable that will be called to prepare a data provider that
      * should return a collection of the models. If not set, [[prepareDataProvider()]] will be used instead.
@@ -52,101 +52,55 @@ class OrderController extends ActiveController
      * The callable should return an instance of [[ActiveDataProvider]].
      */
     public $prepareDataProvider;
-
-    public function actions()
-    {
+    
+    public function actions() {
         $actions = parent::actions();
-
+        
         // disable the "delete" actions
         unset($actions['delete']);
-
-        // customize the data provider preparation with the "prepareDataProvider()" method
-        $actions['index']['class'] = 'app\api\modules\v1\controllers\OrderAction';
-        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
-        // $actions['index']['checkAccess'] = [$this, 'checkAccess'];
-
+        
         return $actions;
     }
-
-    public function prepareDataProvider()
-    {
-        // prepare and return a data provider for the "index" action
-        $query = Order::find()->joinWith('mp')
-        ->where(['rop_order_id' => null])->orWhere(['force_rop_resend' => 1])->limit(DEBUG ? LIMIT : null);
-
-        $mp_end_point = \Yii::$app->request->getQueryParam('mp');
-        $mp = Mp::findOne(['end_point_name' => $mp_end_point]);
-        if (is_object($mp)){
-            $query->andWhere(['mp_id' => $mp->id]);
-        }
-
-        $dp = new ActiveDataProvider(
-            ['query' => $query]
-        );
-        if (DEBUG) {
-            $dp->pagination = false;
-        }
-        return $dp;
-    }
-
-    public function behaviors()
-    {
+    
+    public function behaviors() {
         return ArrayHelper::merge([
             [
                 'class' => Cors::className(),
                 'cors' => [
-                    'Origin' => ['http://brianng', 'http://brianng:8080', 'http://localhost:8080', 'http://api.ngxtri.com',
-                        'http://api.brianng', 'http://localhost'],
+                    'Origin' => ['*'],
                 ],
             ],
             // 'authenticator' => ['class' => HttpBasicAuth::className()]
         ], parent::behaviors());
     }
-
-    public function checkAccess($action, $model = null, $params = [])
-    {
-        return parent::checkAccess($action, $model, $params);
-    }
-
-    public function actionPull($id)
-    {
-        return Order::findOne($id);
-    }
-
+    
     /**
-     * ROP Endpoint: Order Confirmation
+     * ROP Endpoint: Tracking Push
      * @param string $mp_endpoint_name Marketplace endpoint name, e.g. loehmanns
-     * Expects json_encoded Associative array of orders. Each order is a key-value pair:
-     *      sme_order_id    :   rop_order_id, e.g.     123 : ABC123
+     * Expects json_encoded Associative array of Trackings. Each tracking is an key-value pair, key is ROP Order ID, value is
+     * an array containing tracking information
+     *      rop_order_id    =>
+     *          {
+     *              "sku": sku, e.g.     "sku": ABC123
+     *              "tracking_number": Tracking Number, e.g. "tracking_number": ABC123456ABC
+     *              "tracking_carrier": 'USPS'
+     *              "ship_date":    2015-03-04 16:09:00
+     *          }
      * @return string A json encoded array with the following information:
      * {
      *  status: successful|failed
      *  count: Number of orders updated
      *  info:   further information, such as error at ROP side, error at SME side
      * }
+     * @throws \Exception if Db commit fails
      */
-    public function actionConfirm($mp_endpoint_name = null)
-    {
+    public function actionPush($mp_endpoint_name = null) {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
         $result = [
             'status' => 'failed',
         ];
-        // if (!\Yii::$app->request->isAjax){
-        //     $result['info'] = 'Request is not ajax';
-        //     return json_encode($result);
-        // }
-        // if (is_null($mp_endpoint_name)){
-        //     $result['info'] = 'No endpoint name given';
-        //     return json_encode($result);
-        // }
-        // $mp = Mp::findOne(['end_point_name' => $mp_endpoint_name]);
-        // if (!is_object($mp)){
-        //     $result['info'] = 'Bad endpoint name';
-        //     return json_encode($result);
-        // }
-        // $mp_id = $mp->id;
         $data = \Yii::$app->request->post();
-
+        
         // if (is_string($data)) {
         //
         //     try {
@@ -155,17 +109,19 @@ class OrderController extends ActiveController
         //         \Yii::warning('Data received from order confirm is not string but not json string.');
         //     }
         // }
-
-        // \Yii::warning('data: '. print_r($data, true));
+        
         $transaction = \Yii::$app->db->beginTransaction();
         try {
-            foreach ($data as $sme_order_id => $rop_order_id) {
-                $command = \Yii::$app->db->createCommand('UPDATE `order` SET `rop_order_id` = :rop_order_id, `force_rop_resend` = NULL WHERE `id` = :id')
-                    ->bindValues([':rop_order_id' => $rop_order_id, ':id' => $sme_order_id]);
+            foreach ($data as $rop_order_id => $tracking) {
+                $command = \Yii::$app->db->createCommand('REPLACE INTO `tracking`
+                 (`rop_order_id`, `sku`, `tracking_number`, `tracking_carrier`, `ship_date`) 
+                 VALUES (:rop_order_id, :sku, :tracking_number, :tracking_carrier, :ship_date)')
+                    ->bindValues([':rop_order_id' => $rop_order_id, ':sku' => $tracking['sku'], ':tracking_carrier' => $tracking['tracking_carrier'],
+                        ':tracking_number' => $tracking['tracking_number'], ':ship_date' => $tracking['ship_date']]);
                 $command->execute();
                 \Yii::error("db: " . $command->rawSql);
             }
-
+            
             $transaction->commit();
             $result['status'] = 'successful';
             $result['count'] = count($data);
@@ -174,12 +130,8 @@ class OrderController extends ActiveController
             $result['info'] = "Transaction error: " . $e->getMessage();
             throw $e;
         }
-
+        
         return json_encode($result);
-    }
-    
-    public function actionBlah(){
-        return '{"bleh":1}';
     }
 }
 
@@ -190,12 +142,11 @@ class OrderAction extends IndexAction
      * Also mark exported items's last_rop_pull
      * And increase the number of times they got pulled by ROP
      */
-    public function run()
-    {
+    public function run() {
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
         $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
             ->execute();
         return parent::run();
     }
-
+    
 }

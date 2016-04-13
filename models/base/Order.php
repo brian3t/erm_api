@@ -50,6 +50,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property \app\models\Mp $mp
  * @property \app\models\OrderItem[] $orderItems
+ * @property \app\models\Tracking[] $trackings
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -143,6 +144,11 @@ class Order extends \yii\db\ActiveRecord
     public function getOrderItems()
     {
         return $this->hasMany(\app\models\OrderItem::className(), ['order_id' => 'id']);
+    }
+
+    public function getTrackings()
+    {
+        return $this->hasMany(\app\models\Tracking::className(), ['rop_order_id' => 'rop_order_id']);
     }
 
     /**

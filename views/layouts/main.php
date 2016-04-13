@@ -42,7 +42,7 @@ AppAsset::register($this);
             ['label' => 'Events', 'url' => ['/event']],
             ['label' => 'Inventory', 'url' => ['/inventory']],
             ['label' => 'Orders', 'url' => ['/order']],
-            ['label' => 'Archived Orders', 'url' => ['/order?all']],
+            ['label' => 'Orders w/ROP', 'url' => ['/order?has_rop=1']],
             ['label' => 'API Order', 'url' => 'http://' . Yii::$app->request->serverName. '/api/v1/orders'],
 
 //            Yii::$app->user->isGuest ? (

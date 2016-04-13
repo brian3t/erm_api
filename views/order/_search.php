@@ -11,7 +11,8 @@ use yii\widgets\ActiveForm;
 <div class="form-order-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => array_merge(['index'],
+            Yii::$app->request->getQueryParams()),
         'method' => 'get',
     ]); ?>
 

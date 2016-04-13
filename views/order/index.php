@@ -12,7 +12,7 @@ use kartik\widgets\SwitchInput;
 $this->title = 'Order';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
-	$('.search-form').toggle(1000);
+	$('.search-form').toggle(200);
 	return false;
 });";
 $this->registerJs($search);
@@ -82,6 +82,19 @@ $this->registerJs($search);
             }
         ],
         'order_date_time',
+        [
+            'label' => 'Status',
+            'format' => 'html',
+            'value' => function($model, $k, $i, $c){
+                $status = $model->status;
+                $echo = "<span class='$status'>$status</span>";
+                if (count($model->trackings) > 0){
+                    $echo .= '<span class="glyphicon glyphicon-send" aria-hidden="true"></span>';
+                }
+                return $echo;
+            },
+            'hAlign' => GridView::ALIGN_CENTER,
+        ],
         'shipping',
         'ship_name',
         'product_total',

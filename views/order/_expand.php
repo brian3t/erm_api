@@ -9,11 +9,18 @@ $items = [
             'model' => $model,
         ]),
     ],
-        [
+            [
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order Item'),
         'content' => $this->render('_dataOrderItem', [
             'model' => $model,
             'row' => $model->orderItems,
+        ]),
+    ],
+            [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Tracking'),
+        'content' => $this->render('_dataTracking', [
+            'model' => $model,
+            'row' => $model->trackings,
         ]),
     ],
     ];

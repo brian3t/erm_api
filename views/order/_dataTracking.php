@@ -3,24 +3,19 @@ use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 
     $dataProvider = new ArrayDataProvider([
-        'allModels' => $model->orderItems,
+        'allModels' => $model->trackings,
         'key' => 'id'
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         'sku',
-        'product',
-        'options',
-        'price_per_unit',
-        'quantity',
-        'status',
-        'last_mp_updated',
-        'mp_item_id',
-        'extra_info',
+        'tracking_number',
+        'tracking_carrier',
+        'ship_date',
         [
             'class' => 'yii\grid\ActionColumn',
-            'controller' => 'order-item'
+            'controller' => 'tracking'
         ],
     ];
     

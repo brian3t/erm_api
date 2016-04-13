@@ -36,11 +36,19 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'pluralize' => false,
-                    'controller' => ['v1/event', 'v1/order'],
+                    'controller' => ['v1/event', 'v1/order', 'v1/tracking'],
+                    'extraPatterns' => [
+                        'POST push' => 'push',//todob this is tracking push
+                    ],
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'v1/order',
                     'extraPatterns' => [
                         'POST confirm' => 'confirm', // 'confirm' refers to 'actionConfirm'
                     ],
-                ],
+                ]
             ]
         ],
         'db' => $db,

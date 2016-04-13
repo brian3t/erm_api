@@ -33,7 +33,27 @@ class RopController extends Controller
         
         return 1;
     }
-
+    
+    /**
+     * Simulate tracking push. More details in /rop/Agent.php/actionTrackingPush
+     * @param $mp_id
+     * @return int
+     */
+    public function actionSimTrackingPush($mp_id)
+    {
+        if(is_null($mp_id))
+        {
+            echo "Please enter marketplace id";
+            return -1;
+        }
+        
+        $rop_agent = new Agent();
+        echo $rop_agent->tracking_push($mp_id);
+        
+        return 1;
+    }
+    
+    
     public function actionOrderClearRid($mp_id)
     {
         if(is_null($mp_id))

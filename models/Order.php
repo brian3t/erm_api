@@ -29,9 +29,10 @@ class Order extends BaseOrder
             ]);
     }
 
-    public function beforeValidate() {
-        if (!is_string($this->mp_reference_number)){
-            \Yii::warning("This order has bad mp reference number: ". json_encode($this));
+    public function beforeValidate()
+    {
+        if (!is_string($this->mp_reference_number)) {
+            \Yii::warning("This order has bad mp reference number: " . json_encode($this));
         }
         $this->mp_reference_number = (string)($this->mp_reference_number);
         return parent::beforeValidate();
@@ -42,40 +43,40 @@ class Order extends BaseOrder
         
         //standardize date time
         $this->order_date_time = date('Y-m-d H:i:s', strtotime($this->order_date_time));
-       if (empty($this->name)){
-           $this->name = $this->ship_name;
-       };
+        if (empty($this->name)) {
+            $this->name = $this->ship_name;
+        };
 
-       if (empty($this->company)){
-           $this->company = $this->ship_company;
-       };
+        if (empty($this->company)) {
+            $this->company = $this->ship_company;
+        };
 
-       if (empty($this->address)){
-           $this->address = $this->ship_address;
-       };
+        if (empty($this->address)) {
+            $this->address = $this->ship_address;
+        };
 
-       if (empty($this->address2)){
-           $this->address2 = $this->ship_address2;
-       };
+        if (empty($this->address2)) {
+            $this->address2 = $this->ship_address2;
+        };
 
-       if (empty($this->city)){
-           $this->city = $this->ship_city;
-       };
+        if (empty($this->city)) {
+            $this->city = $this->ship_city;
+        };
 
-       if (empty($this->state)){
-           $this->state = $this->ship_state;
-       };
-       if (empty($this->zip)){
-           $this->zip = $this->ship_zip;
-       };
+        if (empty($this->state)) {
+            $this->state = $this->ship_state;
+        };
+        if (empty($this->zip)) {
+            $this->zip = $this->ship_zip;
+        };
 
-       if (empty($this->country)){
-           $this->country = $this->ship_country;
-       };
+        if (empty($this->country)) {
+            $this->country = $this->ship_country;
+        };
 
-       if (empty($this->phone)){
-           $this->phone = $this->ship_phone;
-       };
+        if (empty($this->phone)) {
+            $this->phone = $this->ship_phone;
+        };
 
         return parent::beforeSave($insert);
     }
@@ -83,20 +84,16 @@ class Order extends BaseOrder
     public function getNote()
     {
         $result = "N / A";
-        try
-        {
+        try {
             $note = json_decode($this->note, true);
-            if(is_array($note))
-            {
+            if (is_array($note)) {
                 $result = "";
-                foreach ($note as $key => $value)
-                {
+                foreach ($note as $key => $value) {
                     $result .= ucwords(str_replace('_', ' ', $key));
                     $result .= " : $value\n";
                 }
             }
-        } catch (Exception $e)
-        {
+        } catch (Exception $e) {
             Yii::error($e);
         }
         return $result;
@@ -107,7 +104,9 @@ class Order extends BaseOrder
      */
     public function fields()
     {
-        return ['id', 'mp_reference_number', 'rop_order_id', 'last_mp_updated', 'order_date_time', 'shipping', 'ship_name'];
+        return ['id', 'marketplace' => function ($model) {
+            return $model->mp->name;
+        }, 'mp_reference_number', 'rop_order_id', 'last_mp_updated', 'order_date_time', 'shipping', 'ship_name'];
     }
 
     public function extraFields()

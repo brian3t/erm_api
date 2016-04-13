@@ -30,6 +30,7 @@ echo TabularForm::widget([
         'status' => ['type' => TabularForm::INPUT_TEXT],
         'last_mp_updated' => ['type' => TabularForm::INPUT_TEXT],
         'mp_item_id' => ['type' => TabularForm::INPUT_TEXT],
+        'extra_info' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

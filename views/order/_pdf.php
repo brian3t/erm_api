@@ -89,6 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'status',
         'last_mp_updated',
         'mp_item_id',
+        'extra_info',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderItem,
@@ -99,6 +100,33 @@ $this->params['breadcrumbs'][] = $this->title;
             'heading' => Html::encode('Order Item'.' '. $this->title),
         ],
         'columns' => $gridColumnOrderItem
+    ]);
+?>
+    </div>
+    
+    <div class="row">
+<?php
+    $gridColumnTracking = [
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'hidden' => true],
+        [
+                'attribute' => 'order.name',
+                'label' => 'Rop Order'
+        ],
+        'sku',
+        'tracking_number',
+        'tracking_carrier',
+        'ship_date',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerTracking,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-tracking']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode('Tracking'.' '. $this->title),
+        ],
+        'columns' => $gridColumnTracking
     ]);
 ?>
     </div>

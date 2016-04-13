@@ -102,6 +102,7 @@ if($providerOrderItem->totalCount){
             'status',
             'last_mp_updated',
             'mp_item_id',
+            'extra_info',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderItem,
@@ -112,6 +113,35 @@ if($providerOrderItem->totalCount){
         'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Order Item'.' '. $this->title),
         ],
         'columns' => $gridColumnOrderItem
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerTracking->totalCount){
+    $gridColumnTracking = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'hidden' => true],
+            [
+                'attribute' => 'order.name',
+                'label' => 'Rop Order'
+        ],
+            'sku',
+            'tracking_number',
+            'tracking_carrier',
+            'ship_date',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerTracking,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-tracking']],
+        'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Tracking'.' '. $this->title),
+        ],
+        'columns' => $gridColumnTracking
     ]);
 }
 ?>
