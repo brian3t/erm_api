@@ -20,12 +20,9 @@ class MpController extends Controller
      */
     public function actionOrderImport($mp_id, $day_offset = 0)
     {
-        if(is_null($mp_id))
-        {
-            echo "Please enter marketplace id";
-            return -1;
+        if (!$this->checkMp($mp_id)){
+            return false;
         }
-
         $mp_agent = new Agent();
         $mp_agent->order_import($mp_id, $day_offset);
         return 1;
@@ -38,15 +35,38 @@ class MpController extends Controller
      * @return string Message
      */
     public function actionOrderFlush($mp_id, $day_offset = 0){
-        if(is_null($mp_id))
-        {
-            echo "Please enter marketplace id";
-            return -1;
+        if (!$this->checkMp($mp_id)){
+            return false;
         }
 
         $mp_agent = new Agent();
         $mp_agent->order_flush($mp_id, $day_offset);
         return 1;
     }
- 
+    
+    /**
+     * Pushes all tracking to a marketplace. More details at mp/Agent.php
+     * @param integer $mp_id Marketplace id
+     * @return string Status
+     */
+    public function actionTrackingPush($mp_id){
+        if (!$this->checkMp($mp_id)){
+            return false;
+        }
+    
+        $mp_agent = new Agent();
+        $mp_agent->tracking_push($mp_id);
+        return 1;
+    }
+    
+    private function checkMp($mp_id){
+        if(is_null($mp_id))
+        {
+            echo "Please enter marketplace id";
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }

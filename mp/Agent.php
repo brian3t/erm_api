@@ -23,7 +23,7 @@ class Agent
         $message = "";
         $event = new Event();
         $event->mp_id = $mp_id;
-        $event->action = "MP order import";
+        $event->action = "MP ORDER IMPORT";
         $event->note = "Params: day_offset: $day_offset" . PHP_EOL;
         $event->start = time();
 
@@ -54,5 +54,39 @@ class Agent
     public function order_flush($mp_id, $day_offset = 0) {
         $mp = Mp::findOne($mp_id);
         echo "\n" . $mp->order_flush($day_offset);
+    }
+
+    /**
+     * Pushes all trackings to a marketplace
+     * @param int $mp_id Marketplace ID
+     *
+     */
+    public function tracking_push($mp_id){
+        $message = "";
+        $event = new Event();
+        $event->mp_id = $mp_id;
+        $event->action = "MP TRACKING PUSH";
+        $event->start = time();
+        echo "Marketplace id: $mp_id \n";
+    
+        $mp = Mp::findOne($mp_id);
+        echo $mp->name ?? "Marketplace not found. Wrong id?\n";
+        echo $mp->config->ftp->host ?? "FTP host missing\n";
+        echo $mp->config->api->url ?? "API Url missing\n";
+        echo "\n";
+        echo "Start pushing..\n";
+    
+        if (isset($mp->config->ftp)) {
+            $message = $mp->tracking_push() . PHP_EOL;
+        } elseif (is_object($mp->config->api)) {
+            $message = $mp->tracking_push_api() . PHP_EOL;
+        }
+        echo PHP_EOL . $message . PHP_EOL;
+        $event->note = $message;
+        $event->stop = new Expression('NOW()');
+        $event->save();
+    
+    
+    
     }
 }

@@ -1,6 +1,6 @@
 <?php
-
 namespace app\models;
+define("TRACKING_PUSH_DAYS_BACK", 30);
 
 use Faker\Provider\DateTime;
 use yii;
@@ -32,7 +32,8 @@ class Mp extends BaseMp
      * Json file is located at ../config/mp/[mp's end_point_name].json
      *
      */
-    public static function findOne($condition) {
+    public static function findOne($condition)
+    {
         $instance = parent::findOne($condition);
         
         if (!$instance) {
@@ -63,7 +64,8 @@ class Mp extends BaseMp
      * Order //    mp_id, mp_reference_number, rop_order_id, last_mp_updated, last_rop_pull, count_rop_pull, order_date_time,  name,  company,  email,  address,  address2,  city,  state,  zip,  country,  phone,  ship_name,  ship_company,  ship_address,  ship_address2,  ship_city,  ship_state,  ship_zip,  ship_country,  ship_phone,  pay_type,  pay_transaction_id,  comments,  product_total,  tax_total,  shipping_total,  grand_total,  shipping,  discount,  status`
      * Order_item: SELECT  order_id    , sku    , product    , price_per_unit    , quantity    , status    , last_mp_updated    , mp_item_id
      */
-    protected function insert_order_from_csv($row = null, $order_date_time) {
+    protected function insert_order_from_csv($row = null, $order_date_time)
+    {
         $order_item = new OrderItem();
         if (empty($order_date_time)) {
             $order_date_time = date('Y-m-d h:i:s');
@@ -113,7 +115,8 @@ class Mp extends BaseMp
     /**
      * @inheritdoc
      */
-    public function rules() {
+    public function rules()
+    {
         return array_replace_recursive(parent::rules(),
             [
                 [['id'], 'required'],
@@ -134,7 +137,8 @@ class Mp extends BaseMp
      * @param integer $day_offset Days ago. Giving 2 will import orders two days ago
      * @return string Messages.
      */
-    public function order_import_ftp($day_offset = 0) {
+    public function order_import_ftp($day_offset = 0)
+    {
         $message = "";
         if (empty($this->config->ftp->host)) {
             $message .= "Failed";
@@ -243,16 +247,33 @@ class Mp extends BaseMp
      * @param array $vars Variables. Variable names must follow json configuration
      * @return string Query string
      */
-    protected function api_build_query($action = "", $vars = []) {
+    protected function api_build_query($action = "", $vars = [])
+    {
         $query_vars = $this->config->api->actions->$action->request_query_vars;
         $query_array = [];
         foreach ($query_vars as $query_var => $params) {
             $param_array = (array)$this->config->api->query;
-            foreach ($params as $key => $param) {
-                if (substr($param, 0, 1) == ':') {
-                    $param_array[$key] = $vars[substr($param, 1)];
-                } else {
-                    $param_array[$key] = $param;
+            foreach ($params as $keys => $value_or_attributes) {
+                $keys = explode('.', $keys);//e.g. shipment.shippingCarrierUsed
+                $param_array_copy = $param_array;
+                $pointer_to_param_to_assign =& $param_array;
+                foreach ($keys as $key) {
+                    if (is_array($pointer_to_param_to_assign) && !array_key_exists($key, $pointer_to_param_to_assign)) {
+                        $pointer_to_param_to_assign[$key] = '';
+                    }
+                    $pointer_to_param_to_assign =& $pointer_to_param_to_assign[$key];
+                }
+                //$param_to_assign = $param_array[shipment][shippingCarrierUsed]
+                if (substr($value_or_attributes, 0, 1) == ':') { // This is attributes, e.g. ":day_from" or "order.id"
+                    $value_or_attributes = substr($value_or_attributes, 1);//Remove the : to make "order.id"
+                    $value_or_attributes = explode('.', $value_or_attributes);// [order, id] or just [day_from]
+                    $value = $vars;
+                    foreach ($value_or_attributes as $attribute) {
+                        $value = $value[$attribute];//go down one level, e.g. tracking[order]
+                    }
+                    $pointer_to_param_to_assign = $value;
+                } else { // This is value, e.g. "seller"
+                    $pointer_to_param_to_assign = $value_or_attributes;
                 }
             }
             $query_array[$query_var] = json_encode($param_array);
@@ -272,7 +293,8 @@ class Mp extends BaseMp
      *    }
      * @return array Array of orders
      */
-    public function extract_orders_from_array($data, $config = \stdClass::class) {
+    public function extract_orders_from_array($data, $config = \stdClass::class)
+    {
         while (is_object($config)) {
             $first_object = (array)$config;
             $data = $data[array_keys($first_object)[0]];//go down one level in data array
@@ -291,7 +313,8 @@ class Mp extends BaseMp
      * @param \stdClass $order_keys An object that represent order structure. Pulled from mp's json file
      * @return string Message
      */
-    public function insert_order_from_array($order, $order_keys = \stdClass::class):string {
+    public function insert_order_from_array($order, $order_keys = \stdClass::class):string
+    {
         $message = '';
         $order_keys = json_decode(json_encode($order_keys), true);//make it an array
         $sme_order = new Order();
@@ -356,7 +379,8 @@ class Mp extends BaseMp
         return $message;
     }
     
-    public function order_import_api($day_offset = 0) {
+    public function order_import_api($day_offset = 0)
+    {
         $message = "";
         if (!is_object($this->config->api)) {
             $message .= "Need api config";
@@ -379,11 +403,52 @@ class Mp extends BaseMp
         return $message;
     }
     
-    protected function set_params($action) {
+    /**
+     * Pushes all tracking to Marketplace
+     */
+    public function tracking_push_api()
+    {
+        $message = '';
+        $ship_date_from = new \DateTime();
+        $ship_date_from->sub((new \DateInterval("P" . TRACKING_PUSH_DAYS_BACK . "D")));
+        $ship_date_from = $ship_date_from->format('Y-m-d H:i:s');
+        
+        $trackings = Tracking::find()->joinWith('order')->select('*')->where(['>=', 'ship_date', $ship_date_from]);
+
+        //todob debugging
+        $trackings = $trackings->andWhere(['order.mp_reference_number' => '38335885']);
+
+        $trackings = $trackings->asArray()->all();
+        foreach ($trackings as $tracking) {
+            // $tracking->order_id = Order::findOne(['rop_order_id'])
+            $this->reset_parameters();
+            $post_fields = $this->api_build_query('tracking_push', $tracking);
+            $returned_data = $this->get_response($post_fields);
+            $returned_data = var_export($returned_data);
+            echo PHP_EOL . $returned_data . PHP_EOL;
+            $message .= $returned_data;
+        }
+        
+        // function submitTracking($orderID,$shippingCarrierUsed,$shippingTrackingNumber){
+        //     $this->resetParameter();
+        //     $this->args["shipment"]["shippingTrackingNumber"] = $shippingTrackingNumber;
+        //     $this->args["shipment"]["shippingCarrierUsed"] = $shippingCarrierUsed;
+        //     $this->args["transactionID"] = $orderID;
+        //     $post_fields = "completeSaleRequest=" . urlencode(json_encode($this->args));
+        //     return $this->getResponse($post_fields);
+        // }
+        //
+        
+        return $message;
+    }
+    
+    protected function set_params($action)
+    {
         
     }
     
-    public function reset_parameters() {
+    public function reset_parameters()
+    {
         $this->curl_options = array(
             CURLOPT_HTTPHEADER => (array)$this->config->api->headers,
             CURLOPT_POST => 1,
@@ -393,7 +458,8 @@ class Mp extends BaseMp
         );
     }
     
-    function get_response($post_fields) {
+    function get_response($post_fields)
+    {
         $connection = curl_init($this->config->api->url);
         $this->curl_options[CURLOPT_POSTFIELDS] = $post_fields;
         curl_setopt_array($connection, $this->curl_options);
@@ -413,7 +479,8 @@ class Mp extends BaseMp
      *
      * @param integer $day_offset
      */
-    public function order_flush($day_offset = 0) {
+    public function order_flush($day_offset = 0)
+    {
         $date = new \DateTime();
         $date->sub(new \DateInterval("P" . $day_offset . "D"));//backdating
         $date = $date->format('Y-m-d');
@@ -428,6 +495,14 @@ class Mp extends BaseMp
             echo "Error $sql" . PHP_EOL;
         }
         
+        
+    }
+    
+    /**
+     * Pushes all tracking to Marketplace via FTP
+     */
+    public function tracking_push()
+    {
         
     }
     

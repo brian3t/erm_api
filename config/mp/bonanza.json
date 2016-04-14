@@ -23,6 +23,15 @@
             "orderArray": ":orders"
           }
         }
+      },
+      "tracking_push": {
+        "request_query_vars": {
+          "completeSaleRequest": {
+            "shipment.shippingTrackingNumber": ":tracking_number",
+            "shipment.shippingCarrierUsed": ":tracking_carrier",
+            "transactionID": ":order.mp_reference_number"
+          }
+        }
       }
     }
   },
