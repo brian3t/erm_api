@@ -36,7 +36,8 @@ $config = [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'pluralize' => false,
-                    'controller' => ['v1/event', 'v1/order', 'v1/tracking'],
+                    'controller' => ['v1/event', 'v1/order', 'v1/tracking', 'v1/inventory'],
+                    // 'patterns' => ['PUT,PATCH {id}' => 'update', 'DELETE {id}' => 'delete', 'GET,HEAD {id}' => 'view', 'POST' => 'create', 'GET,HEAD' => 'index', '{id}' => 'options', '' => 'options'],
                     'extraPatterns' => [
                         'POST push' => 'push',//todob this is tracking push
                     ],

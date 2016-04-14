@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 /**
  * This is the base model class for table "inventory".
  *
+ * @property integer $id
  * @property string $sku
  * @property integer $quantity
  * @property string $updatetime
@@ -44,6 +45,7 @@ class Inventory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'sku' => 'Sku',
             'quantity' => 'Quantity',
             'updatetime' => 'Updatetime',
@@ -64,14 +66,5 @@ class Inventory extends \yii\db\ActiveRecord
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return \app\models\InventoryQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new \app\models\InventoryQuery(get_called_class());
     }
 }

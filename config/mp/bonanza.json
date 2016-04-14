@@ -32,6 +32,14 @@
             "transactionID": ":order.mp_reference_number"
           }
         }
+      },
+      "update_quantity": {
+        "request_query_vars": {
+          "reviseFixedPriceItemRequest": {
+            "itemId": "sku",
+            "item.quantity": "quantity"
+          }
+        }
       }
     }
   },

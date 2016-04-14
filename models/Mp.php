@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 define("TRACKING_PUSH_DAYS_BACK", 30);
+// define("DEBUGGING")
 
 use Faker\Provider\DateTime;
 use yii;
@@ -440,6 +441,13 @@ class Mp extends BaseMp
         //
         
         return $message;
+    }
+    
+    /**
+     * Update quantity of all items in inventory 
+     */
+    public function update_quantity_api(){
+        
     }
     
     protected function set_params($action)

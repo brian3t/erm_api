@@ -162,10 +162,9 @@ class Agent
         // close cURL resource, and free up system resources
         curl_close($ch);
 
-        //todob debug why html is needed
         $header = json_decode($header, true);
 
-        $orders_updated = $header['count']??"Something wrong. Header received: $header";
+        $orders_updated = $header['count']??"Something wrong. Header received: $header. Response received: $response";
         $event->note = $message . "\nCount: " . $orders_updated . "\n";
         $event->stop = new Expression('NOW()');
         $event->save();

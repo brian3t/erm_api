@@ -95,7 +95,7 @@ class TrackingController extends ActiveController
      * @throws \Exception if Db commit fails
      */
     public function actionPush($mp_endpoint_name = null) {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
+        \Yii::$app->response->headers->add('Content-type', 'application/json');
         $result = [
             'status' => 'failed',
         ];
@@ -119,19 +119,21 @@ class TrackingController extends ActiveController
                     ->bindValues([':rop_order_id' => $rop_order_id, ':sku' => $tracking['sku'], ':tracking_carrier' => $tracking['tracking_carrier'],
                         ':tracking_number' => $tracking['tracking_number'], ':ship_date' => $tracking['ship_date']]);
                 $command->execute();
-                \Yii::error("db: " . $command->rawSql);
             }
             
             $transaction->commit();
             $result['status'] = 'successful';
             $result['count'] = count($data);
+            \Yii::$app->response->setStatusCode(201);
         } catch (\Exception $e) {
             $transaction->rollBack();
             $result['info'] = "Transaction error: " . $e->getMessage();
+            \Yii::$app->response->setStatusCode(500);
             throw $e;
         }
         
-        return json_encode($result);
+        echo json_encode($result);
+        \Yii::$app->end(1);
     }
 }
 
