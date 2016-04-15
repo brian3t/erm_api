@@ -69,4 +69,19 @@ class MpController extends Controller
             return true;
         }
     }
+    
+    /**
+     * Update quantity
+     * More details inside models/Mp.php
+     */
+    public function quantity_update($mp_id)
+    {
+        if (!$this->checkMp($mp_id)){
+            return false;
+        }
+    
+        $mp_agent = new Agent();
+        $mp_agent->quantity_update($mp_id);
+        return 1;
+    }
 }

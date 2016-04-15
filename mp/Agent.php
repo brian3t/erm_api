@@ -85,8 +85,25 @@ class Agent
         $event->note = $message;
         $event->stop = new Expression('NOW()');
         $event->save();
+  
+    }
     
-    
-    
+    /**
+     * Update qty to MP
+     * @param integer $mp_id Marketplace id
+     */
+    public function quantity_update($mp_id){
+        $mp = Mp::findOne($mp_id);
+        echo $mp->name ?? "Marketplace not found. Wrong id?\n";
+        echo $mp->config->ftp->host ?? "FTP host missing\n";
+        echo $mp->config->api->url ?? "API Url missing\n";
+        echo "\n";
+        echo "Start updating quantity..\n";
+        if (isset($mp->config->ftp)) {
+            $message = $mp->quantity_update() . PHP_EOL;
+        } elseif (is_object($mp->config->api)) {
+            $message = $mp->update_quantity_api() . PHP_EOL;
+        }
+        
     }
 }

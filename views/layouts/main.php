@@ -20,7 +20,8 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link rel="stylesheet" href="http://<?=Yii::$app->request->serverName."/".Yii::$app->request->baseUrl?>/less/stylesheets/custom.css">
+    <link rel="stylesheet"
+          href="http://<?= Yii::$app->request->serverName . "/" . Yii::$app->request->baseUrl ?>/less/stylesheets/custom.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -28,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'SME',
+        'brandLabel' => 'SME v0.5',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,9 +42,19 @@ AppAsset::register($this);
             ['label' => 'Docs', 'url' => ['/docs']],
             ['label' => 'Events', 'url' => ['/event']],
             ['label' => 'Inventory', 'url' => ['/inventory']],
-            ['label' => 'Orders', 'url' => ['/order']],
+            [
+                'label' => 'Reports',
+                'items' => [
+                    '<li class="dropdown-header">Order</li>',
+                    ['label' => 'Order confirmation %', 'url' => 'order/confirm-percent'],
+                    '<li class="divider"></li>',
+                    '<li class="dropdown-header">Performance</li>',
+                    ['label' => 'Task duration', 'url' => '#'],
+                ],
+            ],
+
             ['label' => 'Orders w/ROP', 'url' => ['/order?has_rop=1']],
-            ['label' => 'API Order', 'url' => 'http://api.' . Yii::$app->request->serverName. '/v1/order'],
+            ['label' => 'API Order', 'url' => 'http://api.' . Yii::$app->request->serverName . '/v1/order'],
 
 //            Yii::$app->user->isGuest ? (
 //                ['label' => 'Login', 'url' => ['/site/login']]
@@ -72,9 +83,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Shoe Metro Enhancer 3 <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
 

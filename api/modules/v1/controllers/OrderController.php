@@ -4,6 +4,7 @@ namespace app\api\modules\v1\controllers;
 // define("DEBUG", false);
 define("DEBUG", true);
 define('LIMIT', 18);
+define('DAYS_SINCE_LAST_ROP_PULL', 30);
 
 use app\models\Mp;
 use app\models\Order;
@@ -12,11 +13,14 @@ use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use yii\db\QueryBuilder;
 use yii\filters\auth\HttpBasicAuth;
+use yii\grid\GridView;
 use yii\rest\Action;
 use yii\rest\ActiveController;
 use yii\helpers\ArrayHelper;
 use yii\filters\Cors;
 use yii\rest\IndexAction;
+use yii\web\Application;
+use yii\web\Controller;
 
 
 class OrderController extends ActiveController
@@ -71,13 +75,25 @@ class OrderController extends ActiveController
     public function prepareDataProvider()
     {
         // prepare and return a data provider for the "index" action
-        $query = Order::find()->joinWith('mp')
-        ->where(['rop_order_id' => null])->orWhere(['force_rop_resend' => 1])->limit(DEBUG ? LIMIT : null);
 
+        $last_rop_pull = (new \DateTime())->sub((new \DateInterval("P". DAYS_SINCE_LAST_ROP_PULL ."D")))->format('Y-m-d');
+
+        $query = Order::find()->joinWith('mp')
+            ->where(['or', ['rop_order_id' => null], ['force_rop_resend' => 1]])
+            ->andWhere(['or', ['>=', 'last_rop_pull', $last_rop_pull], ['last_rop_pull' => null]])
+            ->limit(DEBUG ? LIMIT : null);
+        
         $mp_end_point = \Yii::$app->request->getQueryParam('mp');
         $mp = Mp::findOne(['end_point_name' => $mp_end_point]);
-        if (is_object($mp)){
+        if (is_object($mp)) {
             $query->andWhere(['mp_id' => $mp->id]);
+        }
+
+        $days_back = intval(\Yii::$app->request->getQueryParam('days_back'));
+        if (!empty($days_back)) {
+            $formatted_date = new \DateTime();
+            $formatted_date = $formatted_date->sub((new \DateInterval("P" . $days_back . "D")))->format('Y-m-d');
+            $query->andWhere(['>=', 'order_date_time', $formatted_date]);
         }
 
         $dp = new ActiveDataProvider(
@@ -87,6 +103,7 @@ class OrderController extends ActiveController
             $dp->pagination = false;
         }
         return $dp;
+
     }
 
     public function behaviors()
@@ -95,8 +112,7 @@ class OrderController extends ActiveController
             [
                 'class' => Cors::className(),
                 'cors' => [
-                    'Origin' => ['http://brianng', 'http://brianng:8080', 'http://localhost:8080', 'http://api.ngxtri.com',
-                        'http://api.brianng', 'http://localhost'],
+                    'Origin' => ['*'],
                 ],
             ],
             // 'authenticator' => ['class' => HttpBasicAuth::className()]
@@ -124,6 +140,8 @@ class OrderController extends ActiveController
      *  count: Number of orders updated
      *  info:   further information, such as error at ROP side, error at SME side
      * }
+     *
+     * @throws \Exception $e Database exception
      */
     public function actionConfirm($mp_endpoint_name = null)
     {
@@ -157,6 +175,7 @@ class OrderController extends ActiveController
         // }
 
         // \Yii::warning('data: '. print_r($data, true));
+        
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             foreach ($data as $sme_order_id => $rop_order_id) {
@@ -178,7 +197,8 @@ class OrderController extends ActiveController
         return json_encode($result);
     }
     
-    public function actionBlah(){
+    public function actionBlah()
+    {
         return '{"bleh":1}';
     }
 }
@@ -192,6 +212,10 @@ class OrderAction extends IndexAction
      */
     public function run()
     {
+        //pull active data provider
+        $dp = $this->prepareDataProvider;
+        //pull query params
+
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
         $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
             ->execute();

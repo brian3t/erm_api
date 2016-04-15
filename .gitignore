@@ -1,6 +1,6 @@
-/vendor
-/web/docs
-/config/db.php
+vendor
+web/docs
+config/db.php
 # phpstorm project files
 .idea
 
@@ -25,6 +25,6 @@ composer.phar
 phpunit.phar
 # local phpunit config
 /phpunit.xml
-/data
-/config/params.php
-/api/config/params.php
+data
+config/params.php
+api/config/params.php

@@ -25,7 +25,7 @@ class OrderController extends Controller
             ],
         ];
     }
-
+    
     /**
      * Lists all Order models.
      * @param integer $has_rop : 1 for Orders that have rop_order_id; 0 otherwise
@@ -41,13 +41,30 @@ class OrderController extends Controller
         } else {
             $dataProvider->query = $dataProvider->query->andWhere(['not', ['rop_order_id' => null]]);
         }
-
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
-
+    
+    /**
+     * Lists all Order models.
+     * @param integer $has_rop : 1 for Orders that have rop_order_id; 0 otherwise
+     * @return mixed
+     */
+    public function actionConfirmPercent()
+    {
+        $searchModel = new OrderSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query = $dataProvider->query->andWhere(['not', ['rop_order_id' => null]]);
+        
+        return $this->render('confirm_percent', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
     /**
      * Displays a single Order model.
      * @param integer $id

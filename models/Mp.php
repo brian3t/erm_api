@@ -21,7 +21,7 @@ use \app\models\base\Mp as BaseMp;
 class Mp extends BaseMp
 {
 //  Uncomment this for apigen to work
-//    /** @var  stdClass $config */
+    /** @var  stdClass $config */
     public $config = MpConfig::class;
     public $curl_options;
     var $args;
@@ -444,10 +444,15 @@ class Mp extends BaseMp
     }
     
     /**
-     * Update quantity of all items in inventory 
+     * Update quantity of all items in inventory
      */
-    public function update_quantity_api(){
-        
+    public function update_quantity_api()
+    {
+        $message = '';
+        $inventories = Inventory::find()->asArray()->all();
+        foreach ($inventories as $inventory){
+            
+        }
     }
     
     protected function set_params($action)

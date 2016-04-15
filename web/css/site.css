@@ -94,3 +94,5 @@ a.desc:after {
 *********************************************************************************************************
 */
 .container {width: 100%}
+a.dropdown-toggle:hover+ul.dropdown-menu, ul.dropdown-menu:hover{
+    display: block;}
