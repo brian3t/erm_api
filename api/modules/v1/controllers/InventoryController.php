@@ -1,12 +1,13 @@
 <?php
 namespace app\api\modules\v1\controllers;
 
+use app\api\modules\v1\controllers\BaseActiveController;
 use yii\rest\ActiveController;
 use yii\helpers\ArrayHelper;
 use yii\filters\Cors;
 
 
-class InventoryController extends ActiveController
+class InventoryController extends BaseActiveController
 {
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Inventory';

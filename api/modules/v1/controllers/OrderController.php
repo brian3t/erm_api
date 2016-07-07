@@ -6,6 +6,7 @@ define("DEBUG", true);
 define('LIMIT', 18);
 define('DAYS_SINCE_LAST_ROP_PULL', 30);
 
+use app\api\modules\v1\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
 use yii\base\Exception;
@@ -21,9 +22,9 @@ use yii\filters\Cors;
 use yii\rest\IndexAction;
 use yii\web\Application;
 use yii\web\Controller;
+use yii\web\Response;
 
-
-class OrderController extends ActiveController
+class OrderController extends BaseActiveController
 {
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Order';
@@ -108,6 +109,9 @@ class OrderController extends ActiveController
 
     public function behaviors()
     {
+        $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
+
         return ArrayHelper::merge([
             [
                 'class' => Cors::className(),
@@ -116,7 +120,7 @@ class OrderController extends ActiveController
                 ],
             ],
             // 'authenticator' => ['class' => HttpBasicAuth::className()]
-        ], parent::behaviors());
+        ], $behaviors);
     }
 
     public function checkAccess($action, $model = null, $params = [])
@@ -124,9 +128,12 @@ class OrderController extends ActiveController
         return parent::checkAccess($action, $model, $params);
     }
 
-    public function actionPull($id)
+    public function actionPull()
     {
-        return Order::findOne($id);
+        header('Content-Type: application/json');
+        echo file_get_contents(dirname(dirname(dirname(__DIR__))) . "/sample_data/order_pull.json");
+        return;
+        // return Order::findOne($id);
     }
 
     /**
@@ -219,6 +226,7 @@ class OrderAction extends IndexAction
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
         $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
             ->execute();
+
         return parent::run();
     }
 

@@ -5,6 +5,7 @@ namespace app\api\modules\v1\controllers;
 define("DEBUG", true);
 define('LIMIT', 18);
 
+use app\api\modules\v1\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
 use yii\base\Exception;
@@ -19,7 +20,7 @@ use yii\filters\Cors;
 use yii\rest\IndexAction;
 
 
-class TrackingController extends ActiveController
+class TrackingController extends BaseActiveController
 {
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Tracking';

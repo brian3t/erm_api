@@ -1,0 +1,4 @@
+#RewriteCond   %{REQUEST_URI}  /([A-Za-z]+)_([\dA-Za-z]+)_v1
+RewriteRule ^([A-Za-z]+)_([A-Za-z]+)_v1$ index.php?r=v1/$1/$2
+RewriteRule ^([A-Za-z]+)_v1$ index.php?r=v1/$1
+RewriteRule .* index.php

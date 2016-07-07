@@ -29,7 +29,7 @@ $config = [
             ],
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
@@ -47,9 +47,15 @@ $config = [
                     'pluralize' => false,
                     'controller' => 'v1/order',
                     'extraPatterns' => [
-                        'POST confirm' => 'confirm', // 'confirm' refers to 'actionConfirm'
+                        'POST pull' => 'pull', // 'confirm' refers to 'actionConfirm'
+                        'GET pull' => 'pull', // 'confirm' refers to 'actionConfirm'
                     ],
-                ]
+                ],
+                // [
+                //     '<controller:(catalog|inventory|order)>_<action:(pull)>_v1' => 'v1/<controller>/<action>',
+                //     // 'posts' => 'post/index',
+                //     // 'post/<id:\d+>' => 'post/view',
+                // ]
             ]
         ],
         'db' => $db,
