@@ -46,7 +46,7 @@ AppAsset::register($this);
                 'label' => 'Reports',
                 'items' => [
                     '<li class="dropdown-header">Order</li>',
-                    ['label' => 'Order confirmation %', 'url' => 'order/confirm-percent'],
+                    ['label' => 'Order confirmation %', 'url' => \yii\helpers\Url::to('/order/confirm-percent')],
                     '<li class="divider"></li>',
                     '<li class="dropdown-header">Performance</li>',
                     ['label' => 'Task duration', 'url' => '#'],
