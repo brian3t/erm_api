@@ -5,14 +5,17 @@ use yii\widgets\DetailView;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Order */
+/* @var $model app\models\Customer */
 
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Customer', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="order-view">
+<div class="customer-view">
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= Html::encode($model->id) ?></h2>
+            <h2><?= 'Customer'.' '. Html::encode($this->title) ?></h2>
         </div>
     </div>
 
@@ -20,11 +23,31 @@ use kartik\grid\GridView;
 <?php 
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
+        'first_name',
+        'last_name',
+        'company',
+        'email_address:email',
+        'phone_number',
+        'mp_customer_id',
+        'created_at',
+        'updated_at',
+    ];
+    echo DetailView::widget([
+        'model' => $model,
+        'attributes' => $gridColumn
+    ]); 
+?>
+    </div>
+    
+    <div class="row">
+<?php
+    $gridColumnOrder = [
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'hidden' => true],
         [
-            'attribute' => 'mp.name',
-            'label' => 'Mp',
+                'attribute' => 'mp.name',
+                'label' => 'Mp'
         ],
-        'name',
         'mp_reference_number',
         'rop_order_id',
         'last_mp_updated',
@@ -61,8 +84,8 @@ use kartik\grid\GridView;
         'comments:ntext',
         'product_total',
         [
-            'attribute' => 'customer.id',
-            'label' => 'Customer',
+                'attribute' => 'customer.id',
+                'label' => 'Customer'
         ],
         'discount_amt',
         'grand_total',
@@ -71,10 +94,16 @@ use kartik\grid\GridView;
         'status',
         'note',
     ];
-    echo DetailView::widget([
-        'model' => $model,
-        'attributes' => $gridColumn
-    ]); 
+    echo Gridview::widget([
+        'dataProvider' => $providerOrder,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-order']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode('Order'.' '. $this->title),
+        ],
+        'columns' => $gridColumnOrder
+    ]);
 ?>
     </div>
 </div>

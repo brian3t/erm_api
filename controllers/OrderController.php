@@ -76,9 +76,17 @@ class OrderController extends Controller
         $providerOrderItem = new \yii\data\ArrayDataProvider([
             'allModels' => $model->orderItems,
         ]);
+        $providerOrderPayment = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->orderPayments,
+        ]);
+        $providerTracking = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->trackings,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
             'providerOrderItem' => $providerOrderItem,
+            'providerOrderPayment' => $providerOrderPayment,
+            'providerTracking' => $providerTracking,
         ]);
     }
 
@@ -170,4 +178,46 @@ class OrderController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+    /**
+     * Action to load a tabular form grid
+     * for OrderPayment
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddOrderPayment()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('OrderPayment');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formOrderPayment', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    /**
+     * Action to load a tabular form grid
+     * for Tracking
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
+    public function actionAddTracking()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('Tracking');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formTracking', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
 }

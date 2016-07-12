@@ -5,7 +5,7 @@ namespace app\api\modules\v1\controllers;
 define("DEBUG", true);
 define('LIMIT', 18);
 
-use app\api\modules\v1\controllers\BaseActiveController;
+use app\api\base\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
 use yii\base\Exception;

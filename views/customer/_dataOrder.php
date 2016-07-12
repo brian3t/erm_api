@@ -1,30 +1,18 @@
 <?php
-
-use yii\helpers\Html;
-use yii\widgets\DetailView;
 use kartik\grid\GridView;
+use yii\data\ArrayDataProvider;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Order */
-
-?>
-<div class="order-view">
-
-    <div class="row">
-        <div class="col-sm-9">
-            <h2><?= Html::encode($model->id) ?></h2>
-        </div>
-    </div>
-
-    <div class="row">
-<?php 
-    $gridColumn = [
+    $dataProvider = new ArrayDataProvider([
+        'allModels' => $model->orders,
+        'key' => 'id'
+    ]);
+    $gridColumns = [
+        ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         [
-            'attribute' => 'mp.name',
-            'label' => 'Mp',
+                'attribute' => 'mp.name',
+                'label' => 'Mp'
         ],
-        'name',
         'mp_reference_number',
         'rop_order_id',
         'last_mp_updated',
@@ -60,21 +48,36 @@ use kartik\grid\GridView;
         'pay_transaction_id',
         'comments:ntext',
         'product_total',
-        [
-            'attribute' => 'customer.id',
-            'label' => 'Customer',
-        ],
         'discount_amt',
         'grand_total',
         'shipcode',
         'ip_address',
         'status',
         'note',
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'controller' => 'order'
+        ],
     ];
-    echo DetailView::widget([
-        'model' => $model,
-        'attributes' => $gridColumn
-    ]); 
-?>
-    </div>
-</div>
+    
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'containerOptions' => ['style' => 'overflow: auto'],
+        'pjax' => true,
+        'beforeHeader' => [
+            [
+                'options' => ['class' => 'skip-export']
+            ]
+        ],
+        'export' => [
+            'fontAwesome' => true
+        ],
+        'bordered' => true,
+        'striped' => true,
+        'condensed' => true,
+        'responsive' => true,
+        'hover' => true,
+        'showPageSummary' => false,
+        'persistResize' => false,
+    ]);

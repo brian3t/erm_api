@@ -4,30 +4,9 @@ use kartik\tabs\TabsX;
 use yii\helpers\Url;
 $items = [
     [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order'),
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('OrderPayment'),
         'content' => $this->render('_detail', [
             'model' => $model,
-        ]),
-    ],
-                [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order Item'),
-        'content' => $this->render('_dataOrderItem', [
-            'model' => $model,
-            'row' => $model->orderItems,
-        ]),
-    ],
-            [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order Payment'),
-        'content' => $this->render('_dataOrderPayment', [
-            'model' => $model,
-            'row' => $model->orderPayments,
-        ]),
-    ],
-            [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Tracking'),
-        'content' => $this->render('_dataTracking', [
-            'model' => $model,
-            'row' => $model->trackings,
         ]),
     ],
     ];

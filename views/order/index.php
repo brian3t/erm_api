@@ -81,29 +81,67 @@ $this->registerJs($search);
                 return $html;
             }
         ],
-        'order_date_time',
+        'count_rop_pull',
+        'channel_date_created',
+        // 'shipping_amt',
+        // 'tax_amt',
+        // 'first_name',
+        // 'last_name',
+        // 'company',
+        // 'email:email',
+        // 'address1',
+        // 'address2',
+        // 'city',
+        // 'state_match',
+        // 'country_match',
+        // 'postal_code',
+        // 'gift_message',
+        // 'phone',
+        // 'ship_first_name',
+        // 'ship_last_name',
+        // 'ship_company',
+        // 'ship_address1',
+        // 'ship_address2',
+        // 'ship_city',
+        // 'ship_state_match',
+        // 'ship_country_match',
+        // 'ship_postal_code',
+        // 'ship_phone',
+        // 'pay_type',
+        // 'pay_transaction_id',
+        // 'comments:ntext',
         [
             'label' => 'Status',
             'format' => 'html',
-            'value' => function($model, $k, $i, $c){
+            'value' => function ($model, $k, $i, $c) {
                 $status = $model->status;
                 $echo = "<span class='$status'>$status</span>";
-                if (count($model->trackings) > 0){
+                if (count($model->trackings) > 0) {
                     $echo .= '<span class="glyphicon glyphicon-send" aria-hidden="true"></span>';
                 }
                 return $echo;
             },
             'hAlign' => GridView::ALIGN_CENTER,
         ],
-        'shipping',
-        'ship_name',
         'product_total',
-        'tax_total',
-        'shipping_total',
+        'discount_amt',
         'grand_total',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
+        ['attribute' => 'customer_id',
+            'label' => 'Customer',
+            'value' => function ($model) {
+                return $model->customer->id;
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Customer::find()->asArray()->all(), 'id', 'id'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Customer', 'id' => 'grid-order-search-customer_id']
+        ],
+
     ];
     ?>
     <?= GridView::widget([

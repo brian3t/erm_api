@@ -45,35 +45,43 @@ $this->params['breadcrumbs'][] = $this->title;
         'last_rop_pull',
         'force_rop_resend',
         'count_rop_pull',
-        'order_date_time',
-        'name',
+        'channel_date_created',
+        'shipping_amt',
+        'tax_amt',
+        'first_name',
+        'last_name',
         'company',
         'email:email',
-        'address',
+        'address1',
         'address2',
         'city',
-        'state',
-        'zip',
-        'country',
+        'state_match',
+        'country_match',
+        'postal_code',
+        'gift_message',
         'phone',
-        'ship_name',
+        'ship_first_name',
+        'ship_last_name',
         'ship_company',
-        'ship_address',
+        'ship_address1',
         'ship_address2',
         'ship_city',
-        'ship_state',
-        'ship_zip',
-        'ship_country',
+        'ship_state_match',
+        'ship_country_match',
+        'ship_postal_code',
         'ship_phone',
         'pay_type',
         'pay_transaction_id',
         'comments:ntext',
         'product_total',
-        'tax_total',
-        'shipping_total',
+        [
+            'attribute' => 'customer.id',
+            'label' => 'Customer',
+        ],
+        'discount_amt',
         'grand_total',
-        'shipping',
-        'discount',
+        'shipcode',
+        'ip_address',
         'status',
         'note',
     ];
@@ -91,7 +99,7 @@ if($providerOrderItem->totalCount){
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],
             [
-                'attribute' => 'order.name',
+                'attribute' => 'order.id',
                 'label' => 'Order'
         ],
             'sku',
@@ -120,12 +128,42 @@ if($providerOrderItem->totalCount){
     
     <div class="row">
 <?php
+if($providerOrderPayment->totalCount){
+    $gridColumnOrderPayment = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'hidden' => true],
+            [
+                'attribute' => 'order.id',
+                'label' => 'Order'
+        ],
+            'amount',
+            'type',
+            'payment_type',
+            'created_at',
+            'updated_at',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerOrderPayment,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-order-payment']],
+        'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Order Payment'.' '. $this->title),
+        ],
+        'columns' => $gridColumnOrderPayment
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
 if($providerTracking->totalCount){
     $gridColumnTracking = [
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],
             [
-                'attribute' => 'order.name',
+                'attribute' => 'order.id',
                 'label' => 'Rop Order'
         ],
             'sku',

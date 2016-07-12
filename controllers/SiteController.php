@@ -50,7 +50,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->redirect(Url::to('order/index'));
+        // return $this->redirect(Url::to('order/index'));
     }
 
     public function actionLogin()
