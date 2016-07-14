@@ -10,4 +10,10 @@ class Module extends \yii\base\Module
 
         // ...  other initialization code ...
     }
+    
+    public function afterAction($action, $result)
+    {
+        $new_result = ['next_page_token' => 'here', 'orders' => $result];
+        return parent::afterAction($action, $new_result);
+    }
 }

@@ -27,11 +27,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true, 'placeholder' => 'Sku']) ?>
 
-    <?= $form->field($model, 'product')->textInput(['maxlength' => true, 'placeholder' => 'Product']) ?>
-
+    <?= $form->field($model, 'sku_title')->textInput(['maxlength' => true, 'placeholder' => 'Sku Title']) ?>
+    
     <?= $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) ?>
 
-    <?= $form->field($model, 'price_per_unit')->textInput(['maxlength' => true, 'placeholder' => 'Price Per Unit']) ?>
+    <?= $form->field($model, 'unit_price')->textInput(['maxlength' => true, 'placeholder' => 'Unit Price']) ?>
 
     <?= $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) ?>
 
@@ -42,6 +42,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'mp_item_id')->textInput(['maxlength' => true, 'placeholder' => 'Mp Item']) ?>
 
     <?= $form->field($model, 'extra_info')->textInput(['maxlength' => true, 'placeholder' => 'Extra Info']) ?>
+
+    <?= $form->field($model, 'unit_tax')->textInput(['maxlength' => true, 'placeholder' => 'Unit Tax']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

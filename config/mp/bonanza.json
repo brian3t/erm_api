@@ -29,7 +29,7 @@
           "completeSaleRequest": {
             "shipment.shippingTrackingNumber": ":tracking_number",
             "shipment.shippingCarrierUsed": ":tracking_carrier",
-            "transactionID": ":order.mp_reference_number"
+            "transactionID": ":order.channel_refnum"
           }
         }
       },
@@ -45,7 +45,7 @@
   },
   "MP_REF_NUM_COL": 0,
   "order_structure": {
-    "orderID": "mp_reference_number",
+    "orderID": "channel_refnum",
     "shippingDetails": [
       "amount"
     ],
@@ -53,14 +53,14 @@
     "itemArray": ":items"
   },
   "order_item_structure": {
-    "orderID": "mp_reference_number",
+    "orderID": "channel_refnum",
     "shippingAddress": {
       "name": "ship_name"
     }
   },
   "order_keys": {
     "order": {
-      "orderID": "mp_reference_number",
+      "orderID": "channel_refnum",
       "paidTime": "order_date_time",
       "shippingAddress.name": "ship_name",
       "shippingAddress.street1": "ship_address",

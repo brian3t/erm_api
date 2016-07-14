@@ -42,7 +42,7 @@ $this->registerJs($search);
         [
             'label' => 'MP Ref#',
             'value' => function ($model, $key, $i, $c) {
-                return $model->mp_reference_number . "\nItems: " . count($model->orderItems);
+                return $model->channel_refnum . "\nItems: " . count($model->orderItems);
             },
         ],
         ['class' => 'kartik\grid\ExpandRowColumn',
@@ -132,7 +132,7 @@ $this->registerJs($search);
         ['attribute' => 'customer_id',
             'label' => 'Customer',
             'value' => function ($model) {
-                return $model->customer->id;
+                return is_object($model->customer)?$model->customer->first_name:'';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Customer::find()->asArray()->all(), 'id', 'id'),

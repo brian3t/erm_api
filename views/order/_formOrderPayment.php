@@ -25,14 +25,14 @@ echo TabularForm::widget([
         'amount' => ['type' => TabularForm::INPUT_TEXT],
         'type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
                     'options' => [
-                        'items' => [ 'CHARGE' => 'CHARGE', 'CASH' => 'CASH', 'CHEQUE' => 'CHEQUE', ],
+                        'items' => [ 'charge' => 'Charge', 'cash' => 'Cash', 'cheque' => 'Cheque', ],
                         'columnOptions => ['width' => '185px'],
                         'options' => ['placeholder' => 'Choose Type'],
                     ]
         ],
         'payment_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
                     'options' => [
-                        'items' => [ 'VISA' => 'VISA', ],
+                        'items' => [ 'visa' => 'Visa', ],
                         'columnOptions => ['width' => '185px'],
                         'options' => ['placeholder' => 'Choose Payment Type'],
                     ]

@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'mp_reference_number')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
+    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
 
     <?= $form->field($model, 'rop_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
 
@@ -120,7 +120,7 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) */ ?>
 
-    <?php /* echo $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) */ ?>
+    <?php /* echo $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'attributes']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

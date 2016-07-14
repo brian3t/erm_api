@@ -19,8 +19,8 @@ use app\models\OrderItem;
     {
         return [
             [['id', 'order_id', 'quantity'], 'integer'],
-            [['sku', 'product', 'options', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info'], 'safe'],
-            [['price_per_unit'], 'number'],
+            [['sku', 'sku_title', 'options', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info'], 'safe'],
+            [['unit_price', 'unit_tax'], 'number'],
         ];
     }
 
@@ -59,13 +59,14 @@ use app\models\OrderItem;
         $query->andFilterWhere([
             'id' => $this->id,
             'order_id' => $this->order_id,
-            'price_per_unit' => $this->price_per_unit,
+            'unit_price' => $this->unit_price,
             'quantity' => $this->quantity,
             'last_mp_updated' => $this->last_mp_updated,
+            'unit_tax' => $this->unit_tax,
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['like', 'product', $this->product])
+            ->andFilterWhere(['like', 'sku_title', $this->sku_title])
             ->andFilterWhere(['like', 'options', $this->options])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'mp_item_id', $this->mp_item_id])

@@ -19,7 +19,7 @@ use app\models\Order;
     {
         return [
             [['id', 'mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
-            [['mp_reference_number', 'last_mp_updated', 'last_rop_pull', 'channel_date_created', 'first_name', 'last_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'gift_message', 'phone', 'ship_first_name', 'ship_last_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'comments', 'shipcode', 'ip_address', 'status', 'note'], 'safe'],
+            [['channel_refnum', 'last_mp_updated', 'last_rop_pull', 'channel_date_created', 'first_name', 'last_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'gift_message', 'phone', 'ship_first_name', 'ship_last_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'comments', 'shipcode', 'ip_address', 'status', 'attributes'], 'safe'],
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
         ];
     }
@@ -73,7 +73,7 @@ use app\models\Order;
             'grand_total' => $this->grand_total,
         ]);
 
-        $query->andFilterWhere(['like', 'mp_reference_number', $this->mp_reference_number])
+        $query->andFilterWhere(['like', 'channel_refnum', $this->channel_refnum])
             ->andFilterWhere(['like', 'first_name', $this->first_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'company', $this->company])
@@ -102,7 +102,7 @@ use app\models\Order;
             ->andFilterWhere(['like', 'shipcode', $this->shipcode])
             ->andFilterWhere(['like', 'ip_address', $this->ip_address])
             ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'note', $this->note]);
+            ->andFilterWhere(['like', 'attributes', $this->attributes]);
 
         return $dataProvider;
     }

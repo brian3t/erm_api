@@ -61,7 +61,7 @@ if($providerOrder->totalCount){
                 'attribute' => 'mp.name',
                 'label' => 'Mp'
         ],
-            'mp_reference_number',
+            'channel_refnum',
             'rop_order_id',
             'last_mp_updated',
             'last_rop_pull',

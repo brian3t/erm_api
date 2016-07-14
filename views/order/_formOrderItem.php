@@ -23,14 +23,15 @@ echo TabularForm::widget([
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
         'sku' => ['type' => TabularForm::INPUT_TEXT],
-        'product' => ['type' => TabularForm::INPUT_TEXT],
+        'sku_title' => ['type' => TabularForm::INPUT_TEXT],
         'options' => ['type' => TabularForm::INPUT_TEXT],
-        'price_per_unit' => ['type' => TabularForm::INPUT_TEXT],
+        'unit_price' => ['type' => TabularForm::INPUT_TEXT],
         'quantity' => ['type' => TabularForm::INPUT_TEXT],
         'status' => ['type' => TabularForm::INPUT_TEXT],
         'last_mp_updated' => ['type' => TabularForm::INPUT_TEXT],
         'mp_item_id' => ['type' => TabularForm::INPUT_TEXT],
         'extra_info' => ['type' => TabularForm::INPUT_TEXT],
+        'unit_tax' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

@@ -25,7 +25,7 @@ use kartik\grid\GridView;
             'label' => 'Mp',
         ],
         'name',
-        'mp_reference_number',
+        'channel_refnum',
         'rop_order_id',
         'last_mp_updated',
         'last_rop_pull',
@@ -69,7 +69,7 @@ use kartik\grid\GridView;
         'shipcode',
         'ip_address',
         'status',
-        'note',
+        'attributes',
     ];
     echo DetailView::widget([
         'model' => $model,

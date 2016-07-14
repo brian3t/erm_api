@@ -24,5 +24,10 @@ class Customer extends BaseCustomer
             [['phone_number'], 'string', 'max' => 20]
         ]);
     }
-	
+    
+    public function fields()
+    {
+        return ['first_name', 'last_name','email_address','phone_number'];
+    }
+    
 }

@@ -3,7 +3,7 @@ namespace app\api\modules\v1\controllers;
 
 // define("DEBUG", false);
 define("DEBUG", true);
-define('LIMIT', 18);
+define('LIMIT', 8);
 define('DAYS_SINCE_LAST_ROP_PULL', 30);
 
 use app\api\base\controllers\BaseActiveController;
@@ -80,7 +80,9 @@ class OrderController extends BaseActiveController
         
         $last_rop_pull = (new \DateTime())->sub((new \DateInterval("P" . DAYS_SINCE_LAST_ROP_PULL . "D")))->format('Y-m-d');
         
-        $query = Order::find()->joinWith('mp')
+        $query = Order::find()
+            ->with('orderPayments')
+            ->joinWith('mp')
             ->where(['or', ['rop_order_id' => null], ['force_rop_resend' => 1]])
             ->andWhere(['or', ['>=', 'last_rop_pull', $last_rop_pull], ['last_rop_pull' => null]])
             ->limit(DEBUG ? LIMIT : null);
@@ -95,50 +97,21 @@ class OrderController extends BaseActiveController
         if (!empty($days_back)) {
             $formatted_date = new \DateTime();
             $formatted_date = $formatted_date->sub((new \DateInterval("P" . $days_back . "D")))->format('Y-m-d');
-            $query->andWhere(['>=', 'order_date_time', $formatted_date]);
+            $query->andWhere(['>=', 'channel_date_created', $formatted_date]);
         }
         
         $dp = new ActiveDataProvider(
-            ['query' => $query]
+            [
+                'query' => $query,
+                // 'pagination' => [
+                //     'pageSize' => 3,
+                // ]
+            ]
         );
         if (DEBUG) {
-            $dp->pagination = false;
+            // $dp->pagination = false;
         }
-        //todob returns here array
-        $orders = $dp->query->all();
-        $a = 1;
-        foreach ($orders as &$order) {
-            $payment = $order['order_payment'];
-            $bill_addr = ['first_name' => $order['first_name'],
-                'last_name' => $order['last_name'],
-                'company' => $order['company'],
-                'address1' => $order['address1'],
-                'address2' => $order['address2'],
-                'city' => $order['city'],
-                'state_match' => strtoupper($order['state_match']),
-                'country_match' => strtoupper($order['country_match']),
-                'postal_code' => $order['postal_code']
-            ];
-            $ship_addr = [
-                'first_name' => $order['ship_first_name'],
-                'last_name' => $order['ship_last_name'],
-                'company' => $order['ship_company'],
-                'address1' => $order['ship_address1'],
-                'address2' => $order['ship_address2'],
-                'city' =>$order['ship_city'],
-                'state_match'=>strtoupper($order['ship_state_match']),
-                'postal_code'=>$order['ship_postal_code']
-            ];
-            $customer = $order['customer'];
-            $order_items = $order['order_item'];
-            
-            $order = array_merge($order, ['calc_mode' => "order",
-                'payment' => $payment, 'bill_addr' => $bill_addr,
-            'ship_addr'=>$ship_addr,
-            'customer'=>$customer,
-            'attributes'=>[],
-            'items'=>$order_items]);
-        }
+        return $dp;
         
     }
     

@@ -10,14 +10,15 @@ use yii\data\ArrayDataProvider;
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         'sku',
-        'product',
+        'sku_title',
         'options',
-        'price_per_unit',
+        'unit_price',
         'quantity',
         'status',
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'unit_tax',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'order-item'

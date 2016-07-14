@@ -25,14 +25,15 @@ use kartik\grid\GridView;
             'label' => 'Order',
         ],
         'sku',
-        'product',
+        'sku_title',
         'options',
-        'price_per_unit',
+        'unit_price',
         'quantity',
         'status',
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'unit_tax',
     ];
     echo DetailView::widget([
         'model' => $model,

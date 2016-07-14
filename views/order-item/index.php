@@ -45,14 +45,15 @@ $this->registerJs($search);
                 'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid-order-item-search-order_id']
             ],
         'sku',
-        'product',
+        'sku_title',
         'options',
-        'price_per_unit',
+        'unit_price',
         'quantity',
         'status',
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'unit_tax',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

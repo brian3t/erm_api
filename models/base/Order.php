@@ -11,7 +11,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $id
  * @property integer $name
  * @property integer $mp_id
- * @property string $mp_reference_number
+ * @property string $channel_refnum
  * @property integer $rop_order_id
  * @property string $last_mp_updated
  * @property string $last_rop_pull
@@ -52,36 +52,39 @@ use yii\behaviors\TimestampBehavior;
  * @property string $shipcode
  * @property string $ip_address
  * @property string $status
- * @property string $note
+ * @property string $attributes
  *
  * @property \app\models\Mp $mp
  * @property \app\models\Customer $customer
  * @property \app\models\OrderItem[] $orderItems
  * @property \app\models\OrderPayment[] $orderPayments
  * @property \app\models\Tracking[] $trackings
+ * @property $calc_mode
+ * @property $bill_addr
+ * @property $ship_addr
  */
 class Order extends \yii\db\ActiveRecord
 {
-
+    
     use \mootensai\relation\RelationTrait;
-
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['mp_id', 'mp_reference_number'], 'required'],
+            [['mp_id', 'channel_refnum'], 'required'],
             [['mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
             [['last_mp_updated', 'last_rop_pull', 'channel_date_created'], 'safe'],
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
             [['comments'], 'string'],
-            [['mp_reference_number', 'status'], 'string', 'max' => 50],
-            [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipcode', 'note'], 'string', 'max' => 255],
+            [['channel_refnum', 'status'], 'string', 'max' => 50],
+            [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipcode', 'attributes'], 'string', 'max' => 255],
             [['last_name', 'ship_last_name'], 'string', 'max' => 80],
             [['gift_message'], 'string', 'max' => 800],
             [['ip_address'], 'string', 'max' => 200],
-            [['mp_id', 'mp_reference_number'], 'unique', 'targetAttribute' => ['mp_id', 'mp_reference_number'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.']
+            [['mp_id', 'channel_refnum'], 'unique', 'targetAttribute' => ['mp_id', 'channel_refnum'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.']
         ];
     }
     
@@ -92,7 +95,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return 'order';
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -101,7 +104,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'mp_id' => 'Mp ID',
-            'mp_reference_number' => 'Mp Ref#',
+            'channel_refnum' => 'Mp Ref#',
             'rop_order_id' => 'Rop Order ID',
             'last_mp_updated' => 'Last Mp Updated',
             'last_rop_pull' => 'Last Rop Pull',
@@ -142,10 +145,10 @@ class Order extends \yii\db\ActiveRecord
             'shipcode' => 'Shipcode',
             'ip_address' => 'Ip Address',
             'status' => 'Status',
-            'note' => 'Note',
+            'attributes' => 'Attributes',
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -153,7 +156,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Mp::className(), ['id' => 'mp_id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -161,7 +164,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Customer::className(), ['id' => 'customer_id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -169,7 +172,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\OrderItem::className(), ['order_id' => 'id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -177,7 +180,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\OrderPayment::className(), ['order_id' => 'id']);
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -185,11 +188,11 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\Tracking::className(), ['rop_order_id' => 'rop_order_id']);
     }
-
-/**
+    
+    /**
      * @inheritdoc
-     * @return type mixed
-     */ 
+     * @return array mixed
+     */
     public function behaviors()
     {
         return [
@@ -201,7 +204,7 @@ class Order extends \yii\db\ActiveRecord
             ],
         ];
     }
-
+    
     /**
      * @inheritdoc
      * @return \app\models\OrderQuery the active query used by this AR class.
@@ -210,9 +213,44 @@ class Order extends \yii\db\ActiveRecord
     {
         return new \app\models\OrderQuery(get_called_class());
     }
-
-    public function getName(){
+    
+    public function getName()
+    {
         return "{$this->id} - {$this->ship_first_name} - {$this->channel_date_created}";
     }
-
+    
+    public function getCalc_mode()
+    {
+        return 'order';
+    }
+    
+    public function getBill_addr()
+    {
+        return ['first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'company' => $this->company,
+            'address1' => $this->address1,
+            'address2' => $this->address2,
+            'city' => $this->city,
+            'state_match' => strtoupper($this->state_match),
+            'country_match' => strtoupper($this->country_match),
+            'postal_code' => $this->postal_code
+        ];
+    }
+    
+    public function getShip_addr()
+    {
+        return [
+            'first_name' => $this->ship_first_name,
+            'last_name' => $this->ship_last_name,
+            'company' => $this->ship_company,
+            'address1' => $this->ship_address1,
+            'address2' => $this->ship_address2,
+            'city' => $this->ship_city,
+            'state_match' => strtoupper($this->ship_state_match),
+            'country_match' => strtoupper($this->ship_country_match),
+            'postal_code' => $this->ship_postal_code
+        ];
+    }
+    
 }

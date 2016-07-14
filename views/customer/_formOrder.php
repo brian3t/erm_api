@@ -32,7 +32,7 @@ echo TabularForm::widget([
             ],
             'columnOptions' => ['width' => '200px']
         ],
-        'mp_reference_number' => ['type' => TabularForm::INPUT_TEXT],
+        'channel_refnum' => ['type' => TabularForm::INPUT_TEXT],
         'rop_order_id' => ['type' => TabularForm::INPUT_TEXT],
         'last_mp_updated' => ['type' => TabularForm::INPUT_TEXT],
         'last_rop_pull' => ['type' => TabularForm::INPUT_TEXT],

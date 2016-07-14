@@ -41,6 +41,9 @@ $config = [
                     'extraPatterns' => [
                         'POST push' => 'push',//todob this is tracking push
                     ],
+                    'tokens' => [
+                        '{page}' => '<page:\\d+>',
+                    ],
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',

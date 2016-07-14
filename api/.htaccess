@@ -1,4 +1,19 @@
-#RewriteCond   %{REQUEST_URI}  /([A-Za-z]+)_([\dA-Za-z]+)_v1
-RewriteRule ^([A-Za-z]+)_([A-Za-z]+)_v1$ index.php?r=v1/$1/$2 [L,END]
-RewriteRule ^([A-Za-z]+)_v1$ index.php?r=v1/$1 [L,END]
+RewriteCond   %{REQUEST_URI}  /([A-Za-z]+)_([\dA-Za-z]+)_v1
+RewriteRule ^([A-Za-z]+)_([A-Za-z]+)_v1$ index.php?r=v1/$1/$2 [QSA,L,END]
+RewriteRule ^([A-Za-z]+)_v1$ index.php?r=v1/$1 [QSA,L,END]
 RewriteRule .* index.php [L,END]
+
+
+#access rules for prettyurl:
+
+#Options +FollowSymLinks
+#IndexIgnore */*
+#
+#RewriteEngine on
+#
+## if a directory or a file exists, use it directly
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#
+## otherwise forward it to index.php
+#RewriteRule . index.php

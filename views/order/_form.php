@@ -49,7 +49,7 @@ use yii\widgets\ActiveForm;
         ],
     ]) ?>
 
-    <?= $form->field($model, 'mp_reference_number')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
+    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
 
     <?= $form->field($model, 'rop_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
 
@@ -148,7 +148,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) ?>
 
-    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
+    <?= $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'Attributes']) ?>
 
     <div class="form-group" id="add-order-item"></div>
 

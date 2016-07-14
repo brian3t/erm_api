@@ -62,7 +62,7 @@ class Mp extends BaseMp
      * @param string $order_date_time
      * @return mixed Order id if successful. Error message if failed.
      *
-     * Order //    mp_id, mp_reference_number, rop_order_id, last_mp_updated, last_rop_pull, count_rop_pull, order_date_time,  name,  company,  email,  address,  address2,  city,  state,  zip,  country,  phone,  ship_name,  ship_company,  ship_address,  ship_address2,  ship_city,  ship_state,  ship_zip,  ship_country,  ship_phone,  pay_type,  pay_transaction_id,  comments,  product_total,  tax_total,  shipping_total,  grand_total,  shipping,  discount,  status`
+     * Order //    mp_id, channel_refnum, rop_order_id, last_mp_updated, last_rop_pull, count_rop_pull, order_date_time,  name,  company,  email,  address,  address2,  city,  state,  zip,  country,  phone,  ship_name,  ship_company,  ship_address,  ship_address2,  ship_city,  ship_state,  ship_zip,  ship_country,  ship_phone,  pay_type,  pay_transaction_id,  comments,  product_total,  tax_total,  shipping_total,  grand_total,  shipping,  discount,  status`
      * Order_item: SELECT  order_id    , sku    , product    , price_per_unit    , quantity    , status    , last_mp_updated    , mp_item_id
      */
     protected function insert_order_from_csv($row = null, $order_date_time)
@@ -71,7 +71,7 @@ class Mp extends BaseMp
         if (empty($order_date_time)) {
             $order_date_time = date('Y-m-d h:i:s');
         }
-        $existing_mp_order = Order::findOne(['mp_id' => $this->id, 'mp_reference_number' => $row[$this->config->MP_REF_NUM_COL]]);
+        $existing_mp_order = Order::findOne(['mp_id' => $this->id, 'channel_refnum' => $row[$this->config->MP_REF_NUM_COL]]);
         if (!is_object($existing_mp_order)) {
             $order = new Order(['mp_id' => $this->id]);
         } else {
@@ -99,8 +99,8 @@ class Mp extends BaseMp
         
         if (!is_object($existing_mp_order)) {
             if (!$order->save()) {
-                Yii::error("Failed to save order: " . $order->mp_reference_number);
-                return "Failed to save order: " . $order->mp_reference_number . PHP_EOL;
+                Yii::error("Failed to save order: " . $order->channel_refnum);
+                return "Failed to save order: " . $order->channel_refnum . PHP_EOL;
             };
         } //else we don't need to save order
         
@@ -323,7 +323,7 @@ class Mp extends BaseMp
         //if order is contained within an object, such as:
         //   "order_keys": {
         //      "order": {
-        //           "orderId": "mp_reference_number",
+        //           "orderId": "channel_refnum",
         // }
         //
         // , we pull that object first
@@ -417,7 +417,7 @@ class Mp extends BaseMp
         $trackings = Tracking::find()->joinWith('order')->select('*')->where(['>=', 'ship_date', $ship_date_from]);
 
         //todob debugging
-        $trackings = $trackings->andWhere(['order.mp_reference_number' => '38335885']);
+        $trackings = $trackings->andWhere(['order.channel_refnum' => '38335885']);
 
         $trackings = $trackings->asArray()->all();
         foreach ($trackings as $tracking) {

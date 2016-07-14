@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Order */
 
-$this->title = $model->name;
+$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Order', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'mp.name',
             'label' => 'Mp',
         ],
-        'mp_reference_number',
+        'channel_refnum',
         'rop_order_id',
         'last_mp_updated',
         'last_rop_pull',
@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'shipcode',
         'ip_address',
         'status',
-        'note',
+        'attributes',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -99,18 +99,19 @@ if($providerOrderItem->totalCount){
         ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'hidden' => true],
             [
-                'attribute' => 'order.id',
+                'attribute' => 'order.name',
                 'label' => 'Order'
         ],
             'sku',
-            'product',
+            'sku_title',
             'options',
-            'price_per_unit',
+            'unit_price',
             'quantity',
             'status',
             'last_mp_updated',
             'mp_item_id',
             'extra_info',
+            'unit_tax',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderItem,

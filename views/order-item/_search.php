@@ -27,11 +27,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true, 'placeholder' => 'Sku']) ?>
 
-    <?= $form->field($model, 'product')->textInput(['maxlength' => true, 'placeholder' => 'Product']) ?>
+    <?= $form->field($model, 'sku_title')->textInput(['maxlength' => true, 'placeholder' => 'Sku Title']) ?>
+    
+    <?php /* echo $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) */ ?>
 
-    <?= $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) ?>
-
-    <?php /* echo $form->field($model, 'price_per_unit')->textInput(['maxlength' => true, 'placeholder' => 'Price Per Unit']) */ ?>
+    <?php /* echo $form->field($model, 'unit_price')->textInput(['maxlength' => true, 'placeholder' => 'Unit Price']) */ ?>
 
     <?php /* echo $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) */ ?>
 
@@ -42,6 +42,8 @@ use yii\widgets\ActiveForm;
     <?php /* echo $form->field($model, 'mp_item_id')->textInput(['maxlength' => true, 'placeholder' => 'Mp Item']) */ ?>
 
     <?php /* echo $form->field($model, 'extra_info')->textInput(['maxlength' => true, 'placeholder' => 'Extra Info']) */ ?>
+
+    <?php /* echo $form->field($model, 'unit_tax')->textInput(['maxlength' => true, 'placeholder' => 'Unit Tax']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
