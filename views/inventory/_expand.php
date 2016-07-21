@@ -14,7 +14,7 @@ $items = [
     
     ],
     [
-        'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Order Item'),
+        'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Inventory Detail'),
         'content' => $this->render('_dataInventoryDetail', [
             'model' => $model,
             'row' => $model->inventoryDetails,
