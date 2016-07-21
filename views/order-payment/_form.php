@@ -27,9 +27,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'amount')->textInput(['maxlength' => true, 'placeholder' => 'Amount']) ?>
 
-    <?= $form->field($model, 'type')->dropDownList([ 'charge' => 'Charge', 'cash' => 'Cash', 'cheque' => 'Cheque', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'payment_processing_type')->dropDownList([ 'channel_payment' => 'Channel payment', 'channel_storecredit' => 'Channel storecredit', 'channel_giftcert' => 'Channel giftcert', 'authorize.net' => 'Authorize.net', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'payment_type')->dropDownList([ 'visa' => 'Visa', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'transaction_type')->dropDownList([ 'auth' => 'Auth', 'charge' => 'Charge', ], ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'payment_type')->textInput(['maxlength' => true, 'placeholder' => 'Payment Type']) ?>
 
     <?= $form->field($model, 'created_at')->widget(\kartik\widgets\DateTimePicker::classname(), [
         'options' => ['placeholder' => 'Choose Created At'],

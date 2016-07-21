@@ -10,8 +10,9 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property integer $order_id
- * @property string $amount
- * @property string $type
+ * @property float $amount
+ * @property string $payment_processing_type
+ * @property string $transaction_type
  * @property string $payment_type
  * @property string $created_at
  * @property string $updated_at
@@ -32,8 +33,9 @@ class OrderPayment extends \yii\db\ActiveRecord
             [['order_id'], 'required'],
             [['order_id'], 'integer'],
             [['amount'], 'number'],
-            [['type', 'payment_type'], 'string'],
-            [['created_at', 'updated_at'], 'safe']
+            [['payment_processing_type', 'transaction_type'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['payment_type'], 'string', 'max' => 60]
         ];
     }
     
@@ -54,7 +56,8 @@ class OrderPayment extends \yii\db\ActiveRecord
             'id' => 'ID',
             'order_id' => 'Order ID',
             'amount' => 'Amount',
-            'type' => 'Type',
+            'payment_processing_type' => 'Payment Processing Type',
+            'transaction_type' => 'Transaction Type',
             'payment_type' => 'Payment Type',
         ];
     }

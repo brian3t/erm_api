@@ -19,8 +19,9 @@ use kartik\grid\GridView;
     <div class="row">
 <?php 
     $gridColumn = [
+        ['attribute' => 'id', 'hidden' => true],
         'sku',
-        'quantity',
+        'quantity_available',
         'updatetime',
     ];
     echo DetailView::widget([

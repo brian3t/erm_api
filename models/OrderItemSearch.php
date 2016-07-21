@@ -19,8 +19,8 @@ use app\models\OrderItem;
     {
         return [
             [['id', 'order_id', 'quantity'], 'integer'],
-            [['sku', 'sku_title', 'options', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info'], 'safe'],
-            [['unit_price', 'unit_tax'], 'number'],
+            [['sku', 'sku_description', 'options', 'item_type', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info'], 'safe'],
+            [['unit_price', 'discount_amt', 'discount_pct', 'recycling_amt', 'ship_amt', 'shiptax_amt', 'unit_tax', 'unit_tax_pct', 'vat_pct'], 'number'],
         ];
     }
 
@@ -60,14 +60,22 @@ use app\models\OrderItem;
             'id' => $this->id,
             'order_id' => $this->order_id,
             'unit_price' => $this->unit_price,
+            'discount_amt' => $this->discount_amt,
+            'discount_pct' => $this->discount_pct,
+            'recycling_amt' => $this->recycling_amt,
+            'ship_amt' => $this->ship_amt,
+            'shiptax_amt' => $this->shiptax_amt,
+            'unit_tax' => $this->unit_tax,
+            'unit_tax_pct' => $this->unit_tax_pct,
+            'vat_pct' => $this->vat_pct,
             'quantity' => $this->quantity,
             'last_mp_updated' => $this->last_mp_updated,
-            'unit_tax' => $this->unit_tax,
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['like', 'sku_title', $this->sku_title])
+            ->andFilterWhere(['like', 'sku_description', $this->sku_description])
             ->andFilterWhere(['like', 'options', $this->options])
+            ->andFilterWhere(['like', 'item_type', $this->item_type])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'mp_item_id', $this->mp_item_id])
             ->andFilterWhere(['like', 'extra_info', $this->extra_info]);

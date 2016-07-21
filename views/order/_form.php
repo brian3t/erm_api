@@ -142,7 +142,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'grand_total')->textInput(['maxlength' => true, 'placeholder' => 'Grand Total']) ?>
 
-    <?= $form->field($model, 'shipcode')->textInput(['maxlength' => true, 'placeholder' => 'Shipcode']) ?>
+    <?= $form->field($model, 'ship_service_code')->textInput(['maxlength' => true, 'placeholder' => 'Ship Service Code']) ?>
 
     <?= $form->field($model, 'ip_address')->textInput(['maxlength' => true, 'placeholder' => 'Ip Address']) ?>
 

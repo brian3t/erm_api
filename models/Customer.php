@@ -27,7 +27,10 @@ class Customer extends BaseCustomer
     
     public function fields()
     {
-        return ['first_name', 'last_name','email_address','phone_number'];
+        return ['email_address','full_name', 'phone_number'];
+    }
+    public function getFull_name(){
+        return implode(' ', [$this->first_name, $this->last_name]);
     }
     
 }

@@ -10,8 +10,10 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property integer $id
  * @property string $sku
- * @property integer $quantity
+ * @property integer $quantity_available
  * @property string $updatetime
+ *
+ * @property \app\models\InventoryDetail[] $inventoryDetails
  */
 class Inventory extends \yii\db\ActiveRecord
 {
@@ -25,9 +27,10 @@ class Inventory extends \yii\db\ActiveRecord
     {
         return [
             [['sku'], 'required'],
-            [['quantity'], 'integer'],
+            [['quantity_available'], 'integer'],
             [['updatetime'], 'safe'],
-            [['sku'], 'string', 'max' => 50]
+            [['sku'], 'string', 'max' => 50],
+            [['sku'], 'unique']
         ];
     }
     
@@ -47,9 +50,17 @@ class Inventory extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'sku' => 'Sku',
-            'quantity' => 'Quantity',
+            'quantity_available' => 'Quantity Available',
             'updatetime' => 'Updatetime',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInventoryDetails()
+    {
+        return $this->hasMany(\app\models\InventoryDetail::className(), ['inventory_id' => 'id']);
     }
 
 /**
@@ -66,5 +77,14 @@ class Inventory extends \yii\db\ActiveRecord
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
+    }
+
+    /**
+     * @inheritdoc
+     * @return \app\models\InventoryQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new \app\models\InventoryQuery(get_called_class());
     }
 }

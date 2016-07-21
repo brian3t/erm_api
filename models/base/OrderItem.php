@@ -11,15 +11,23 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $id
  * @property integer $order_id
  * @property string $sku
- * @property string $sku_title
+ * @property string $sku_description
  * @property string $options
  * @property string $unit_price
+ * @property string $discount_amt
+ * @property string $discount_pct
+ * @property string $recycling_amt
+ * @property string $ship_amt
+ * @property string $shiptax_amt
+ * @property string $unit_tax
+ * @property string $unit_tax_pct
+ * @property string $vat_pct
  * @property integer $quantity
+ * @property string $item_type
  * @property string $status
  * @property string $last_mp_updated
  * @property string $mp_item_id
  * @property string $extra_info
- * @property string $unit_tax
  *
  * @property \app\models\Order $order
  */
@@ -36,10 +44,11 @@ class OrderItem extends \yii\db\ActiveRecord
         return [
             [['order_id', 'sku'], 'required'],
             [['order_id', 'quantity'], 'integer'],
-            [['unit_price', 'unit_tax'], 'number'],
+            [['unit_price', 'discount_amt', 'discount_pct', 'recycling_amt', 'ship_amt', 'shiptax_amt', 'unit_tax', 'unit_tax_pct', 'vat_pct'], 'number'],
+            [['item_type'], 'string'],
             [['last_mp_updated'], 'safe'],
             [['sku'], 'string', 'max' => 255],
-            [['sku_title', 'extra_info'], 'string', 'max' => 800],
+            [['sku_description', 'extra_info'], 'string', 'max' => 800],
             [['options'], 'string', 'max' => 2550],
             [['status'], 'string', 'max' => 250],
             [['mp_item_id'], 'string', 'max' => 50]
@@ -63,15 +72,23 @@ class OrderItem extends \yii\db\ActiveRecord
             'id' => 'ID',
             'order_id' => 'Order ID',
             'sku' => 'Sku',
-            'sku_title' => 'Sku Title',
+            'sku_description' => 'Sku Description',
             'options' => 'Options',
             'unit_price' => 'Unit Price',
+            'discount_amt' => 'Discount Amt',
+            'discount_pct' => 'Discount Pct',
+            'recycling_amt' => 'Recycling Amt',
+            'ship_amt' => 'Ship Amt',
+            'shiptax_amt' => 'Shiptax Amt',
+            'unit_tax' => 'Unit Tax',
+            'unit_tax_pct' => 'Unit Tax Pct',
+            'vat_pct' => 'Vat Pct',
             'quantity' => 'Quantity',
+            'item_type' => 'Item Type',
             'status' => 'Status',
             'last_mp_updated' => 'Last Mp Updated',
             'mp_item_id' => 'Mp Item ID',
             'extra_info' => 'Extra Info',
-            'unit_tax' => 'Unit Tax',
         ];
     }
 

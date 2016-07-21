@@ -27,13 +27,31 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true, 'placeholder' => 'Sku']) ?>
 
-    <?= $form->field($model, 'sku_title')->textInput(['maxlength' => true, 'placeholder' => 'Sku Title']) ?>
-    
-    <?php /* echo $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) */ ?>
+    <?= $form->field($model, 'sku_description')->textInput(['maxlength' => true, 'placeholder' => 'Sku Description']) ?>
+
+    <?= $form->field($model, 'options')->textInput(['maxlength' => true, 'placeholder' => 'Options']) ?>
 
     <?php /* echo $form->field($model, 'unit_price')->textInput(['maxlength' => true, 'placeholder' => 'Unit Price']) */ ?>
 
+    <?php /* echo $form->field($model, 'discount_amt')->textInput(['maxlength' => true, 'placeholder' => 'Discount Amt']) */ ?>
+
+    <?php /* echo $form->field($model, 'discount_pct')->textInput(['maxlength' => true, 'placeholder' => 'Discount Pct']) */ ?>
+
+    <?php /* echo $form->field($model, 'recycling_amt')->textInput(['maxlength' => true, 'placeholder' => 'Recycling Amt']) */ ?>
+
+    <?php /* echo $form->field($model, 'ship_amt')->textInput(['maxlength' => true, 'placeholder' => 'Ship Amt']) */ ?>
+
+    <?php /* echo $form->field($model, 'shiptax_amt')->textInput(['maxlength' => true, 'placeholder' => 'Shiptax Amt']) */ ?>
+
+    <?php /* echo $form->field($model, 'unit_tax')->textInput(['maxlength' => true, 'placeholder' => 'Unit Tax']) */ ?>
+
+    <?php /* echo $form->field($model, 'unit_tax_pct')->textInput(['maxlength' => true, 'placeholder' => 'Unit Tax Pct']) */ ?>
+
+    <?php /* echo $form->field($model, 'vat_pct')->textInput(['maxlength' => true, 'placeholder' => 'Vat Pct']) */ ?>
+
     <?php /* echo $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) */ ?>
+
+    <?php /* echo $form->field($model, 'item_type')->dropDownList([ 'ship' => 'Ship', 'advisory' => 'Advisory', 'instore' => 'Instore', ], ['prompt' => '']) */ ?>
 
     <?php /* echo $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) */ ?>
 
@@ -42,8 +60,6 @@ use yii\widgets\ActiveForm;
     <?php /* echo $form->field($model, 'mp_item_id')->textInput(['maxlength' => true, 'placeholder' => 'Mp Item']) */ ?>
 
     <?php /* echo $form->field($model, 'extra_info')->textInput(['maxlength' => true, 'placeholder' => 'Extra Info']) */ ?>
-
-    <?php /* echo $form->field($model, 'unit_tax')->textInput(['maxlength' => true, 'placeholder' => 'Unit Tax']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

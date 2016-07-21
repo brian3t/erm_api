@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Update Inventory: ' . ' ' . $model->sku;
 $this->params['breadcrumbs'][] = ['label' => 'Inventory', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->sku, 'url' => ['view', 'id' => $model->sku]];
+$this->params['breadcrumbs'][] = ['label' => $model->sku, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="inventory-update">

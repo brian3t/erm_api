@@ -11,30 +11,21 @@ class InventoryController extends BaseActiveController
 {
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Inventory';
-
-    public function behaviors()
-    {
-        return ArrayHelper::merge([
-            [
-                'class' => Cors::className(),
-                'cors' => [
-                    'Origin' => ['*'],
-                ],
-            ],
-        ], parent::behaviors());
-    }
-
+    
     public function actionPush()
     {
-        \Yii::$app->response->headers->add('Content-type', 'application/json');
         $result = [
             'status' => 'failed'
         ];
-        $data = \Yii::$app->request->post();
-
+        
         $transaction = \Yii::$app->db->beginTransaction();
+        if (empty($this->requestbody->inventory_updates)){
+            return;
+        }
+        
         try {
-            foreach ($data as $sku => $quantity) {
+            foreach ($this->requestbody->inventory_updates as $inventory_update) {
+                
                 $command = \Yii::$app->db->createCommand('INSERT INTO `inventory`
                  (`sku`, `quantity`) 
                  VALUES (:sku, :quantity) ON DUPLICATE KEY UPDATE `quantity` = :quantity')

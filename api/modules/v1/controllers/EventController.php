@@ -12,15 +12,4 @@ class EventController extends BaseActiveController
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Event';
 
-    public function behaviors()
-    {
-        return ArrayHelper::merge([
-                                      [
-                                          'class' => Cors::className(),
-                                          'cors' => [
-                                              'Origin' => ['*'],
-                                          ],
-                                      ],
-                                  ], parent::behaviors());
-    }
 }

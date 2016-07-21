@@ -63,18 +63,6 @@ class TrackingController extends BaseActiveController
         return $actions;
     }
     
-    public function behaviors() {
-        return ArrayHelper::merge([
-            [
-                'class' => Cors::className(),
-                'cors' => [
-                    'Origin' => ['*'],
-                ],
-            ],
-            // 'authenticator' => ['class' => HttpBasicAuth::className()]
-        ], parent::behaviors());
-    }
-    
     /**
      * ROP Endpoint: Tracking Push
      * @param string $mp_endpoint_name Marketplace endpoint name, e.g. loehmanns

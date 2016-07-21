@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Inventory */
 
-$this->title = $model->sku;
+$this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Inventory', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -22,40 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
+        ['attribute' => 'id', 'hidden' => true],
         'sku',
-        'quantity',
+        'quantity_available',
         'updatetime',
     ];
     echo DetailView::widget([
         'model' => $model,
         'attributes' => $gridColumn
     ]); 
-?>
-    </div>
-    
-    <div class="row">
-<?php
-    $gridColumnInventoryMp = [
-        ['class' => 'yii\grid\SerialColumn'],
-        [
-                'attribute' => 'mp.name',
-                'label' => 'Mp'
-        ],
-        [
-                'attribute' => 'inventory.sku',
-                'label' => 'Sku'
-        ],
-    ];
-    echo Gridview::widget([
-        'dataProvider' => $providerInventoryMp,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-inventory-mp']],
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Inventory Mp'.' '. $this->title),
-        ],
-        'columns' => $gridColumnInventoryMp
-    ]);
 ?>
     </div>
 </div>

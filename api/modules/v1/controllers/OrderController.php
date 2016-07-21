@@ -57,13 +57,18 @@ class OrderController extends BaseActiveController
      * The callable should return an instance of [[ActiveDataProvider]].
      */
     public $prepareDataProvider;
-    
+    protected function verbs()
+    {
+        $verbs = parent::verbs();
+        array_push($verbs['update'], 'POST');
+    }
     public function actions()
     {
         $actions = parent::actions();
         
-        // disable the "delete" actions
+        // disable the default REST actions
         unset($actions['delete']);
+        unset($actions['update']);
         
         // customize the data provider preparation with the "prepareDataProvider()" method
         $actions['pull']['class'] = 'app\api\modules\v1\controllers\OrderPullAction';
@@ -103,9 +108,9 @@ class OrderController extends BaseActiveController
         $dp = new ActiveDataProvider(
             [
                 'query' => $query,
-                // 'pagination' => [
-                //     'pageSize' => 3,
-                // ]
+                'pagination' => [
+                    'pageSize' => 100,
+                ]
             ]
         );
         if (DEBUG) {
@@ -113,22 +118,6 @@ class OrderController extends BaseActiveController
         }
         return $dp;
         
-    }
-    
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['contentNegotiator']['formats']['text/html'] = Response::FORMAT_JSON;
-        
-        return ArrayHelper::merge([
-            [
-                'class' => Cors::className(),
-                'cors' => [
-                    'Origin' => ['*'],
-                ],
-            ],
-            // 'authenticator' => ['class' => HttpBasicAuth::className()]
-        ], $behaviors);
     }
     
     public function checkAccess($action, $model = null, $params = [])
@@ -139,9 +128,12 @@ class OrderController extends BaseActiveController
     public function actionPull()
     {
         header('Content-Type: application/json');
-        echo file_get_contents(dirname(dirname(dirname(__DIR__))) . "/sample_data/order_pull.json");
         return;
         // return Order::findAll();
+    }
+    
+    public function actionAcknowledge(){
+        return json_decode(file_get_contents(dirname(dirname(dirname(__DIR__))) . "/sample_data/order_acknowledge.json"));
     }
     
     /**
@@ -212,6 +204,22 @@ class OrderController extends BaseActiveController
         return json_encode($result);
     }
     
+    public function actionCancel(){
+        return;
+    }
+    
+    public function actionComplete(){
+        return;
+    }
+    public function actionReturned(){
+        return;
+    }
+    
+    public function actionUpdate()
+    {
+        return;
+    }
+    
     public function actionBlah()
     {
         return '{"bleh":1}';
@@ -228,6 +236,7 @@ class OrderPullAction extends IndexAction
     public function run()
     {
         //pull active data provider
+        // \Yii::$app->response->statusCode = 401;
         $dp = $this->prepareDataProvider;
         /** @var ActiveDataProvider $dp */
         //pull query params

@@ -47,9 +47,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string $comments
  * @property string $product_total
  * @property integer $customer_id
- * @property string $discount_amt
+ * @property double $discount_amt
  * @property string $grand_total
- * @property string $shipcode
+ * @property string $ship_service_code
  * @property string $ip_address
  * @property string $status
  * @property string $attributes
@@ -80,7 +80,7 @@ class Order extends \yii\db\ActiveRecord
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
             [['comments'], 'string'],
             [['channel_refnum', 'status'], 'string', 'max' => 50],
-            [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipcode', 'attributes'], 'string', 'max' => 255],
+            [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'ship_service_code', 'attributes'], 'string', 'max' => 255],
             [['last_name', 'ship_last_name'], 'string', 'max' => 80],
             [['gift_message'], 'string', 'max' => 800],
             [['ip_address'], 'string', 'max' => 200],
@@ -142,7 +142,7 @@ class Order extends \yii\db\ActiveRecord
             'customer_id' => 'Customer ID',
             'discount_amt' => 'Discount Amt',
             'grand_total' => 'Grand Σ',
-            'shipcode' => 'Shipcode',
+            'ship_service_code' => 'Ship Service Code',
             'ip_address' => 'Ip Address',
             'status' => 'Status',
             'attributes' => 'Attributes',

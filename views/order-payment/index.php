@@ -51,7 +51,8 @@ $this->registerJs($search);
                 'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid--order_id']
             ],
         'amount',
-        'type',
+        'payment_processing_type',
+        'transaction_type',
         'payment_type',
         'created_at',
         'updated_at',

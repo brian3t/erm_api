@@ -23,20 +23,21 @@ echo TabularForm::widget([
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
         'amount' => ['type' => TabularForm::INPUT_TEXT],
-        'type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+        'payment_processing_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
                     'options' => [
-                        'items' => [ 'charge' => 'Charge', 'cash' => 'Cash', 'cheque' => 'Cheque', ],
+                        'items' => [ 'channel_payment' => 'Channel payment', 'channel_storecredit' => 'Channel storecredit', 'channel_giftcert' => 'Channel giftcert', 'authorize.net' => 'Authorize.net', ],
                         'columnOptions => ['width' => '185px'],
-                        'options' => ['placeholder' => 'Choose Type'],
+                        'options' => ['placeholder' => 'Choose Payment Processing Type'],
                     ]
         ],
-        'payment_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+        'transaction_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
                     'options' => [
-                        'items' => [ 'visa' => 'Visa', ],
+                        'items' => [ 'auth' => 'Auth', 'charge' => 'Charge', ],
                         'columnOptions => ['width' => '185px'],
-                        'options' => ['placeholder' => 'Choose Payment Type'],
+                        'options' => ['placeholder' => 'Choose Transaction Type'],
                     ]
         ],
+        'payment_type' => ['type' => TabularForm::INPUT_TEXT],
         'created_at' => ['type' => TabularForm::INPUT_WIDGET,
         'widgetClass' => \kartik\widgets\DateTimePicker::classname(),
             'options' => [

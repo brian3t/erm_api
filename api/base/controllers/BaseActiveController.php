@@ -2,13 +2,22 @@
 
 namespace app\api\base\controllers;
 
+use app\api\base\RequestBody;
 use yii\rest\ActiveController;
 use yii\web\Response;
 use yii\helpers\ArrayHelper;
 use yii\filters\Cors;
 
+/**
+ * Class BaseActiveController
+ * @package app\api\base\controllers
+ * @property RequestBody $requestbody
+ * @property string $message
+ */
 class BaseActiveController extends ActiveController
 {
+    public $requestbody;
+    public $message;
     public function behaviors()
     {
         $behaviors = parent::behaviors();

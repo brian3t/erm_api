@@ -20,19 +20,28 @@ class OrderPayment extends BaseOrderPayment
                 [['order_id'], 'required'],
                 [['order_id'], 'integer'],
                 [['amount'], 'number'],
-                [['type', 'payment_type'], 'string'],
-                [['created_at', 'updated_at'], 'safe']
+                [['payment_processing_type', 'transaction_type'], 'string'],
+                [['created_at', 'updated_at'], 'safe'],
+                [['payment_type'], 'string', 'max' => 60],
             ]);
     }
     
     public function fields()
     {
         return [
-            'amount', 'type', 'channel_refnum' => function(){return $this->payment_type;}, 'payment_type'
-            , 'payment_params' => function () {
-                return ["channel_refnum" => 496, "payment_type" => $this->payment_type];
-            }
+            'payment_processing_type',
+            'transaction_type',
+            'payment_type',
+            'amount'=> function () {
+                return $this->getAmount();
+            },
         ];
     }
+    
+    public function getAmount()
+    {
+        return floatval($this->amount);
+    }
+    
     
 }

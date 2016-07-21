@@ -15,9 +15,11 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true, 'placeholder' => 'Sku']) ?>
 
-    <?= $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) ?>
+    <?= $form->field($model, 'quantity_available')->textInput(['placeholder' => 'Quantity Available']) ?>
 
     <?= $form->field($model, 'updatetime')->textInput(['placeholder' => 'Updatetime']) ?>
 

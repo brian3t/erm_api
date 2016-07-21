@@ -18,9 +18,10 @@ class Inventory extends BaseInventory
         return array_replace_recursive(parent::rules(),
 	    [
             [['sku'], 'required'],
-            [['quantity'], 'integer'],
+            [['quantity_available'], 'integer'],
             [['updatetime'], 'safe'],
-            [['sku'], 'string', 'max' => 50]
+            [['sku'], 'string', 'max' => 50],
+            [['sku'], 'unique']
         ]);
     }
 	

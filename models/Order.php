@@ -24,11 +24,11 @@ class Order extends BaseOrder
                 [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
                 [['comments'], 'string'],
                 [['channel_refnum', 'status'], 'string', 'max' => 50],
-                [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'shipcode', 'attributes'], 'string', 'max' => 255],
+                [['first_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'phone', 'ship_first_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'ship_service_code', 'attributes'], 'string', 'max' => 255],
                 [['last_name', 'ship_last_name'], 'string', 'max' => 80],
                 [['gift_message'], 'string', 'max' => 800],
                 [['ip_address'], 'string', 'max' => 200],
-                [['mp_id', 'channel_refnum'], 'unique', 'targetAttribute' => ['mp_id', 'channel_refnum'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.']
+                [['mp_id', 'channel_refnum'], 'unique', 'targetAttribute' => ['mp_id', 'channel_refnum'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.'],
             ]);
     }
     
@@ -103,9 +103,65 @@ class Order extends BaseOrder
      */
     public function fields()
     {
-        return ['shipping_amt', 'calc_mode', 'channel_date_created'=>function(){return (new \DateTime($this->channel_date_created))->format('c');}, 'payment' => 'orderPayments', 'tax_amt', 'bill_addr', 'gift_message',
-            'ship_addr', 'channel_refnum', 'customer', 'discount_amt', 'shipcode', 'ip_address', 'attributes' => function(){return [json_decode($this->attributes, true)];}, 'items' => 'orderItems'];
+        return ['channel_order_refnum' => 'channel_refnum', 'ship_service_code', 'currency_code' => function () {
+            return $this->mp->currency_code;
+        }, 'currency_values' => function () {
+            return ['shipping_amt' => $this->getShipping_amt(), 'tax_amt' => $this->getTax_amt(), 'discount_amt' => $this->getDiscount_amt()];
+        }, 'channel_date_created' => function () {
+            return (new \DateTime($this->channel_date_created))->format('c');
+        }, 'billing_address' => function () {
+            return ['state_match' => $this->state_match, 'country_match' => $this->country_match, 'last_name' => $this->last_name, 'address2' => $this->address2,
+                'city' => $this->city, 'postal_code' => $this->postal_code, 'address1' => $this->address1, 'company' => $this->company, 'first_name' => $this->first_name];
+        }, 'shipping_address' => function () {
+            return ['state_match' => $this->ship_state_match??'', 'country_match' => $this->ship_country_match??'', 'last_name' => $this->ship_last_name, 'address2' => $this->ship_address2,
+                'city' => $this->ship_city, 'postal_code' => $this->ship_postal_code, 'address1' => $this->ship_address1, 'company' => $this->ship_company??'', 'first_name' => $this->ship_first_name];
+        },
+            'order_items' => 'orderItems',
+            'gift_message', 'payment_transactions' => 'orderPayments',
+            'customer_info' => function () {
+                return is_object($this->customer) ? $this->customer : ["email_address" => "N/A",
+                    "full_name" => "N/A",
+                    "phone_number" => "N/A",
+                ];
+            }, 'attributes' => 'rop_attributes', 'ip_address',];
     }
+    
+    public function getRop_attributes()
+    {
+        return [
+            ['attribute_type' => 'text',//text number select multiselect price
+                'handle' => 'customer_rewards_number',
+            ],
+            ['attribute_type' => 'number',//text  select multiselect price
+                'handle' => 'test_number',
+            ],
+            ['attribute_type' => 'select',//text number  multiselect price
+                'handle' => 'test_select',
+            ],
+            ['attribute_type' => 'multiselect',//text number select  price
+                'handle' => 'test_multiselect',
+            ],
+            ['attribute_type' => 'price',//text number select multiselect
+                'handle' => 'test_price',
+            ],
+        ];
+    }
+    
+    public function getDiscount_amt()
+    {
+        return floatval($this->discount_amt);
+    }
+    
+    public function getShipping_amt()
+    {
+        return floatval($this->shipping_amt);
+    }
+    
+    public function getTax_amt()
+    {
+        return floatval($this->tax_amt);
+    }
+    
     
     public function extraFields()
     {

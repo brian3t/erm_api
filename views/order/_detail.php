@@ -66,7 +66,7 @@ use kartik\grid\GridView;
         ],
         'discount_amt',
         'grand_total',
-        'shipcode',
+        'ship_service_code',
         'ip_address',
         'status',
         'attributes',

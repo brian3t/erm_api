@@ -21,6 +21,8 @@ use kartik\grid\GridView;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         'name',
+        'end_point_name',
+        'currency_code',
     ];
     echo DetailView::widget([
         'model' => $model,

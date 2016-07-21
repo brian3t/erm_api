@@ -11,6 +11,8 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
+            'enableCookieValidation' => false,
+            'enableCsrfValidation' => false,
             // Enable JSON Input:
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
@@ -50,7 +52,8 @@ $config = [
                     'pluralize' => false,
                     'controller' => 'v1/order',
                     'extraPatterns' => [
-                        'POST pull' => 'pull', // 'confirm' refers to 'actionConfirm'
+                        'POST pull' => 'pull',
+                        'POST acknowledge' => 'acknowledge',
                         'GET pull' => 'pull', // 'confirm' refers to 'actionConfirm'
                     ],
                 ],

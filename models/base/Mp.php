@@ -10,6 +10,7 @@ use yii;
  * @property integer $id
  * @property string $name
  * @property string $end_point_name
+ * @property string $currency_code
  *
  * @property \app\models\InventoryMp $inventoryMp
  * @property \app\models\Order[] $orders
@@ -27,6 +28,7 @@ class Mp extends \yii\db\ActiveRecord
         return [
             [['id'], 'required'],
             [['id'], 'integer'],
+            [['currency_code'], 'string'],
             [['name', 'end_point_name'], 'string', 'max' => 45]
         ];
     }
@@ -48,6 +50,7 @@ class Mp extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'end_point_name' => 'End Point Name',
+            'currency_code' => 'Currency Code',
         ];
     }
 

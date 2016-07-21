@@ -7,14 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Inventory */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'InventoryMp', 
-        'relID' => 'inventory-mp', 
-        'value' => \yii\helpers\Json::encode($model->inventoryMps),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
 ?>
 
 <div class="inventory-form">
@@ -23,16 +15,17 @@ use yii\widgets\ActiveForm;
     
     <?= $form->errorSummary($model); ?>
 
+    <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true, 'placeholder' => 'Sku']) ?>
 
-    <?= $form->field($model, 'quantity')->textInput(['placeholder' => 'Quantity']) ?>
+    <?= $form->field($model, 'quantity_available')->textInput(['placeholder' => 'Quantity Available']) ?>
 
     <?= $form->field($model, 'updatetime')->textInput(['placeholder' => 'Updatetime']) ?>
 
-    <div class="form-group" id="add-inventory-mp"></div>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'),['index'],['class'=> 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

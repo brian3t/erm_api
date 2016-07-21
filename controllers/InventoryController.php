@@ -43,18 +43,14 @@ class InventoryController extends Controller
 
     /**
      * Displays a single Inventory model.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $providerInventoryMp = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->inventoryMps,
-        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerInventoryMp' => $providerInventoryMp,
         ]);
     }
 
@@ -68,7 +64,7 @@ class InventoryController extends Controller
         $model = new Inventory();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->sku]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -79,7 +75,7 @@ class InventoryController extends Controller
     /**
      * Updates an existing Inventory model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -87,7 +83,7 @@ class InventoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-            return $this->redirect(['view', 'id' => $model->sku]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -98,7 +94,7 @@ class InventoryController extends Controller
     /**
      * Deletes an existing Inventory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -111,7 +107,7 @@ class InventoryController extends Controller
     /**
      * Finds the Inventory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     * @param integer $id
      * @return Inventory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -119,26 +115,6 @@ class InventoryController extends Controller
     {
         if (($model = Inventory::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for InventoryMp
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddInventoryMp()
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('InventoryMp');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formInventoryMp', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

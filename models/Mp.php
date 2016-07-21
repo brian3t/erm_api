@@ -122,6 +122,7 @@ class Mp extends BaseMp
             [
                 [['id'], 'required'],
                 [['id'], 'integer'],
+                [['currency_code'], 'string'],
                 [['name', 'end_point_name'], 'string', 'max' => 45]
             ]);
     }

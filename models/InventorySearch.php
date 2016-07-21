@@ -18,8 +18,8 @@ use app\models\Inventory;
     public function rules()
     {
         return [
+            [['id', 'quantity_available'], 'integer'],
             [['sku', 'updatetime'], 'safe'],
-            [['quantity'], 'integer'],
         ];
     }
 
@@ -56,7 +56,8 @@ use app\models\Inventory;
         }
 
         $query->andFilterWhere([
-            'quantity' => $this->quantity,
+            'id' => $this->id,
+            'quantity_available' => $this->quantity_available,
             'updatetime' => $this->updatetime,
         ]);
 

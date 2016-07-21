@@ -24,11 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         [
-                'attribute' => 'order.name',
+                'attribute' => 'order.id',
                 'label' => 'Order'
         ],
         'amount',
-        'type',
+        'payment_processing_type',
+        'transaction_type',
         'payment_type',
         'created_at',
         'updated_at',
