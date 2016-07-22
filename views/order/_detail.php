@@ -28,6 +28,7 @@ use kartik\grid\GridView;
         'channel_refnum',
         'rop_order_id',
         'last_mp_updated',
+        'rop_ack_at',
         'last_rop_pull',
         'force_rop_resend',
         'count_rop_pull',

@@ -32,7 +32,10 @@
     "kartik-v/yii2-date-range": "dev-master",
     "kartik-v/yii2-grid": "^3.1",
     "cebe/markdown-latex": "~1.0.0",
-    "yiisoft/yii2-apidoc": "^2.0"
+    "yiisoft/yii2-apidoc": "^2.0",
+    "kartik-v/yii2-mpdf": "*",
+    "kartik-v/yii2-datecontrol": "@dev",
+    "kartik-v/yii2-tree-manager": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",

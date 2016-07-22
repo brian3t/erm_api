@@ -19,7 +19,7 @@ use app\models\Inventory;
     {
         return [
             [['id', 'quantity_available'], 'integer'],
-            [['sku', 'updatetime'], 'safe'],
+            [['sku', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -58,7 +58,8 @@ use app\models\Inventory;
         $query->andFilterWhere([
             'id' => $this->id,
             'quantity_available' => $this->quantity_available,
-            'updatetime' => $this->updatetime,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku]);

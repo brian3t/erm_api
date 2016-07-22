@@ -22,14 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
-        [
+                [
                 'attribute' => 'mp.name',
                 'label' => 'Mp'
-        ],
+            ],
         'channel_refnum',
         'rop_order_id',
         'last_mp_updated',
+        'rop_ack_at',
         'last_rop_pull',
         'force_rop_resend',
         'count_rop_pull',
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
         [
                 'attribute' => 'customer.id',
                 'label' => 'Customer'
-        ],
+            ],
         'discount_amt',
         'grand_total',
         'ship_service_code',
@@ -82,14 +82,10 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
 <?php
+if($providerOrderItem->totalCount){
     $gridColumnOrderItem = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
-        [
-                'attribute' => 'order.id',
-                'label' => 'Order'
-        ],
-        'sku',
+                        'sku',
         'sku_description',
         'options',
         'unit_price',
@@ -110,27 +106,24 @@ $this->params['breadcrumbs'][] = $this->title;
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderItem,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-order-item']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Order Item'.' '. $this->title),
+            'heading' => Html::encode('Order Item'),
         ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
         'columns' => $gridColumnOrderItem
     ]);
+}
 ?>
     </div>
     
     <div class="row">
 <?php
+if($providerOrderPayment->totalCount){
     $gridColumnOrderPayment = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
-        [
-                'attribute' => 'order.id',
-                'label' => 'Order'
-        ],
-        'amount',
+                        'amount',
         'payment_processing_type',
         'transaction_type',
         'payment_type',
@@ -139,41 +132,39 @@ $this->params['breadcrumbs'][] = $this->title;
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderPayment,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-order-payment']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Order Payment'.' '. $this->title),
+            'heading' => Html::encode('Order Payment'),
         ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
         'columns' => $gridColumnOrderPayment
     ]);
+}
 ?>
     </div>
     
     <div class="row">
 <?php
+if($providerTracking->totalCount){
     $gridColumnTracking = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
-        [
-                'attribute' => 'order.id',
-                'label' => 'Rop Order'
-        ],
-        'sku',
+                        'sku',
         'tracking_number',
         'tracking_carrier',
         'ship_date',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerTracking,
-        'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-tracking']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Tracking'.' '. $this->title),
+            'heading' => Html::encode('Tracking'),
         ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
         'columns' => $gridColumnTracking
     ]);
+}
 ?>
     </div>
 </div>

@@ -9,6 +9,7 @@ define('DAYS_SINCE_LAST_ROP_PULL', 30);
 use app\api\base\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
+use app\models\OrderQuery;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -57,11 +58,13 @@ class OrderController extends BaseActiveController
      * The callable should return an instance of [[ActiveDataProvider]].
      */
     public $prepareDataProvider;
+    
     protected function verbs()
     {
         $verbs = parent::verbs();
         array_push($verbs['update'], 'POST');
     }
+    
     public function actions()
     {
         $actions = parent::actions();
@@ -110,7 +113,7 @@ class OrderController extends BaseActiveController
                 'query' => $query,
                 'pagination' => [
                     'pageSize' => 100,
-                ]
+                ],
             ]
         );
         if (DEBUG) {
@@ -132,8 +135,40 @@ class OrderController extends BaseActiveController
         // return Order::findAll();
     }
     
-    public function actionAcknowledge(){
-        return json_decode(file_get_contents(dirname(dirname(dirname(__DIR__))) . "/sample_data/order_acknowledge.json"));
+    public function actionAcknowledge()
+    {
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'orders')) {
+            return $result;
+        }
+        // $order_to_acks = ArrayHelper::toArray($this->requestbody->orders);
+        $successful = true;
+        $count = 0;
+        
+        $trans = \Yii::$app->db->beginTransaction();
+        foreach ($this->requestbody->orders as $order_to_ack) {
+            $order = Order::find()->where(['channel_refnum' => $order_to_ack->channel_order_refnum])->one();
+            if (is_object($order)) {
+                /* @var Order $order */;
+                $order->rop_order_id = $order_to_ack->retailops_order_id;
+                $order->rop_ack_at = $today;
+                if (!$order->save()) {
+                    $successful = false;
+                    array_push($errors, $order->getErrors());
+                } else {
+                    $count++;
+                }
+            }
+        }
+        $trans->commit();
+        
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        $result['count'] = $count;
+        return $result;
     }
     
     /**
@@ -143,7 +178,7 @@ class OrderController extends BaseActiveController
      *      sme_order_id    :   rop_order_id, e.g.     123 : ABC123
      * @return string A json encoded array with the following information:
      * {
-     *  status: successful|failed
+     *  status: successful|fail
      *  count: Number of orders updated
      *  info:   further information, such as error at ROP side, error at SME side
      * }
@@ -154,7 +189,7 @@ class OrderController extends BaseActiveController
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
         $result = [
-            'status' => 'failed',
+            'status' => 'fail',
         ];
         // if (!\Yii::$app->request->isAjax){
         //     $result['info'] = 'Request is not ajax';
@@ -204,23 +239,62 @@ class OrderController extends BaseActiveController
         return json_encode($result);
     }
     
-    public function actionCancel(){
-        return;
+    public function actionCancel()
+    {
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'order')) {
+            return $result;
+        }
+        $successful = true;
+        
+        $order = Order::find()->where(['rop_order_id' => $this->requestbody->order->retailops_order_id])->one();
+        if (!is_object($order)) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
+            if (!is_object($order)) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if (is_object($order)) {
+            /* @var Order $order */;
+            $order->status = 'canceled';
+            $order->rop_ack_at = $today;
+            if (!$order->save()) {
+                $successful = false;
+                array_push($errors, $order->getErrors());
+            }
+        }
+        
+        
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
     }
     
-    public function actionComplete(){
-        return;
-    }
-    public function actionReturned(){
-        return;
-    }
-    
-    public function actionUpdate()
+    public
+    function actionComplete()
     {
         return;
     }
     
-    public function actionBlah()
+    public
+    function actionReturned()
+    {
+        return;
+    }
+    
+    public
+    function actionUpdate()
+    {
+        return;
+    }
+    
+    public
+    function actionBlah()
     {
         return '{"bleh":1}';
     }
@@ -242,8 +316,8 @@ class OrderPullAction extends IndexAction
         //pull query params
         
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
-        $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
-            ->execute();
+        // $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
+        //     ->execute();
         
         return call_user_func($this->prepareDataProvider, $this);
     }

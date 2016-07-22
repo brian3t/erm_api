@@ -18,12 +18,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string $po
  * @property string $po_destination
  * @property string $facility_name
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property \app\models\Inventory $inventory
  */
 class InventoryDetail extends \yii\db\ActiveRecord
 {
-
     use \mootensai\relation\RelationTrait;
 
     /**
@@ -35,11 +36,10 @@ class InventoryDetail extends \yii\db\ActiveRecord
             [['quantity_type'], 'string'],
             [['inventory_id'], 'required'],
             [['inventory_id', 'available_quantity', 'total_quantity'], 'integer'],
-            [['estimated_availability_date'], 'safe'],
+            [['estimated_availability_date', 'created_at', 'updated_at'], 'safe'],
             [['vendor_name', 'facility_name'], 'string', 'max' => 200],
             [['po'], 'string', 'max' => 80],
-            [['po_destination'], 'string', 'max' => 400],
-            [['inventory_id'], 'unique']
+            [['po_destination'], 'string', 'max' => 400]
         ];
     }
     
@@ -69,7 +69,7 @@ class InventoryDetail extends \yii\db\ActiveRecord
             'facility_name' => 'Facility Name',
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -77,15 +77,15 @@ class InventoryDetail extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Inventory::className(), ['id' => 'inventory_id']);
     }
-
+    
 /**
      * @inheritdoc
-     * @return type mixed
+     * @return mixed
      */ 
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',

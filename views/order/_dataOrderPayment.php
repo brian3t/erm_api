@@ -8,8 +8,7 @@ use yii\data\ArrayDataProvider;
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
-        'amount',
+                'amount',
         'payment_processing_type',
         'transaction_type',
         'payment_type',

@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
 <div class="order-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
@@ -47,13 +47,25 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]) ?>
+    ]); ?>
 
-    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
+    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Channel Refnum']) ?>
 
     <?= $form->field($model, 'rop_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
 
     <?= $form->field($model, 'last_mp_updated')->textInput(['placeholder' => 'Last Mp Updated']) ?>
+
+    <?= $form->field($model, 'rop_ack_at')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Rop Ack At',
+                'autoclose' => true,
+            ]
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'last_rop_pull')->textInput(['placeholder' => 'Last Rop Pull']) ?>
 
@@ -61,13 +73,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'count_rop_pull')->textInput(['placeholder' => 'Count Rop Pull']) ?>
 
-    <?= $form->field($model, 'channel_date_created')->widget(\kartik\widgets\DateTimePicker::classname(), [
-        'options' => ['placeholder' => 'Choose Channel Date Created'],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'mm/dd/yyyy hh:ii:ss'
-        ]
-    ]) ?>
+    <?= $form->field($model, 'channel_date_created')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Channel Date Created',
+                'autoclose' => true,
+            ]
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'shipping_amt')->textInput(['maxlength' => true, 'placeholder' => 'Shipping Amt']) ?>
 
@@ -124,19 +140,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'comments')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'product_total')->textInput(['maxlength' => true, 'placeholder' => 'Product Total']) ?>
-    <?php
-        $customers = \app\models\Customer::find()->orderBy('id')->asArray()->all();
-    foreach ($customers as &$customer){
-        $customer['name'] = $customer['first_name'] . " {$customer['last_name']} - {$customer['mp_customer_id']} ";
-    }
-    ?>
+
     <?= $form->field($model, 'customer_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map($customers, 'id', 'name'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Customer::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
         'options' => ['placeholder' => 'Choose Customer'],
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]) ?>
+    ]); ?>
 
     <?= $form->field($model, 'discount_amt')->textInput(['maxlength' => true, 'placeholder' => 'Discount Amt']) ?>
 
@@ -150,15 +161,41 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'Attributes']) ?>
 
-    <div class="form-group" id="add-order-item"></div>
-
-    <div class="form-group" id="add-order-payment"></div>
-
-    <div class="form-group" id="add-tracking"></div>
-
+    <?php
+    $forms = [
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('OrderItem'),
+            'content' => $this->render('_formOrderItem', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->orderItems),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('OrderPayment'),
+            'content' => $this->render('_formOrderPayment', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->orderPayments),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Tracking'),
+            'content' => $this->render('_formTracking', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->trackings),
+            ]),
+        ],
+    ];
+    echo kartik\tabs\TabsX::widget([
+        'items' => $forms,
+        'position' => kartik\tabs\TabsX::POS_ABOVE,
+        'encodeLabels' => false,
+        'pluginOptions' => [
+            'bordered' => true,
+            'sideways' => true,
+            'enableCache' => false,
+        ],
+    ]);
+    ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'),['index'],['class'=> 'btn btn-danger']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

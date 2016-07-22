@@ -40,22 +40,6 @@ echo TabsX::widget([
         'bordered' => true,
         'sideways' => true,
         'enableCache' => false
-        //        'height' => TabsX::SIZE_TINY
-    ],
-    'pluginEvents' => [
-        "tabsX.click" => "function(e) {setTimeout(function(e){
-                if ($('.nav-tabs > .active').next('li').length == 0) {
-                    $('#prev').show();
-                    $('#next').hide();
-                } else if($('.nav-tabs > .active').prev('li').length == 0){
-                    $('#next').show();
-                    $('#prev').hide();
-                }else{
-                    $('#next').show();
-                    $('#prev').show();
-                };
-                console.log(JSON.stringify($('.active', '.nav-tabs').html()));
-            },10)}",
     ],
 ]);
 ?>

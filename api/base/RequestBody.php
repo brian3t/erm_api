@@ -17,6 +17,8 @@ use yii\base\Exception;
  * @property string $page_token
  *
  * @property array $specific_orders
+ * @property array $orders
+ * @property array $order
  *
  * @property array $catalog_items
  *
@@ -33,10 +35,12 @@ class RequestBody
     public $page_token;
     public $specific_orders;
     public $inventory_updates;
+    public $orders;
+    public $order;
     
     public function __construct($postbody)
     {
-        if (!is_string($postbody)) return false;
+        if (is_null($postbody) || !is_string($postbody)) return false;
         try {
             ($postbody = json_decode($postbody));
         } catch (Exception $e) {
@@ -44,18 +48,11 @@ class RequestBody
             return false;
         }
         $this->import($postbody);
-        // $this->action = $postbody->action??null;
-        // $this->version = $postbody->version??null;
-        // $this->channel_info = $postbody->channel_info??null;
         $this->channel_id = $this->channel_info->id??null;
         if (is_null($this->channel_id) && !IS_DEBUG) {
             \Yii::error('Missing channel id');
             return false;
         }
-        // $this->client_id = $postbody->client_id??null;
-        // $this->integration_auth_token = $postbody->integration_auth_token??null;
-        // $this->page_token = $postbody->page_token??null;
-        // $this->specific_orders = $postbody->specific_orders??[];
         
         return $this;
     }

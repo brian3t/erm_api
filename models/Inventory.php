@@ -19,7 +19,7 @@ class Inventory extends BaseInventory
 	    [
             [['sku'], 'required'],
             [['quantity_available'], 'integer'],
-            [['updatetime'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['sku'], 'string', 'max' => 50],
             [['sku'], 'unique']
         ]);

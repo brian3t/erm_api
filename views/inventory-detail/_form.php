@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 <div class="inventory-detail-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
@@ -25,15 +25,19 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]) ?>
+    ]); ?>
 
-    <?= $form->field($model, 'estimated_availability_date')->widget(\kartik\widgets\DateTimePicker::classname(), [
-        'options' => ['placeholder' => 'Choose Estimated Availability Date'],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'mm/dd/yyyy hh:ii:ss'
-        ]
-    ]) ?>
+    <?= $form->field($model, 'estimated_availability_date')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+        'saveFormat' => 'php:Y-m-d',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Estimated Availability Date',
+                'autoclose' => true
+            ]
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'available_quantity')->textInput(['placeholder' => 'Available Quantity']) ?>
 
@@ -47,9 +51,32 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'facility_name')->textInput(['maxlength' => true, 'placeholder' => 'Facility Name']) ?>
 
+    <?= $form->field($model, 'created_at')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Created At',
+                'autoclose' => true,
+            ]
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'updated_at')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Updated At',
+                'autoclose' => true,
+            ]
+        ],
+    ]); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'),['index'],['class'=> 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

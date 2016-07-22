@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2><?= 'Inventory Detail'.' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
-                        
+            
             <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
             <?= Html::a('Delete', ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
@@ -47,6 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'po',
         'po_destination',
         'facility_name',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,

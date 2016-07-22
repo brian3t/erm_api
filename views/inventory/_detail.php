@@ -22,7 +22,8 @@ use kartik\grid\GridView;
         ['attribute' => 'id', 'hidden' => true],
         'sku',
         'quantity_available',
-        'updatetime',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,

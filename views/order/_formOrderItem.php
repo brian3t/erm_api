@@ -1,3 +1,4 @@
+<div class="form-group" id="add-order-item">
 <?php
 use kartik\grid\GridView;
 use kartik\builder\TabularForm;
@@ -5,7 +6,6 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-Pjax::begin();
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
@@ -36,9 +36,9 @@ echo TabularForm::widget([
         'vat_pct' => ['type' => TabularForm::INPUT_TEXT],
         'quantity' => ['type' => TabularForm::INPUT_TEXT],
         'item_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'ship' => 'Ship', 'advisory' => 'Advisory', 'instore' => 'Instore', ],
                     'options' => [
-                        'items' => [ 'ship' => 'Ship', 'advisory' => 'Advisory', 'instore' => 'Instore', ],
-                        'columnOptions => ['width' => '185px'],
+                        'columnOptions' => ['width' => '185px'],
                         'options' => ['placeholder' => 'Choose Item Type'],
                     ]
         ],
@@ -56,13 +56,14 @@ echo TabularForm::widget([
     ],
     'gridSettings' => [
         'panel' => [
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . 'Order Item',
-            'type' => GridView::TYPE_INFO,
+            'heading' => false,
+            'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . 'Add Row', ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowOrderItem()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . 'Add Order Item', ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowOrderItem()']),
         ]
     ]
 ]);
-Pjax::end();
+echo  "    </div>\n\n";
 ?>
+

@@ -22,15 +22,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
-        'sku',
+                'sku',
         'quantity_available',
-        'updatetime',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,
         'attributes' => $gridColumn
     ]); 
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerInventoryDetail->totalCount){
+    $gridColumnInventoryDetail = [
+        ['class' => 'yii\grid\SerialColumn'],
+                'quantity_type',
+                'estimated_availability_date',
+        'available_quantity',
+        'total_quantity',
+        'vendor_name',
+        'po',
+        'po_destination',
+        'facility_name',
+        'created_at',
+        'updated_at',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerInventoryDetail,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode('Inventory Detail'),
+        ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
+        'columns' => $gridColumnInventoryDetail
+    ]);
+}
 ?>
     </div>
 </div>

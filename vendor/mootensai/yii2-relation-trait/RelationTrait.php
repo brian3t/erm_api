@@ -17,28 +17,31 @@ use \yii\helpers\StringHelper;
 
 trait RelationTrait
 {
-
-    public function loadAll($POST)
+    public function loadAll($POST, $skippedRelations = [])
     {
         if ($this->load($POST)) {
             $shortName = StringHelper::basename(get_class($this));
             foreach ($POST as $key => $value) {
                 if ($key != $shortName && strpos($key, '_') === false) {
-                    /* @var $rel ActiveQuery */
+                    /* @var $AQ ActiveQuery */
                     /* @var $this ActiveRecord */
                     /* @var $relObj ActiveRecord */
-                    $isHasMany = is_array($value);
+                    $isHasMany = is_array($value) && is_array(current($value));
                     $relName = ($isHasMany) ? lcfirst(Inflector::pluralize($key)) : lcfirst($key);
-                    $rel = $this->getRelation($relName);
-                    $relModelClass = $rel->modelClass;
+                    $AQ = $this->getRelation($relName);
+                    $relModelClass = $AQ->modelClass;
                     $relPKAttr = $relModelClass::primaryKey();
                     $isManyMany = count($relPKAttr) > 1;
+
+                    if (in_array($relName, $skippedRelations))
+                        continue;
+
                     if ($isManyMany) {
                         $container = [];
                         foreach ($value as $relPost) {
                             if (array_filter($relPost)) {
                                 $condition = [];
-                                $condition[$this->primaryKey()[0]] = $this->primaryKey;
+                                $condition[$relPKAttr[0]] = $this->primaryKey;
                                 foreach ($relPost as $relAttr => $relAttrVal) {
                                     if (in_array($relAttr, $relPKAttr))
                                         $condition[$relAttr] = $relAttrVal;
@@ -64,8 +67,8 @@ trait RelationTrait
                         }
                         $this->populateRelation($relName, $container);
                     } else {
-                        $relObj = (empty($relPost[$relPKAttr[0]])) ? new $relModelClass : $relModelClass::findOne($relPost[$relPKAttr[0]]);
-                        $relObj->load($value);
+                        $relObj = (empty($value[$relPKAttr[0]])) ? new $relModelClass : $relModelClass::findOne($value[$relPKAttr[0]]);
+                        $relObj->load($value, '');
                         $this->populateRelation($relName, $relObj);
                     }
                 }
@@ -76,7 +79,7 @@ trait RelationTrait
         }
     }
 
-    public function saveAll()
+    public function saveAll($skippedRelations = [])
     {
         /* @var $this ActiveRecord */
         $db = $this->getDb();
@@ -87,22 +90,25 @@ trait RelationTrait
                 $error = false;
                 if (!empty($this->relatedRecords)) {
                     foreach ($this->relatedRecords as $name => $records) {
+
+                        if (in_array($name, $skippedRelations))
+                            continue;
+
                         if (!empty($records)) {
-                            $isHasMany = is_array($records);
                             $AQ = $this->getRelation($name);
                             $link = $AQ->link;
                             $notDeletedPK = [];
-                            $relPKAttr = $records[0]->primaryKey();
+                            $relPKAttr = ($AQ->multiple) ? $records[0]->primaryKey() : $records->primaryKey();
                             $isManyMany = (count($relPKAttr) > 1);
-                            if ($isHasMany) {
+                            if ($AQ->multiple) {
                                 /* @var $relModel ActiveRecord */
                                 $i = 0;
                                 foreach ($records as $index => $relModel) {
                                     $notDeletedFK = [];
                                     foreach ($link as $key => $value) {
                                         $relModel->$key = $this->$value;
-                                        if($isManyMany) $notDeletedFK[$key] = $this->$value;
-                                        elseif($isHasMany) $notDeletedFK[$key] = "$key = '{$this->$value}'";
+                                        if ($isManyMany) $notDeletedFK[$key] = $this->$value;
+                                        elseif ($AQ->multiple) $notDeletedFK[$key] = "$key = '{$this->$value}'";
                                     }
                                     $relSave = $relModel->save();
 
@@ -132,23 +138,23 @@ trait RelationTrait
                                     //DELETE WITH 'NOT IN' PK MODEL & REL MODEL
                                     if ($isManyMany) {
                                         $compiledFields = implode(", ", array_keys($fields));
-                                        $compiledNotDeletedPK = ['and',$notDeletedFK];
+                                        $compiledNotDeletedPK = ['and', $notDeletedFK];
                                         $notIn = ['not in', new \yii\db\Expression("($compiledFields)")];
-                                        foreach($notDeletedPK as $value){
+                                        foreach ($notDeletedPK as $value) {
                                             $v = [];
-                                            foreach($fields as $key => $f){
+                                            foreach ($fields as $key => $f) {
                                                 $v[] = $value[$key];
                                             }
-                                            $c = implode(',',$v);
+                                            $c = implode(',', $v);
                                             $content[] = new \yii\db\Expression("($c)");
                                         }
-                                        array_push($notIn,$content);
-                                        array_push($compiledNotDeletedPK,$notIn);
+                                        array_push($notIn, $content);
+                                        array_push($compiledNotDeletedPK, $notIn);
                                         $relModel->deleteAll($compiledNotDeletedPK);
-                                        try{
+                                        try {
                                             $relModel->deleteAll($compiledNotDeletedPK);
                                         } catch (\yii\db\IntegrityException $exc) {
-                                            $this->addError($name, "Data can't be deleted because it's still used by another data.");
+                                            $this->addError($name, \Yii::t('mtrelt', "Data can't be deleted because it's still used by another data."));
                                             $error = true;
                                         }
                                     } else {
@@ -157,9 +163,8 @@ trait RelationTrait
                                         if (!empty($compiledNotDeletedPK)) {
                                             try {
                                                 $relModel->deleteAll($notDeletedFK . ' AND ' . $relPKAttr[0] . " NOT IN ($compiledNotDeletedPK)");
-
                                             } catch (\yii\db\IntegrityException $exc) {
-                                                $this->addError($name, "Data can't be deleted because it's still used by another data.");
+                                                $this->addError($name, \Yii::t('mtrelt', "Data can't be deleted because it's still used by another data."));
                                                 $error = true;
                                             }
                                         }
@@ -167,42 +172,58 @@ trait RelationTrait
                                 }
                             } else {
                                 //Has One
+                                foreach ($link as $key => $value) {
+                                    $records->$key = $this->$value;
+                                }
+                                $relSave = $records->save();
+                                if (!$relSave || !empty($records->errors)) {
+                                    $recordsWords = Inflector::camel2words(StringHelper::basename($AQ->modelClass));
+                                    foreach ($records->errors as $validation) {
+                                        foreach ($validation as $errorMsg) {
+                                            $this->addError($name, "$recordsWords : $errorMsg");
+                                        }
+                                    }
+                                    $error = true;
+                                }
                             }
-
                         }
                     }
-                } else {
-                    //No Children left
-                    if (!$isNewRecord) {
-                        $relData = $this->getRelationData();
-                        foreach ($relData as $rel) {
-                            /* @var $relModel ActiveRecord */
-                            if(empty($rel['via'])){
-                                $relModel = new $rel['modelClass'];
-                                $condition = [];
-                                $isManyMany = count($relModel->primaryKey()) > 1;
-                                if($isManyMany){
-                                    foreach ($rel['link'] as $k => $v) {
-                                        $condition[] = $k . " = " . $this->$v;
-                                    }
-                                    try {
-                                        $relModel->deleteAll(implode(" AND ", $condition));
-                                    } catch (\yii\db\IntegrityException $exc) {
-                                        $this->addError($rel['name'], "Data can't be deleted because it's still used by another data.");
-                                        $error = true;
-                                    }
-                                }else{
-                                    if($rel['ismultiple']){
-                                        foreach ($rel['link'] as $k => $v) {
-                                            $condition[] = $k . " = " . $this->$v;
-                                        }
-                                        try {
-                                            $relModel->deleteAll(implode(" AND ", $condition));
-                                        } catch (\yii\db\IntegrityException $exc) {
-                                            $this->addError($rel['name'], "Data can't be deleted because it's still used by another data.");
-                                            $error = true;
-                                        }
-                                    }
+                }
+                //No Children left
+                $relAvail = array_keys($this->relatedRecords);
+                $relData = $this->getRelationData();
+                $allRel = array_keys($relData);
+                $noChildren = array_diff($allRel, $relAvail);
+
+                foreach ($noChildren as $relName) {
+                    if (in_array($relName, $skippedRelations)) {
+                        continue;
+                    }
+                    /* @var $relModel ActiveRecord */
+                    if (empty($relData[$relName]['via'])) {
+                        $relModel = new $relData[$relName]['modelClass'];
+                        $condition = [];
+                        $isManyMany = count($relModel->primaryKey()) > 1;
+                        if ($isManyMany) {
+                            foreach ($relData[$relName]['link'] as $k => $v) {
+                                $condition[] = "$k = '{$this->$v}'";
+                            }
+                            try {
+                                $relModel->deleteAll(implode(" AND ", $condition));
+                            } catch (\yii\db\IntegrityException $exc) {
+                                $this->addError($relData[$relName]['name'], \Yii::t('mtrelt', "Data can't be deleted because it's still used by another data."));
+                                $error = true;
+                            }
+                        } else {
+                            if ($relData[$relName]['ismultiple']) {
+                                foreach ($relData[$relName]['link'] as $k => $v) {
+                                    $condition[] = "$k = '{$this->$v}'";
+                                }
+                                try {
+                                    $relModel->deleteAll(implode(" AND ", $condition));
+                                } catch (\yii\db\IntegrityException $exc) {
+                                    $this->addError($relData[$relName]['name'], \Yii::t('mtrelt', "Data can't be deleted because it's still used by another data."));
+                                    $error = true;
                                 }
                             }
                         }
@@ -239,10 +260,10 @@ trait RelationTrait
                     $link = $data['link'];
                     if (count($this->{$data['name']})) {
                         $relPKAttr = $this->{$data['name']}[0]->primaryKey();
-                        $isCompositePK = (count($relPKAttr) > 1);
+//                        $isCompositePK = (count($relPKAttr) > 1); // unused
                         foreach ($link as $key => $value) {
                             if (isset($this->$value)) {
-                                $array[$key] = $key . ' = ' . $this->$value;
+                                $array[$key] = "$key = '{$this->$value}'";
                             }
                         }
                         $error = !$this->{$data['name']}[0]->deleteAll(implode(' AND ', $array));
@@ -270,7 +291,6 @@ trait RelationTrait
         $ARMethods = get_class_methods('\yii\db\ActiveRecord');
         $modelMethods = get_class_methods('\yii\base\Model');
         $reflection = new \ReflectionClass($this);
-        $i = 0;
         $stack = [];
         /* @var $method \ReflectionMethod */
         foreach ($reflection->getMethods() as $method) {
@@ -301,19 +321,22 @@ trait RelationTrait
             if ($method->name === 'deleteWithRelated') {
                 continue;
             }
+            if (strpos($method->name, 'get') === false) {
+                continue;
+            }
             try {
                 $rel = call_user_func(array($this, $method->name));
                 if ($rel instanceof \yii\db\ActiveQuery) {
-                    $stack[$i]['name'] = lcfirst(str_replace('get', '', $method->name));
-                    $stack[$i]['method'] = $method->name;
-                    $stack[$i]['ismultiple'] = $rel->multiple;
-                    $stack[$i]['modelClass'] = $rel->modelClass;
-                    $stack[$i]['link'] = $rel->link;
-                    $stack[$i]['via'] = $rel->via;
-                    $i++;
+                    $name = lcfirst(str_replace('get', '', $method->name));
+                    $stack[$name]['name'] = lcfirst(str_replace('get', '', $method->name));
+                    $stack[$name]['method'] = $method->name;
+                    $stack[$name]['ismultiple'] = $rel->multiple;
+                    $stack[$name]['modelClass'] = $rel->modelClass;
+                    $stack[$name]['link'] = $rel->link;
+                    $stack[$name]['via'] = $rel->via;
                 }
             } catch (\yii\base\ErrorException $exc) {
-                //if method name can't be call, 
+                //if method name can't be called,
             }
         }
         return $stack;
@@ -326,11 +349,16 @@ trait RelationTrait
         $return = [];
         $shortName = StringHelper::basename(get_class($this));
         $return[$shortName] = $this->attributes;
-        foreach ($this->relatedRecords as $records) {
-            foreach ($records as $index => $record) {
-                $shortNameRel = StringHelper::basename(get_class($record));
-                $return[$shortNameRel][$index] = $record->attributes;
+        foreach ($this->relatedRecords as $name => $records) {
+            $AQ = $this->getRelation($name);
+            if ($AQ->multiple) {
+                foreach ($records as $index => $record) {
+                    $return[$name][$index] = $record->attributes;
+                }
+            } else {
+                $return[$name] = $records->attributes;
             }
+
         }
         return $return;
     }
@@ -339,11 +367,15 @@ trait RelationTrait
     {
         $return = $this->attributes;
         foreach ($this->relatedRecords as $name => $records) {
-            foreach ($records as $index => $record) {
-                $return[$name][$index] = $record->attributes;
+            $AQ = $this->getRelation($name);
+            if ($AQ->multiple) {
+                foreach ($records as $index => $record) {
+                    $return[$name][$index] = $record->attributes;
+                }
+            } else {
+                $return[$name] = $records->attributes;
             }
         }
         return $return;
     }
-
 }

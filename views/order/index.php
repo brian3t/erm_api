@@ -19,10 +19,10 @@ $this->registerJs($search);
 
 ?>
 <div class="order-index">
-
+    
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    
     <p>
         <?= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Advance Search', '#', ['class' => 'btn btn-info search-button']) ?>
@@ -31,7 +31,7 @@ $this->registerJs($search);
         <?= $this->render('_search', ['model' => $searchModel]); ?>
     </div>
     <?php
-
+    
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
@@ -54,15 +54,16 @@ $this->registerJs($search);
                 return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
             },
             'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true
+            'expandOneOnly' => true,
         ],
         'last_mp_updated',
+        'rop_ack_at',
         'last_rop_pull',
         [
             'label' => '#ROP pulled',
             'value' => function ($model, $key, $i, $c) {
                 return ($model->count_rop_pull == 0) ? '' : $model->count_rop_pull;
-            }
+            },
         ],
         'rop_order_id',
         [
@@ -79,7 +80,7 @@ $this->registerJs($search);
                     }")],
                 ]);
                 return $html;
-            }
+            },
         ],
         'count_rop_pull',
         'channel_date_created',
@@ -115,7 +116,10 @@ $this->registerJs($search);
             'format' => 'html',
             'value' => function ($model, $k, $i, $c) {
                 $status = $model->status;
-                $echo = "<span class='$status'>$status</span>";
+                $echo = "<span class='$status'></span>";
+                if ($status =='canceled'){
+                    $echo .= '<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>';
+                }
                 if (count($model->trackings) > 0) {
                     $echo .= '<span class="glyphicon glyphicon-send" aria-hidden="true"></span>';
                 }
@@ -132,16 +136,16 @@ $this->registerJs($search);
         ['attribute' => 'customer_id',
             'label' => 'Customer',
             'value' => function ($model) {
-                return is_object($model->customer)?$model->customer->first_name:'';
+                return is_object($model->customer) ? $model->customer->first_name : '';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Customer::find()->asArray()->all(), 'id', 'id'),
             'filterWidgetOptions' => [
                 'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions' => ['placeholder' => 'Customer', 'id' => 'grid-order-search-customer_id']
+            'filterInputOptions' => ['placeholder' => 'Customer', 'id' => 'grid-order-search-customer_id'],
         ],
-
+    
     ];
     ?>
     <?= GridView::widget([
@@ -154,14 +158,14 @@ $this->registerJs($search);
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
-        // set a label for default menu
-        'export' => [
-            'label' => 'Page',
-            'fontAwesome' => true,
-        ],
+        'export' => false,
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
+            'exportConfig' => [
+                ExportMenu::FORMAT_PDF => false,
+            ],
+            
             ExportMenu::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => $gridColumn,

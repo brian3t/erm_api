@@ -2,6 +2,7 @@
 namespace app\api\modules\v1\controllers;
 
 use app\api\base\controllers\BaseActiveController;
+use app\models\Inventory;
 use yii\rest\ActiveController;
 use yii\helpers\ArrayHelper;
 use yii\filters\Cors;
@@ -15,36 +16,37 @@ class InventoryController extends BaseActiveController
     public function actionPush()
     {
         $result = [
-            'status' => 'failed'
+            'status' => 'failed',
         ];
         
-        $transaction = \Yii::$app->db->beginTransaction();
-        if (empty($this->requestbody->inventory_updates)){
-            return;
+        if (empty($this->requestbody->inventory_updates)) {
+            return $result;
         }
         
         try {
             foreach ($this->requestbody->inventory_updates as $inventory_update) {
-                
-                $command = \Yii::$app->db->createCommand('INSERT INTO `inventory`
-                 (`sku`, `quantity`) 
-                 VALUES (:sku, :quantity) ON DUPLICATE KEY UPDATE `quantity` = :quantity')
-                    ->bindValues([':sku' => $sku, ':quantity' => $quantity]);
-                $command->execute();
+                $inventory = Inventory::find()->where(['sku' => $inventory_update->sku])->one();
+                if (!is_object($inventory)) {
+                    $inventory = new Inventory(['sku' => $inventory_update->sku]);
+                }
+                $inventory_details = $inventory_update->quantity_detail;
+                unset($inventory_update->quantity_detail);
+                if (!$inventory->loadAll(['Inventory' => $inventory_update, 'InventoryDetail' => ArrayHelper::toArray($inventory_details)])) {
+                    return $inventory->errors;
+                };
+                if (!$inventory->saveAll()) {
+                    return $inventory->errors;
+                };
             }
-
-            $transaction->commit();
+            
             $result['status'] = 'successful';
-            $result['count'] = count($data);
-            \Yii::$app->response->setStatusCode(201);
+            \Yii::$app->response->setStatusCode(200);
         } catch (\Exception $e) {
-            $transaction->rollBack();
-            $result['info'] = "Transaction error: " . $e->getMessage();
             \Yii::$app->response->setStatusCode(500);
             throw $e;
         }
-
-        echo json_encode($result);
-        \Yii::$app->end(1);
+        
+        return $result;
+        
     }
 }

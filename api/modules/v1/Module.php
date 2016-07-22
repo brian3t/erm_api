@@ -36,7 +36,7 @@ class Module extends \yii\base\Module
         }
         
         if (!is_array($result)) {
-            $result = [];
+            $result = (array)$result;
         }
         array_walk($result, function (&$item) {
             if (is_null($item)) {

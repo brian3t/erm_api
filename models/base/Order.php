@@ -53,6 +53,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $ip_address
  * @property string $status
  * @property string $attributes
+ * @property string $rop_ack_at
  *
  * @property \app\models\Mp $mp
  * @property \app\models\Customer $customer
@@ -146,6 +147,7 @@ class Order extends \yii\db\ActiveRecord
             'ip_address' => 'Ip Address',
             'status' => 'Status',
             'attributes' => 'Attributes',
+            'rop_ack_at' => 'ROP Acknowledged at',
         ];
     }
     

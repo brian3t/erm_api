@@ -103,6 +103,7 @@ class InventoryDetailController extends Controller
 
         return $this->redirect(['index']);
     }
+
     
     /**
      * Finds the InventoryDetail model based on its primary key value.

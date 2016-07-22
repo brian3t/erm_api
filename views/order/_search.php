@@ -11,8 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="form-order-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => array_merge(['index'],
-            Yii::$app->request->getQueryParams()),
+        'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
@@ -24,13 +23,25 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]) ?>
+    ]); ?>
 
-    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Mp Reference Number']) ?>
+    <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Channel Refnum']) ?>
 
     <?= $form->field($model, 'rop_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
 
     <?= $form->field($model, 'last_mp_updated')->textInput(['placeholder' => 'Last Mp Updated']) ?>
+
+    <?php /* echo $form->field($model, 'rop_ack_at')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Rop Ack At',
+                'autoclose' => true,
+            ]
+        ],
+    ]); */ ?>
 
     <?php /* echo $form->field($model, 'last_rop_pull')->textInput(['placeholder' => 'Last Rop Pull']) */ ?>
 
@@ -38,13 +49,17 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'count_rop_pull')->textInput(['placeholder' => 'Count Rop Pull']) */ ?>
 
-    <?php /* echo $form->field($model, 'channel_date_created')->widget(\kartik\widgets\DateTimePicker::classname(), [
-        'options' => ['placeholder' => 'Choose Channel Date Created'],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'mm/dd/yyyy hh:ii:ss'
-        ]
-    ]) */ ?>
+    <?php /* echo $form->field($model, 'channel_date_created')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+        'saveFormat' => 'php:Y-m-d H:i:s',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Channel Date Created',
+                'autoclose' => true,
+            ]
+        ],
+    ]); */ ?>
 
     <?php /* echo $form->field($model, 'shipping_amt')->textInput(['maxlength' => true, 'placeholder' => 'Shipping Amt']) */ ?>
 
@@ -108,7 +123,7 @@ use yii\widgets\ActiveForm;
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ]) */ ?>
+    ]); */ ?>
 
     <?php /* echo $form->field($model, 'discount_amt')->textInput(['maxlength' => true, 'placeholder' => 'Discount Amt']) */ ?>
 
@@ -120,7 +135,7 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'status')->textInput(['maxlength' => true, 'placeholder' => 'Status']) */ ?>
 
-    <?php /* echo $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'attributes']) */ ?>
+    <?php /* echo $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'Attributes']) */ ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

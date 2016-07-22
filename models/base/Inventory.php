@@ -11,13 +11,13 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $id
  * @property string $sku
  * @property integer $quantity_available
- * @property string $updatetime
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property \app\models\InventoryDetail[] $inventoryDetails
  */
 class Inventory extends \yii\db\ActiveRecord
 {
-
     use \mootensai\relation\RelationTrait;
 
     /**
@@ -28,7 +28,7 @@ class Inventory extends \yii\db\ActiveRecord
         return [
             [['sku'], 'required'],
             [['quantity_available'], 'integer'],
-            [['updatetime'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['sku'], 'string', 'max' => 50],
             [['sku'], 'unique']
         ];
@@ -51,10 +51,9 @@ class Inventory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'sku' => 'Sku',
             'quantity_available' => 'Quantity Available',
-            'updatetime' => 'Updatetime',
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -62,18 +61,18 @@ class Inventory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\InventoryDetail::className(), ['inventory_id' => 'id']);
     }
-
+    
 /**
      * @inheritdoc
-     * @return type mixed
+     * @return mixed
      */ 
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => false,
-                'updatedAtAttribute' => 'updatetime',
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];

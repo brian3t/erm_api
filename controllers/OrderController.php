@@ -171,7 +171,7 @@ class OrderController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('OrderItem');
-            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formOrderItem', ['row' => $row]);
         } else {
@@ -192,7 +192,7 @@ class OrderController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('OrderPayment');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formOrderPayment', ['row' => $row]);
         } else {
@@ -212,7 +212,7 @@ class OrderController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('Tracking');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('action') == 'load' && empty($row)) || Yii::$app->request->post('action') == 'add')
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formTracking', ['row' => $row]);
         } else {

@@ -49,8 +49,12 @@ class InventoryController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerInventoryDetail = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->inventoryDetails,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerInventoryDetail' => $providerInventoryDetail,
         ]);
     }
 
@@ -103,6 +107,7 @@ class InventoryController extends Controller
 
         return $this->redirect(['index']);
     }
+
     
     /**
      * Finds the Inventory model based on its primary key value.
@@ -115,6 +120,26 @@ class InventoryController extends Controller
     {
         if (($model = Inventory::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for InventoryDetail
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddInventoryDetail()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('InventoryDetail');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formInventoryDetail', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

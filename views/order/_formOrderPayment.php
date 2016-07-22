@@ -1,3 +1,4 @@
+<div class="form-group" id="add-order-payment">
 <?php
 use kartik\grid\GridView;
 use kartik\builder\TabularForm;
@@ -5,7 +6,6 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-Pjax::begin();
 $dataProvider = new ArrayDataProvider([
     'allModels' => $row,
     'pagination' => [
@@ -24,38 +24,46 @@ echo TabularForm::widget([
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
         'amount' => ['type' => TabularForm::INPUT_TEXT],
         'payment_processing_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'channel_payment' => 'Channel payment', 'channel_storecredit' => 'Channel storecredit', 'channel_giftcert' => 'Channel giftcert', 'authorize.net' => 'Authorize.net', ],
                     'options' => [
-                        'items' => [ 'channel_payment' => 'Channel payment', 'channel_storecredit' => 'Channel storecredit', 'channel_giftcert' => 'Channel giftcert', 'authorize.net' => 'Authorize.net', ],
-                        'columnOptions => ['width' => '185px'],
+                        'columnOptions' => ['width' => '185px'],
                         'options' => ['placeholder' => 'Choose Payment Processing Type'],
                     ]
         ],
         'transaction_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'auth' => 'Auth', 'charge' => 'Charge', ],
                     'options' => [
-                        'items' => [ 'auth' => 'Auth', 'charge' => 'Charge', ],
-                        'columnOptions => ['width' => '185px'],
+                        'columnOptions' => ['width' => '185px'],
                         'options' => ['placeholder' => 'Choose Transaction Type'],
                     ]
         ],
         'payment_type' => ['type' => TabularForm::INPUT_TEXT],
         'created_at' => ['type' => TabularForm::INPUT_WIDGET,
-        'widgetClass' => \kartik\widgets\DateTimePicker::classname(),
+            'widgetClass' => \kartik\datecontrol\DateControl::classname(),
             'options' => [
-                'options' => ['placeholder' => 'Choose Created At'],
-                'pluginOptions' => [
-                    'autoclose' => true,
-                    'format' => 'hh:ii:ss dd-M-yyyy'
-                ]
+                'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+                'saveFormat' => 'php:Y-m-d H:i:s',
+                'ajaxConversion' => true,
+                'options' => [
+                    'pluginOptions' => [
+                        'placeholder' => 'Choose Created At',
+                        'autoclose' => true,
+                    ]
+                ],
             ]
         ],
         'updated_at' => ['type' => TabularForm::INPUT_WIDGET,
-        'widgetClass' => \kartik\widgets\DateTimePicker::classname(),
+            'widgetClass' => \kartik\datecontrol\DateControl::classname(),
             'options' => [
-                'options' => ['placeholder' => 'Choose Updated At'],
-                'pluginOptions' => [
-                    'autoclose' => true,
-                    'format' => 'hh:ii:ss dd-M-yyyy'
-                ]
+                'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+                'saveFormat' => 'php:Y-m-d H:i:s',
+                'ajaxConversion' => true,
+                'options' => [
+                    'pluginOptions' => [
+                        'placeholder' => 'Choose Updated At',
+                        'autoclose' => true,
+                    ]
+                ],
             ]
         ],
         'del' => [
@@ -68,13 +76,14 @@ echo TabularForm::widget([
     ],
     'gridSettings' => [
         'panel' => [
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . 'Order Payment',
-            'type' => GridView::TYPE_INFO,
+            'heading' => false,
+            'type' => GridView::TYPE_DEFAULT,
             'before' => false,
             'footer' => false,
-            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . 'Add Row', ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowOrderPayment()']),
+            'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . 'Add Order Payment', ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowOrderPayment()']),
         ]
     ]
 ]);
-Pjax::end();
+echo  "    </div>\n\n";
 ?>
+

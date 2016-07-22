@@ -32,6 +32,8 @@ use kartik\grid\GridView;
         'po',
         'po_destination',
         'facility_name',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,

@@ -1,10 +1,11 @@
 <?php
 
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Inventory Detail';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,7 +22,7 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Inventory Detail', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-        <?php 
+<?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
@@ -46,6 +47,8 @@ $this->registerJs($search);
         'po',
         'po_destination',
         'facility_name',
+        'created_at',
+        'updated_at',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
@@ -60,11 +63,7 @@ $this->registerJs($search);
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
-        // set a label for default menu
-        'export' => [
-            'label' => 'Page',
-            'fontAwesome' => true,
-        ],
+        'export' => false,
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
@@ -80,6 +79,9 @@ $this->registerJs($search);
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
+                'exportConfig' => [
+                    ExportMenu::FORMAT_PDF => false
+                ]
             ]) ,
         ],
     ]); ?>

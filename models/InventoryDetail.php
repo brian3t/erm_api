@@ -20,12 +20,19 @@ class InventoryDetail extends BaseInventoryDetail
             [['quantity_type'], 'string'],
             [['inventory_id'], 'required'],
             [['inventory_id', 'available_quantity', 'total_quantity'], 'integer'],
-            [['estimated_availability_date'], 'safe'],
+            [['estimated_availability_date', 'created_at', 'updated_at'], 'safe'],
             [['vendor_name', 'facility_name'], 'string', 'max' => 200],
             [['po'], 'string', 'max' => 80],
-            [['po_destination'], 'string', 'max' => 400],
-            [['inventory_id'], 'unique']
+            [['po_destination'], 'string', 'max' => 400]
         ]);
     }
-	
+    public function beforeValidate()
+    {
+        if (!strtotime($this->estimated_availability_date)){
+            $this->estimated_availability_date = date('Y-m-d');
+        }
+        return parent::beforeValidate();
+    }
+    
+    
 }

@@ -22,12 +22,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
-        'quantity_type',
+                'quantity_type',
         [
                 'attribute' => 'inventory.id',
                 'label' => 'Inventory'
-        ],
+            ],
         'estimated_availability_date',
         'available_quantity',
         'total_quantity',
@@ -35,6 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'po',
         'po_destination',
         'facility_name',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,

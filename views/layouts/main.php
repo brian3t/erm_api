@@ -29,12 +29,13 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'SME v0.5',
+        'brandLabel' => Html::img('@web/img/logo.png'),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar navbar-fixed-top',
         ],
     ]);
+    echo '<span class="navbar-brand">v0.6</span>';
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [

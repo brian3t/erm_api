@@ -8,8 +8,7 @@ use yii\data\ArrayDataProvider;
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
-        'sku',
+                'sku',
         'tracking_number',
         'tracking_carrier',
         'ship_date',
