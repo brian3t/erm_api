@@ -4,19 +4,19 @@ use kartik\tabs\TabsX;
 use yii\helpers\Url;
 $items = [
     [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Inventory'),
+        'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Inventory'),
         'content' => $this->render('_detail', [
             'model' => $model,
         ]),
     ],
-        [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Inventory Detail'),
+    [
+        'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Inventory Detail'),
         'content' => $this->render('_dataInventoryDetail', [
             'model' => $model,
             'row' => $model->inventoryDetails,
         ]),
     ],
-    ];
+];
 echo TabsX::widget([
     'items' => $items,
     'position' => TabsX::POS_ABOVE,
@@ -25,7 +25,7 @@ echo TabsX::widget([
     'pluginOptions' => [
         'bordered' => true,
         'sideways' => true,
-        'enableCache' => false
+        'enableCache' => false,
     ],
 ]);
 ?>
