@@ -28,12 +28,15 @@ use yii\behaviors\TimestampBehavior;
  * @property string $last_mp_updated
  * @property string $mp_item_id
  * @property string $extra_info
+ * @property string $created_at
+ * @property string $updated_at
  *
  * @property \app\models\Order $order
+ * @property \app\models\OrderReturnItem[] $orderReturnItems
+ * @property \app\models\OrderShipmentPackageItem[] $orderShipmentPackageItems
  */
 class OrderItem extends \yii\db\ActiveRecord
 {
-
     use \mootensai\relation\RelationTrait;
 
     /**
@@ -46,7 +49,7 @@ class OrderItem extends \yii\db\ActiveRecord
             [['order_id', 'quantity'], 'integer'],
             [['unit_price', 'discount_amt', 'discount_pct', 'recycling_amt', 'ship_amt', 'shiptax_amt', 'unit_tax', 'unit_tax_pct', 'vat_pct'], 'number'],
             [['item_type'], 'string'],
-            [['last_mp_updated'], 'safe'],
+            [['last_mp_updated', 'created_at', 'updated_at'], 'safe'],
             [['sku'], 'string', 'max' => 255],
             [['sku_description', 'extra_info'], 'string', 'max' => 800],
             [['options'], 'string', 'max' => 2550],
@@ -91,23 +94,39 @@ class OrderItem extends \yii\db\ActiveRecord
             'extra_info' => 'Extra Info',
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getOrder()
     {
-        return $this->hasOne(\app\models\Order::className(), ['id' => 'order_id']);
+        return $this->hasOne(\app\models\Order::className(), ['id' => 'order_id'])->inverseOf('orderItems');
     }
-
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderReturnItems()
+    {
+        return $this->hasMany(\app\models\OrderReturnItem::className(), ['sku' => 'sku'])->inverseOf('orderItem');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderShipmentPackageItems()
+    {
+        return $this->hasMany(\app\models\OrderShipmentPackageItem::className(), ['sku' => 'sku'])->inverseOf('orderItem');
+    }
+    
 /**
      * @inheritdoc
-     * @return type mixed
+     * @return mixed
      */ 
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',

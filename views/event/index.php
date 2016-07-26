@@ -49,7 +49,7 @@ $this->registerJs($search);
             'format' => 'ntext'
         ],
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
     ];
     ?>

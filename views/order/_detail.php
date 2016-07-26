@@ -24,7 +24,6 @@ use kartik\grid\GridView;
             'attribute' => 'mp.name',
             'label' => 'Mp',
         ],
-        'name',
         'channel_refnum',
         'rop_order_id',
         'last_mp_updated',
@@ -71,6 +70,7 @@ use kartik\grid\GridView;
         'ip_address',
         'status',
         'attributes',
+        'other_info',
     ];
     echo DetailView::widget([
         'model' => $model,

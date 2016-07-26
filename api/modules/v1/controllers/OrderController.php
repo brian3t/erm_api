@@ -10,6 +10,8 @@ use app\api\base\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
 use app\models\OrderQuery;
+use app\models\OrderShipment;
+use app\models\OrderShipmentPackage;
 use yii\base\Exception;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
@@ -191,32 +193,7 @@ class OrderController extends BaseActiveController
         $result = [
             'status' => 'fail',
         ];
-        // if (!\Yii::$app->request->isAjax){
-        //     $result['info'] = 'Request is not ajax';
-        //     return json_encode($result);
-        // }
-        // if (is_null($mp_endpoint_name)){
-        //     $result['info'] = 'No endpoint name given';
-        //     return json_encode($result);
-        // }
-        // $mp = Mp::findOne(['end_point_name' => $mp_endpoint_name]);
-        // if (!is_object($mp)){
-        //     $result['info'] = 'Bad endpoint name';
-        //     return json_encode($result);
-        // }
-        // $mp_id = $mp->id;
         $data = \Yii::$app->request->post();
-        
-        // if (is_string($data)) {
-        //
-        //     try {
-        //         $data = json_decode($data);
-        //     } catch (Exception $e) {
-        //         \Yii::warning('Data received from order confirm is not string but not json string.');
-        //     }
-        // }
-        
-        // \Yii::warning('data: '. print_r($data, true));
         
         $transaction = \Yii::$app->db->beginTransaction();
         try {
@@ -275,26 +252,95 @@ class OrderController extends BaseActiveController
         return $result;
     }
     
-    public
-    function actionComplete()
+    public function actionComplete()
+    {
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'order')) {
+            return $result;
+        }
+        $successful = true;
+        $order_new = $this->requestbody->order;
+        
+        $order = Order::find()->where(['rop_order_id' => $order_new->retailops_order_id])->one();
+        if (!is_object($order)) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
+            if (!is_object($order)) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if (is_object($order)) {
+            /* @var Order $order */;
+            // $order->status = 'complete';
+            $order->setOther_info(['unshipped_items' => $order_new->unshipped_items]);
+            $shipments = ArrayHelper::toArray($order_new->shipments);
+            
+            $order->unlinkAll('orderShipments', true);
+            foreach ($shipments as &$shipment) {
+                $shipmentPackages = $shipment['packages'];
+                unset($shipment['packages']);
+                
+                $shipmentAR = new OrderShipment();
+                $shipmentAR->load(['OrderShipment' => $shipment]);
+                $shipmentAR->link('order', $order);
+                $shipmentAR->save();
+                
+                foreach ($shipmentPackages as $shipmentPackage) {
+                    $shipmentPackageItems = $shipmentPackage['package_items'];
+                    unset($shipmentPackage['package_items']);
+                    $shipmentPackageAR = new OrderShipmentPackage();
+                    $shipmentPackageAR->loadAll(['OrderShipmentPackage' => $shipmentPackage, 'OrderShipmentPackageItem' => $shipmentPackageItems]);
+                    $shipmentPackageAR->link('orderShipment', $shipmentAR);
+                    $shipmentPackageAR->saveAll();
+                }
+            }
+        }
+        
+        
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
+    }
+    
+    public function actionReturned()
+    {
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'order')) {
+            return $result;
+        }
+        $successful = true;
+        $order_new = $this->requestbody->order;//todob pulls data from API
+        
+        $order = Order::find()->where(['rop_order_id' => $order_new->retailops_order_id])->one();
+        if (!is_object($order)) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
+            if (!is_object($order)) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if (is_object($order)) {
+            /* @var Order $order */;
+        }
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
+    }
+    
+    public function actionUpdate()
     {
         return;
     }
     
-    public
-    function actionReturned()
-    {
-        return;
-    }
-    
-    public
-    function actionUpdate()
-    {
-        return;
-    }
-    
-    public
-    function actionBlah()
+    public function actionBlah()
     {
         return '{"bleh":1}';
     }

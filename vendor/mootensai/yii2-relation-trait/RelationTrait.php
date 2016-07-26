@@ -17,6 +17,11 @@ use \yii\helpers\StringHelper;
 
 trait RelationTrait
 {
+    /**
+     * @param array $POST
+     * @param array $skippedRelations
+     * @return bool
+     */
     public function loadAll($POST, $skippedRelations = [])
     {
         if ($this->load($POST)) {

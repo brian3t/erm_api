@@ -24,10 +24,17 @@ $items = [
         ]),
     ],
             [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Tracking'),
-        'content' => $this->render('_dataTracking', [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order Return'),
+        'content' => $this->render('_dataOrderReturn', [
             'model' => $model,
-            'row' => $model->trackings,
+            'row' => $model->orderReturns,
+        ]),
+    ],
+            [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Order Shipment'),
+        'content' => $this->render('_dataOrderShipment', [
+            'model' => $model,
+            'row' => $model->orderShipments,
         ]),
     ],
     ];

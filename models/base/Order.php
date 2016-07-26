@@ -14,6 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $channel_refnum
  * @property integer $rop_order_id
  * @property string $last_mp_updated
+ * @property string $rop_ack_at
  * @property string $last_rop_pull
  * @property integer $force_rop_resend
  * @property integer $count_rop_pull
@@ -53,16 +54,17 @@ use yii\behaviors\TimestampBehavior;
  * @property string $ip_address
  * @property string $status
  * @property string $attributes
- * @property string $rop_ack_at
+ * @property string $other_info
  *
  * @property \app\models\Mp $mp
  * @property \app\models\Customer $customer
  * @property \app\models\OrderItem[] $orderItems
  * @property \app\models\OrderPayment[] $orderPayments
- * @property \app\models\Tracking[] $trackings
  * @property $calc_mode
  * @property $bill_addr
  * @property $ship_addr
+ * @property \app\models\OrderReturn[] $orderReturns
+ * @property \app\models\OrderShipment[] $orderShipments
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -77,7 +79,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['mp_id', 'channel_refnum'], 'required'],
             [['mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
-            [['last_mp_updated', 'last_rop_pull', 'channel_date_created'], 'safe'],
+            [['last_mp_updated', 'rop_ack_at', 'last_rop_pull', 'channel_date_created'], 'safe'],
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
             [['comments'], 'string'],
             [['channel_refnum', 'status'], 'string', 'max' => 50],
@@ -85,6 +87,7 @@ class Order extends \yii\db\ActiveRecord
             [['last_name', 'ship_last_name'], 'string', 'max' => 80],
             [['gift_message'], 'string', 'max' => 800],
             [['ip_address'], 'string', 'max' => 200],
+            [['other_info'], 'string', 'max' => 2000],
             [['mp_id', 'channel_refnum'], 'unique', 'targetAttribute' => ['mp_id', 'channel_refnum'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.']
         ];
     }
@@ -108,6 +111,7 @@ class Order extends \yii\db\ActiveRecord
             'channel_refnum' => 'Mp Ref#',
             'rop_order_id' => 'Rop Order ID',
             'last_mp_updated' => 'Last Mp Updated',
+            'rop_ack_at' => 'ROP Acknowledged at',
             'last_rop_pull' => 'Last Rop Pull',
             'force_rop_resend' => 'Force Rop Resend',
             'count_rop_pull' => 'Count Rop Pull',
@@ -147,7 +151,7 @@ class Order extends \yii\db\ActiveRecord
             'ip_address' => 'Ip Address',
             'status' => 'Status',
             'attributes' => 'Attributes',
-            'rop_ack_at' => 'ROP Acknowledged at',
+            'other_info' => 'Other Info',
         ];
     }
     
@@ -156,7 +160,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getMp()
     {
-        return $this->hasOne(\app\models\Mp::className(), ['id' => 'mp_id']);
+        return $this->hasOne(\app\models\Mp::className(), ['id' => 'mp_id'])->inverseOf('orders');
     }
     
     /**
@@ -164,7 +168,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getCustomer()
     {
-        return $this->hasOne(\app\models\Customer::className(), ['id' => 'customer_id']);
+        return $this->hasOne(\app\models\Customer::className(), ['id' => 'customer_id'])->inverseOf('orders');
     }
     
     /**
@@ -172,7 +176,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getOrderItems()
     {
-        return $this->hasMany(\app\models\OrderItem::className(), ['order_id' => 'id']);
+        return $this->hasMany(\app\models\OrderItem::className(), ['order_id' => 'id'])->inverseOf('order');
     }
     
     /**
@@ -180,16 +184,25 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getOrderPayments()
     {
-        return $this->hasMany(\app\models\OrderPayment::className(), ['order_id' => 'id']);
+        return $this->hasMany(\app\models\OrderPayment::className(), ['order_id' => 'id'])->inverseOf('order');
     }
     
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTrackings()
+    public function getOrderReturns()
     {
-        return $this->hasMany(\app\models\Tracking::className(), ['rop_order_id' => 'rop_order_id']);
+        return $this->hasMany(\app\models\OrderReturn::className(), ['order_id' => 'id'])->inverseOf('order');
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderShipments()
+    {
+        return $this->hasMany(\app\models\OrderShipment::className(), ['order_id' => 'id'])->inverseOf('order');
+    }
+    
     
     /**
      * @inheritdoc
@@ -198,6 +211,7 @@ class Order extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            'timestamp' =>
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => false,

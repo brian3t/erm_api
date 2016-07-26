@@ -25,9 +25,17 @@ use yii\widgets\ActiveForm;
 ]);
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
-        'class' => 'Tracking', 
-        'relID' => 'tracking', 
-        'value' => \yii\helpers\Json::encode($model->trackings),
+        'class' => 'OrderReturn', 
+        'relID' => 'order-return', 
+        'value' => \yii\helpers\Json::encode($model->orderReturns),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'OrderShipment', 
+        'relID' => 'order-shipment', 
+        'value' => \yii\helpers\Json::encode($model->orderShipments),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
@@ -161,12 +169,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'Attributes']) ?>
 
+    <?= $form->field($model, 'other_info')->textInput(['maxlength' => true, 'placeholder' => 'Other Info']) ?>
+
     <?php
     $forms = [
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('OrderItem'),
             'content' => $this->render('_formOrderItem', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->orderItems),
+                'row' => app\override\helpers\ArrayHelper::toArray($model->orderItems),
             ]),
         ],
         [
@@ -176,9 +186,15 @@ use yii\widgets\ActiveForm;
             ]),
         ],
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Tracking'),
-            'content' => $this->render('_formTracking', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->trackings),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('OrderReturn'),
+            'content' => $this->render('_formOrderReturn', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->orderReturns),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('OrderShipment'),
+            'content' => $this->render('_formOrderShipment', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->orderShipments),
             ]),
         ],
     ];

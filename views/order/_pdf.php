@@ -72,6 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'ip_address',
         'status',
         'attributes',
+        'other_info',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -103,6 +104,8 @@ if($providerOrderItem->totalCount){
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'created_at',
+        'updated_at',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderItem,
@@ -146,23 +149,52 @@ if($providerOrderPayment->totalCount){
     
     <div class="row">
 <?php
-if($providerTracking->totalCount){
-    $gridColumnTracking = [
+if($providerOrderReturn->totalCount){
+    $gridColumnOrderReturn = [
         ['class' => 'yii\grid\SerialColumn'],
-                        'sku',
-        'tracking_number',
-        'tracking_carrier',
-        'ship_date',
+                        'retailops_return_id',
+        'retailops_rma_id',
+        'product_amt',
+        'subtotal_amt',
+        'discount_amt',
+        'shipping_amt',
+        'tax_amt',
+        'refund_amt',
+        'created_at',
+        'updated_at',
     ];
     echo Gridview::widget([
-        'dataProvider' => $providerTracking,
+        'dataProvider' => $providerOrderReturn,
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Tracking'),
+            'heading' => Html::encode('Order Return'),
         ],
         'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
         'toggleData' => false,
-        'columns' => $gridColumnTracking
+        'columns' => $gridColumnOrderReturn
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerOrderShipment->totalCount){
+    $gridColumnOrderShipment = [
+        ['class' => 'yii\grid\SerialColumn'],
+                        'retailops_shipment_id',
+        'created_at',
+        'updated_at',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerOrderShipment,
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => Html::encode('Order Shipment'),
+        ],
+        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
+        'toggleData' => false,
+        'columns' => $gridColumnOrderShipment
     ]);
 }
 ?>

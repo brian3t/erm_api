@@ -79,14 +79,18 @@ class OrderController extends Controller
         $providerOrderPayment = new \yii\data\ArrayDataProvider([
             'allModels' => $model->orderPayments,
         ]);
-        $providerTracking = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->trackings,
+        $providerOrderReturn = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->orderReturns,
+        ]);
+        $providerOrderShipment = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->orderShipments,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
             'providerOrderItem' => $providerOrderItem,
             'providerOrderPayment' => $providerOrderPayment,
-            'providerTracking' => $providerTracking,
+            'providerOrderReturn' => $providerOrderReturn,
+            'providerOrderShipment' => $providerOrderShipment,
         ]);
     }
 
@@ -199,22 +203,45 @@ class OrderController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
+    
     /**
      * Action to load a tabular form grid
-     * for Tracking
+     * for OrderReturn
      * @author Yohanes Candrajaya <moo.tensai@gmail.com>
      * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
      *
      * @return mixed
+     * @throws NotFoundHttpException
      */
-    public function actionAddTracking()
+    public function actionAddOrderReturn()
     {
         if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('Tracking');
+            $row = Yii::$app->request->post('OrderReturn');
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
-            return $this->renderAjax('_formTracking', ['row' => $row]);
+            return $this->renderAjax('_formOrderReturn', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    
+    /**
+     * Action to load a tabular form grid
+     * for OrderShipment
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionAddOrderShipment()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('OrderShipment');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formOrderShipment', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

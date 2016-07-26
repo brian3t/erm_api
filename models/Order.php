@@ -28,6 +28,7 @@ class Order extends BaseOrder
                 [['last_name', 'ship_last_name'], 'string', 'max' => 80],
                 [['gift_message'], 'string', 'max' => 800],
                 [['ip_address'], 'string', 'max' => 200],
+                [['other_info'], 'string', 'max' => 2000],
                 [['mp_id', 'channel_refnum'], 'unique', 'targetAttribute' => ['mp_id', 'channel_refnum'], 'message' => 'The combination of Mp ID and Mp Reference Number has already been taken.'],
             ]);
     }
@@ -167,6 +168,21 @@ class Order extends BaseOrder
     {
         return ['ship_company', 'ship_address', 'ship_address2', 'ship_city', 'ship_state', 'ship_zip', 'ship_country',
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getOther_info()
+    {
+        return json_decode($this->other_info, JSON_OBJECT_AS_ARRAY);
+    }
+    
+    public function setOther_info($other_info){
+        if (is_array($other_info)){
+            $other_info = json_encode($other_info);
+        }
+        $this->other_info = $other_info;
     }
     
 }

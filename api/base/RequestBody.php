@@ -41,6 +41,7 @@ class RequestBody
     public function __construct($postbody)
     {
         if (is_null($postbody) || !is_string($postbody)) return false;
+        $postbody = preg_replace('"(\d{4}-\d\d-\d\d)T(\d\d:\d\d:\d\d)Z"', '$1 $2', $postbody);
         try {
             ($postbody = json_decode($postbody));
         } catch (Exception $e) {

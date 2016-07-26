@@ -21,7 +21,7 @@ class OrderItem extends BaseOrderItem
                 [['order_id', 'quantity'], 'integer'],
                 [['unit_price', 'discount_amt', 'discount_pct', 'recycling_amt', 'ship_amt', 'shiptax_amt', 'unit_tax', 'unit_tax_pct', 'vat_pct'], 'number'],
                 [['item_type'], 'string'],
-                [['last_mp_updated'], 'safe'],
+                [['last_mp_updated', 'created_at', 'updated_at'], 'safe'],
                 [['sku'], 'string', 'max' => 255],
                 [['sku_description', 'extra_info'], 'string', 'max' => 800],
                 [['options'], 'string', 'max' => 2550],

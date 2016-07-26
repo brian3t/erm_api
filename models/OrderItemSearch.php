@@ -19,7 +19,7 @@ use app\models\OrderItem;
     {
         return [
             [['id', 'order_id', 'quantity'], 'integer'],
-            [['sku', 'sku_description', 'options', 'item_type', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info'], 'safe'],
+            [['sku', 'sku_description', 'options', 'item_type', 'status', 'last_mp_updated', 'mp_item_id', 'extra_info', 'created_at', 'updated_at'], 'safe'],
             [['unit_price', 'discount_amt', 'discount_pct', 'recycling_amt', 'ship_amt', 'shiptax_amt', 'unit_tax', 'unit_tax_pct', 'vat_pct'], 'number'],
         ];
     }
@@ -70,6 +70,8 @@ use app\models\OrderItem;
             'vat_pct' => $this->vat_pct,
             'quantity' => $this->quantity,
             'last_mp_updated' => $this->last_mp_updated,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'sku', $this->sku])

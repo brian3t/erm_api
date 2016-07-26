@@ -42,6 +42,8 @@ use kartik\grid\GridView;
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'created_at',
+        'updated_at',
     ];
     echo DetailView::widget([
         'model' => $model,

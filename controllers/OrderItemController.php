@@ -49,8 +49,16 @@ class OrderItemController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerOrderReturnItem = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->orderReturnItems,
+        ]);
+        $providerOrderShipmentPackageItem = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->orderShipmentPackageItems,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerOrderReturnItem' => $providerOrderReturnItem,
+            'providerOrderShipmentPackageItem' => $providerOrderShipmentPackageItem,
         ]);
     }
 
@@ -103,6 +111,7 @@ class OrderItemController extends Controller
 
         return $this->redirect(['index']);
     }
+
     
     /**
      * Finds the OrderItem model based on its primary key value.
@@ -115,6 +124,46 @@ class OrderItemController extends Controller
     {
         if (($model = OrderItem::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for OrderReturnItem
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddOrderReturnItem()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('OrderReturnItem');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formOrderReturnItem', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for OrderShipmentPackageItem
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddOrderShipmentPackageItem()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('OrderShipmentPackageItem');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formOrderShipmentPackageItem', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

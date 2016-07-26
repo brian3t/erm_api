@@ -43,7 +43,7 @@ $this->registerJs($search);
         'tracking_carrier',
         'ship_date',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
     ]; 
     ?>

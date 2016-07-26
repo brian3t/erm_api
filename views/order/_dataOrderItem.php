@@ -8,6 +8,7 @@ use yii\data\ArrayDataProvider;
     ]);
     $gridColumns = [
         ['class' => 'yii\grid\SerialColumn'],
+        'id',
                 'sku',
         'sku_description',
         'options',
@@ -26,6 +27,8 @@ use yii\data\ArrayDataProvider;
         'last_mp_updated',
         'mp_item_id',
         'extra_info',
+        'created_at',
+        'updated_at',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'order-item'

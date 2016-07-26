@@ -137,6 +137,8 @@ use yii\widgets\ActiveForm;
 
     <?php /* echo $form->field($model, 'attributes')->textInput(['maxlength' => true, 'placeholder' => 'Attributes']) */ ?>
 
+    <?php /* echo $form->field($model, 'other_info')->textInput(['maxlength' => true, 'placeholder' => 'Other Info']) */ ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

@@ -41,7 +41,7 @@ $this->registerJs($search);
         'end_point_name',
         'currency_code',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
     ]; 
     ?>

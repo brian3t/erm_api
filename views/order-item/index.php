@@ -27,25 +27,40 @@ $this->registerJs($search);
         <div class="search-form" style="display:none">
         <?=  $this->render('_search', ['model' => $searchModel]); ?>
     </div>
-        <?php 
+        <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
+        'id',
+        'order_id',
+        'mp_item_id',
         [
-                'attribute' => 'order_id',
-                'label' => 'Order',
+            'class' => 'kartik\grid\ExpandRowColumn',
+            'width' => '50px',
+            'value' => function ($model, $key, $index, $column) {
+                return GridView::ROW_COLLAPSED;
+            },
+            'detail' => function ($model, $key, $index, $column) {
+                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
+            },
+            'headerOptions' => ['class' => 'kartik-sheet-style'],
+            'expandOneOnly' => true
+        ],
+        [
+                'label' => 'Order Detail',
                 'value' => function($model){
                     return $model->order->name;
                 },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->asArray()->all(), 'id', 'name'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid-order-item-search-order_id']
+                // 'filterType' => GridView::FILTER_SELECT2,
+                // 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->asArray()->all(), 'id', 'name'),
+                // 'filterWidgetOptions' => [
+                //     'pluginOptions' => ['allowClear' => true],
+                // ],
+                // 'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid-order-item-search-order_id']
             ],
         'sku',
         'sku_description',
+        'created_at',
+        'updated_at',
         'options',
         'unit_price',
         'discount_amt',
@@ -57,15 +72,14 @@ $this->registerJs($search);
         'unit_tax_pct',
         'vat_pct',
         'quantity',
-        'item_type',
         'status',
+        'item_type',
         'last_mp_updated',
-        'mp_item_id',
-        'extra_info',
+        // 'extra_info',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -77,11 +91,7 @@ $this->registerJs($search);
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
-        // set a label for default menu
-        'export' => [
-            'label' => 'Page',
-            'fontAwesome' => true,
-        ],
+        'export' => false,
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
@@ -97,6 +107,9 @@ $this->registerJs($search);
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
+                'exportConfig' => [
+                    ExportMenu::FORMAT_PDF => false
+                ]
             ]) ,
         ],
     ]); ?>

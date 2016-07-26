@@ -34,7 +34,7 @@ $this->registerJs($search);
     
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
+        'id',
         [
             'label' => 'MP',
             'attribute' => 'mp.name',
@@ -84,33 +84,11 @@ $this->registerJs($search);
         ],
         'count_rop_pull',
         'channel_date_created',
-        // 'shipping_amt',
-        // 'tax_amt',
-        // 'first_name',
-        // 'last_name',
-        // 'company',
-        // 'email:email',
-        // 'address1',
-        // 'address2',
-        // 'city',
-        // 'state_match',
-        // 'country_match',
-        // 'postal_code',
-        // 'gift_message',
-        // 'phone',
-        // 'ship_first_name',
-        // 'ship_last_name',
-        // 'ship_company',
-        // 'ship_address1',
-        // 'ship_address2',
-        // 'ship_city',
-        // 'ship_state_match',
-        // 'ship_country_match',
-        // 'ship_postal_code',
-        // 'ship_phone',
-        // 'pay_type',
-        // 'pay_transaction_id',
-        // 'comments:ntext',
+        // 'ship_service_code',
+        // 'ip_address',
+        // 'status',
+        // 'attributes',
+        // 'other_info',
         [
             'label' => 'Status',
             'format' => 'html',
@@ -120,7 +98,7 @@ $this->registerJs($search);
                 if ($status =='canceled'){
                     $echo .= '<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>';
                 }
-                if (count($model->trackings) > 0) {
+                if (count($model->orderShipments) > 0) {
                     $echo .= '<span class="glyphicon glyphicon-send" aria-hidden="true"></span>';
                 }
                 return $echo;
@@ -131,7 +109,7 @@ $this->registerJs($search);
         'discount_amt',
         'grand_total',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
         ['attribute' => 'customer_id',
             'label' => 'Customer',
@@ -162,10 +140,6 @@ $this->registerJs($search);
         // your toolbar can include the additional full export menu
         'toolbar' => [
             '{export}',
-            'exportConfig' => [
-                ExportMenu::FORMAT_PDF => false,
-            ],
-            
             ExportMenu::widget([
                 'dataProvider' => $dataProvider,
                 'columns' => $gridColumn,
@@ -178,6 +152,9 @@ $this->registerJs($search);
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
+                'exportConfig' => [
+                    ExportMenu::FORMAT_PDF => false
+                ]
             ]),
         ],
     ]); ?>

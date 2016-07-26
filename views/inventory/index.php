@@ -49,7 +49,7 @@ $this->registerJs($search);
         'created_at',
         'updated_at',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => 'app\override\grid\ActionColumn',
         ],
     ]; 
     ?>
