@@ -17,8 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
-    <?= $form->field($model, 'rop_order_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->orderBy('rop_order_id')->asArray()->all(), 'rop_order_id', 'name'),
+    <?= $form->field($model, 'retailops_order_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->orderBy('retailops_order_id')->asArray()->all(), 'retailops_order_id', 'name'),
         'options' => ['placeholder' => 'Choose Order'],
         'pluginOptions' => [
             'allowClear' => true

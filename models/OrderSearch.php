@@ -18,7 +18,7 @@ use app\models\Order;
     public function rules()
     {
         return [
-            [['id', 'mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
+            [['id', 'mp_id', 'retailops_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
             [['channel_refnum', 'last_mp_updated', 'rop_ack_at', 'last_rop_pull', 'channel_date_created', 'first_name', 'last_name', 'company', 'email', 'address1', 'address2', 'city', 'state_match', 'country_match', 'postal_code', 'gift_message', 'phone', 'ship_first_name', 'ship_last_name', 'ship_company', 'ship_address1', 'ship_address2', 'ship_city', 'ship_state_match', 'ship_country_match', 'ship_postal_code', 'ship_phone', 'pay_type', 'pay_transaction_id', 'comments', 'ship_service_code', 'ip_address', 'status', 'attributes', 'other_info'], 'safe'],
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
         ];
@@ -59,7 +59,7 @@ use app\models\Order;
         $query->andFilterWhere([
             'id' => $this->id,
             'mp_id' => $this->mp_id,
-            'rop_order_id' => $this->rop_order_id,
+            'retailops_order_id' => $this->retailops_order_id,
             'last_mp_updated' => $this->last_mp_updated,
             'rop_ack_at' => $this->rop_ack_at,
             'last_rop_pull' => $this->last_rop_pull,

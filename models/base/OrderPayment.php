@@ -16,14 +16,14 @@ use yii\behaviors\TimestampBehavior;
  * @property string $payment_type
  * @property string $created_at
  * @property string $updated_at
+ * @property integer $payment_series_id
  *
  * @property \app\models\Order $order
  */
 class OrderPayment extends \yii\db\ActiveRecord
 {
-
     use \mootensai\relation\RelationTrait;
-
+    
     /**
      * @inheritdoc
      */
@@ -31,11 +31,11 @@ class OrderPayment extends \yii\db\ActiveRecord
     {
         return [
             [['order_id'], 'required'],
-            [['order_id'], 'integer'],
+            [['order_id', 'payment_series_id'], 'integer'],
             [['amount'], 'number'],
             [['payment_processing_type', 'transaction_type'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['payment_type'], 'string', 'max' => 60]
+            [['payment_type'], 'string', 'max' => 60],
         ];
     }
     
@@ -46,7 +46,7 @@ class OrderPayment extends \yii\db\ActiveRecord
     {
         return 'order_payment';
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -59,25 +59,26 @@ class OrderPayment extends \yii\db\ActiveRecord
             'payment_processing_type' => 'Payment Processing Type',
             'transaction_type' => 'Transaction Type',
             'payment_type' => 'Payment Type',
+            'payment_series_id' => 'Payment Series ID',
         ];
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getOrder()
     {
-        return $this->hasOne(\app\models\Order::className(), ['id' => 'order_id']);
+        return $this->hasOne(\app\models\Order::className(), ['id' => 'order_id'])->inverseOf('orderPayments');
     }
-
-/**
+    
+    /**
      * @inheritdoc
-     * @return type mixed
-     */ 
+     * @return mixed
+     */
     public function behaviors()
     {
         return [
-            [
+            'timestamp' => [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
@@ -85,7 +86,7 @@ class OrderPayment extends \yii\db\ActiveRecord
             ],
         ];
     }
-
+    
     /**
      * @inheritdoc
      * @return \app\models\OrderPaymentQuery the active query used by this AR class.

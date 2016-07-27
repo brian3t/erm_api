@@ -30,6 +30,7 @@ echo TabularForm::widget([
         'shipping_amt' => ['type' => TabularForm::INPUT_TEXT],
         'tax_amt' => ['type' => TabularForm::INPUT_TEXT],
         'refund_amt' => ['type' => TabularForm::INPUT_TEXT],
+        'refund_action' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

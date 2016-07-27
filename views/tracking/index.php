@@ -26,17 +26,17 @@ $this->registerJs($search);
         ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
         [
-                'attribute' => 'rop_order_id',
+                'attribute' => 'retailops_order_id',
                 'label' => 'Rop Order',
                 'value' => function($model){
                     return $model->order->name;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->asArray()->all(), 'rop_order_id', 'name'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Order::find()->asArray()->all(), 'retailops_order_id', 'name'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid--rop_order_id']
+                'filterInputOptions' => ['placeholder' => 'Order', 'id' => 'grid--retailops_order_id']
             ],
         'sku',
         'tracking_number',

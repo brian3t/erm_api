@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Mp'
         ],
         'channel_refnum',
-        'rop_order_id',
+        'retailops_order_id',
         'last_mp_updated',
         'last_rop_pull',
         'force_rop_resend',

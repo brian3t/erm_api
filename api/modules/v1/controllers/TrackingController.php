@@ -68,7 +68,7 @@ class TrackingController extends BaseActiveController
      * @param string $mp_endpoint_name Marketplace endpoint name, e.g. loehmanns
      * Expects json_encoded Associative array of Trackings. Each tracking is an key-value pair, key is ROP Order ID, value is
      * an array containing tracking information
-     *      rop_order_id    =>
+     *      retailops_order_id    =>
      *          {
      *              "sku": sku, e.g.     "sku": ABC123
      *              "tracking_number": Tracking Number, e.g. "tracking_number": ABC123456ABC
@@ -101,11 +101,11 @@ class TrackingController extends BaseActiveController
         
         $transaction = \Yii::$app->db->beginTransaction();
         try {
-            foreach ($data as $rop_order_id => $tracking) {
+            foreach ($data as $retailops_order_id => $tracking) {
                 $command = \Yii::$app->db->createCommand('REPLACE INTO `tracking`
-                 (`rop_order_id`, `sku`, `tracking_number`, `tracking_carrier`, `ship_date`) 
-                 VALUES (:rop_order_id, :sku, :tracking_number, :tracking_carrier, :ship_date)')
-                    ->bindValues([':rop_order_id' => $rop_order_id, ':sku' => $tracking['sku'], ':tracking_carrier' => $tracking['tracking_carrier'],
+                 (`retailops_order_id`, `sku`, `tracking_number`, `tracking_carrier`, `ship_date`) 
+                 VALUES (:retailops_order_id, :sku, :tracking_number, :tracking_carrier, :ship_date)')
+                    ->bindValues([':retailops_order_id' => $retailops_order_id, ':sku' => $tracking['sku'], ':tracking_carrier' => $tracking['tracking_carrier'],
                         ':tracking_number' => $tracking['tracking_number'], ':ship_date' => $tracking['ship_date']]);
                 $command->execute();
             }
@@ -135,7 +135,7 @@ class OrderAction extends IndexAction
      */
     public function run() {
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
-        $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
+        $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE retailops_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
             ->execute();
         return parent::run();
     }

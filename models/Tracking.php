@@ -17,7 +17,7 @@ class Tracking extends BaseTracking
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['rop_order_id'], 'integer'],
+            [['retailops_order_id'], 'integer'],
             [['ship_date'], 'safe'],
             [['sku', 'tracking_number', 'tracking_carrier'], 'string', 'max' => 45]
         ]);

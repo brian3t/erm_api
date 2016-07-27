@@ -59,7 +59,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'channel_refnum')->textInput(['maxlength' => true, 'placeholder' => 'Channel Refnum']) ?>
 
-    <?= $form->field($model, 'rop_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
+    <?= $form->field($model, 'retailops_order_id')->textInput(['placeholder' => 'Rop Order']) ?>
 
     <?= $form->field($model, 'last_mp_updated')->textInput(['placeholder' => 'Last Mp Updated']) ?>
 

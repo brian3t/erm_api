@@ -9,7 +9,9 @@ define('DAYS_SINCE_LAST_ROP_PULL', 30);
 use app\api\base\controllers\BaseActiveController;
 use app\models\Mp;
 use app\models\Order;
+use app\models\OrderPayment;
 use app\models\OrderQuery;
+use app\models\OrderReturn;
 use app\models\OrderShipment;
 use app\models\OrderShipmentPackage;
 use yii\base\Exception;
@@ -89,13 +91,42 @@ class OrderController extends BaseActiveController
         // prepare and return a data provider for the "pull" action
         
         $last_rop_pull = (new \DateTime())->sub((new \DateInterval("P" . DAYS_SINCE_LAST_ROP_PULL . "D")))->format('Y-m-d');
-        
         $query = Order::find()
             ->with('orderPayments')
             ->joinWith('mp')
-            ->where(['or', ['rop_order_id' => null], ['force_rop_resend' => 1]])
-            ->andWhere(['or', ['>=', 'last_rop_pull', $last_rop_pull], ['last_rop_pull' => null]])
-            ->limit(DEBUG ? LIMIT : null);
+            ->where(['or', ['retailops_order_id' => null], ['force_rop_resend' => 1]])
+            ->andWhere(['or', ['>=', 'last_rop_pull', $last_rop_pull], ['last_rop_pull' => null]]);
+        /** @var ActiveQuery $query */
+        
+        
+        // ->limit(DEBUG ? LIMIT : null);
+        
+        if (property_exists($this->requestbody, 'specific_orders')) {
+            $specific_orders = ArrayHelper::toArray($this->requestbody->specific_orders);
+            $query_params = [];
+            foreach ($specific_orders as $specific_order) {
+                $key = key($specific_order);
+                $query_params[$key][] = $specific_order[$key];
+            }
+            // foreach ($query_params as $param => $values)
+            //     $query->andWhere([$param => $values]);
+            
+            switch (count($query_params)) {
+                case 1:
+                    $query->andWhere($query_params);
+                    break;
+                case 2:
+                    $first = key($query_params);
+                    $first_value = $query_params[$first];
+                    unset($query_params[$first]);
+                    $second = key($query_params);
+                    $query->andFilterWhere(['or', [$first=>$first_value], [$second=>$query_params[$second]]]);
+                    break;
+                default:
+                    break;
+            }
+            
+        }
         
         $mp_end_point = \Yii::$app->request->getQueryParam('mp');
         $mp = Mp::findOne(['end_point_name' => $mp_end_point]);
@@ -130,13 +161,6 @@ class OrderController extends BaseActiveController
         return parent::checkAccess($action, $model, $params);
     }
     
-    public function actionPull()
-    {
-        header('Content-Type: application/json');
-        return;
-        // return Order::findAll();
-    }
-    
     public function actionAcknowledge()
     {
         $result = ['status' => 'fail'];
@@ -155,7 +179,7 @@ class OrderController extends BaseActiveController
             $order = Order::find()->where(['channel_refnum' => $order_to_ack->channel_order_refnum])->one();
             if (is_object($order)) {
                 /* @var Order $order */;
-                $order->rop_order_id = $order_to_ack->retailops_order_id;
+                $order->retailops_order_id = $order_to_ack->retailops_order_id;
                 $order->rop_ack_at = $today;
                 if (!$order->save()) {
                     $successful = false;
@@ -177,7 +201,7 @@ class OrderController extends BaseActiveController
      * ROP Endpoint: Order Confirmation
      * @param string $mp_endpoint_name Marketplace endpoint name, e.g. loehmanns
      * Expects json_encoded Associative array of orders. Each order is a key-value pair:
-     *      sme_order_id    :   rop_order_id, e.g.     123 : ABC123
+     *      sme_order_id    :   retailops_order_id, e.g.     123 : ABC123
      * @return string A json encoded array with the following information:
      * {
      *  status: successful|fail
@@ -197,9 +221,9 @@ class OrderController extends BaseActiveController
         
         $transaction = \Yii::$app->db->beginTransaction();
         try {
-            foreach ($data as $sme_order_id => $rop_order_id) {
-                $command = \Yii::$app->db->createCommand('UPDATE `order` SET `rop_order_id` = :rop_order_id, `force_rop_resend` = NULL WHERE `id` = :id')
-                    ->bindValues([':rop_order_id' => $rop_order_id, ':id' => $sme_order_id]);
+            foreach ($data as $sme_order_id => $retailops_order_id) {
+                $command = \Yii::$app->db->createCommand('UPDATE `order` SET `retailops_order_id` = :retailops_order_id, `force_rop_resend` = NULL WHERE `id` = :id')
+                    ->bindValues([':retailops_order_id' => $retailops_order_id, ':id' => $sme_order_id]);
                 $command->execute();
                 \Yii::error("db: " . $command->rawSql);
             }
@@ -227,7 +251,7 @@ class OrderController extends BaseActiveController
         }
         $successful = true;
         
-        $order = Order::find()->where(['rop_order_id' => $this->requestbody->order->retailops_order_id])->one();
+        $order = Order::find()->where(['retailops_order_id' => $this->requestbody->order->retailops_order_id])->one();
         if (!is_object($order)) {
             $errors[] = ['message' => 'Can not find order using retailops_order_id'];
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
@@ -264,7 +288,7 @@ class OrderController extends BaseActiveController
         $successful = true;
         $order_new = $this->requestbody->order;
         
-        $order = Order::find()->where(['rop_order_id' => $order_new->retailops_order_id])->one();
+        $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
             $errors[] = ['message' => 'Can not find order using retailops_order_id'];
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
@@ -316,9 +340,10 @@ class OrderController extends BaseActiveController
             return $result;
         }
         $successful = true;
-        $order_new = $this->requestbody->order;//todob pulls data from API
+        $order_new = $this->requestbody->order;
         
-        $order = Order::find()->where(['rop_order_id' => $order_new->retailops_order_id])->one();
+        
+        $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
             $errors[] = ['message' => 'Can not find order using retailops_order_id'];
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
@@ -329,6 +354,23 @@ class OrderController extends BaseActiveController
         }
         if (is_object($order)) {
             /* @var Order $order */;
+            $order->setOther_info(['unshipped_items' => $order_new->unshipped_items, 'shipments' => $order_new->shipments]);
+            if (!property_exists($this->requestbody, 'return')) {
+                return $result;
+            }
+            $returnData = ArrayHelper::toArray($this->requestbody->return);
+            $returnItemData = $returnData['items'];
+            unset($returnData['items']);
+            $return = new OrderReturn();
+            $return->link('order', $order);
+            $return->loadAll(['OrderReturn' => $returnData, 'OrderReturnItem' => $returnItemData]);
+            if (!$return->saveAll()) {
+                $errors[] = "Can not save return data";
+                $errors[] = $return->getErrors();
+            } else {
+                $successful = true;
+            }
+            
         }
         $result['errors'] = $errors;
         $result['status'] = $successful ? 'successful' : 'fail';
@@ -337,12 +379,174 @@ class OrderController extends BaseActiveController
     
     public function actionUpdate()
     {
-        return;
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'order')) {
+            return $result;
+        }
+        $successful = true;
+        $order_new = $this->requestbody->order;
+        
+        $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id]);
+        if (!$order->exists()) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum]);
+            if (!$order->exists()) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if ($order->exists()) {
+            $order = $order->one();/* @var Order $order */;
+            
+            $order->unlinkAll('orderReturns', true);
+            $rmas = ArrayHelper::toArray($this->requestbody->rmas);
+            foreach ($rmas as $rma_data) {
+                $return_items = $rma_data['items'];
+                unset($rma_data['items']);
+                
+                $rma = new OrderReturn();
+                $rma->loadAll(['OrderReturn' => $rma_data, 'OrderReturnItem' => $return_items]);
+                $rma->link('order', $order);
+                if (!$rma->saveAll()) {
+                    $errors[] = $rma->getErrors();
+                    $successful = false;
+                };
+            }
+            
+            //updating order
+            $order->setAttribute('product_total', $order_new->grand_total);
+            $order->save();
+            $order->unlinkAll('orderShipments', true);
+            $shipments = ArrayHelper::toArray($order_new->shipments);
+            
+            foreach ($shipments as &$shipment) {
+                $shipmentPackages = $shipment['packages'];
+                unset($shipment['packages']);
+                
+                $shipmentAR = new OrderShipment();
+                $shipmentAR->load(['OrderShipment' => $shipment]);
+                $shipmentAR->link('order', $order);
+                $shipmentAR->save();
+                
+                foreach ($shipmentPackages as $shipmentPackage) {
+                    $shipmentPackageItems = $shipmentPackage['package_items'];
+                    unset($shipmentPackage['package_items']);
+                    $shipmentPackageAR = new OrderShipmentPackage();
+                    $shipmentPackageAR->loadAll(['OrderShipmentPackage' => $shipmentPackage, 'OrderShipmentPackageItem' => $shipmentPackageItems]);
+                    $shipmentPackageAR->link('orderShipment', $shipmentAR);
+                    $shipmentPackageAR->saveAll();
+                }
+            }
+        }
+        
+        
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
     }
     
-    public function actionBlah()
+    public function actionSettlepayment()
     {
-        return '{"bleh":1}';
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'order') || !property_exists($this->requestbody, 'payment')) {
+            return $result;
+        }
+        $successful = true;
+        $order_new = $this->requestbody->order;
+        
+        $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
+        if (!is_object($order)) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
+            if (!is_object($order)) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if (is_object($order)) {
+            /* @var Order $order */;
+            $order->setOther_info(['unshipped_items' => $order_new->unshipped_items, 'shipments' => $order_new->shipments]);
+            $order->unlinkAll('orderPayments', true);
+            $payment_data = $this->requestbody->payment;
+            foreach ($payment_data->payment_transactions as $payment_transaction) {
+                $order_payment = new OrderPayment();
+                $order_payment->load(['OrderPayment' => ArrayHelper::toArray($payment_transaction)]);
+                $order_payment->payment_series_id = $payment_data->payment_series_id;
+                $order_payment->link('order', $order);
+                if (!$order_payment->save()) {
+                    $errors[] = $order_payment->getErrors();
+                    $successful = false;
+                }
+            }
+        }
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
+    }
+    
+    public function actionShipmentsubmit()
+    {
+        $result = ['status' => 'fail'];
+        $errors = [];
+        $today = date('Y-m-d H:i:s');
+        
+        if (!property_exists($this->requestbody, 'shipment')) {
+            return $result;
+        }
+        $successful = true;
+        $order_new = $this->requestbody;
+        
+        $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
+        if (!is_object($order)) {
+            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $order = Order::find()->where(['channel_refnum' => $order_new->channel_order_refnum])->one();
+            if (!is_object($order)) {
+                $successful = false;
+                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+            }
+        }
+        if (is_object($order)) {
+            /* @var Order $order */;
+            $shipment_new = ArrayHelper::toArray($order_new->shipment);
+            $shipment = OrderShipment::find()->where(['retailops_shipment_id' => $shipment_new['retailops_shipment_id']]);
+            if (!$shipment->exists()) {
+                $shipment = new OrderShipment();
+                $shipment['retailops_shipment_id'] = $shipment_new['retailops_shipment_id'];
+                $shipment->link('order', $order);
+            } else {
+                $shipment = $shipment->one();
+            }
+            
+            foreach ($shipment_new['packages'] as $package) {
+                $shipment_package = OrderShipmentPackage::find()->where(['retailops_package_id' => $package['retailops_package_id']]);
+                if (!$shipment_package->exists()) {
+                    $shipment_package = new OrderShipmentPackage();
+                    $shipment_package['retailops_package_id'] = $package['retailops_package_id'];
+                    $shipment_package->link('orderShipment', $shipment);
+                } else {
+                    $shipment_package = $shipment_package->one();
+                }
+                
+                $shipmentPackageItems = $package['package_items'];
+                unset($package['package_items']);
+                $shipment_package->loadAll(['OrderShipmentPackage' => $package, 'OrderShipmentPackageItem' => $shipmentPackageItems]);
+                if (!$shipment_package->saveAll()) {
+                    $errors[] = $shipment_package->getErrors();
+                    $successful = false;
+                };
+            }
+        }
+        
+        
+        $result['errors'] = $errors;
+        $result['status'] = $successful ? 'successful' : 'fail';
+        return $result;
     }
 }
 
@@ -362,7 +566,7 @@ class OrderPullAction extends IndexAction
         //pull query params
         
         //todov2 pull query parameters from action index. It's the same params that prepareDataProvider (see above) uses
-        // $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE rop_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
+        // $query = \Yii::$app->db->createCommand('UPDATE `order` SET last_rop_pull = NOW(), count_rop_pull = count_rop_pull + 1 WHERE retailops_order_id IS NULL OR `order`.force_rop_resend = 1 LIMIT ' . LIMIT . ';')
         //     ->execute();
         
         return call_user_func($this->prepareDataProvider, $this);

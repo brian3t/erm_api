@@ -14,6 +14,7 @@ use yii\data\ArrayDataProvider;
         'payment_type',
         'created_at',
         'updated_at',
+        'payment_series_id',
         [
             'class' => 'yii\grid\ActionColumn',
             'controller' => 'order-payment'

@@ -62,7 +62,7 @@ class Mp extends BaseMp
      * @param string $order_date_time
      * @return mixed Order id if successful. Error message if failed.
      *
-     * Order //    mp_id, channel_refnum, rop_order_id, last_mp_updated, last_rop_pull, count_rop_pull, order_date_time,  name,  company,  email,  address,  address2,  city,  state,  zip,  country,  phone,  ship_name,  ship_company,  ship_address,  ship_address2,  ship_city,  ship_state,  ship_zip,  ship_country,  ship_phone,  pay_type,  pay_transaction_id,  comments,  product_total,  tax_total,  shipping_total,  grand_total,  shipping,  discount,  status`
+     * Order //    mp_id, channel_refnum, retailops_order_id, last_mp_updated, last_rop_pull, count_rop_pull, order_date_time,  name,  company,  email,  address,  address2,  city,  state,  zip,  country,  phone,  ship_name,  ship_company,  ship_address,  ship_address2,  ship_city,  ship_state,  ship_zip,  ship_country,  ship_phone,  pay_type,  pay_transaction_id,  comments,  product_total,  tax_total,  shipping_total,  grand_total,  shipping,  discount,  status`
      * Order_item: SELECT  order_id    , sku    , product    , price_per_unit    , quantity    , status    , last_mp_updated    , mp_item_id
      */
     protected function insert_order_from_csv($row = null, $order_date_time)
@@ -422,7 +422,7 @@ class Mp extends BaseMp
 
         $trackings = $trackings->asArray()->all();
         foreach ($trackings as $tracking) {
-            // $tracking->order_id = Order::findOne(['rop_order_id'])
+            // $tracking->order_id = Order::findOne(['retailops_order_id'])
             $this->reset_parameters();
             $post_fields = $this->api_build_query('tracking_push', $tracking);
             $returned_data = $this->get_response($post_fields);

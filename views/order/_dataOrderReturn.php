@@ -17,6 +17,9 @@ use yii\data\ArrayDataProvider;
         'shipping_amt',
         'tax_amt',
         'refund_amt',
+        'refund_action',
+        'created_at',
+        'updated_at',
         ['label'=>'Items',
         'format'=>'html',
         'value'=>function($model, $key, $index, $column){

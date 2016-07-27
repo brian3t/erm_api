@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'retailops_return_id')->textInput(['placeholder' => 'Retailops Return']) ?>
 
-    <?= $form->field($model, 'retailops_rma_id')->textInput(['placeholder' => 'Retailops Rma']) ?>
+    <?= $form->field($model, 'retailops_rma_id')->textInput(['maxlength' => true, 'placeholder' => 'Retailops Rma']) ?>
 
     <?= $form->field($model, 'product_amt')->textInput(['placeholder' => 'Product Amt']) ?>
 

@@ -14,7 +14,7 @@ class RopController extends Controller
 {
     /**
      * This console command pulls orders from a SME.
-     * It then calls OrderPush with rop_order_id updated
+     * It then calls OrderPush with retailops_order_id updated
      * All events are logged
      * @param string $mp_id The marketplace id, such as loehmann
      * @param integer $day_offset Days ago. e.g. giving 2 will import orders two days ago
@@ -62,7 +62,7 @@ class RopController extends Controller
             return -1;
         }
 
-        $command = \Yii::$app->db->createCommand("UPDATE `order` SET rop_order_id = NULL WHERE mp_id=:mp_id")
+        $command = \Yii::$app->db->createCommand("UPDATE `order` SET retailops_order_id = NULL WHERE mp_id=:mp_id")
         ->bindValue(':mp_id', $mp_id);
         $affected_rows = $command->execute();
         \Yii::warning("Warning, ROP ID reset". $affected_rows);

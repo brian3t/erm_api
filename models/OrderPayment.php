@@ -16,14 +16,14 @@ class OrderPayment extends BaseOrderPayment
     public function rules()
     {
         return array_replace_recursive(parent::rules(),
-            [
-                [['order_id'], 'required'],
-                [['order_id'], 'integer'],
-                [['amount'], 'number'],
-                [['payment_processing_type', 'transaction_type'], 'string'],
-                [['created_at', 'updated_at'], 'safe'],
-                [['payment_type'], 'string', 'max' => 60],
-            ]);
+	    [
+            [['order_id'], 'required'],
+            [['order_id', 'payment_series_id'], 'integer'],
+            [['amount'], 'number'],
+            [['payment_processing_type', 'transaction_type'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['payment_type'], 'string', 'max' => 60]
+        ]);
     }
     
     public function fields()
@@ -42,6 +42,5 @@ class OrderPayment extends BaseOrderPayment
     {
         return floatval($this->amount);
     }
-    
     
 }

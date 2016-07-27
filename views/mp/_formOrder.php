@@ -23,7 +23,7 @@ echo TabularForm::widget([
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
         'channel_refnum' => ['type' => TabularForm::INPUT_TEXT],
-        'rop_order_id' => ['type' => TabularForm::INPUT_TEXT],
+        'retailops_order_id' => ['type' => TabularForm::INPUT_TEXT],
         'last_mp_updated' => ['type' => TabularForm::INPUT_TEXT],
         'last_rop_pull' => ['type' => TabularForm::INPUT_TEXT],
         'force_rop_resend' => ['type' => TabularForm::INPUT_TEXT],

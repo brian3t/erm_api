@@ -12,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $name
  * @property integer $mp_id
  * @property string $channel_refnum
- * @property integer $rop_order_id
+ * @property integer $retailops_order_id
  * @property string $last_mp_updated
  * @property string $rop_ack_at
  * @property string $last_rop_pull
@@ -78,7 +78,7 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['mp_id', 'channel_refnum'], 'required'],
-            [['mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
+            [['mp_id', 'retailops_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
             [['last_mp_updated', 'rop_ack_at', 'last_rop_pull', 'channel_date_created'], 'safe'],
             [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
             [['comments'], 'string'],
@@ -109,7 +109,7 @@ class Order extends \yii\db\ActiveRecord
             'id' => 'ID',
             'mp_id' => 'Mp ID',
             'channel_refnum' => 'Mp Ref#',
-            'rop_order_id' => 'Rop Order ID',
+            'retailops_order_id' => 'Rop Order ID',
             'last_mp_updated' => 'Last Mp Updated',
             'rop_ack_at' => 'ROP Acknowledged at',
             'last_rop_pull' => 'Last Rop Pull',

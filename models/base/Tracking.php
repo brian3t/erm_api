@@ -8,7 +8,7 @@ use Yii;
  * This is the base model class for table "tracking".
  *
  * @property integer $id
- * @property integer $rop_order_id
+ * @property integer $retailops_order_id
  * @property string $sku
  * @property string $tracking_number
  * @property string $tracking_carrier
@@ -27,7 +27,7 @@ class Tracking extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rop_order_id'], 'integer'],
+            [['retailops_order_id'], 'integer'],
             [['ship_date'], 'safe'],
             [['sku', 'tracking_number', 'tracking_carrier'], 'string', 'max' => 45]
         ];
@@ -48,7 +48,7 @@ class Tracking extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'rop_order_id' => 'Rop Order ID',
+            'retailops_order_id' => 'Rop Order ID',
             'sku' => 'Sku',
             'tracking_number' => 'Tracking Number',
             'tracking_carrier' => 'Tracking Carrier',
@@ -61,7 +61,7 @@ class Tracking extends \yii\db\ActiveRecord
      */
     public function getOrder()
     {
-        return $this->hasOne(\app\models\Order::className(), ['rop_order_id' => 'rop_order_id']);
+        return $this->hasOne(\app\models\Order::className(), ['retailops_order_id' => 'retailops_order_id']);
     }
 
     /**

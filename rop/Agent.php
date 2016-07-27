@@ -116,8 +116,8 @@ class Agent
         $event->start = time();
         echo "Marketplace: ". (Mp::findOne($mp_id)->end_point_name) . "\n";
         //sample data
-        $sample_orders_rop_ids = Order::find()->select('rop_order_id')->where(['mp_id' => $mp_id])->andWhere(['not', ['rop_order_id'=>null]])->limit(11)->asArray()->all();
-        $sample_orders_rop_ids = \yii\helpers\ArrayHelper::getColumn($sample_orders_rop_ids, 'rop_order_id');
+        $sample_orders_rop_ids = Order::find()->select('retailops_order_id')->where(['mp_id' => $mp_id])->andWhere(['not', ['retailops_order_id'=>null]])->limit(11)->asArray()->all();
+        $sample_orders_rop_ids = \yii\helpers\ArrayHelper::getColumn($sample_orders_rop_ids, 'retailops_order_id');
         $sample_orders = [];
         $today = new \DateTime();
 

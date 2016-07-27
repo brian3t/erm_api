@@ -1,13 +1,13 @@
 <?php
 
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\OrderSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
 use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use kartik\widgets\SwitchInput;
-
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\OrderSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Order';
 $this->params['breadcrumbs'][] = $this->title;
@@ -65,7 +65,7 @@ $this->registerJs($search);
                 return ($model->count_rop_pull == 0) ? '' : $model->count_rop_pull;
             },
         ],
-        'rop_order_id',
+        'retailops_order_id',
         [
             'label' => 'Force ROP resend',
             'format' => 'raw',

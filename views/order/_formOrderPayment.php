@@ -66,6 +66,7 @@ echo TabularForm::widget([
                 ],
             ]
         ],
+        'payment_series_id' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

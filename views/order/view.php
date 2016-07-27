@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Mp',
             ],
             'channel_refnum',
-            'rop_order_id',
+            'retailops_order_id',
             'last_mp_updated',
             'last_rop_pull',
             'force_rop_resend',
@@ -180,6 +180,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'shipping_amt',
                 'tax_amt',
                 'refund_amt',
+                'refund_action',
                 'created_at',
                 'updated_at',
             ];

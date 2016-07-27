@@ -18,9 +18,11 @@ class OrderReturn extends BaseOrderReturn
         return array_replace_recursive(parent::rules(),
 	    [
             [['order_id'], 'required'],
-            [['order_id', 'retailops_return_id', 'retailops_rma_id'], 'integer'],
+            [['order_id', 'retailops_return_id'], 'integer'],
             [['product_amt', 'subtotal_amt', 'discount_amt', 'shipping_amt', 'tax_amt', 'refund_amt'], 'number'],
-            [['created_at', 'updated_at'], 'safe']
+            [['created_at', 'updated_at'], 'safe'],
+            [['retailops_rma_id'], 'string', 'max' => 80],
+            [['refund_action'], 'string', 'max' => 24]
         ]);
     }
 	

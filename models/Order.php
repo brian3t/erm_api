@@ -19,7 +19,7 @@ class Order extends BaseOrder
         return array_replace_recursive(parent::rules(),
             [
                 [['mp_id', 'channel_refnum'], 'required'],
-                [['mp_id', 'rop_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
+                [['mp_id', 'retailops_order_id', 'force_rop_resend', 'count_rop_pull', 'customer_id'], 'integer'],
                 [['last_mp_updated', 'last_rop_pull', 'channel_date_created','rop_ack_at'], 'safe'],
                 [['shipping_amt', 'tax_amt', 'product_total', 'discount_amt', 'grand_total'], 'number'],
                 [['comments'], 'string'],

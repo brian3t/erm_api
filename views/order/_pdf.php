@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Mp'
             ],
         'channel_refnum',
-        'rop_order_id',
+        'retailops_order_id',
         'last_mp_updated',
         'rop_ack_at',
         'last_rop_pull',
@@ -132,6 +132,7 @@ if($providerOrderPayment->totalCount){
         'payment_type',
         'created_at',
         'updated_at',
+        'payment_series_id',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerOrderPayment,
@@ -160,6 +161,7 @@ if($providerOrderReturn->totalCount){
         'shipping_amt',
         'tax_amt',
         'refund_amt',
+        'refund_action',
         'created_at',
         'updated_at',
     ];

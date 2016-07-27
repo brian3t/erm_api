@@ -16,9 +16,16 @@ use yii\base\Exception;
  * @property string integration_auth_token
  * @property string $page_token
  *
+ * @property string $shipments
+ *
  * @property array $specific_orders
  * @property array $orders
  * @property array $order
+
+ * @property array $return
+ * @property array $rmas
+
+ * @property array $payment
  *
  * @property array $catalog_items
  *
@@ -37,6 +44,11 @@ class RequestBody
     public $inventory_updates;
     public $orders;
     public $order;
+    public $return;
+    public $payment;
+    public $shipments;
+    
+    public $rmas;
     
     public function __construct($postbody)
     {

@@ -25,7 +25,7 @@ use kartik\grid\GridView;
             'label' => 'Mp',
         ],
         'channel_refnum',
-        'rop_order_id',
+        'retailops_order_id',
         'last_mp_updated',
         'rop_ack_at',
         'last_rop_pull',
