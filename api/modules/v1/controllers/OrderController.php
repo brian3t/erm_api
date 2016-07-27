@@ -7,6 +7,7 @@ define('LIMIT', 8);
 define('DAYS_SINCE_LAST_ROP_PULL', 30);
 
 use app\api\base\controllers\BaseActiveController;
+use app\api\base\RopResponse;
 use app\models\Mp;
 use app\models\Order;
 use app\models\OrderPayment;
@@ -29,8 +30,16 @@ use yii\web\Application;
 use yii\web\Controller;
 use yii\web\Response;
 
+/**
+ * Class OrderController
+ * @package app\api\modules\v1\controllers
+ *
+ * @property RopResponse $rop_response
+ */
 class OrderController extends BaseActiveController
 {
+    // public $rop_response;
+    
     // We are using the regular web app modules:
     public $modelClass = 'app\models\Order';
     
@@ -101,7 +110,7 @@ class OrderController extends BaseActiveController
         
         // ->limit(DEBUG ? LIMIT : null);
         
-        if (property_exists($this->requestbody, 'specific_orders')) {
+        if ($this->requestbody->specific_orders) {
             $specific_orders = ArrayHelper::toArray($this->requestbody->specific_orders);
             $query_params = [];
             foreach ($specific_orders as $specific_order) {
@@ -113,14 +122,14 @@ class OrderController extends BaseActiveController
             
             switch (count($query_params)) {
                 case 1:
-                    $query->andWhere($query_params);
+                    $query->andFilterWhere($query_params);
                     break;
                 case 2:
                     $first = key($query_params);
                     $first_value = $query_params[$first];
                     unset($query_params[$first]);
                     $second = key($query_params);
-                    $query->andFilterWhere(['or', [$first=>$first_value], [$second=>$query_params[$second]]]);
+                    $query->andFilterWhere(['or', [$first => $first_value], [$second => $query_params[$second]]]);
                     break;
                 default:
                     break;
@@ -164,37 +173,36 @@ class OrderController extends BaseActiveController
     public function actionAcknowledge()
     {
         $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'orders')) {
+        if (!$this->requestbody->orders) {
             return $result;
         }
-        // $order_to_acks = ArrayHelper::toArray($this->requestbody->orders);
-        $successful = true;
         $count = 0;
         
         $trans = \Yii::$app->db->beginTransaction();
         foreach ($this->requestbody->orders as $order_to_ack) {
-            $order = Order::find()->where(['channel_refnum' => $order_to_ack->channel_order_refnum])->one();
-            if (is_object($order)) {
-                /* @var Order $order */;
-                $order->retailops_order_id = $order_to_ack->retailops_order_id;
-                $order->rop_ack_at = $today;
-                if (!$order->save()) {
-                    $successful = false;
-                    array_push($errors, $order->getErrors());
-                } else {
-                    $count++;
-                }
+            $order = Order::find()->where(['channel_refnum' => $order_to_ack->channel_order_refnum]);
+            /** @var ActiveQuery $order */
+            if (!$order->exists()) {
+                $this->rop_response->add_error("Can not find order using channel_order_refnum " . $order_to_ack->channel_order_refnum);
+                $order = Order::find()->where(['retailops_order_id' => $order_to_ack->retailops_order_id]);
+                return $this->rop_response->print();
+            }
+            $order = $order->one();/* @var Order $order */;
+            $order->retailops_order_id = $order_to_ack->retailops_order_id;
+            $order->rop_ack_at = $today;
+            if (!$order->save()) {
+                $this->rop_response->pull_error($order);
+            } else {
+                $count++;
             }
         }
+        $this->rop_response->count = $count;
         $trans->commit();
         
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        $result['count'] = $count;
-        return $result;
+        
+        return $this->rop_response->print();
     }
     
     /**
@@ -211,7 +219,8 @@ class OrderController extends BaseActiveController
      *
      * @throws \Exception $e Database exception
      */
-    public function actionConfirm($mp_endpoint_name = null)
+    public
+    function actionConfirm($mp_endpoint_name = null)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
         $result = [
@@ -240,24 +249,22 @@ class OrderController extends BaseActiveController
         return json_encode($result);
     }
     
-    public function actionCancel()
+    public
+    function actionCancel()
     {
-        $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
+        $count = 0;
         
-        if (!property_exists($this->requestbody, 'order')) {
-            return $result;
+        if (!$this->requestbody->order) {
+            return $this->rop_response->add_error('Missing order param')->print();
         }
-        $successful = true;
         
         $order = Order::find()->where(['retailops_order_id' => $this->requestbody->order->retailops_order_id])->one();
         if (!is_object($order)) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
             if (!is_object($order)) {
-                $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if (is_object($order)) {
@@ -265,24 +272,23 @@ class OrderController extends BaseActiveController
             $order->status = 'canceled';
             $order->rop_ack_at = $today;
             if (!$order->save()) {
-                $successful = false;
-                array_push($errors, $order->getErrors());
+                $this->rop_response->pull_error($order);
+            } else{
+                $count++;
             }
         }
-        
-        
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
+    
+        $this->rop_response->count = $count;
+        return $this->rop_response->print();
     }
     
-    public function actionComplete()
+    public
+    function actionComplete()
     {
         $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'order')) {
+        if (!$this->requestbody->order) {
             return $result;
         }
         $successful = true;
@@ -290,11 +296,11 @@ class OrderController extends BaseActiveController
         
         $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
             if (!is_object($order)) {
                 $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if (is_object($order)) {
@@ -325,38 +331,34 @@ class OrderController extends BaseActiveController
         }
         
         
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
+        return $this->rop_response->print();
     }
     
-    public function actionReturned()
+    public
+    function actionReturned()
     {
-        $result = ['status' => 'fail'];
-        $errors = [];
+        $count = 0;
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'order')) {
-            return $result;
+        if (!$this->requestbody->order) {
+            return $this->rop_response->add_error('Missing order param')->print();
         }
-        $successful = true;
         $order_new = $this->requestbody->order;
         
         
         $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
             if (!is_object($order)) {
-                $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if (is_object($order)) {
             /* @var Order $order */;
             $order->setOther_info(['unshipped_items' => $order_new->unshipped_items, 'shipments' => $order_new->shipments]);
-            if (!property_exists($this->requestbody, 'return')) {
-                return $result;
+            if (!$this->requestbody->return) {
+                return $this->rop_response->add_error('Missing return param')->print();
             }
             $returnData = ArrayHelper::toArray($this->requestbody->return);
             $returnItemData = $returnData['items'];
@@ -365,37 +367,33 @@ class OrderController extends BaseActiveController
             $return->link('order', $order);
             $return->loadAll(['OrderReturn' => $returnData, 'OrderReturnItem' => $returnItemData]);
             if (!$return->saveAll()) {
-                $errors[] = "Can not save return data";
-                $errors[] = $return->getErrors();
+                $this->rop_response->pull_error($return);
             } else {
-                $successful = true;
+                $count++;
             }
             
         }
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
+        $this->rop_response->count = $count;
+        return $this->rop_response->print();
     }
     
-    public function actionUpdate()
+    public
+    function actionUpdate()
     {
-        $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'order')) {
-            return $result;
+        if (!$this->requestbody->order) {
+            $this->rop_response->add_error('Missing order in request body');
+            return $this->rop_response->print();
         }
-        $successful = true;
         $order_new = $this->requestbody->order;
         
         $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id]);
         if (!$order->exists()) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum]);
             if (!$order->exists()) {
-                $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if ($order->exists()) {
@@ -411,8 +409,7 @@ class OrderController extends BaseActiveController
                 $rma->loadAll(['OrderReturn' => $rma_data, 'OrderReturnItem' => $return_items]);
                 $rma->link('order', $order);
                 if (!$rma->saveAll()) {
-                    $errors[] = $rma->getErrors();
-                    $successful = false;
+                    $this->rop_response->pull_error($rma);
                 };
             }
             
@@ -443,18 +440,15 @@ class OrderController extends BaseActiveController
         }
         
         
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
+        return $this->rop_response->print();
     }
     
     public function actionSettlepayment()
     {
         $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'order') || !property_exists($this->requestbody, 'payment')) {
+        if (!$this->requestbody->order || !$this->requestbody->payment) {
             return $result;
         }
         $successful = true;
@@ -462,11 +456,11 @@ class OrderController extends BaseActiveController
         
         $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $this->requestbody->order->channel_order_refnum])->one();
             if (!is_object($order)) {
                 $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if (is_object($order)) {
@@ -480,23 +474,20 @@ class OrderController extends BaseActiveController
                 $order_payment->payment_series_id = $payment_data->payment_series_id;
                 $order_payment->link('order', $order);
                 if (!$order_payment->save()) {
-                    $errors[] = $order_payment->getErrors();
-                    $successful = false;
+                    $this->rop_response->pull_error($order_payment);
                 }
             }
         }
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
+        return $this->rop_response->print();
     }
     
-    public function actionShipmentsubmit()
+    public
+    function actionShipmentsubmit()
     {
         $result = ['status' => 'fail'];
-        $errors = [];
         $today = date('Y-m-d H:i:s');
         
-        if (!property_exists($this->requestbody, 'shipment')) {
+        if (!$this->requestbody->shipment) {
             return $result;
         }
         $successful = true;
@@ -504,11 +495,11 @@ class OrderController extends BaseActiveController
         
         $order = Order::find()->where(['retailops_order_id' => $order_new->retailops_order_id])->one();
         if (!is_object($order)) {
-            $errors[] = ['message' => 'Can not find order using retailops_order_id'];
+            $this->rop_response->add_error('Can not find order using retailops_order_id');
             $order = Order::find()->where(['channel_refnum' => $order_new->channel_order_refnum])->one();
             if (!is_object($order)) {
                 $successful = false;
-                $errors[] = ['message' => 'Can not find order using channel_order_refnum'];
+                $this->rop_response->add_error('Can not find order using channel_order_refnum');
             }
         }
         if (is_object($order)) {
@@ -537,16 +528,12 @@ class OrderController extends BaseActiveController
                 unset($package['package_items']);
                 $shipment_package->loadAll(['OrderShipmentPackage' => $package, 'OrderShipmentPackageItem' => $shipmentPackageItems]);
                 if (!$shipment_package->saveAll()) {
-                    $errors[] = $shipment_package->getErrors();
-                    $successful = false;
+                    $this->rop_response->pull_error($shipment_package);
                 };
             }
         }
+        return $this->rop_response->print();
         
-        
-        $result['errors'] = $errors;
-        $result['status'] = $successful ? 'successful' : 'fail';
-        return $result;
     }
 }
 
