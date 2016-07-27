@@ -6,8 +6,9 @@ namespace app\api\base;
 class Error
 {
     public $event_type = 'error';
-    public $code, $message, $diagnostic_data;
-public $associations= [];
+    public $code = '';
+    public $message, $diagnostic_data = '';
+    public $associations = [];
     
     public function __construct(array $values = [])
     {

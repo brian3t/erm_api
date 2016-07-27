@@ -17,7 +17,7 @@ use yii\db\ActiveRecord;
 class RopResponse extends Object
 {
     public $errors;
-    protected $status = 'successful';
+    protected $status = 'success';
     public $count = 0;
     
     /**
@@ -30,7 +30,7 @@ class RopResponse extends Object
             return;
         }
         $error = new Error();
-        $this->status = 'failed';
+        $this->status = 'fail';
         $error->message = 'Database error. Model: ' . get_class($model);
         $error->diagnostic_data = $model->getErrors() . " Data: " . $model->getAttributes();
         $this->errors[] = $error;
