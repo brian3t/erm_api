@@ -61,21 +61,21 @@
   "order_keys": {
     "order": {
       "orderID": "channel_refnum",
-      "paidTime": "order_date_time",
-      "shippingAddress.name": "ship_name",
-      "shippingAddress.street1": "ship_address",
+      "paidTime": "channel_date_created",
+      "shippingAddress.name": "ship_first_name",
+      "shippingAddress.street1": "ship_address1",
       "shippingAddress.street2": "ship_address2",
       "shippingAddress.cityName": "ship_city",
-      "shippingAddress.stateOrProvince": "ship_state",
-      "shippingAddress.country": "ship_country",
+      "shippingAddress.stateOrProvince": "ship_state_match",
+      "shippingAddress.country": "ship_country_match",
       "transactionArray.transaction.providerName": "pay_type",
       "transactionArray.transaction.providerID": "pay_transaction_id",
       "subtotal": "product_total",
-      "taxAmount": "tax_total",
-      "shippingDetails.amount": "shipping_total",
-      "shippingDetails.shippingService": "shipping",
+      "taxAmount": "tax_amt",
+      "shippingDetails.amount": "shipping_amt",
+      "shippingDetails.shippingService": "ship_service_code",
       "total": "grand_total",
-      "amountSaved": "discount",
+      "amountSaved": "discount_amt",
       "checkoutStatus.status": "status"
     }
   },
@@ -83,9 +83,9 @@
   "order_item_array_key": "item",
   "order_item_keys": {
     "sku": "sku",
-    "title": "product",
+    "title": "sku_description",
     "itemID": "mp_item_id",
-    "price": "price_per_unit",
+    "price": "unit_price",
     "quantity": "quantity"
   },
   "_comments": "$this->args['requesterCredentials']['bonanzleAuthToken'] = Vi4VNUZLDl;"

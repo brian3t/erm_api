@@ -3,7 +3,7 @@ namespace app\models;
 define("TRACKING_PUSH_DAYS_BACK", 30);
 // define("DEBUGGING")
 
-use Faker\Provider\DateTime;
+// use Faker\Provider\DateTime;
 use yii;
 use \app\models\base\Mp as BaseMp;
 
@@ -92,8 +92,8 @@ class Mp extends BaseMp
             }
         }
         
-        $order->note = json_encode($order_note);
-        $order->order_date_time = $order_date_time;
+        $order->other_info = json_encode($order_note);
+        $order->channel_date_created = $order_date_time;
         $order->last_mp_updated = new yii\db\Expression('NOW()');//todob debug why this is PST timezone. It should be UTC
         
         
@@ -170,7 +170,8 @@ class Mp extends BaseMp
             $server_files_today = array_filter($file_list, function ($v) use ($date) {
                 return preg_match("$" . $this->config->ORDER_FILE_NAME_PRE . '-' . $date->format('mdy') . "-\d{6}\.csv$", $v);//filename to match: SHOEMETRO-ORDER-010116-224502.csv
             });
-            
+            // $message.="Found files: ". json_encode($file_list);
+    
             //compare with local files. Also include archive folder
             chdir(Yii::getAlias('@app') . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . $this->end_point_name . DIRECTORY_SEPARATOR . "orders" . DIRECTORY_SEPARATOR);//var/www/sme/data/loehmanns/orders
             
