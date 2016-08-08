@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'SME';
+$this->title = 'ERM';
 ?>
 <div class="site-index">
 
