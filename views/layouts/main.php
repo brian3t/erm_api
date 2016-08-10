@@ -54,24 +54,36 @@ AppAsset::register($this);
                     ['label' => 'Task duration', 'url' => '#'],
                 ],
             ],
+            [
+                'label' => 'Users',
+                'items' => [
+                    '<li class="dropdown-header">Order</li>',
+                    ['label' => 'Admin', 'url' => '/user/admin/index'],
+                    // '<li class="divider"></li>',
+                    // '<li class="dropdown-header">Performance</li>',
+                    // ['label' => 'Task duration', 'url' => '#'],
+                ],
+            ],
 
             ['label' => 'Orders w/ROP', 'url' => ['/order?has_rop=1']],
             ['label' => 'API Order', 'url' => 'http://api.' . Yii::$app->request->serverName . '/v1/order'],
-
-//            Yii::$app->user->isGuest ? (
-//                ['label' => 'Login', 'url' => ['/site/login']]
-//            ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post')
-//                . Html::submitButton(
-//                    'Logout (' . Yii::$app->user->identity->username . ')',
-//                    ['class' => 'btn btn-link']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-//            )
+           Yii::$app->user->isGuest ? (
+               ['label' => 'Login', 'url' => ['/user/security/login']]
+           ) : (
+               '<li>'
+               . Html::beginForm(['/site/logout'], 'post')
+               . Html::submitButton(
+                   'Logout (' . Yii::$app->user->identity->username . ')',
+                   ['class' => 'btn btn-link']
+               )
+               . Html::endForm()
+               . '</li>'
+           )
         ],
     ]);
+    ?>
+    
+    <?php
     NavBar::end();
     ?>
 

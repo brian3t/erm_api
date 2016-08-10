@@ -124,3 +124,6 @@ div.panel-primary > div > table.kv-grid-table > thead > tr > th.kv-expand-header
 }
 
 /* Only display first level expand button */
+.navbar-nav > li > form{
+    padding: 7px 0 3px 0;
+}

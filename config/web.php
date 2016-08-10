@@ -14,19 +14,19 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'someids@gmail.com',
+                'password' => 'sTrapok01',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -36,7 +36,7 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
             ],
-
+        
         ],
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
@@ -53,11 +53,15 @@ $config = [
             'class' => 'yii\i18n\Formatter',
             'nullDisplay' => '',
         ],
-
+    
     ],
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'admins'=>['ngxtri'],
+            'controllerMap' => [
+                'security' => 'app\controllers\user\SecurityController'
+            ],
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module',
@@ -72,39 +76,38 @@ $config = [
                 \kartik\datecontrol\Module::FORMAT_TIME => 'HH:mm:ss a',
                 \kartik\datecontrol\Module::FORMAT_DATETIME => 'dd-MM-yyyy HH:mm:ss a',
             ],
-    
+            
             // use ajax conversion for processing dates from display format to save format.
             'ajaxConversion' => true,
-    
+            
             'saveSettings' => [
                 \kartik\datecontrol\Module::FORMAT_DATE => 'php:Y-m-d', // saves as unix timestamp
                 \kartik\datecontrol\Module::FORMAT_TIME => 'php:H:i:s',
                 \kartik\datecontrol\Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
             ],
-
+        
         ],
         // If you use tree table
-        'treemanager' =>  [
+        'treemanager' => [
             'class' => '\kartik\tree\Module',
             // see settings on http://demos.krajee.com/tree-manager#module
-        ]
+        ],
     ],
-
+    
     'params' => $params,
 ];
 
-if(YII_ENV_DEV)
-{
+if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
     ];
-
+    
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' => ['127.0.0.1', '::1', '10.0.*', '192.168.*', '12.22.200.*']
+        'allowedIPs' => ['127.0.0.1', '::1', '10.0.*', '192.168.*', '12.22.200.*'],
     ];
 }
 

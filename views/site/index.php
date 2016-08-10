@@ -4,10 +4,12 @@
 
 $this->title = 'ERM';
 ?>
-<div class="site-index">
-
-    <div class="body-content">
-
-
+    <div class="site-index">
+        
+        <div class="body-content">
+            Hello
+        
+        </div>
     </div>
-</div>
+
+<?php
