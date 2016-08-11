@@ -31,17 +31,16 @@ $config = [
             ],
         ],
         'urlManager' => [
-            'enablePrettyUrl' => false,
-            'enableStrictParsing' => true,
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'pluralize' => false,
-                    'controller' => ['v1/event', 'v1/order', 'v1/tracking', 'v1/inventory'],
+                    'controller' => ['v1/user', 'v1/order', 'v1/tracking', 'v1/inventory'],
                     // 'patterns' => ['PUT,PATCH {id}' => 'update', 'DELETE {id}' => 'delete', 'GET,HEAD {id}' => 'view', 'POST' => 'create', 'GET,HEAD' => 'index', '{id}' => 'options', '' => 'options'],
                     // 'extraPatterns' => [
-                    //     'POST push' => 'push',//todob this is tracking push
                     // ],
                     'tokens' => [
                         '{page}' => '<page:\\d+>',
@@ -73,6 +72,22 @@ $config = [
 
     ],
     'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'admins' => ['ngxtri'],
+            'controllerMap' => [
+                'security' => [
+                    'class' => 'app\controllers\user\SecurityController'
+                    , 'on afterLogout' => function ($e) {
+                        Yii::$app->getSession()->addFlash('success', 'You have logged out successfully');
+                    }],
+                'settings'=>'app\controllers\user\SettingsController'
+            ],
+            'enableFlashMessages' => true
+            // 'modelMap' => [
+            //     'User' => 'app\models\User',
+            // ],
+        ],
         'v1' => [
             'class' => 'app\api\modules\v1\Module',
             'basePath' => '@app/api/modules/v1',

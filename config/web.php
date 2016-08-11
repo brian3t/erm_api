@@ -5,6 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'name' => 'ERM',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
@@ -58,10 +59,21 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'admins'=>['ngxtri'],
+            'admins' => ['ngxtri'],
             'controllerMap' => [
-                'security' => 'app\controllers\user\SecurityController'
+                'security' => [
+                    'class' => 'app\controllers\user\SecurityController'
+                    ,
+                    'on afterLogout' => function ($e) {
+                        Yii::$app->getSession()->addFlash('success', 'You have logged out successfully');
+                    },
+                ],
+                'settings' => 'app\controllers\user\SettingsController',
             ],
+            'enableFlashMessages' => true
+            // 'modelMap' => [
+            //     'User' => 'app\models\User',
+            // ],
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module',

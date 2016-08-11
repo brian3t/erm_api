@@ -20,18 +20,6 @@ class Module extends Yii\base\Module
     public function beforeAction($action)
     {
         $request = Yii::$app->request;
-        $entity_body = file_get_contents('php://input');//{"action":"order_pull","channel_info":{"id":21},"client_id":497,"integration_auth_token":"RETAILOPS_SDK","page_token":"string","specific_orders":[{"channel_refnum":"141"}],"version":1}
-        $request_body = new RequestBody($entity_body);
-        
-        if ((!property_exists($request_body, 'integration_auth_token') || $request_body->integration_auth_token !== 'RETAILOPS_SDK')) {//NOTE FOR PRODUCTION THIS TOKEN IS DIFFERENT
-            Yii::error('Missing or wrong integration auth token' . json_encode($request_body));
-            Yii::$app->response->setStatusCode('401');
-            return false;
-        }
-        if (property_exists($request_body, 'page_token')) {
-            $request->setQueryParams(['page' => intval($request_body->page_token)]);
-        }
-        Yii::$app->controller->requestbody = $request_body;
         return parent::beforeAction($action);
     }
     

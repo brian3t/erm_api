@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use \kartik\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -35,62 +36,68 @@ AppAsset::register($this);
             'class' => 'navbar navbar-fixed-top',
         ],
     ]);
-    echo '<span class="navbar-brand">v0.6</span>';
+    echo '<span class="navbar-brand">v0.8</span>';
+    $items = [];
+    $admin_items = [
+    
+    ];
+    if (!Yii::$app->user->isGuest) {
+        $items[] = [
+            'label' => 'My Account',
+            'items' => [
+                ['label' => 'Profile', 'url' => '/user/settings/profile'],
+                ['label' => 'Account', 'url' => '/user/settings/account'],
+                // ['label' => 'Social Networks', 'url' => '/user/settings/networks'],
+                ['label' => 'Log Out', 'url' => '/user/security/logout'],
+            ],
+        ];
+        // '<li>'
+        //     . Html::beginForm(['/site/logout'], 'post')
+        //     . Html::submitButton(
+        //         'Logout (' . Yii::$app->user->identity->username . ')',
+        //         ['class' => 'btn btn-link']
+        //     )
+        //     . Html::endForm()
+        //     . '</li>';
+        if (Yii::$app->user->identity->getIsAdmin()) {
+            $admin_items[] = '<li class="dropdown-header">Users</li>';
+            $admin_items[] = ['label' => 'Admin', 'url' => '/user/admin/index'];
+        }
+    } else {
+        $items[] = ['label' => 'Sign Up', 'url' => ['/user/registration/register']];
+        $items[] = ['label' => 'Login', 'url' => ['/user/security/login']];
+        
+    }
+    $items[] = [
+        'label' => 'Admins',
+        'items' => $admin_items,
+    ];
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Orders', 'url' => ['/order/index']],
-            ['label' => 'Customers', 'url' => ['/customer/index']],
-            ['label' => 'Docs', 'url' => ['/docs']],
-            ['label' => 'Events', 'url' => ['/event']],
-            ['label' => 'Inventory', 'url' => ['/inventory']],
-            [
-                'label' => 'Reports',
-                'items' => [
-                    '<li class="dropdown-header">Order</li>',
-                    ['label' => 'Order confirmation %', 'url' => \yii\helpers\Url::to('/order/confirm-percent')],
-                    '<li class="divider"></li>',
-                    '<li class="dropdown-header">Performance</li>',
-                    ['label' => 'Task duration', 'url' => '#'],
-                ],
-            ],
-            [
-                'label' => 'Users',
-                'items' => [
-                    '<li class="dropdown-header">Order</li>',
-                    ['label' => 'Admin', 'url' => '/user/admin/index'],
-                    // '<li class="divider"></li>',
-                    // '<li class="dropdown-header">Performance</li>',
-                    // ['label' => 'Task duration', 'url' => '#'],
-                ],
-            ],
-
-            ['label' => 'Orders w/ROP', 'url' => ['/order?has_rop=1']],
-            ['label' => 'API Order', 'url' => 'http://api.' . Yii::$app->request->serverName . '/v1/order'],
-           Yii::$app->user->isGuest ? (
-               ['label' => 'Login', 'url' => ['/user/security/login']]
-           ) : (
-               '<li>'
-               . Html::beginForm(['/site/logout'], 'post')
-               . Html::submitButton(
-                   'Logout (' . Yii::$app->user->identity->username . ')',
-                   ['class' => 'btn btn-link']
-               )
-               . Html::endForm()
-               . '</li>'
-           )
-        ],
+        'items' => $items,
     ]);
     ?>
     
     <?php
     NavBar::end();
     ?>
-
+    
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <div class="flash">
+            <?php foreach (Yii::$app->session->allFlashes as $key => $message) {
+                echo \kartik\widgets\Alert::widget([
+                    'type' => Alert::TYPE_INFO,
+                    'title' => ucwords($key),
+                    'body' => is_array($message)?implode('<br/>', $message):$message,
+                    'icon' => 'glyphicon glyphicon-info-sign',
+                ]);
+            }
+            ?>
+        </div>
         <?= $content ?>
     </div>
 </div>
@@ -98,7 +105,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Shoe Metro Enhancer 3 <?= date('Y') ?></p>
-
+    
     </div>
 </footer>
 

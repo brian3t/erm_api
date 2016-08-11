@@ -11,5 +11,6 @@ class SecurityController extends \dektrium\user\controllers\SecurityController
         unset($behaviors['verbs']['actions']['logout']);
         return $behaviors;
     }
+
     
 }
