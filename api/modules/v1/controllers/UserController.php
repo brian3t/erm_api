@@ -58,7 +58,7 @@ class UserController extends BaseActiveController
         if ($model->load(Yii::$app->getRequest()->post())) {
             $finder = $settingsController->getFinder();
             /** @var Finder $finder */
-            $user_found = $finder->findUserByUsername($model->login);
+            $user_found = $finder->findUserByEmail($model->login);
             if (is_null($user_found)) {
                 $response['message'] = 'Username does not exist';
                 return $response;

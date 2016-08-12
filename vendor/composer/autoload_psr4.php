@@ -19,6 +19,7 @@ return array(
     'yii\\apidoc\\' => array($vendorDir . '/yiisoft/yii2-apidoc'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
     'vova07\\console\\' => array($vendorDir . '/vova07/yii2-console-runner-extension'),
+    'voskobovich\\behaviors\\' => array($vendorDir . '/voskobovich/yii2-many-many-behavior/src'),
     'mootensai\\relation\\' => array($vendorDir . '/mootensai/yii2-relation-trait'),
     'mootensai\\enhancedgii\\' => array($vendorDir . '/mootensai/yii2-enhanced-gii'),
     'mootensai\\components\\' => array($vendorDir . '/mootensai/yii2-optimistic-lock-validator', $vendorDir . '/mootensai/yii2-jsblock'),

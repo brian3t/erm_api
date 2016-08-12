@@ -54,7 +54,13 @@ $config = [
             'class' => 'yii\i18n\Formatter',
             'nullDisplay' => '',
         ],
-    
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'user' => [
@@ -70,10 +76,10 @@ $config = [
                 ],
                 'settings' => 'app\controllers\user\SettingsController',
             ],
-            'enableFlashMessages' => true
-            // 'modelMap' => [
-            //     'User' => 'app\models\User',
-            // ],
+            'enableFlashMessages' => true,
+            'modelMap' => [
+                'User' => 'app\models\User',
+            ],
         ],
         'gridview' => [
             'class' => '\kartik\grid\Module',

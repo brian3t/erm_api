@@ -8,7 +8,25 @@
 
 namespace app\models;
 
+
+/**
+ * Class User
+ * @package app\models
+ *
+ * @property \app\models\CompanyUser $companyUser
+ *
+  */
 class User extends \dektrium\user\models\User
 {
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanyUser()
+    {
+        return $this->hasOne(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
+    }
     
+    public function getCompany(){
+        return $this->companyUser->company;
+    }
 }
