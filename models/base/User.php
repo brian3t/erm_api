@@ -20,15 +20,12 @@ use Yii;
  * @property integer $updated_at
  * @property integer $flags
  *
- * @property \app\models\CompanyUser[] $companyUsers
- * @property \app\models\Profile $profile
- * @property \app\models\SocialAccount[] $socialAccounts
- * @property \app\models\Token[] $tokens
+ * @property \app\models\CompanyUser $companyUser
  */
 class User extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
+    
     /**
      * @inheritdoc
      */
@@ -42,7 +39,7 @@ class User extends \yii\db\ActiveRecord
             [['auth_key'], 'string', 'max' => 32],
             [['registration_ip'], 'string', 'max' => 45],
             [['email'], 'unique'],
-            [['username'], 'unique']
+            [['username'], 'unique'],
         ];
     }
     
@@ -53,7 +50,7 @@ class User extends \yii\db\ActiveRecord
     {
         return 'user';
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -73,35 +70,39 @@ class User extends \yii\db\ActiveRecord
         ];
     }
     
+    // /**
+    //  * @return \yii\db\ActiveQuery
+    //  */
+    // public function getCompanyUsers()
+    // {
+    //     return $this->hasMany(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
+    // }
+    //
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyUsers()
+    public function getCompanyUser()
     {
-        return $this->hasMany(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
+        return $this->hasOne(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
     }
+    
+    public function getCompany()
+    {
+        return $this->companyUser?$this->companyUser->company:null;
+    }
+    
+    
+    public function fields()
+    {
+        $parent_fields = parent::fields();
+        $parent_fields = array_diff($parent_fields,
+            ['password_hash', 'registration_ip', 'unconfirmed_email', 'blocked_at', 'updated_at']);
+        return array_merge($parent_fields, [
+            'company' => function ($model) {
+                return $model->company->attributes;
+            },
         
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProfile()
-    {
-        return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id'])->inverseOf('user');
+        ]);
     }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSocialAccounts()
-    {
-        return $this->hasMany(\app\models\SocialAccount::className(), ['user_id' => 'id'])->inverseOf('user');
-    }
-        
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTokens()
-    {
-        return $this->hasMany(\app\models\Token::className(), ['user_id' => 'id'])->inverseOf('user');
-    }
-    }
+    
+}

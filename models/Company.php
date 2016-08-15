@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\base\User;
 use Yii;
 use \app\models\base\Company as BaseCompany;
 
@@ -31,5 +32,18 @@ class Company extends BaseCompany
             [['description', 'line_of_business'], 'string', 'max' => 800]
         ]);
     }
-	
+    
+    public function getCompanyUsersFullInfo(){
+        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('company_user', ['company_id'=>'id']);
+    }
+
+    public function fields()
+    {
+        
+        $parent_fields = parent::fields();
+        unset($parent_fields['user']);
+        return array_merge($parent_fields, ['user'=>function($model){
+            return $model->companyUsersFullInfo;
+        }]);
+    }
 }

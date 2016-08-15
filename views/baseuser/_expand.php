@@ -10,10 +10,10 @@ $items = [
         ]),
     ],
         [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Members'),
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Company'),
         'content' => $this->render('_dataCompanyUser', [
             'model' => $model,
-            'row' => $model->companyUsers,
+            'row' => $model->companyUser,
         ]),
     ],
     ];

@@ -44,6 +44,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/user' => 'baseuser/index'
             ],
         ],
         'consoleRunner' => [

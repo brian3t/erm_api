@@ -15,7 +15,7 @@ namespace app\models;
  *
  * @property \app\models\CompanyUser $companyUser
  *
-  */
+ */
 class User extends \dektrium\user\models\User
 {
     /**
@@ -26,7 +26,9 @@ class User extends \dektrium\user\models\User
         return $this->hasOne(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
     }
     
-    public function getCompany(){
-        return $this->companyUser->company;
+    public function getCompany()
+    {
+        return $this->companyUser?$this->companyUser->company:null;
     }
+    
 }

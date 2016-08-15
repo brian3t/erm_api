@@ -68,10 +68,17 @@ AppAsset::register($this);
         $items[] = ['label' => 'Login', 'url' => ['/user/security/login']];
         
     }
-    $items[] = [
-        'label' => 'Admins',
-        'items' => $admin_items,
-    ];
+    $items = array_merge($items, [
+        [
+            'label' => 'Admins',
+            'items' => $admin_items,
+        ],
+        [
+            'label' => 'Companies',
+            'url' => '/company',
+        ],
+        ['label' => 'Raw User data', 'url' => '/user'],
+    ]);
     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -92,7 +99,7 @@ AppAsset::register($this);
                 echo \kartik\widgets\Alert::widget([
                     'type' => Alert::TYPE_INFO,
                     'title' => ucwords($key),
-                    'body' => is_array($message)?implode('<br/>', $message):$message,
+                    'body' => is_array($message) ? implode('<br/>', $message) : $message,
                     'icon' => 'glyphicon glyphicon-info-sign',
                 ]);
             }

@@ -31,7 +31,7 @@ use Yii;
 class Company extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
+    
     /**
      * @inheritdoc
      */
@@ -49,7 +49,7 @@ class Company extends \yii\db\ActiveRecord
             [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],
             [['num_of_employee'], 'string', 'max' => 30],
-            [['description', 'line_of_business'], 'string', 'max' => 800]
+            [['description', 'line_of_business'], 'string', 'max' => 800],
         ];
     }
     
@@ -60,7 +60,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return 'company';
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -95,4 +95,10 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\CompanyUser::className(), ['company_id' => 'id'])->inverseOf('company');
     }
-    }
+    
+    // public function getCu()
+    // {
+    //     return $this->hasMany(\app\models\CompanyUser::className(), ['company_id' => 'id']);
+    // }
+    
+}

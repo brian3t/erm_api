@@ -44,9 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'email:email',
         [
             'label' => 'Company - Role',
-            'format'=>'raw',
+            'format' => 'raw',
             'value' => function ($model) {
-                return \yii\helpers\BaseHtml::a($model->companyUser->company->name, "/company/view/" .$model->companyUser->company->id ) . ' - ' . ucwords($model->companyUser->role);
+                if ($model->companyUser == null) {
+                    return '';
+                }
+                return \yii\helpers\BaseHtml::a($model->company->name,
+                    "/company/view/" . $model->company->id) . ' - ' . ucwords($model->companyUser->role);
             },
         ],
         // [
