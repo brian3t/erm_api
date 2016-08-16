@@ -19,7 +19,7 @@ use Yii;
  * @property string $num_of_employee
  * @property integer $annual_revenue
  * @property integer $facebook_fans
- * @property string $twiiter_handle
+ * @property string $twitter_handle
  * @property integer $twitter_followers
  * @property string $linkedin_company_page
  * @property string $timezone
@@ -43,7 +43,7 @@ class Company extends \yii\db\ActiveRecord
             [['timezone'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
-            [['industry', 'twiiter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
+            [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
             [['city'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 6],
@@ -79,7 +79,7 @@ class Company extends \yii\db\ActiveRecord
             'num_of_employee' => 'Num Of Employee',
             'annual_revenue' => 'Annual Revenue',
             'facebook_fans' => 'Facebook Fans',
-            'twiiter_handle' => 'Twiiter Handle',
+            'twitter_handle' => 'Twiiter Handle',
             'twitter_followers' => 'Twitter Followers',
             'linkedin_company_page' => 'Linkedin Company Page',
             'timezone' => 'Timezone',

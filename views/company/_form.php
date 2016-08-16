@@ -47,7 +47,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'facebook_fans')->textInput(['placeholder' => 'Facebook Fans']) ?>
 
-    <?= $form->field($model, 'twiiter_handle')->textInput(['maxlength' => true, 'placeholder' => 'Twiiter Handle']) ?>
+    <?= $form->field($model, 'twitter_handle')->textInput(['maxlength' => true, 'placeholder' => 'Twiiter Handle']) ?>
 
     <?= $form->field($model, 'twitter_followers')->textInput(['placeholder' => 'Twitter Followers']) ?>
 

@@ -49,7 +49,7 @@ $this->registerJs($search);
         'num_of_employee',
         'annual_revenue',
         'facebook_fans',
-        'twiiter_handle',
+        'twitter_handle',
         'twitter_followers',
         'linkedin_company_page',
         'timezone',

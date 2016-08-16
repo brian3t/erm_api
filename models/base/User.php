@@ -19,6 +19,9 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $flags
+ * @property \app\models\Profile $profile
+// * @property \app\models\SocialAccount[] $socialAccounts
+// * @property \app\models\Token[] $tokens
  *
  * @property \app\models\CompanyUser $companyUser
  */
@@ -39,7 +42,7 @@ class User extends \yii\db\ActiveRecord
             [['auth_key'], 'string', 'max' => 32],
             [['registration_ip'], 'string', 'max' => 45],
             [['email'], 'unique'],
-            [['username'], 'unique'],
+            [['username'], 'unique']
         ];
     }
     
@@ -90,7 +93,18 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->companyUser?$this->companyUser->company:null;
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    public function getName(){
+        return $this->profile->name;
+    }
     
     public function fields()
     {
@@ -98,6 +112,7 @@ class User extends \yii\db\ActiveRecord
         $parent_fields = array_diff($parent_fields,
             ['password_hash', 'registration_ip', 'unconfirmed_email', 'blocked_at', 'updated_at']);
         return array_merge($parent_fields, [
+            'name',
             'company' => function ($model) {
                 return $model->company->attributes;
             },

@@ -23,7 +23,7 @@ class Company extends BaseCompany
             [['timezone'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
-            [['industry', 'twiiter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
+            [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
             [['city'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 6],
@@ -34,7 +34,10 @@ class Company extends BaseCompany
     }
     
     public function getCompanyUsersFullInfo(){
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('company_user', ['company_id'=>'id']);
+        $query= $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('company_user', ['company_id'=>'id'])
+            ->joinWith('profile')
+            ->addSelect(['*', "profile.name AS name"]);
+        return $query->asArray();
     }
 
     public function fields()
@@ -43,7 +46,11 @@ class Company extends BaseCompany
         $parent_fields = parent::fields();
         unset($parent_fields['user']);
         return array_merge($parent_fields, ['user'=>function($model){
-            return $model->companyUsersFullInfo;
+            $user_full = $model->companyUsersFullInfo;
+            foreach ($user_full as $index=>$company){
+                unset($user_full[$index]['profile']);
+            }
+            return $user_full;
         }]);
     }
 }
