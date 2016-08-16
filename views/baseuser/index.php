@@ -16,15 +16,15 @@ $search = "$('.search-button').click(function(){
 $this->registerJs($search);
 ?>
 <div class="user-index">
-
+    
     <h1><?= Html::encode($this->title) ?></h1>
-
+    
     <p>
         <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php 
+    <?php
     $gridColumn = [
-        ['class' => 'yii\grid\SerialColumn'],
+        'id',
         [
             'class' => 'kartik\grid\ExpandRowColumn',
             'width' => '50px',
@@ -35,12 +35,18 @@ $this->registerJs($search);
                 return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
             },
             'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true
+            'expandOneOnly' => true,
         ],
         ['attribute' => 'id', 'hidden' => true],
         'username',
         'email:email',
-        'password_hash',
+        [
+            'label' => 'Avatar',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return $model->profile->avatar;
+            },
+        ],
         'auth_key',
         'confirmed_at',
         'unconfirmed_email:email',
@@ -52,7 +58,7 @@ $this->registerJs($search);
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -80,9 +86,9 @@ $this->registerJs($search);
                     ],
                 ],
                 'exportConfig' => [
-                    ExportMenu::FORMAT_PDF => false
-                ]
-            ]) ,
+                    ExportMenu::FORMAT_PDF => false,
+                ],
+            ]),
         ],
     ]); ?>
 

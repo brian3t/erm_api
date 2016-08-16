@@ -43,6 +43,7 @@ $config = [
                     // 'extraPatterns' => [
                     // ],
                     'tokens' => [
+                        '{id}'=>'<id:\\d+>',
                         '{page}' => '<page:\\d+>',
                     ],
                 ],

@@ -67,7 +67,7 @@ class UserController extends BaseActiveController
                 $cuser = Yii::$app->user->identity;
                 $profile = $settingsController->actionApiProfile();
                 $response['status']='ok';
-                $response['profile'] = $profile;
+                $response['id'] = $user_found->id;
             } else {
                 $response['message'] = 'Wrong password';
             }

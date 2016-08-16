@@ -116,6 +116,9 @@ class User extends \yii\db\ActiveRecord
             'company' => function ($model) {
                 return $model->company->attributes;
             },
+            'profile'=>function($model){
+                return $model->profile->attributes;
+            }
         
         ]);
     }

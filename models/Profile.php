@@ -21,6 +21,7 @@ class Profile extends BaseProfile
             [['user_id'], 'integer'],
             [['bio'], 'string'],
             [['name', 'public_email', 'gravatar_email', 'location', 'website'], 'string', 'max' => 255],
+            [['avatar'], 'string', 'max' => 800],
             [['gravatar_id'], 'string', 'max' => 32]
         ]);
     }
