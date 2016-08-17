@@ -68,6 +68,7 @@ $config = [
             'class' => 'dektrium\user\Module',
             'admins' => ['ngxtri'],
             'controllerMap' => [
+                'admin'=>'app\controllers\user\AdminController',
                 'security' => [
                     'class' => 'app\controllers\user\SecurityController'
                     ,
@@ -82,6 +83,7 @@ $config = [
             'modelMap' => [
                 'User' => 'app\models\User',
                 'Profile'          => 'app\models\user\Profile',
+                'SettingsForm'      => 'app\models\user\SettingsForm'
             ],
         ],
         'gridview' => [

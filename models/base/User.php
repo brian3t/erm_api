@@ -19,11 +19,11 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $flags
- * @property \app\models\Profile $profile
-// * @property \app\models\SocialAccount[] $socialAccounts
-// * @property \app\models\Token[] $tokens
  *
  * @property \app\models\CompanyUser $companyUser
+ * @property \app\models\Profile $profile
+ * @property \app\models\SocialAccount[] $socialAccounts
+ * @property \app\models\Token[] $tokens
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -42,7 +42,7 @@ class User extends \yii\db\ActiveRecord
             [['auth_key'], 'string', 'max' => 32],
             [['registration_ip'], 'string', 'max' => 45],
             [['email'], 'unique'],
-            [['username'], 'unique']
+            [['username'], 'unique'],
         ];
     }
     
@@ -73,14 +73,6 @@ class User extends \yii\db\ActiveRecord
         ];
     }
     
-    // /**
-    //  * @return \yii\db\ActiveQuery
-    //  */
-    // public function getCompanyUsers()
-    // {
-    //     return $this->hasMany(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
-    // }
-    //
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -91,9 +83,9 @@ class User extends \yii\db\ActiveRecord
     
     public function getCompany()
     {
-        return $this->companyUser?$this->companyUser->company:null;
+        return $this->companyUser ? $this->companyUser->company : null;
     }
-
+    
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -101,7 +93,23 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id'])->inverseOf('user');
     }
-
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSocialAccounts()
+    {
+        return $this->hasMany(\app\models\SocialAccount::className(), ['user_id' => 'id'])->inverseOf('user');
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTokens()
+    {
+        return $this->hasMany(\app\models\Token::className(), ['user_id' => 'id'])->inverseOf('user');
+    }
+    
     public function getName(){
         return $this->profile->name;
     }
@@ -122,5 +130,4 @@ class User extends \yii\db\ActiveRecord
         
         ]);
     }
-    
 }

@@ -20,6 +20,8 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
+use yii\helpers\BaseFileHelper;
 
 class SettingsController extends \dektrium\user\controllers\SettingsController
 {
@@ -45,4 +47,43 @@ class SettingsController extends \dektrium\user\controllers\SettingsController
     
         return $model->attributes;
     }
+    
+    /**
+     *
+     * @var \app\models\user\Profile $model
+     *
+     * Shows profile settings form.
+     * @return string|\yii\web\Response
+     */
+    public function actionProfile() {
+        $model = $this->finder->findProfileById( \Yii::$app->user->identity->getId() );
+        /** @var $model Profile */
+        $this->performAjaxValidation( $model );
+        if ( \Yii::$app->request->isPost ) {
+            $model->load( \Yii::$app->request->post() );
+            $languages = \Yii::$app->request->post('lang');
+            if (isset($languages)){
+                $languages = array_filter($languages, function($e){return count($e) ==2 ;});
+                $model->languages = json_encode($languages);
+            }
+            $model->avatarFile = UploadedFile::getInstance( $model,'avatarFile' );
+            $avatarFolder = \Yii::$app->getBasePath() . "/web/uploads/avatar/" . \Yii::$app->user->id;
+            if ( $model->avatarFile) {
+                if (is_dir($avatarFolder)){
+                    BaseFileHelper::removeDirectory( $avatarFolder );
+                }
+                mkdir( $avatarFolder,0775 );
+                
+                $model->avatarFile->saveAs( $avatarFolder . '/' . $model->avatarFile->baseName . '.' . $model->avatarFile->extension );
+                $model->avatar = $model->avatarFile->baseName . '.' . $model->avatarFile->extension;
+            }
+            if ( $model->save() ) {
+                \Yii::$app->getSession()->setFlash( 'success',\Yii::t( 'user','Your profile has been updated' ) );
+            }
+            return $this->refresh();
+        }
+        
+        return $this->render( 'profile',[ 'model' => $model, ] );
+    }
+    
 }

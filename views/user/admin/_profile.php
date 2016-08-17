@@ -35,7 +35,25 @@ use yii\helpers\Html;
 
 <?= $form->field($profile, 'name') ?>
 <?= $form->field($profile, 'public_email') ?>
-<?= $form->field($profile, 'avatar') ?>
+<?php
+if (! empty($profile->avatar)):
+    ?>
+    <div class="form-group ">
+        <label class="col-lg-3 control-label" for="profile-display-avatar">Current profile
+            picture</label>
+        
+        <div class="col-lg-9">
+            <img src="/uploads/avatar/<?= \Yii::$app->user->id . '/' . $profile->avatar ?>" class="avatar"
+                 alt="avatar">
+        </div>
+        <div class="col-sm-offset-3 col-lg-9">
+            <div class="help-block"></div>
+        </div>
+    </div>
+    <?php
+endif;
+?>
+<?= $form->field($profile, 'avatarFile')->fileInput()->label('Upload new profile picture') ?>
 <?= $form->field($profile, 'website') ?>
 <?= $form->field($profile, 'location') ?>
 <?= $form->field($profile, 'gravatar_email') ?>

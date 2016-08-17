@@ -12,14 +12,8 @@ use yii\filters\VerbFilter;
 /**
  * UserController implements the CRUD actions for User model.
  */
-class BaseuserController extends Controller
+class UserController extends Controller
 {
-    public function getViewPath()
-    {
-        return Yii::getAlias('@app/views/baseuser/user');
-    }
-    
-    
     public function behaviors()
     {
         return [
@@ -44,7 +38,7 @@ class BaseuserController extends Controller
             ]
         ];
     }
-    
+
     /**
      * Lists all User models.
      * @return mixed
@@ -54,12 +48,12 @@ class BaseuserController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => User::find(),
         ]);
-        
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
     }
-    
+
     /**
      * Displays a single User model.
      * @param integer $id
@@ -68,11 +62,19 @@ class BaseuserController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerSocialAccount = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->socialAccounts,
+        ]);
+        $providerToken = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->tokens,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerSocialAccount' => $providerSocialAccount,
+            'providerToken' => $providerToken,
         ]);
     }
-    
+
     /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -81,7 +83,7 @@ class BaseuserController extends Controller
     public function actionCreate()
     {
         $model = new User();
-        
+
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -90,7 +92,7 @@ class BaseuserController extends Controller
             ]);
         }
     }
-    
+
     /**
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -100,7 +102,7 @@ class BaseuserController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -109,7 +111,7 @@ class BaseuserController extends Controller
             ]);
         }
     }
-    
+
     /**
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -119,10 +121,10 @@ class BaseuserController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->deleteWithRelated();
-        
+
         return $this->redirect(['index']);
     }
-    
+
     
     /**
      * Finds the User model based on its primary key value.
@@ -141,13 +143,13 @@ class BaseuserController extends Controller
     }
     
     /**
-     * Action to load a tabular form grid
-     * for SocialAccount
-     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-     *
-     * @return mixed
-     */
+    * Action to load a tabular form grid
+    * for SocialAccount
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
     public function actionAddSocialAccount()
     {
         if (Yii::$app->request->isAjax) {
@@ -161,13 +163,13 @@ class BaseuserController extends Controller
     }
     
     /**
-     * Action to load a tabular form grid
-     * for Token
-     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-     *
-     * @return mixed
-     */
+    * Action to load a tabular form grid
+    * for Token
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
     public function actionAddToken()
     {
         if (Yii::$app->request->isAjax) {

@@ -7,14 +7,6 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\base\User */
 /* @var $form yii\widgets\ActiveForm */
 
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
-        'class' => 'CompanyUser', 
-        'relID' => 'company-user', 
-        'value' => \yii\helpers\Json::encode($model->companyUsers),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
 ?>
 
 <div class="user-form">
@@ -52,7 +44,8 @@ use yii\widgets\ActiveForm;
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('CompanyUser'),
             'content' => $this->render('_formCompanyUser', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->companyUsers),
+                'form' => $form,
+                'CompanyUser' => is_null($model->companyUser) ? new app\models\base\CompanyUser() : $model->companyUser,
             ]),
         ],
     ];

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = 'User';
+$this->title = 'Social Account';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -15,56 +15,47 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="user-index">
-    
+<div class="social-account-index">
+
     <h1><?= Html::encode($this->title) ?></h1>
-    
+
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Social Account', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?php
+<?php 
     $gridColumn = [
-        'id',
-        [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'width' => '50px',
-            'value' => function ($model, $key, $index, $column) {
-                return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function ($model, $key, $index, $column) {
-                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
-            },
-            'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true,
-        ],
+        ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'hidden' => true],
-        'username',
-        'email:email',
         [
-            'label' => 'Avatar',
-            'format' => 'raw',
-            'value' => function ($model) {
-                return $model->profile->avatar;
-            },
-        ],
-        'auth_key',
-        'confirmed_at',
-        'unconfirmed_email:email',
-        'blocked_at',
-        'registration_ip',
+                'attribute' => 'user_id',
+                'label' => 'User',
+                'value' => function($model){
+                    return $model->user->username;
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--user_id']
+            ],
+        'provider',
+        'client_id',
+        'data:ntext',
+        'code',
         'created_at',
-        'updated_at',
-        'flags',
+        'email:email',
+        'username',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ];
+    ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-user']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-social-account']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
@@ -86,9 +77,9 @@ $this->registerJs($search);
                     ],
                 ],
                 'exportConfig' => [
-                    ExportMenu::FORMAT_PDF => false,
-                ],
-            ]),
+                    ExportMenu::FORMAT_PDF => false
+                ]
+            ]) ,
         ],
     ]); ?>
 

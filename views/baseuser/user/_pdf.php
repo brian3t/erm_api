@@ -43,43 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
 <?php
-if($providerCompanyUser->totalCount){
-    $gridColumnCompanyUser = [
-        ['class' => 'yii\grid\SerialColumn'],
-                [
-                'attribute' => 'company.name',
-                'label' => 'Company'
-            ],
-        [
-                'attribute' => 'user.username',
-                'label' => 'User'
-            ],
-        'role',
-    ];
-    echo Gridview::widget([
-        'dataProvider' => $providerCompanyUser,
-        'panel' => [
-            'type' => GridView::TYPE_PRIMARY,
-            'heading' => Html::encode('Company User'),
-        ],
-        'panelHeadingTemplate' => '<h4>{heading}</h4>{summary}',
-        'toggleData' => false,
-        'columns' => $gridColumnCompanyUser
-    ]);
-}
-?>
-    </div>
-    
-    <div class="row">
-<?php
 if($providerSocialAccount->totalCount){
     $gridColumnSocialAccount = [
         ['class' => 'yii\grid\SerialColumn'],
-                [
-                'attribute' => 'user.username',
-                'label' => 'User'
-            ],
-        'provider',
+                        'provider',
         'client_id',
         'data:ntext',
         'code',
@@ -106,11 +73,7 @@ if($providerSocialAccount->totalCount){
 if($providerToken->totalCount){
     $gridColumnToken = [
         ['class' => 'yii\grid\SerialColumn'],
-        [
-                'attribute' => 'user.username',
-                'label' => 'User'
-            ],
-        'code',
+                'code',
         'created_at',
         'type',
     ];
