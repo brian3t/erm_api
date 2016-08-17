@@ -76,10 +76,12 @@ $config = [
                     },
                 ],
                 'settings' => 'app\controllers\user\SettingsController',
+                'profile'  => 'app\controllers\user\ProfileController',
             ],
             'enableFlashMessages' => true,
             'modelMap' => [
                 'User' => 'app\models\User',
+                'Profile'          => 'app\models\user\Profile',
             ],
         ],
         'gridview' => [
