@@ -3,6 +3,7 @@
 namespace app\models\base;
 
 use Yii;
+use yii\base\Object;
 
 /**
  * This is the base model class for table "user".
@@ -22,8 +23,6 @@ use Yii;
  *
  * @property \app\models\CompanyUser $companyUser
  * @property \app\models\Profile $profile
- * @property \app\models\SocialAccount[] $socialAccounts
- * @property \app\models\Token[] $tokens
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -83,7 +82,7 @@ class User extends \yii\db\ActiveRecord
     
     public function getCompany()
     {
-        return $this->companyUser ? $this->companyUser->company : null;
+        return is_object($this->companyUser) ? $this->companyUser->company : ['name'=>''];
     }
     
     /**
@@ -92,22 +91,6 @@ class User extends \yii\db\ActiveRecord
     public function getProfile()
     {
         return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id'])->inverseOf('user');
-    }
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSocialAccounts()
-    {
-        return $this->hasMany(\app\models\SocialAccount::className(), ['user_id' => 'id'])->inverseOf('user');
-    }
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTokens()
-    {
-        return $this->hasMany(\app\models\Token::className(), ['user_id' => 'id'])->inverseOf('user');
     }
     
     public function getName(){
@@ -122,7 +105,7 @@ class User extends \yii\db\ActiveRecord
         return array_merge($parent_fields, [
             'name',
             'company' => function ($model) {
-                return $model->company->attributes;
+                return is_object($model->company)?$model->company->attributes:['name'=>''];
             },
             'profile'=>function($model){
                 return $model->profile->attributes;
