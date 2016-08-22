@@ -36,6 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         'username',
+        [
+            'attribute' => 'company.name',
+            'label' => 'Company',
+        ],
         'email:email',
         'password_hash',
         'auth_key',
@@ -46,6 +50,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'created_at',
         'updated_at',
         'flags',
+        'first_name',
+        'last_name',
+        'job_title',
+        'line_of_business',
+        'union_memberships',
+        'phone_number_type',
+        'phone_number',
+        'birthdate',
+        'website_url:url',
+        'twitter_id',
+        'facebook_id',
+        'instagram_id',
+        'google_id',
+        'yahoo_id',
+        'linkedin_id',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -54,4 +73,53 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
     </div>
     
+    <div class="row">
+<?php
+if($providerSocialAccount->totalCount){
+    $gridColumnSocialAccount = [
+        ['class' => 'yii\grid\SerialColumn'],
+                                    'provider',
+            'client_id',
+            'data:ntext',
+            'code',
+            'created_at',
+            'email:email',
+            'username',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerSocialAccount,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-social-account']],
+        'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Social Account'),
+        ],
+        'columns' => $gridColumnSocialAccount
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerToken->totalCount){
+    $gridColumnToken = [
+        ['class' => 'yii\grid\SerialColumn'],
+                        'code',
+            'created_at',
+            'type',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerToken,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-token']],
+        'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Token'),
+        ],
+        'columns' => $gridColumnToken
+    ]);
+}
+?>
+    </div>
 </div>

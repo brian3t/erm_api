@@ -9,9 +9,9 @@ use yii\widgets\ActiveForm;
 
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
-        'class' => 'CompanyUser', 
-        'relID' => 'company-user', 
-        'value' => \yii\helpers\Json::encode($model->companyUsers),
+        'class' => 'User', 
+        'relID' => 'user', 
+        'value' => \yii\helpers\Json::encode($model->users),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
@@ -47,7 +47,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'facebook_fans')->textInput(['placeholder' => 'Facebook Fans']) ?>
 
-    <?= $form->field($model, 'twitter_handle')->textInput(['maxlength' => true, 'placeholder' => 'Twiiter Handle']) ?>
+    <?= $form->field($model, 'twitter_handle')->textInput(['maxlength' => true, 'placeholder' => 'Twitter Handle']) ?>
 
     <?= $form->field($model, 'twitter_followers')->textInput(['placeholder' => 'Twitter Followers']) ?>
 
@@ -62,9 +62,9 @@ use yii\widgets\ActiveForm;
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('CompanyUser'),
-            'content' => $this->render('_formCompanyUser', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->companyUsers),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('User'),
+            'content' => $this->render('_formUser', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->users),
             ]),
         ],
     ];

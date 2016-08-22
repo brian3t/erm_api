@@ -42,17 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
     'columns' => [
         'username',
         'email:email',
-        [
-            'label' => 'Company - Role',
-            'format' => 'raw',
-            'value' => function ($model) {
-                if ($model->companyUser == null) {
-                    return '';
-                }
-                return \yii\helpers\BaseHtml::a($model->company->name,
-                    "/company/view/" . $model->company->id) . ' - ' . ucwords($model->companyUser->role);
-            },
-        ],
         // [
         //     'attribute' => 'registration_ip',
         //     'value' => function ($model) {

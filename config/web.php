@@ -26,7 +26,7 @@ $config = [
                 'username' => 'someids@gmail.com',
                 'password' => 'sTrapok01',
                 'port' => '587',
-                'encryption' => 'tls',
+                'encryption' => 'tls', 
             ],
         ],
         'log' => [
@@ -81,9 +81,9 @@ $config = [
             ],
             'enableFlashMessages' => true,
             'modelMap' => [
-                'User' => 'app\models\User',
+                'User' => 'app\models\DektriumUser',
                 'Profile'          => 'app\models\user\Profile',
-                'SettingsForm'      => 'app\models\user\SettingsForm'
+                // 'SettingsForm'      => 'app\models\user\SettingsForm'
             ],
         ],
         'gridview' => [

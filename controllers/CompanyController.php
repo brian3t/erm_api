@@ -28,7 +28,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-company-user'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-user'],
                         'roles' => ['@']
                     ],
                     [
@@ -62,12 +62,12 @@ class CompanyController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $providerCompanyUser = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->companyUsers,
+        $providerUser = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->users,
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerCompanyUser' => $providerCompanyUser,
+            'providerUser' => $providerUser,
         ]);
     }
 
@@ -140,19 +140,19 @@ class CompanyController extends Controller
     
     /**
     * Action to load a tabular form grid
-    * for CompanyUser
+    * for User
     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
     *
     * @return mixed
     */
-    public function actionAddCompanyUser()
+    public function actionAddUser()
     {
         if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('CompanyUser');
+            $row = Yii::$app->request->post('User');
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
-            return $this->renderAjax('_formCompanyUser', ['row' => $row]);
+            return $this->renderAjax('_formUser', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

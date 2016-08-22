@@ -62,24 +62,30 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
 <?php
-if($providerCompanyUser->totalCount){
-    $gridColumnCompanyUser = [
+if($providerUser->totalCount){
+    $gridColumnUser = [
         ['class' => 'yii\grid\SerialColumn'],
-                                    [
-                'attribute' => 'user.username',
-                'label' => 'User'
-            ],
-            'role',
+                        'username',
+                        'email:email',
+            'password_hash',
+            'auth_key',
+            'confirmed_at',
+            'unconfirmed_email:email',
+            'blocked_at',
+            'registration_ip',
+            'created_at',
+            'updated_at',
+            'flags',
     ];
     echo Gridview::widget([
-        'dataProvider' => $providerCompanyUser,
+        'dataProvider' => $providerUser,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-company-user']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-user']],
         'panel' => [
         'type' => GridView::TYPE_PRIMARY,
-        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Company User'),
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('User'),
         ],
-        'columns' => $gridColumnCompanyUser
+        'columns' => $gridColumnUser
     ]);
 }
 ?>

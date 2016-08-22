@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\models\base\User;
 use Yii;
 use \app\models\base\Company as BaseCompany;
 
@@ -33,24 +32,24 @@ class Company extends BaseCompany
         ]);
     }
     
-    public function getCompanyUsersFullInfo(){
-        $query= $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('company_user', ['company_id'=>'id'])
-            ->joinWith('profile')
-            ->addSelect(['*', "profile.name AS name"]);
-        return $query->asArray();
-    }
+    // public function getCompanyUsersFullInfo(){
+    //     $query= $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('company_user', ['company_id'=>'id'])
+    //         ->joinWith('profile')
+    //         ->addSelect(['*', "profile.name AS name"]);
+    //     return $query->asArray();
+    // }
 
-    public function fields()
-    {
-        
-        $parent_fields = parent::fields();
-        unset($parent_fields['user']);
-        return array_merge($parent_fields, ['user'=>function($model){
-            $user_full = $model->companyUsersFullInfo;
-            foreach ($user_full as $index=>$company){
-                unset($user_full[$index]['profile']);
-            }
-            return $user_full;
-        }]);
-    }
+    // public function fields()
+    // {
+    //
+    //     $parent_fields = parent::fields();
+    //     unset($parent_fields['user']);
+    //     return array_merge($parent_fields, ['user'=>function($model){
+    //         $user_full = $model->companyUsersFullInfo;
+    //         foreach ($user_full as $index=>$company){
+    //             unset($user_full[$index]['profile']);
+    //         }
+    //         return $user_full;
+    //     }]);
+    // }
 }

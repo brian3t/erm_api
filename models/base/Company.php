@@ -26,12 +26,12 @@ use Yii;
  * @property string $description
  * @property string $line_of_business
  *
- * @property \app\models\CompanyUser[] $companyUsers
+ * @property \app\models\User[] $users
  */
 class Company extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-    
+
     /**
      * @inheritdoc
      */
@@ -49,7 +49,7 @@ class Company extends \yii\db\ActiveRecord
             [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],
             [['num_of_employee'], 'string', 'max' => 30],
-            [['description', 'line_of_business'], 'string', 'max' => 800],
+            [['description', 'line_of_business'], 'string', 'max' => 800]
         ];
     }
     
@@ -60,7 +60,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return 'company';
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -79,7 +79,7 @@ class Company extends \yii\db\ActiveRecord
             'num_of_employee' => 'Num Of Employee',
             'annual_revenue' => 'Annual Revenue',
             'facebook_fans' => 'Facebook Fans',
-            'twitter_handle' => 'Twiiter Handle',
+            'twitter_handle' => 'Twitter Handle',
             'twitter_followers' => 'Twitter Followers',
             'linkedin_company_page' => 'Linkedin Company Page',
             'timezone' => 'Timezone',
@@ -91,14 +91,8 @@ class Company extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCompanyUsers()
+    public function getUsers()
     {
-        return $this->hasMany(\app\models\CompanyUser::className(), ['company_id' => 'id'])->inverseOf('company');
+        return $this->hasMany(\app\models\base\User::className(), ['company_id' => 'id'])->inverseOf('company');
     }
-    
-    // public function getCu()
-    // {
-    //     return $this->hasMany(\app\models\CompanyUser::className(), ['company_id' => 'id']);
-    // }
-    
-}
+    }

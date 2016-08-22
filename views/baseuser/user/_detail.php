@@ -21,6 +21,10 @@ use kartik\grid\GridView;
     $gridColumn = [
         ['attribute' => 'id', 'hidden' => true],
         'username',
+        [
+            'attribute' => 'company.name',
+            'label' => 'Company',
+        ],
         'email:email',
         'password_hash',
         'auth_key',
@@ -31,6 +35,21 @@ use kartik\grid\GridView;
         'created_at',
         'updated_at',
         'flags',
+        'first_name',
+        'last_name',
+        'job_title',
+        'line_of_business',
+        'union_memberships',
+        'phone_number_type',
+        'phone_number',
+        'birthdate',
+        'website_url:url',
+        'twitter_id',
+        'facebook_id',
+        'instagram_id',
+        'google_id',
+        'yahoo_id',
+        'linkedin_id',
     ];
     echo DetailView::widget([
         'model' => $model,

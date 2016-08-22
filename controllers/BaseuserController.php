@@ -68,8 +68,16 @@ class BaseuserController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerSocialAccount = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->socialAccounts,
+        ]);
+        $providerToken = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->tokens,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerSocialAccount' => $providerSocialAccount,
+            'providerToken' => $providerToken,
         ]);
     }
     

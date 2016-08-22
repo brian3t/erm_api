@@ -1,34 +1,60 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: tri
- * Date: 8/10/16
- * Time: 8:57 AM
- */
 
 namespace app\models;
 
+use Yii;
+use \app\models\base\User as BaseUser;
 
 /**
- * Class User
- * @package app\models
- *
- * @property \app\models\CompanyUser $companyUser
- *
+ * This is the model class for table "user".
  */
-class User extends \dektrium\user\models\User
+class User extends BaseUser
 {
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
      */
-    public function getCompanyUser()
+    public function rules()
     {
-        return $this->hasOne(\app\models\CompanyUser::className(), ['user_id' => 'id'])->inverseOf('user');
+        return array_replace_recursive(parent::rules(),
+	    [
+            [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at', 'first_name', 'line_of_business', 'union_memberships'], 'required'],
+            [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
+            [['line_of_business', 'union_memberships', 'phone_number_type'], 'string'],
+            [['birthdate'], 'safe'],
+            [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
+            [['password_hash'], 'string', 'max' => 60],
+            [['auth_key'], 'string', 'max' => 32],
+            [['registration_ip'], 'string', 'max' => 45],
+            [['first_name', 'last_name', 'twitter_id', 'facebook_id', 'instagram_id', 'google_id', 'yahoo_id', 'linkedin_id'], 'string', 'max' => 80],
+            [['job_title'], 'string', 'max' => 100],
+            [['phone_number'], 'string', 'max' => 20],
+            [['website_url'], 'string', 'max' => 400],
+            [['email'], 'unique'],
+            [['username'], 'unique']
+        ]);
     }
     
-    public function getCompany()
+    
+    public function getName()
     {
-        return $this->companyUser?$this->companyUser->company:null;
+        return $this->profile->name;
+    }
+    
+    public function fields()
+    {
+        $parent_fields = parent::fields();
+        $parent_fields = array_diff($parent_fields,
+            ['password_hash', 'registration_ip', 'unconfirmed_email', 'blocked_at', 'updated_at']);
+        return array_merge($parent_fields, [
+            'name',
+            'company' => function ($model) {
+                return is_object($model->company) ? $model->company->attributes : ['name' => ''];
+            },
+            'profile' => function ($model) {
+                return $model->profile->attributes;
+            },
+        
+        ]);
     }
     
 }

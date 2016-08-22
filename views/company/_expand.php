@@ -11,9 +11,9 @@ $items = [
     ],
         [
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Members'),
-        'content' => $this->render('_dataCompanyUser', [
+        'content' => $this->render('_dataUser', [
             'model' => $model,
-            'row' => $model->companyUsers,
+            'row' => $model->users,
         ]),
     ],
     ];
