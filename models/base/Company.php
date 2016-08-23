@@ -93,6 +93,6 @@ class Company extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(\app\models\base\User::className(), ['company_id' => 'id'])->inverseOf('company');
+        return $this->hasMany(\app\models\User::className(), ['company_id' => 'id'])->inverseOf('company');
     }
     }

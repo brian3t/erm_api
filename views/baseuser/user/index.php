@@ -53,12 +53,6 @@ $this->registerJs($search);
         ['attribute'=>'phone_number','label'=> 'Phone'],
         'birthdate:date',
         'website_url:url',
-        'twitter_id',
-        'facebook_id',
-        'instagram_id',
-        'google_id',
-        'yahoo_id',
-        'linkedin_id',
         [
             'class' => 'yii\grid\ActionColumn',
         ],

@@ -29,7 +29,7 @@
     "vova07/yii2-console-runner-extension": "*",
     "kartik-v/yii2-widget-growl": "^1.1",
     "mootensai/yii2-enhanced-gii": "dev-master",
-    "kartik-v/yii2-date-range": "dev-master",
+    "kartik-v/yii2-date-range": "@dev",
     "kartik-v/yii2-grid": "^3.1",
     "cebe/markdown-latex": "~1.0.0",
     "yiisoft/yii2-apidoc": "^2.0",

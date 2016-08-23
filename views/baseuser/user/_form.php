@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\base\User */
+/* @var $model app\models\User */
 /* @var $form yii\widgets\ActiveForm */
 
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
@@ -36,7 +36,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true, 'placeholder' => 'Username']) ?>
 
     <?= $form->field($model, 'company_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\base\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
         'options' => ['placeholder' => 'Choose Company'],
         'pluginOptions' => [
             'allowClear' => true
@@ -79,7 +79,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'birthdate')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-        'saveFormat' => 'php:Y-m-d',
+        'displayFormat' => 'php:Y-m-d',
         'ajaxConversion' => true,
         'options' => [
             'pluginOptions' => [

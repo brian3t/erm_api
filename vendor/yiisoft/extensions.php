@@ -12,15 +12,6 @@ return array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
     ),
   ),
-  'yiisoft/yii2-jui' => 
-  array (
-    'name' => 'yiisoft/yii2-jui',
-    'version' => '2.0.6.0',
-    'alias' => 
-    array (
-      '@yii/jui' => $vendorDir . '/yiisoft/yii2-jui',
-    ),
-  ),
   'yiisoft/yii2-bootstrap' => 
   array (
     'name' => 'yiisoft/yii2-bootstrap',
@@ -46,25 +37,6 @@ return array (
     'alias' => 
     array (
       '@yii/authclient' => $vendorDir . '/yiisoft/yii2-authclient',
-    ),
-  ),
-  'dektrium/yii2-user' => 
-  array (
-    'name' => 'dektrium/yii2-user',
-    'version' => '0.9.6.0',
-    'alias' => 
-    array (
-      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
-    ),
-    'bootstrap' => 'dektrium\\user\\Bootstrap',
-  ),
-  'kartik-v/yii2-krajee-base' => 
-  array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '1.8.5.0',
-    'alias' => 
-    array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
     ),
   ),
   'kartik-v/yii2-date-range' => 
@@ -292,15 +264,6 @@ return array (
       '@mitalcoi/cronjobs' => $vendorDir . '/mitalcoi/yii2-cronjobs',
     ),
   ),
-  'mootensai/yii2-relation-trait' => 
-  array (
-    'name' => 'mootensai/yii2-relation-trait',
-    'version' => '1.1.3.0',
-    'alias' => 
-    array (
-      '@mootensai/relation' => $vendorDir . '/mootensai/yii2-relation-trait',
-    ),
-  ),
   'mootensai/yii2-optimistic-lock-validator' => 
   array (
     'name' => 'mootensai/yii2-optimistic-lock-validator',
@@ -337,15 +300,6 @@ return array (
       '@kartik/tabs' => $vendorDir . '/kartik-v/yii2-tabs-x',
     ),
   ),
-  'kartik-v/yii2-grid' => 
-  array (
-    'name' => 'kartik-v/yii2-grid',
-    'version' => '3.1.1.0',
-    'alias' => 
-    array (
-      '@kartik/grid' => $vendorDir . '/kartik-v/yii2-grid',
-    ),
-  ),
   'kartik-v/yii2-export' => 
   array (
     'name' => 'kartik-v/yii2-export',
@@ -363,16 +317,6 @@ return array (
     array (
       '@kartik/builder' => $vendorDir . '/kartik-v/yii2-builder',
     ),
-  ),
-  'mootensai/yii2-enhanced-gii' => 
-  array (
-    'name' => 'mootensai/yii2-enhanced-gii',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@mootensai/enhancedgii' => $vendorDir . '/mootensai/yii2-enhanced-gii',
-    ),
-    'bootstrap' => 'mootensai\\enhancedgii\\Bootstrap',
   ),
   'vova07/yii2-console-runner-extension' => 
   array (
@@ -427,5 +371,61 @@ return array (
     array (
       '@yii/gii' => $vendorDir . '/yiisoft/yii2-gii',
     ),
+  ),
+  'kartik-v/yii2-krajee-base' => 
+  array (
+    'name' => 'kartik-v/yii2-krajee-base',
+    'version' => '1.8.6.0',
+    'alias' => 
+    array (
+      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base',
+    ),
+  ),
+  'kartik-v/yii2-dialog' => 
+  array (
+    'name' => 'kartik-v/yii2-dialog',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@kartik/dialog' => $vendorDir . '/kartik-v/yii2-dialog',
+    ),
+  ),
+  'kartik-v/yii2-grid' => 
+  array (
+    'name' => 'kartik-v/yii2-grid',
+    'version' => '3.1.2.0',
+    'alias' => 
+    array (
+      '@kartik/grid' => $vendorDir . '/kartik-v/yii2-grid',
+    ),
+  ),
+  'dektrium/yii2-user' => 
+  array (
+    'name' => 'dektrium/yii2-user',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@dektrium/user' => $vendorDir . '/dektrium/yii2-user',
+    ),
+    'bootstrap' => 'dektrium\\user\\Bootstrap',
+  ),
+  'mootensai/yii2-relation-trait' => 
+  array (
+    'name' => 'mootensai/yii2-relation-trait',
+    'version' => '1.1.4.0',
+    'alias' => 
+    array (
+      '@mootensai/relation' => $vendorDir . '/mootensai/yii2-relation-trait',
+    ),
+  ),
+  'mootensai/yii2-enhanced-gii' => 
+  array (
+    'name' => 'mootensai/yii2-enhanced-gii',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@mootensai/enhancedgii' => $vendorDir . '/mootensai/yii2-enhanced-gii',
+    ),
+    'bootstrap' => 'mootensai\\enhancedgii\\Bootstrap',
   ),
 );

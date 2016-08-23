@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\base\User */
+/* @var $model app\models\User */
 
 ?>
 <div class="user-view">
@@ -19,7 +19,7 @@ use kartik\grid\GridView;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
+        ['attribute' => 'id', 'visible' => true],
         'username',
         [
             'attribute' => 'company.name',
