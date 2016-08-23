@@ -39,6 +39,7 @@ class BaseActiveController extends ActiveController
                 'class' => Cors::className(),
                 'cors' => [
                     'Origin' => ['*'],
+                    'Access-Control-Request-Methods'=>['GET','POST','OPTIONS','DELETE','PUT','PATCH'],
                 ],
             ],
             // 'authenticator' => ['class' => HttpBasicAuth::className()]
