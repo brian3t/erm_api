@@ -67,7 +67,7 @@ class AdminController extends BaseAdminController
         
         if ($profile->load(Yii::$app->request->post())) {
             $profile->avatarFile = UploadedFile::getInstance($profile, 'avatarFile');
-            $avatarFolder = \Yii::$app->getBasePath() . "/web/uploads/avatar/" . \Yii::$app->user->id;
+            $avatarFolder = \Yii::$app->getBasePath() . "/api/img/avatar/" . \Yii::$app->user->id;
             if ($profile->avatarFile) {
                 if (is_dir($avatarFolder)) {
                     BaseFileHelper::removeDirectory($avatarFolder);

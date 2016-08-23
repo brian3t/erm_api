@@ -73,13 +73,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'union_memberships')->dropDownList([ 'SAG-AFTRA' => 'SAG-AFTRA', 'WGAW' => 'WGAW', 'Directors Guild of America' => 'Directors Guild of America', 'ATA' => 'ATA', 'Producers Guild of America' => 'Producers Guild of America', 'AMPTP' => 'AMPTP', 'ASCAP' => 'ASCAP', 'I.A.T.S.E.' => 'I.A.T.S.E.', 'International Cinematographers Guild' => 'International Cinematographers Guild', 'Teamsters Union 399' => 'Teamsters Union 399', 'MPEG' => 'MPEG', 'Annimation Guild' => 'Annimation Guild', 'Motion Picture Sound Editors' => 'Motion Picture Sound Editors', 'Other' => 'Other', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'phone_number_type')->dropDownList([ 'Home' => 'Home', 'Business' => 'Business', 'Cell' => 'Cell', 'Fax' => 'Fax', 'Other' => 'Other', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'phone_number_type')->dropDownList([ 'Home' => 'Home', 'Business' => 'Business', 'Cell' => 'Cell', 'Fax' => 'Fax', 'Other' => 'Other', '' => '', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true, 'placeholder' => 'Phone Number']) ?>
 
     <?= $form->field($model, 'birthdate')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-        'displayFormat' => 'php:Y-m-d',
+        'saveFormat' => 'php:Y-m-d',
         'ajaxConversion' => true,
         'options' => [
             'pluginOptions' => [
@@ -109,7 +109,7 @@ use yii\widgets\ActiveForm;
     //         'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Profile'),
     //         'content' => $this->render('_formProfile', [
     //             'form' => $form,
-    //             'Profile' => is_null($model->profile) ? new app\models\base\Profile() : $model->profile,
+    //             'Profile' => is_null($model->profile) ? new app\models\Profile() : $model->profile,
     //         ]),
     //     ],
     //     [

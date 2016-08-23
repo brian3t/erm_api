@@ -40,8 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
     'filterModel' => $searchModel,
     'layout' => "{items}\n{pager}",
     'columns' => [
+        'id',
         'username',
-        'email:email',
+        'email',
         // [
         //     'attribute' => 'registration_ip',
         //     'value' => function ($model) {
@@ -51,24 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //     },
         //     'format' => 'html',
         // ],
-        [
-            'attribute' => 'created_at',
-            'value' => function ($model) {
-                if (extension_loaded('intl')) {
-                    return Yii::t('user', '{0, date, MMMM dd, YYYY HH:mm}', [$model->created_at]);
-                } else {
-                    return date('Y-m-d G:i:s', $model->created_at);
-                }
-            },
-            'filter' => DatePicker::widget([
-                'model' => $searchModel,
-                'attribute' => 'created_at',
-                'dateFormat' => 'php:Y-m-d',
-                'options' => [
-                    'class' => 'form-control',
-                ],
-            ]),
-        ],
+            'created_at:date',
         [
             'header' => Yii::t('user', 'Confirmation'),
             'value' => function ($model) {

@@ -43,7 +43,7 @@ if (! empty($profile->avatar)):
             picture</label>
         
         <div class="col-lg-9">
-            <img src="/uploads/avatar/<?= \Yii::$app->user->id . '/' . $profile->avatar ?>" class="avatar"
+            <img src= "<?= API_BASE ?>img/avatar/<?= \Yii::$app->user->id . '/' . $profile->avatar ?>" class="avatar"
                  alt="avatar">
         </div>
         <div class="col-sm-offset-3 col-lg-9">

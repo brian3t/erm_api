@@ -1,7 +1,21 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+use kartik\datecontrol\Module;
 
+$params = require(__DIR__ . '/params.php');
+// other settings
+// format settings for displaying each date attribute (ICU format example)
+$params['dateControlDisplay'] = [
+    Module::FORMAT_DATE => 'MM-dd-yyyy',
+    Module::FORMAT_TIME => 'hh:mm:ss a',
+    Module::FORMAT_DATETIME => 'MM-dd-yyyy hh:mm:ss a',
+];
+// format settings for saving each date attribute (PHP format example)
+$params['dateControlSave'] = [
+    Module::FORMAT_DATE => 'php:U', // saves as unix timestamp
+    Module::FORMAT_TIME => 'php:H:i:s',
+    Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
+];
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -26,7 +40,7 @@ $config = [
                 'username' => 'someids@gmail.com',
                 'password' => 'sTrapok01',
                 'port' => '587',
-                'encryption' => 'tls', 
+                'encryption' => 'tls',
             ],
         ],
         'log' => [
@@ -44,7 +58,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/user' => 'baseuser/index'
+                '/user' => 'baseuser/index',
             ],
         ],
         'consoleRunner' => [
@@ -58,7 +72,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
                 ],
             ],
         ],
@@ -68,7 +82,7 @@ $config = [
             'class' => 'dektrium\user\Module',
             'admins' => ['ngxtri'],
             'controllerMap' => [
-                'admin'=>'app\controllers\user\AdminController',
+                'admin' => 'app\controllers\user\AdminController',
                 'security' => [
                     'class' => 'app\controllers\user\SecurityController'
                     ,
@@ -77,12 +91,12 @@ $config = [
                     },
                 ],
                 'settings' => 'app\controllers\user\SettingsController',
-                'profile'  => 'app\controllers\user\ProfileController',
+                'profile' => 'app\controllers\user\ProfileController',
             ],
             'enableFlashMessages' => true,
             'modelMap' => [
                 'User' => 'app\models\DektriumUser',
-                'Profile'          => 'app\models\user\Profile',
+                'Profile' => 'app\models\user\Profile',
                 // 'SettingsForm'      => 'app\models\user\SettingsForm'
             ],
         ],

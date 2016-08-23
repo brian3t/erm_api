@@ -21,7 +21,7 @@ echo TabularForm::widget([
         'type' => TabularForm::INPUT_TEXT,
     ],
     'attributes' => [
-        "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
+        "id" => ['type' => TabularForm::INPUT_HIDDEN, 'visible' => false],
         'provider' => ['type' => TabularForm::INPUT_TEXT],
         'client_id' => ['type' => TabularForm::INPUT_TEXT],
         'data' => ['type' => TabularForm::INPUT_TEXTAREA],

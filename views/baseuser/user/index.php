@@ -24,8 +24,7 @@ $this->registerJs($search);
     </p>
 <?php 
     $gridColumn = [
-        ['class' => 'yii\grid\SerialColumn'],
-        ['attribute' => 'id', 'hidden' => true],
+        ['attribute' => 'id'],
         'username',
         [
                 'attribute' => 'company_id',
@@ -34,7 +33,7 @@ $this->registerJs($search);
                     return $model->company->name;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\base\Company::find()->asArray()->all(), 'id', 'name'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],

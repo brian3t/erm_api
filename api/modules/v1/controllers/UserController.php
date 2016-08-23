@@ -31,7 +31,7 @@ use yii\web\Response;
 
 class UserController extends BaseActiveController
 {
-    public $modelClass = 'app\models\base\User';
+    public $modelClass = 'app\models\User';
     
     
     public function actionLogin()

@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\base\User */
+/* @var $model app\models\User */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
+        ['attribute' => 'id', 'visible' => false],
         'username',
         [
             'attribute' => 'company.name',
@@ -78,7 +78,8 @@ $this->params['breadcrumbs'][] = $this->title;
 if($providerSocialAccount->totalCount){
     $gridColumnSocialAccount = [
         ['class' => 'yii\grid\SerialColumn'],
-                                    'provider',
+            ['attribute' => 'id', 'visible' => false],
+                        'provider',
             'client_id',
             'data:ntext',
             'code',
