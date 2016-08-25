@@ -67,7 +67,7 @@ class SettingsController extends \dektrium\user\controllers\SettingsController
                 $model->languages = json_encode($languages);
             }
             $model->avatarFile = UploadedFile::getInstance( $model,'avatarFile' );
-            $avatarFolder = \Yii::$app->getBasePath() . "/web/uploads/avatar/" . \Yii::$app->user->id;
+            $avatarFolder = \Yii::$app->getBasePath() . "/api/img/avatar/" . \Yii::$app->user->id;
             if ( $model->avatarFile) {
                 if (is_dir($avatarFolder)){
                     BaseFileHelper::removeDirectory( $avatarFolder );
