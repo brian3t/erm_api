@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use yii\filters\Cors;
 use Yii;
 use dektrium\user\models\SettingsForm;
+use dektrium\user\models\User;
 
 /**
  * Class SettingsController
@@ -19,14 +20,23 @@ class SettingsController extends BaseActiveController
     // We are using the regular web app modules:
     public $modelClass = 'app\models\SettingsForm';
     
-    public function actionAccount(){
-        
+    public function actionAccount()
+    {
         /** @var SettingsForm $model */
-        $model = \Yii::createObject(SettingsForm::className());
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            return [true];
+        $data = $_POST['settings-form'];
+        // $user = new User();
+        $user = User::findOne(['username' => $data['username']]);
+        if ($user->username != null) {
+            $user->password = $data['new_password'];
+            $result = $user->save();
+            if ($result) {
+                return true;
+            } else {
+                return $user->errors;
+            }
         }
-        return [false];
+        // echo "false";
+        return false;
     }
     
     
