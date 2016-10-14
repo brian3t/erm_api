@@ -21,18 +21,58 @@ echo TabularForm::widget([
         'type' => TabularForm::INPUT_TEXT,
     ],
     'attributes' => [
-        "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions'=>['hidden'=>true]],
+        "id" => ['type' => TabularForm::INPUT_HIDDEN, 'visible' => false],
         'username' => ['type' => TabularForm::INPUT_TEXT],
         'email' => ['type' => TabularForm::INPUT_TEXT],
-        'password_hash' => ['type' => TabularForm::INPUT_TEXT],
         'auth_key' => ['type' => TabularForm::INPUT_TEXT],
         'confirmed_at' => ['type' => TabularForm::INPUT_TEXT],
         'unconfirmed_email' => ['type' => TabularForm::INPUT_TEXT],
-        'blocked_at' => ['type' => TabularForm::INPUT_TEXT],
-        'registration_ip' => ['type' => TabularForm::INPUT_TEXT],
-        'created_at' => ['type' => TabularForm::INPUT_TEXT],
-        'updated_at' => ['type' => TabularForm::INPUT_TEXT],
-        'flags' => ['type' => TabularForm::INPUT_TEXT],
+        'first_name' => ['type' => TabularForm::INPUT_TEXT],
+        'last_name' => ['type' => TabularForm::INPUT_TEXT],
+        'job_title' => ['type' => TabularForm::INPUT_TEXT],
+        'line_of_business' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'Management' => 'Management', 'Agency' => 'Agency', 'Promotion' => 'Promotion', 'Venue' => 'Venue', 'Network' => 'Network', 'Studio' => 'Studio', 'Public Relations' => 'Public Relations', 'Consulting' => 'Consulting', 'Talent' => 'Talent', 'Client' => 'Client', 'Production Company' => 'Production Company', 'Photography' => 'Photography', 'Editing' => 'Editing', 'Business Management' => 'Business Management', 'Tour Management' => 'Tour Management', 'Personal' => 'Personal', 'Other' => 'Other', ],
+                    'options' => [
+                        'columnOptions' => ['width' => '185px'],
+                        'options' => ['placeholder' => 'Choose Line Of Business'],
+                    ]
+        ],
+        'union_memberships' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'SAG-AFTRA' => 'SAG-AFTRA', 'WGAW' => 'WGAW', 'Directors Guild of America' => 'Directors Guild of America', 'ATA' => 'ATA', 'Producers Guild of America' => 'Producers Guild of America', 'AMPTP' => 'AMPTP', 'ASCAP' => 'ASCAP', 'I.A.T.S.E.' => 'I.A.T.S.E.', 'International Cinematographers Guild' => 'International Cinematographers Guild', 'Teamsters Union 399' => 'Teamsters Union 399', 'MPEG' => 'MPEG', 'Annimation Guild' => 'Annimation Guild', 'Motion Picture Sound Editors' => 'Motion Picture Sound Editors', 'Other' => 'Other', ],
+                    'options' => [
+                        'columnOptions' => ['width' => '185px'],
+                        'options' => ['placeholder' => 'Choose Union Memberships'],
+                    ]
+        ],
+        'phone_number_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
+                    'items' => [ 'Home' => 'Home', 'Business' => 'Business', 'Cell' => 'Cell', 'Fax' => 'Fax', 'Other' => 'Other', '' => '', ],
+                    'options' => [
+                        'columnOptions' => ['width' => '185px'],
+                        'options' => ['placeholder' => 'Choose Phone Number Type'],
+                    ]
+        ],
+        'phone_number' => ['type' => TabularForm::INPUT_TEXT],
+        'birthdate' => ['type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\datecontrol\DateControl::classname(),
+            'options' => [
+                'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+                'saveFormat' => 'php:Y-m-d',
+                'ajaxConversion' => true,
+                'options' => [
+                    'pluginOptions' => [
+                        'placeholder' => 'Choose Birthdate',
+                        'autoclose' => true
+                    ]
+                ],
+            ]
+        ],
+        'website_url' => ['type' => TabularForm::INPUT_TEXT],
+        'twitter_id' => ['type' => TabularForm::INPUT_TEXT],
+        'facebook_id' => ['type' => TabularForm::INPUT_TEXT],
+        'instagram_id' => ['type' => TabularForm::INPUT_TEXT],
+        'google_id' => ['type' => TabularForm::INPUT_TEXT],
+        'yahoo_id' => ['type' => TabularForm::INPUT_TEXT],
+        'linkedin_id' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

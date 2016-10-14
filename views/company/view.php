@@ -34,12 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
+        ['attribute' => 'id', 'visible' => false],
         'name',
         'website',
         'headline',
         'industry',
         'phone_number',
+        'address1',
+        'address2',
         'city',
         'state',
         'postal_code',
@@ -65,7 +67,8 @@ $this->params['breadcrumbs'][] = $this->title;
 if($providerUser->totalCount){
     $gridColumnUser = [
         ['class' => 'yii\grid\SerialColumn'],
-                        'username',
+            ['attribute' => 'id', 'visible' => false],
+            'username',
                         'email:email',
             'password_hash',
             'auth_key',
@@ -76,6 +79,21 @@ if($providerUser->totalCount){
             'created_at',
             'updated_at',
             'flags',
+            'first_name',
+            'last_name',
+            'job_title',
+            'line_of_business',
+            'union_memberships',
+            'phone_number_type',
+            'phone_number',
+            'birthdate',
+            'website_url:url',
+            'twitter_id',
+            'facebook_id',
+            'instagram_id',
+            'google_id',
+            'yahoo_id',
+            'linkedin_id',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerUser,

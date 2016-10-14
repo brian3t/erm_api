@@ -17,13 +17,14 @@ class Company extends BaseCompany
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['name', 'description', 'line_of_business'], 'required'],
+            [['name', 'description', 'line_of_business', 'timezone'], 'required'],
             [['annual_revenue', 'facebook_fans', 'twitter_followers'], 'integer'],
             [['timezone'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
             [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
+            [['address1', 'address2'], 'string', 'max' => 255],
             [['city'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],

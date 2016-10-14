@@ -13,6 +13,8 @@ use Yii;
  * @property string $headline
  * @property string $industry
  * @property string $phone_number
+ * @property string $address1
+ * @property string $address2
  * @property string $city
  * @property string $state
  * @property string $postal_code
@@ -38,18 +40,19 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'line_of_business'], 'required'],
+            [['name', 'description', 'timezone', 'line_of_business'], 'required'],
             [['annual_revenue', 'facebook_fans', 'twitter_followers'], 'integer'],
-            [['timezone'], 'string'],
+            [['timezone', 'line_of_business'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
             [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
+            [['address1', 'address2'], 'string', 'max' => 255],
             [['city'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],
             [['num_of_employee'], 'string', 'max' => 30],
-            [['description', 'line_of_business'], 'string', 'max' => 800]
+            [['description'], 'string', 'max' => 800]
         ];
     }
     
@@ -73,6 +76,8 @@ class Company extends \yii\db\ActiveRecord
             'headline' => 'Headline',
             'industry' => 'Industry',
             'phone_number' => 'Phone Number',
+            'address1' => 'Address1',
+            'address2' => 'Address2',
             'city' => 'City',
             'state' => 'State',
             'postal_code' => 'Postal Code',

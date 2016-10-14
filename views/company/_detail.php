@@ -19,12 +19,14 @@ use kartik\grid\GridView;
     <div class="row">
 <?php 
     $gridColumn = [
-        ['attribute' => 'id', 'hidden' => true],
+        ['attribute' => 'id', 'visible' => false],
         'name',
         'website',
         'headline',
         'industry',
         'phone_number',
+        'address1',
+        'address2',
         'city',
         'state',
         'postal_code',
