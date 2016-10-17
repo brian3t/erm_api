@@ -10,6 +10,7 @@ use \app\models\base\User as BaseUser;
  */
 class User extends BaseUser
 {
+//    private $_union_memberships;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class User extends BaseUser
 	    [
             [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at', 'first_name', 'line_of_business', 'union_memberships'], 'required'],
             [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
-            [['line_of_business', 'union_memberships', 'phone_number_type'], 'string'],
+            [['line_of_business', 'phone_number_type'], 'string'],
             [['birthdate'], 'safe'],
             [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
             [['password_hash'], 'string', 'max' => 60],
@@ -39,6 +40,15 @@ class User extends BaseUser
     {
         return $this->profile->name;
     }
+
+    public function getUnionMemberships(){
+        return explode(',', $this->union_memberships);
+    }
+
+//    public function setUnionMemberships($new_union_memberships)
+//    {
+//        $this->_union_memberships=json_encode($new_union_memberships);
+//    }
     
     public function fields()
     {
@@ -53,6 +63,9 @@ class User extends BaseUser
             'profile' => function ($model) {
                 return $model->profile->attributes;
             },
+            'union_memberships' => function(){
+                return $this->getUnionMemberships();
+            }
         
         ]);
     }

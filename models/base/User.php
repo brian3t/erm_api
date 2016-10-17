@@ -53,7 +53,7 @@ class User extends \yii\db\ActiveRecord
         return [
             [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at', 'first_name', 'line_of_business', 'union_memberships'], 'required'],
             [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
-            [['line_of_business', 'union_memberships', 'phone_number_type'], 'string'],
+            [['line_of_business', 'phone_number_type'], 'string'],
             [['birthdate'], 'safe'],
             [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
             [['password_hash'], 'string', 'max' => 60],
