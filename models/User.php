@@ -38,7 +38,7 @@ class User extends BaseUser
     
     public function getName()
     {
-        return $this->profile->name;
+        return $this->profile?$this->profile->name:$this->username;
     }
 
     public function getUnionMemberships(){
