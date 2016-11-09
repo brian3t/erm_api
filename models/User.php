@@ -7,6 +7,7 @@ use \app\models\base\User as BaseUser;
 
 /**
  * This is the model class for table "user".
+ * Note: this is not being used for RAW USER
  */
 class User extends BaseUser
 {
@@ -16,23 +17,7 @@ class User extends BaseUser
      */
     public function rules()
     {
-        return array_replace_recursive(parent::rules(),
-	    [
-            [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at', 'first_name', 'line_of_business', 'union_memberships'], 'required'],
-            [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
-            [['line_of_business', 'phone_number_type'], 'string'],
-            [['birthdate'], 'safe'],
-            [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
-            [['password_hash'], 'string', 'max' => 60],
-            [['auth_key'], 'string', 'max' => 32],
-            [['registration_ip'], 'string', 'max' => 45],
-            [['first_name', 'last_name', 'twitter_id', 'facebook_id', 'instagram_id', 'google_id', 'yahoo_id', 'linkedin_id'], 'string', 'max' => 80],
-            [['job_title'], 'string', 'max' => 100],
-            [['phone_number'], 'string', 'max' => 20],
-            [['website_url'], 'string', 'max' => 400],
-            [['email'], 'unique'],
-            [['username'], 'unique']
-        ]);
+        return parent::rules();
     }
     
     
