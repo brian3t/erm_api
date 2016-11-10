@@ -7,6 +7,7 @@ use Yii;
 use yii\rest\Serializer;
 use yii\web\HeaderCollection;
 use yii\web\Response;
+use HttpResponse;
 
 class Module extends Yii\base\Module
 {
@@ -29,7 +30,7 @@ class Module extends Yii\base\Module
         $response_header = Yii::$app->response->getHeaders();
         /** @var HeaderCollection $response_header */
         
-        if (!$result) {
+        if ($result === false) {
             Yii::$app->response->setStatusCode(400);
             return Yii::$app->controller->message ? ['error' => Yii::$app->controller->message] : '';
         }

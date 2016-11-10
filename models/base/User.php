@@ -56,7 +56,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'email'], 'required'],
+            [['username'], 'required'],
             [['company_id', 'confirmed_at', 'blocked_at', 'flags'], 'integer'],
             [['created_at', 'updated_at', 'birthdate'], 'safe'],
             [['line_of_business', 'phone_number_type'], 'string'],

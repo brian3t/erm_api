@@ -23,10 +23,11 @@ class User extends BaseUser
     
     public function getName()
     {
-        return $this->profile?$this->profile->name:$this->username;
+        return $this->profile ? $this->profile->name : $this->username;
     }
-
-    public function getUnionMemberships(){
+    
+    public function getUnionMemberships()
+    {
         return explode(',', $this->union_memberships);
     }
 
@@ -46,13 +47,21 @@ class User extends BaseUser
                 return is_object($model->company) ? $model->company->attributes : ['name' => ''];
             },
             'profile' => function ($model) {
-                return $model->profile->attributes;
+                return $model->profile ? $model->profile->attributes : null;
             },
-            'union_memberships' => function(){
+            'union_memberships' => function () {
                 return $this->getUnionMemberships();
             }
         
         ]);
+    }
+    
+    public function beforeValidate()
+    {
+        if (is_array($this->union_memberships)) {
+            $this->union_memberships = implode(',', $this->union_memberships);
+        }
+        return parent::beforeValidate();
     }
     
 }
