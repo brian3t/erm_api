@@ -72,6 +72,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'line_of_business')->dropDownList([ 'Management' => 'Management', 'Agency' => 'Agency', 'Promotion' => 'Promotion', 'Venue' => 'Venue', 'Network' => 'Network', 'Studio' => 'Studio', 'Public Relations' => 'Public Relations', 'Consulting' => 'Consulting', 'Talent' => 'Talent', 'Client' => 'Client', 'Production Company' => 'Production Company', 'Photography' => 'Photography', 'Editing' => 'Editing', 'Business Management' => 'Business Management', 'Tour Management' => 'Tour Management', 'Personal' => 'Personal', 'Other' => 'Other', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'union_memberships')->dropDownList([ 'SAG-AFTRA' => 'SAG-AFTRA', 'WGAW' => 'WGAW', 'Directors Guild of America' => 'Directors Guild of America', 'ATA' => 'ATA', 'Producers Guild of America' => 'Producers Guild of America', 'AMPTP' => 'AMPTP', 'ASCAP' => 'ASCAP', 'I.A.T.S.E.' => 'I.A.T.S.E.', 'International Cinematographers Guild' => 'International Cinematographers Guild', 'Teamsters Union 399' => 'Teamsters Union 399', 'MPEG' => 'MPEG', 'Animation Guild' => 'Annimation Guild', 'Motion Picture Sound Editors' => 'Motion Picture Sound Editors', 'Other' => 'Other', ], ['prompt' => '']) ?>
+    
+    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
     <?= $form->field($model, 'phone_number_type')->dropDownList([ 'Home' => 'Home', 'Business' => 'Business', 'Cell' => 'Cell', 'Fax' => 'Fax', 'Other' => 'Other', '' => '', ], ['prompt' => '']) ?>
 
@@ -102,7 +104,19 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'yahoo_id')->textInput(['maxlength' => true, 'placeholder' => 'Yahoo']) ?>
 
     <?= $form->field($model, 'linkedin_id')->textInput(['maxlength' => true, 'placeholder' => 'Linkedin']) ?>
-
+    
+    <?= $form->field($model, 'address1')->textInput(['maxlength' => true, 'placeholder' => 'Address1']) ?>
+    
+    <?= $form->field($model, 'address2')->textInput(['maxlength' => true, 'placeholder' => 'Address2']) ?>
+    
+    <?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => 'City']) ?>
+    
+    <?= $form->field($model, 'state')->textInput(['maxlength' => true, 'placeholder' => 'State']) ?>
+    
+    <?= $form->field($model, 'zipcode')->textInput(['maxlength' => true, 'placeholder' => 'Zipcode']) ?>
+    
+    <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'placeholder' => 'Country']) ?>
+    
     <?php
     // $forms = [
     //     [

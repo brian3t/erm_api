@@ -55,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'job_title',
         'line_of_business',
         'union_memberships',
+        'note',
         'phone_number_type',
         'phone_number',
         'birthdate',
@@ -65,6 +66,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'google_id',
         'yahoo_id',
         'linkedin_id',
+        'work_phone',
+        'mobile_phone',
+        'home_phone',
+        'address1',
+        'address2',
+        'city',
+        'state',
+        'zipcode',
+        'country',
     ];
     echo DetailView::widget([
         'model' => $model,
