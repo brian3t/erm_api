@@ -58,6 +58,9 @@ class User extends BaseUser
     
     public function beforeValidate()
     {
+        if (is_int($this->created_at)){
+            
+        }
         if (is_array($this->union_memberships)) {
             $this->union_memberships = implode(',', $this->union_memberships);
         }

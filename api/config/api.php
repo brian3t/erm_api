@@ -1,6 +1,6 @@
 <?php
 
-$db     = require(dirname(dirname(__DIR__)) . '/config/db.php');
+$db = require(dirname(dirname(__DIR__)) . '/config/db.php');
 $params = require(__DIR__ . '/params.php');
 
 $config = [
@@ -43,7 +43,7 @@ $config = [
                     // 'extraPatterns' => [
                     // ],
                     'tokens' => [
-                        '{id}'=>'<id:\\d+>',
+                        '{id}' => '<id:\\d+>',
                         '{page}' => '<page:\\d+>',
                     ],
                 ],
@@ -70,19 +70,21 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-
+    
     ],
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'admins' => ['ngxtri'],
+            'admins' => ['ngxtri', 'someids'],
             'controllerMap' => [
                 'security' => [
                     'class' => 'app\controllers\user\SecurityController'
-                    , 'on afterLogout' => function ($e) {
+                    ,
+                    'on afterLogout' => function ($e) {
                         Yii::$app->getSession()->addFlash('success', 'You have logged out successfully');
-                    }],
-                'settings'=>'app\controllers\user\SettingsController'
+                    }
+                ],
+                'settings' => 'app\controllers\user\SettingsController'
             ],
             'enableFlashMessages' => true
             // 'modelMap' => [
