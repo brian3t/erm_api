@@ -23,9 +23,8 @@ class BaseIndexAction extends IndexAction
 
         /* @var $modelClass \yii\db\BaseActiveRecord */
         $modelClass = $this->modelClass;
-
         return new ActiveDataProvider([
-            'query' => $modelClass::find(),
+            'query' => $modelClass::find()->where(\Yii::$app->request->queryParams),
         ]);
     }
 
