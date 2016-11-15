@@ -29,6 +29,7 @@ use Yii;
  * @property string $line_of_business
  *
  * @property \app\models\User[] $users
+ * @property \app\models\Venue[] $venues
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -40,7 +41,7 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description', 'timezone', 'line_of_business'], 'required'],
+            [['name', 'description'], 'required'],
             [['annual_revenue', 'facebook_fans', 'twitter_followers'], 'integer'],
             [['timezone', 'line_of_business'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
@@ -99,5 +100,13 @@ class Company extends \yii\db\ActiveRecord
     public function getUsers()
     {
         return $this->hasMany(\app\models\User::className(), ['company_id' => 'id'])->inverseOf('company');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVenues()
+    {
+        return $this->hasMany(\app\models\Venue::className(), ['primary_ticketing_company_id' => 'id'])->inverseOf('company')->inverseOf('primaryTicketingCompany');
     }
     }
