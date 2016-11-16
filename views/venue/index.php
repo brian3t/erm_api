@@ -28,6 +28,18 @@ $this->registerJs($search);
         ['attribute' => 'id', 'visible' => false],
         'name',
         'venue_type',
+        [
+            'attribute' => 'company_id',
+            'value' => function($model){
+                return $model->company->name;
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
+        ],
         'created_at',
         'updated_at',
         'previous_name',
@@ -42,18 +54,6 @@ $this->registerJs($search);
         'country',
         'timezone',
         'owner',
-        [
-                'attribute' => 'company_id',
-                'value' => function($model){
-                    return $model->company->name;
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
-            ],
         'general_info_email:email',
         'main_office_phone',
         'box_office_phone',

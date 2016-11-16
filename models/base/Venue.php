@@ -37,7 +37,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $full_stage_seating_capacity
  * @property integer $half_stage_seating_capacity
  * @property integer $in_the_round_seating_capacity
- * @property integer $other_seating_capacity_name
+ * @property string $other_seating_capacity_name
  * @property integer $other_seating_capacity_value
  * @property string $webpage
  * @property string $facebook
@@ -63,8 +63,8 @@ class Venue extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['venue_type', 'timezone'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['company_id', 'primary_ticketing_company_id', 'other_seating_capacity', 'end_stage_seating_capacity', 'full_stage_seating_capacity', 'half_stage_seating_capacity', 'in_the_round_seating_capacity', 'other_seating_capacity_name', 'other_seating_capacity_value'], 'integer'],
-            [['name', 'previous_name', 'city'], 'string', 'max' => 255],
+            [['company_id', 'primary_ticketing_company_id', 'other_seating_capacity', 'end_stage_seating_capacity', 'full_stage_seating_capacity', 'half_stage_seating_capacity', 'in_the_round_seating_capacity', 'other_seating_capacity_value'], 'integer'],
+            [['name', 'previous_name', 'city', 'other_seating_capacity_name'], 'string', 'max' => 255],
             [['note', 'address1'], 'string', 'max' => 2000],
             [['ticket_rebate', 'other_deal'], 'string', 'max' => 8000],
             [['address2', 'owner', 'webpage', 'facebook', 'yahoo', 'linkedin', 'twitter', 'instagram', 'google'], 'string', 'max' => 800],

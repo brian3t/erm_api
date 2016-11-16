@@ -21,30 +21,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model,'venue_type')->dropDownList([''=>'','Amphitheater'=>'Amphitheater','Arena'=>'Arena','Bandshell'=>'Bandshell','Club'=>'Club','College'=>'College','Concert Hall'=>'Concert Hall','Operahouse'=>'Operahouse','Other'=>'Other','Private'=>'Private','Stadium'=>'Stadium','Theater'=>'Theater']) ?>
 
-    <?= $form->field($model,'created_at')->widget(\kartik\datecontrol\DateControl::classname(),[
-        'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME,
-        'saveFormat'=>'php:Y-m-d H:i:s',
-        'ajaxConversion'=>true,
-        'options'=>[
-            'pluginOptions'=>[
-                'placeholder'=>'Choose Created At',
-                'autoclose'=>true,
-            ]
-        ],
-    ]); ?>
-
-    <?= $form->field($model,'updated_at')->widget(\kartik\datecontrol\DateControl::classname(),[
-        'type'=>\kartik\datecontrol\DateControl::FORMAT_DATETIME,
-        'saveFormat'=>'php:Y-m-d H:i:s',
-        'ajaxConversion'=>true,
-        'options'=>[
-            'pluginOptions'=>[
-                'placeholder'=>'Choose Updated At',
-                'autoclose'=>true,
-            ]
-        ],
-    ]); ?>
-
     <?= $form->field($model,'previous_name')->textInput(['maxlength'=>true,'placeholder'=>'Previous Name']) ?>
 
     <?= $form->field($model,'note')->textarea(['maxlength'=>true,'placeholder'=>'Note']) ?>
