@@ -76,14 +76,13 @@ if($providerUser->totalCount){
             'unconfirmed_email:email',
             'blocked_at',
             'registration_ip',
-            'created_at',
-            'updated_at',
             'flags',
             'first_name',
             'last_name',
             'job_title',
             'line_of_business',
             'union_memberships',
+            'note',
             'phone_number_type',
             'phone_number',
             'birthdate',
@@ -94,6 +93,15 @@ if($providerUser->totalCount){
             'google_id',
             'yahoo_id',
             'linkedin_id',
+            'work_phone',
+            'mobile_phone',
+            'home_phone',
+            'address1',
+            'address2',
+            'city',
+            'state',
+            'zipcode',
+            'country',
     ];
     echo Gridview::widget([
         'dataProvider' => $providerUser,
@@ -104,6 +112,60 @@ if($providerUser->totalCount){
         'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('User'),
         ],
         'columns' => $gridColumnUser
+    ]);
+}
+?>
+    </div>
+    
+    <div class="row">
+<?php
+if($providerVenue->totalCount){
+    $gridColumnVenue = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+            'name',
+            'venue_type',
+            'previous_name',
+            'note',
+            'ticket_rebate',
+            'other_deal',
+            'address1',
+            'address2',
+            'city',
+            'state',
+            'zipcode',
+            'country',
+            'timezone',
+            'owner',
+                        'general_info_email:email',
+            'main_office_phone',
+            'box_office_phone',
+            'fax_phone',
+            'other_phone',
+                        'other_seating_capacity',
+            'end_stage_seating_capacity',
+            'full_stage_seating_capacity',
+            'half_stage_seating_capacity',
+            'in_the_round_seating_capacity',
+            'other_seating_capacity_name',
+            'other_seating_capacity_value',
+            'webpage',
+            'facebook',
+            'yahoo',
+            'linkedin',
+            'twitter',
+            'instagram',
+            'google',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerVenue,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-venue']],
+        'panel' => [
+        'type' => GridView::TYPE_PRIMARY,
+        'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Venue'),
+        ],
+        'columns' => $gridColumnVenue
     ]);
 }
 ?>

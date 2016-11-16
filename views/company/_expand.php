@@ -16,6 +16,13 @@ $items = [
             'row' => $model->users,
         ]),
     ],
+            [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Venue'),
+        'content' => $this->render('_dataVenue', [
+            'model' => $model,
+            'row' => $model->venues,
+        ]),
+    ],
     ];
 echo TabsX::widget([
     'items' => $items,

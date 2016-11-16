@@ -28,7 +28,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-user'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-user', 'add-venue'],
                         'roles' => ['@']
                     ],
                     [
@@ -65,9 +65,13 @@ class CompanyController extends Controller
         $providerUser = new \yii\data\ArrayDataProvider([
             'allModels' => $model->users,
         ]);
+        $providerVenue = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->venues,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
             'providerUser' => $providerUser,
+            'providerVenue' => $providerVenue,
         ]);
     }
 
@@ -153,6 +157,26 @@ class CompanyController extends Controller
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formUser', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for Venue
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddVenue()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('Venue');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formVenue', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

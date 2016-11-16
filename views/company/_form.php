@@ -15,6 +15,14 @@ use yii\widgets\ActiveForm;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'Venue', 
+        'relID' => 'venue', 
+        'value' => \yii\helpers\Json::encode($model->venues),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
 ?>
 
 <div class="company-form">
@@ -69,6 +77,12 @@ use yii\widgets\ActiveForm;
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('User'),
             'content' => $this->render('_formUser', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->users),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('Venue'),
+            'content' => $this->render('_formVenue', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->venues),
             ]),
         ],
     ];

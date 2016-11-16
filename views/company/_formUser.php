@@ -44,6 +44,7 @@ echo TabularForm::widget([
                         'options' => ['placeholder' => 'Choose Union Memberships'],
                     ]
         ],
+        'note' => ['type' => TabularForm::INPUT_TEXT],
         'phone_number_type' => ['type' => TabularForm::INPUT_DROPDOWN_LIST,
                     'items' => [ 'Home' => 'Home', 'Business' => 'Business', 'Cell' => 'Cell', 'Fax' => 'Fax', 'Other' => 'Other', '' => '', ],
                     'options' => [
@@ -73,6 +74,15 @@ echo TabularForm::widget([
         'google_id' => ['type' => TabularForm::INPUT_TEXT],
         'yahoo_id' => ['type' => TabularForm::INPUT_TEXT],
         'linkedin_id' => ['type' => TabularForm::INPUT_TEXT],
+        'work_phone' => ['type' => TabularForm::INPUT_TEXT],
+        'mobile_phone' => ['type' => TabularForm::INPUT_TEXT],
+        'home_phone' => ['type' => TabularForm::INPUT_TEXT],
+        'address1' => ['type' => TabularForm::INPUT_TEXT],
+        'address2' => ['type' => TabularForm::INPUT_TEXT],
+        'city' => ['type' => TabularForm::INPUT_TEXT],
+        'state' => ['type' => TabularForm::INPUT_TEXT],
+        'zipcode' => ['type' => TabularForm::INPUT_TEXT],
+        'country' => ['type' => TabularForm::INPUT_TEXT],
         'del' => [
             'type' => 'raw',
             'label' => '',

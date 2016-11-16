@@ -77,6 +77,10 @@ AppAsset::register($this);
             'label' => 'Companies',
             'url' => '/company',
         ],
+        [
+            'label' => 'Venues',
+            'url' => '/venue',
+        ],
         ['label' => 'Raw User data', 'url' => '/user'],
     ]);
     
@@ -111,7 +115,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Shoe Metro Enhancer 3 <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Entertainment Direct Metrics <?= date('Y') ?></p>
     
     </div>
 </footer>
