@@ -31,7 +31,7 @@ $this->registerJs($search);
         [
             'attribute' => 'company_id',
             'value' => function($model){
-                return $model->company->name;
+                return is_object($model->company)?$model->company->name:'N/A';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
@@ -63,7 +63,7 @@ $this->registerJs($search);
                 'attribute' => 'primary_ticketing_company_id',
                 'label' => 'Primary Ticketing Company',
                 'value' => function($model){
-                    return $model->primaryTicketingCompany->name;
+                    return is_object($model->primaryTicketingCompany)?$model->primaryTicketingCompany->name:'N/A';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
