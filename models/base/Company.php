@@ -23,10 +23,21 @@ use Yii;
  * @property integer $facebook_fans
  * @property string $twitter_handle
  * @property integer $twitter_followers
- * @property string $linkedin_company_page
  * @property string $timezone
  * @property string $description
  * @property string $line_of_business
+ * @property string $general_email
+ * @property string $country
+ * @property string $work_phone
+ * @property string $fax
+ * @property string $webpage
+ * @property string $facebook
+ * @property string $linkedin_company_page
+ * @property string $yahoo
+ * @property string $twitter
+ * @property string $instagram
+ * @property string $google
+ * @property string $note
  *
  * @property \app\models\User[] $users
  * @property \app\models\Venue[] $venues
@@ -48,12 +59,14 @@ class Company extends \yii\db\ActiveRecord
             [['headline'], 'string', 'max' => 400],
             [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
-            [['address1', 'address2'], 'string', 'max' => 255],
+            [['address1', 'address2', 'general_email', 'country', 'twitter'], 'string', 'max' => 255],
             [['city'], 'string', 'max' => 60],
             [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],
             [['num_of_employee'], 'string', 'max' => 30],
-            [['description'], 'string', 'max' => 800]
+            [['description', 'webpage', 'facebook', 'yahoo', 'instagram', 'google'], 'string', 'max' => 800],
+            [['work_phone', 'fax'], 'string', 'max' => 25],
+            [['note'], 'string', 'max' => 5000]
         ];
     }
     
@@ -87,10 +100,21 @@ class Company extends \yii\db\ActiveRecord
             'facebook_fans' => 'Facebook Fans',
             'twitter_handle' => 'Twitter Handle',
             'twitter_followers' => 'Twitter Followers',
-            'linkedin_company_page' => 'Linkedin Company Page',
             'timezone' => 'Timezone',
             'description' => 'Description',
             'line_of_business' => 'Line Of Business',
+            'general_email' => 'General Email',
+            'country' => 'Country',
+            'work_phone' => 'Work Phone',
+            'fax' => 'Fax',
+            'webpage' => 'Webpage',
+            'facebook' => 'Facebook',
+            'linkedin_company_page' => 'Linkedin Company Page',
+            'yahoo' => 'Yahoo',
+            'twitter' => 'Twitter',
+            'instagram' => 'Instagram',
+            'google' => 'Google',
+            'note' => 'Note',
         ];
     }
     
@@ -107,6 +131,7 @@ class Company extends \yii\db\ActiveRecord
      */
     public function getVenues()
     {
+        //todob here must be company_id
         return $this->hasMany(\app\models\Venue::className(), ['primary_ticketing_company_id' => 'id'])->inverseOf('company')->inverseOf('primaryTicketingCompany');
     }
     }
