@@ -63,13 +63,35 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'twitter_followers')->textInput(['placeholder' => 'Twitter Followers']) ?>
 
-    <?= $form->field($model, 'linkedin_company_page')->textInput(['maxlength' => true, 'placeholder' => 'Linkedin Company Page']) ?>
-
     <?= $form->field($model, 'timezone')->dropDownList([ 'PST' => 'PST', 'CST' => 'CST', 'MST' => 'MST', 'EST' => 'EST', 'UTC' => 'UTC', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true, 'placeholder' => 'Description']) ?>
 
     <?= $form->field($model, 'line_of_business')->dropDownList([ 'Management' => 'Management', 'Agency' => 'Agency', 'Promotion Venue' => 'Promotion Venue', 'Network' => 'Network', 'Studio' => 'Studio', 'Public Relations' => 'Public Relations', 'Consulting' => 'Consulting', 'Talent' => 'Talent', 'Client' => 'Client', 'Production Company' => 'Production Company', 'Photography' => 'Photography', 'Editing' => 'Editing', 'Business Management' => 'Business Management', 'Tour Management' => 'Tour Management', 'Personal' => 'Personal', 'Other' => 'Other', ], ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'general_email')->textInput(['maxlength' => true, 'placeholder' => 'General Email']) ?>
+
+    <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'placeholder' => 'Country']) ?>
+
+    <?= $form->field($model, 'work_phone')->textInput(['maxlength' => true, 'placeholder' => 'Work Phone']) ?>
+
+    <?= $form->field($model, 'fax')->textInput(['maxlength' => true, 'placeholder' => 'Fax']) ?>
+
+    <?= $form->field($model, 'webpage')->textInput(['maxlength' => true, 'placeholder' => 'Webpage']) ?>
+
+    <?= $form->field($model, 'facebook')->textInput(['maxlength' => true, 'placeholder' => 'Facebook']) ?>
+
+    <?= $form->field($model, 'linkedin_company_page')->textInput(['maxlength' => true, 'placeholder' => 'Linkedin Company Page']) ?>
+
+    <?= $form->field($model, 'yahoo')->textInput(['maxlength' => true, 'placeholder' => 'Yahoo']) ?>
+
+    <?= $form->field($model, 'twitter')->textInput(['maxlength' => true, 'placeholder' => 'Twitter']) ?>
+
+    <?= $form->field($model, 'instagram')->textInput(['maxlength' => true, 'placeholder' => 'Instagram']) ?>
+
+    <?= $form->field($model, 'google')->textInput(['maxlength' => true, 'placeholder' => 'Google']) ?>
+
+    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
     <?php
     $forms = [
