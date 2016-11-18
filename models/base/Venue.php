@@ -135,16 +135,24 @@ class Venue extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('venues');
     }
-        
+    
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getPrimaryTicketingCompany()
     {
-        return $this->hasOne(\app\models\Company::className(), ['id' => 'primary_ticketing_company_id'])->inverseOf('venues');
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'primary_ticketing_company_id'])->inverseOf('ticketVenues');
     }
     
-/**
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrganizer()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('venues');
+    }
+    
+    /**
      * @inheritdoc
      * @return array mixed
      */ 

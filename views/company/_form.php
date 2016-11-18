@@ -34,44 +34,22 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'placeholder' => 'Name']) ?>
-
-    <?= $form->field($model, 'website')->textInput(['maxlength' => true, 'placeholder' => 'Website']) ?>
-
-    <?= $form->field($model, 'headline')->textInput(['maxlength' => true, 'placeholder' => 'Headline']) ?>
-
-    <?= $form->field($model, 'industry')->textInput(['maxlength' => true, 'placeholder' => 'Industry']) ?>
-
-    <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true, 'placeholder' => 'Phone Number']) ?>
-
+    
+    <?= $form->field($model, 'line_of_business')->dropDownList([ 'Management' => 'Management', 'Agency' => 'Agency', 'Promotion Venue' => 'Promotion Venue', 'Network' => 'Network', 'Studio' => 'Studio', 'Public Relations' => 'Public Relations', 'Consulting' => 'Consulting', 'Talent' => 'Talent', 'Client' => 'Client', 'Production Company' => 'Production Company', 'Photography' => 'Photography', 'Editing' => 'Editing', 'Business Management' => 'Business Management', 'Tour Management' => 'Tour Management', 'Personal' => 'Personal', 'Other' => 'Other', ], ['prompt' => '']) ?>
+    
     <?= $form->field($model, 'address1')->textInput(['maxlength' => true, 'placeholder' => 'Address1']) ?>
 
     <?= $form->field($model, 'address2')->textInput(['maxlength' => true, 'placeholder' => 'Address2']) ?>
 
+    <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true, 'placeholder' => 'Postal Code']) ?>
+    
     <?= $form->field($model, 'city')->textInput(['maxlength' => true, 'placeholder' => 'City']) ?>
 
     <?= $form->field($model, 'state')->textInput(['maxlength' => true, 'placeholder' => 'State']) ?>
-
-    <?= $form->field($model, 'postal_code')->textInput(['maxlength' => true, 'placeholder' => 'Postal Code']) ?>
-
-    <?= $form->field($model, 'num_of_employee')->textInput(['maxlength' => true, 'placeholder' => 'Num Of Employee']) ?>
-
-    <?= $form->field($model, 'annual_revenue')->textInput(['placeholder' => 'Annual Revenue']) ?>
-
-    <?= $form->field($model, 'facebook_fans')->textInput(['placeholder' => 'Facebook Fans']) ?>
-
-    <?= $form->field($model, 'twitter_handle')->textInput(['maxlength' => true, 'placeholder' => 'Twitter Handle']) ?>
-
-    <?= $form->field($model, 'twitter_followers')->textInput(['placeholder' => 'Twitter Followers']) ?>
-
-    <?= $form->field($model, 'timezone')->dropDownList([ 'PST' => 'PST', 'CST' => 'CST', 'MST' => 'MST', 'EST' => 'EST', 'UTC' => 'UTC', ], ['prompt' => '']) ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true, 'placeholder' => 'Description']) ?>
-
-    <?= $form->field($model, 'line_of_business')->dropDownList([ 'Management' => 'Management', 'Agency' => 'Agency', 'Promotion Venue' => 'Promotion Venue', 'Network' => 'Network', 'Studio' => 'Studio', 'Public Relations' => 'Public Relations', 'Consulting' => 'Consulting', 'Talent' => 'Talent', 'Client' => 'Client', 'Production Company' => 'Production Company', 'Photography' => 'Photography', 'Editing' => 'Editing', 'Business Management' => 'Business Management', 'Tour Management' => 'Tour Management', 'Personal' => 'Personal', 'Other' => 'Other', ], ['prompt' => '']) ?>
+    
+    <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'placeholder' => 'Country']) ?>
 
     <?= $form->field($model, 'general_email')->textInput(['maxlength' => true, 'placeholder' => 'General Email']) ?>
-
-    <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'placeholder' => 'Country']) ?>
 
     <?= $form->field($model, 'work_phone')->textInput(['maxlength' => true, 'placeholder' => 'Work Phone']) ?>
 
@@ -80,10 +58,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'webpage')->textInput(['maxlength' => true, 'placeholder' => 'Webpage']) ?>
 
     <?= $form->field($model, 'facebook')->textInput(['maxlength' => true, 'placeholder' => 'Facebook']) ?>
+    
+    <?= $form->field($model, 'yahoo')->textInput(['maxlength' => true, 'placeholder' => 'Yahoo']) ?>
 
     <?= $form->field($model, 'linkedin_company_page')->textInput(['maxlength' => true, 'placeholder' => 'Linkedin Company Page']) ?>
-
-    <?= $form->field($model, 'yahoo')->textInput(['maxlength' => true, 'placeholder' => 'Yahoo']) ?>
 
     <?= $form->field($model, 'twitter')->textInput(['maxlength' => true, 'placeholder' => 'Twitter']) ?>
 
@@ -91,7 +69,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'google')->textInput(['maxlength' => true, 'placeholder' => 'Google']) ?>
 
-    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
+    <?= $form->field($model, 'note')->textarea(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
     <?php
     $forms = [

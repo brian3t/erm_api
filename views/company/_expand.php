@@ -17,7 +17,7 @@ $items = [
         ]),
     ],
             [
-        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Venue'),
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Organized Venues'),
         'content' => $this->render('_dataVenue', [
             'model' => $model,
             'row' => $model->venues,

@@ -45,23 +45,22 @@ use Yii;
 class Company extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
-
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
+            [['name'], 'required'],
             [['annual_revenue', 'facebook_fans', 'twitter_followers'], 'integer'],
             [['timezone', 'line_of_business'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
-            [['industry', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
+            [['industry', 'state', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
             [['phone_number'], 'string', 'max' => 20],
             [['address1', 'address2', 'general_email', 'country', 'twitter'], 'string', 'max' => 255],
             [['city'], 'string', 'max' => 60],
-            [['state'], 'string', 'max' => 6],
             [['postal_code'], 'string', 'max' => 10],
             [['num_of_employee'], 'string', 'max' => 30],
             [['description', 'webpage', 'facebook', 'yahoo', 'instagram', 'google'], 'string', 'max' => 800],
@@ -77,7 +76,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return 'company';
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -125,13 +124,19 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\User::className(), ['company_id' => 'id'])->inverseOf('company');
     }
-        
+    
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getVenues()
     {
-        //todob here must be company_id
+        return $this->hasMany(\app\models\Venue::className(), ['company_id' => 'id'])->inverseOf('company')->inverseOf('organizer');
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTicketVenues(){
         return $this->hasMany(\app\models\Venue::className(), ['primary_ticketing_company_id' => 'id'])->inverseOf('company')->inverseOf('primaryTicketingCompany');
     }
-    }
+}
