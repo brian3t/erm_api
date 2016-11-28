@@ -9,5 +9,17 @@ table.detail-view {
   }
 }
 
-table.kv-grid-table th{font-size: 88%}
-.column_center{width: 100%; text-align: center}
+table.kv-grid-table th {
+  font-size: 88%
+}
+
+.column_center {
+  width: 100%;
+  text-align: center
+}
+
+form.responsive {
+  div.form-group {
+    width: 45%
+  }
+}

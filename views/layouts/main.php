@@ -22,7 +22,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link rel="stylesheet"
-          href="http://<?= Yii::$app->request->serverName . "/" . Yii::$app->request->baseUrl ?>/less/stylesheets/custom.css">
+          href="http://<?= Yii::$app->request->serverName . "/" . Yii::$app->request->baseUrl ?>less/stylesheets/custom.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -80,6 +80,10 @@ AppAsset::register($this);
         [
             'label' => 'Venues',
             'url' => '/venue',
+        ],
+        [
+            'label' => 'Offers',
+            'url' => '/offer',
         ],
         ['label' => 'Raw User data', 'url' => '/user'],
     ]);

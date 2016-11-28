@@ -12,8 +12,13 @@ table.kv-grid-table th {
   font-size: 88%;
 }
 
-/* line 13, ../sass/custom.scss */
+/* line 16, ../sass/custom.scss */
 .column_center {
   width: 100%;
   text-align: center;
+}
+
+/* line 22, ../sass/custom.scss */
+form.responsive div.form-group {
+  width: 45%;
 }

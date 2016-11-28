@@ -77,7 +77,7 @@ class User extends \yii\db\ActiveRecord
             [['note', 'address1'], 'string', 'max' => 2000],
             [['phone_number', 'work_phone', 'mobile_phone', 'home_phone', 'zipcode'], 'string', 'max' => 20],
             [['website_url'], 'string', 'max' => 400],
-            [['state'], 'string', 'max' => 8],
+            [['state'], 'string', 'max' => 80],
             [['country'], 'string', 'max' => 80],
             [['username'], 'unique'],
             [['email'], 'unique']
