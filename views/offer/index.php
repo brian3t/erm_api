@@ -40,6 +40,7 @@ $this->registerJs($search);
             'expandOneOnly'=>true
         ],
         ['attribute'=>'id','visible'=>false],
+        'event_id',
         [
             'attribute'=>'user_id',
             'label'=>'User',
@@ -83,7 +84,6 @@ $this->registerJs($search);
             ],
             'filterInputOptions'=>['placeholder'=>'Venue','id'=>'grid--copro_venue_id']
         ],
-        'event_id',
 //        'show_number',
 //        'show_total_num',
         [
@@ -114,8 +114,8 @@ $this->registerJs($search);
                 'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--agent_id']
             ],
         'status',
-        'created_on',
-        'updated_on',
+        'created_at',
+        'updated_at',
         [
                 'attribute' => 'artist_id',
                 'label' => 'Artist',

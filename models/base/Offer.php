@@ -19,8 +19,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $agency_id
  * @property integer $agent_id
  * @property string $status
- * @property string $created_on
- * @property string $updated_on
+ * @property string $created_at
+ * @property string $updated_at
  * @property integer $artist_id
  * @property integer $venue_id
  * @property string $show_date
@@ -124,7 +124,7 @@ class Offer extends \yii\db\ActiveRecord
             [['user_id', 'event_id'], 'required'],
             [['user_id', 'copro_promoter_id', 'copro_venue_id', 'show_number', 'show_total_num', 'agency_id', 'agent_id', 'artist_id', 'venue_id', 'is_tbd_date', 'l1_gross_ticket', 'l1_kill', 'l2_gross_ticket', 'l2_kill', 'l3_gross_ticket', 'l3_kill', 'l4_gross_ticket', 'l4_kill', 'l5_gross_ticket', 'l5_kill', 'is_on_sale_date_tbd', 'ticketing_company_id', 'is_artist_production_buyout', 'pre_show_lockout', 'post_show_lockout', 'support_artist_1_id', 'support_artist_2_id', 'support_artist_3_id', 'artist_comp', 'production_comp', 'promotional_comp', 'house_comp', 'kill'], 'integer'],
             [['offer_type', 'status', 'show_type', 'artist_offer_type', 'expense_application', 'radius_clause_metric', 'pre_show_lockout_unit', 'post_show_lockout_unit'], 'string'],
-            [['created_on', 'updated_on', 'show_date', 'doors', 'showtime', 'on_sale_date'], 'safe'],
+            [['created_at', 'updated_at', 'show_date', 'doors', 'showtime', 'on_sale_date'], 'safe'],
             [['l1_price', 'l2_price', 'l3_price', 'l4_price', 'l5_price', 'tax', 'tax_per_ticket', 'facility_fee', 'artist_guarantee', 'artist_deposit', 'artist_split', 'promoter_profit', 'radius_clause', 'support_artist_1_total', 'support_artist_2_total', 'support_artist_3_total', 'housenut_total', 'merch_buyout_venue_sell', 'merch_buyout_artist_sell', 'merch_artist_split_venue_sell', 'merch_artist_split_artist_sell', 'merch_artist_split_media_venue_sell', 'merch_artist_split_media_artist_sell'], 'number'],
             [['event_id'], 'string', 'max' => 45],
             [['notes'], 'string', 'max' => 2000],
@@ -161,8 +161,6 @@ class Offer extends \yii\db\ActiveRecord
             'agency_id' => 'Agency ID',
             'agent_id' => 'Agent ID',
             'status' => 'Status',
-            'created_on' => 'Created On',
-            'updated_on' => 'Updated On',
             'artist_id' => 'Artist ID',
             'venue_id' => 'Venue ID',
             'show_date' => 'Show Date',
@@ -340,8 +338,8 @@ class Offer extends \yii\db\ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_on',
-                'updatedAtAttribute' => 'updated_on',
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
                 'value' => new \yii\db\Expression('NOW()'),
             ],
         ];

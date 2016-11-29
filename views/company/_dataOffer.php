@@ -1,60 +1,39 @@
 <?php
-
-use yii\helpers\Html;
-use yii\widgets\DetailView;
 use kartik\grid\GridView;
+use yii\data\ArrayDataProvider;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Offer */
-
-?>
-<div class="offer-view">
-
-    <div class="row">
-        <div class="col-sm-9">
-            <h2><?= Html::encode($model->id) ?></h2>
-        </div>
-    </div>
-
-    <div class="row">
-<?php 
-    $gridColumn = [
+    $dataProvider = new ArrayDataProvider([
+        'allModels' => $model->offers,
+        'key' => 'id'
+    ]);
+    $gridColumns = [
+        ['class' => 'yii\grid\SerialColumn'],
         ['attribute' => 'id', 'visible' => false],
         [
-            'attribute' => 'user.username',
-            'label' => 'User',
-        ],
+                'attribute' => 'user.username',
+                'label' => 'User'
+            ],
         'offer_type',
-        [
-            'attribute' => 'coproPromoter.name',
-            'label' => 'Copro Promoter',
-        ],
-        [
-            'attribute' => 'coproVenue.name',
-            'label' => 'Copro Venue',
-        ],
+                [
+                'attribute' => 'coproVenue.name',
+                'label' => 'Copro Venue'
+            ],
         'event_id',
         'show_number',
         'show_total_num',
-        [
-            'attribute' => 'agency.name',
-            'label' => 'Agency',
-        ],
-        [
-            'attribute' => 'agent.username',
-            'label' => 'Agent',
-        ],
+                [
+                'attribute' => 'agent.username',
+                'label' => 'Agent'
+            ],
         'status',
-        'created_at',
-        'updated_at',
         [
-            'attribute' => 'artist.username',
-            'label' => 'Artist',
-        ],
+                'attribute' => 'artist.username',
+                'label' => 'Artist'
+            ],
         [
-            'attribute' => 'venue.name',
-            'label' => 'Venue',
-        ],
+                'attribute' => 'venue.name',
+                'label' => 'Venue'
+            ],
         'show_date',
         'is_tbd_date',
         'show_type',
@@ -78,10 +57,6 @@ use kartik\grid\GridView;
         'l5_price',
         'on_sale_date',
         'is_on_sale_date_tbd',
-        [
-            'attribute' => 'ticketingCompany.name',
-            'label' => 'Ticketing Company',
-        ],
         'seating_plan',
         'tax',
         'tax_note',
@@ -104,19 +79,19 @@ use kartik\grid\GridView;
         'post_show_lockout_unit',
         'artist_deal_note',
         [
-            'attribute' => 'supportArtist1.username',
-            'label' => 'Support Artist 1',
-        ],
+                'attribute' => 'supportArtist1.username',
+                'label' => 'Support Artist 1'
+            ],
         'support_artist_1_total',
         [
-            'attribute' => 'supportArtist2.username',
-            'label' => 'Support Artist 2',
-        ],
+                'attribute' => 'supportArtist2.username',
+                'label' => 'Support Artist 2'
+            ],
         'support_artist_2_total',
         [
-            'attribute' => 'supportArtist3.username',
-            'label' => 'Support Artist 3',
-        ],
+                'attribute' => 'supportArtist3.username',
+                'label' => 'Support Artist 3'
+            ],
         'support_artist_3_total',
         'general_expense',
         'production_expense',
@@ -142,11 +117,30 @@ use kartik\grid\GridView;
         'kill',
         'kill_note',
         'comp_kill_note',
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'controller' => 'offer'
+        ],
     ];
-    echo DetailView::widget([
-        'model' => $model,
-        'attributes' => $gridColumn
-    ]); 
-?>
-    </div>
-</div>
+    
+    echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumns,
+        'containerOptions' => ['style' => 'overflow: auto'],
+        'pjax' => true,
+        'beforeHeader' => [
+            [
+                'options' => ['class' => 'skip-export']
+            ]
+        ],
+        'export' => [
+            'fontAwesome' => true
+        ],
+        'bordered' => true,
+        'striped' => true,
+        'condensed' => true,
+        'responsive' => true,
+        'hover' => true,
+        'showPageSummary' => false,
+        'persistResize' => false,
+    ]);

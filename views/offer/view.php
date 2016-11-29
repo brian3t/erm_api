@@ -7,9 +7,9 @@ use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Offer */
 
-$this->title=$model->id;
-$this->params['breadcrumbs'][]=['label'=>'Offer','url'=>['index']];
-$this->params['breadcrumbs'][]=$this->title;
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Offer', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="offer-view">
 
@@ -18,13 +18,13 @@ $this->params['breadcrumbs'][]=$this->title;
             <h2><?= 'Offer' . ' ' . Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
-
-            <?= Html::a('Update',['update','id'=>$model->id],['class'=>'btn btn-primary']) ?>
-            <?= Html::a('Delete',['delete','id'=>$model->id],[
-                'class'=>'btn btn-danger',
-                'data'=>[
-                    'confirm'=>'Are you sure you want to delete this item?',
-                    'method'=>'post',
+            
+            <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Are you sure you want to delete this item?',
+                    'method' => 'post',
                 ],
             ])
             ?>
@@ -33,49 +33,50 @@ $this->params['breadcrumbs'][]=$this->title;
 
     <div class="row">
         <?php
-        $gridColumn=[
-            ['attribute'=>'id','visible'=>false],
+        $gridColumn = [
+            ['attribute' => 'id', 'visible' => false],
             [
-                'attribute'=>'user.username',
-                'label'=>'User',
+                'attribute' => 'user.username',
+                'label' => 'User',
             ],
             'offer_type',
             [
-                'attribute'=>'coproPromoter.name',
-                'label'=>'Copro Promoter',
+                'attribute' => 'coproPromoter.name',
+                'label' => 'Copro Promoter',
             ],
             [
-                'attribute'=>'coproVenue.name',
-                'label'=>'Copro Venue',
+                'attribute' => 'coproVenue.name',
+                'label' => 'Copro Venue',
             ],
             'event_id',
             'show_number',
             'show_total_num',
             [
-                'attribute'=>'agency.name',
-                'label'=>'Agency',
+                'attribute' => 'agency.name',
+                'label' => 'Agency',
             ],
             [
-                'attribute'=>'agent.username',
-                'label'=>'Agent',
+                'attribute' => 'agent.username',
+                'label' => 'Agent',
             ],
             'status',
-            'created_on',
-            'updated_on',
+            'created_at',
+            'updated_at',
             [
-                'attribute'=>'artist.username',
-                'label'=>'Artist',
+                'attribute' => 'artist.username',
+                'label' => 'Artist',
             ],
             [
-                'attribute'=>'venue.name',
-                'label'=>'Venue',
+                'attribute' => 'venue.name',
+                'label' => 'Venue',
             ],
             'show_date',
             'is_tbd_date',
             'show_type',
             [
-                'attribute'=>'doors',
-            'format'=>['date', 'php:H:i']],
+                'attribute' => 'doors',
+                'format' => ['date', 'php:H:i']
+            ],
             'showtime',
             'notes',
             'l1_gross_ticket',
@@ -96,8 +97,8 @@ $this->params['breadcrumbs'][]=$this->title;
             'on_sale_date',
             'is_on_sale_date_tbd',
             [
-                'attribute'=>'ticketingCompany.name',
-                'label'=>'Ticketing Company',
+                'attribute' => 'ticketingCompany.name',
+                'label' => 'Ticketing Company',
             ],
             'seating_plan',
             'tax',
@@ -121,18 +122,18 @@ $this->params['breadcrumbs'][]=$this->title;
             'post_show_lockout_unit',
             'artist_deal_note',
             [
-                'attribute'=>'supportArtist1.username',
-                'label'=>'Support Artist 1',
+                'attribute' => 'supportArtist1.username',
+                'label' => 'Support Artist 1',
             ],
             'support_artist_1_total',
             [
-                'attribute'=>'supportArtist2.username',
-                'label'=>'Support Artist 2',
+                'attribute' => 'supportArtist2.username',
+                'label' => 'Support Artist 2',
             ],
             'support_artist_2_total',
             [
-                'attribute'=>'supportArtist3.username',
-                'label'=>'Support Artist 3',
+                'attribute' => 'supportArtist3.username',
+                'label' => 'Support Artist 3',
             ],
             'support_artist_3_total',
             'general_expense',
@@ -161,8 +162,8 @@ $this->params['breadcrumbs'][]=$this->title;
             'comp_kill_note',
         ];
         echo DetailView::widget([
-            'model'=>$model,
-            'attributes'=>$gridColumn
+            'model' => $model,
+            'attributes' => $gridColumn
         ]);
         ?>
     </div>
