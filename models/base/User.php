@@ -47,6 +47,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $zipcode
  * @property string $country
  *
+ * @property \app\models\Offer[] $offers
  * @property \app\models\Profile $profile
  * @property \app\models\SocialAccount[] $socialAccounts
  * @property \app\models\Token[] $tokens
@@ -136,7 +137,15 @@ class User extends \yii\db\ActiveRecord
             'country' => 'Country/Region',
         ];
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOffers()
+    {
+        return $this->hasMany(\app\models\Offer::className(), ['support_artist_3_id' => 'id'])->inverseOf('user')->inverseOf('agent')->inverseOf('artist')->inverseOf('supportArtist1')->inverseOf('supportArtist2')->inverseOf('supportArtist3');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

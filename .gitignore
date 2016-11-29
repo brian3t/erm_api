@@ -29,3 +29,6 @@ data
 config/params.php
 api/config/params.php
 api/assets/
+/web/index.php
+.sass-cache/*
+/web/.sass-cache/
