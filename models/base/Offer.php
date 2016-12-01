@@ -329,19 +329,4 @@ class Offer extends \yii\db\ActiveRecord
         return $this->hasOne(\app\models\Venue::className(), ['id' => 'venue_id'])->inverseOf('offers');
     }
     
-/**
-     * @inheritdoc
-     * @return array mixed
-     */ 
-    public function behaviors()
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => 'updated_at',
-                'value' => new \yii\db\Expression('NOW()'),
-            ],
-        ];
-    }
 }
