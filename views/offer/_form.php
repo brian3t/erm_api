@@ -330,6 +330,20 @@ use vakorovin\datetimepicker\Datetimepicker;
     
     <?= $form->field($model, 'comp_kill_note', ['options' => ['class' => 'form-group col-sm-10']])->textarea(['maxlength' => true, 'placeholder' => 'Comp Kill Note']) ?>
     <div class="clearfix"></div>
+
+    <?= $form->field($model, 'ascap_0_2500', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 0 2500']) ?>
+    <?= $form->field($model, 'ascap_2501_5000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 2501 5000']) ?>
+    <?= $form->field($model, 'ascap_5001_10000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 5001 10000']) ?>
+    <?= $form->field($model, 'ascap_10001_25000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 10001 25000']) ?>
+    <?= $form->field($model, 'ascap_25001_x', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 25001 X']) ?>
+    <div class="clearfix"></div>
+
+    <?= $form->field($model, 'bmi_0_2500', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 0 2500']) ?>
+    <?= $form->field($model, 'bmi_2501_5000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 2501 5000']) ?>
+    <?= $form->field($model, 'bmi_5001_10000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 5001 10000']) ?>
+    <?= $form->field($model, 'bmi_10001_25000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 10001 25000']) ?>
+    <?= $form->field($model, 'bmi_25001_x', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 25001 X']) ?>
+    <div class="clearfix"></div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer, ['class' => 'btn btn-danger']) ?>

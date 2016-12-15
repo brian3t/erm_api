@@ -143,7 +143,8 @@ class User extends \yii\db\ActiveRecord
      */
     public function getOffers()
     {
-        return $this->hasMany(\app\models\Offer::className(), ['support_artist_3_id' => 'id'])->inverseOf('user')->inverseOf('agent')->inverseOf('artist')->inverseOf('supportArtist1')->inverseOf('supportArtist2')->inverseOf('supportArtist3');
+        return $this->hasMany(\app\models\Offer::className(), ['user_id' => 'id'])->inverseOf('user');
+//        return $this->hasMany(\app\models\Offer::className(), ['support_artist_3_id' => 'id'])->inverseOf('user')->inverseOf('agent')->inverseOf('artist')->inverseOf('supportArtist1')->inverseOf('supportArtist2')->inverseOf('supportArtist3');
     }
 
     /**

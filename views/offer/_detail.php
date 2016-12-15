@@ -142,6 +142,16 @@ use kartik\grid\GridView;
         'kill',
         'kill_note',
         'comp_kill_note',
+        'ascap_0_2500',
+        'ascap_2501_5000',
+        'ascap_5001_10000',
+        'ascap_10001_25000',
+        'ascap_25001_x',
+        'bmi_0_2500',
+        'bmi_2501_5000',
+        'bmi_5001_10000',
+        'bmi_10001_25000',
+        'bmi_25001_x',
     ];
     echo DetailView::widget([
         'model' => $model,

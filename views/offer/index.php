@@ -7,9 +7,9 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title='Offer';
-$this->params['breadcrumbs'][]=$this->title;
-$search="$('.search-button').click(function(){
+$this->title = 'Offer';
+$this->params['breadcrumbs'][] = $this->title;
+$search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
 	return false;
 });";
@@ -20,128 +20,122 @@ $this->registerJs($search);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Offer',['create'],['class'=>'btn btn-success']) ?>
+        <?= Html::a('Create Offer', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php
-    $gridColumn=[
-        ['class'=>'yii\grid\SerialColumn'],
+    $gridColumn = [
+        ['class' => 'yii\grid\SerialColumn'],
         [
-            'class'=>'kartik\grid\ExpandRowColumn',
-            'width'=>'50px',
-            'value'=>function ($model,$key,$index,$column)
-            {
+            'class' => 'kartik\grid\ExpandRowColumn',
+            'width' => '50px',
+            'value' => function ($model, $key, $index, $column) {
                 return GridView::ROW_COLLAPSED;
             },
-            'detail'=>function ($model,$key,$index,$column)
-            {
-                return Yii::$app->controller->renderPartial('_expand',['model'=>$model]);
+            'detail' => function ($model, $key, $index, $column) {
+                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
             },
-            'headerOptions'=>['class'=>'kartik-sheet-style'],
-            'expandOneOnly'=>true
+            'headerOptions' => ['class' => 'kartik-sheet-style'],
+            'expandOneOnly' => true
         ],
-        ['attribute'=>'id','visible'=>false],
+        ['attribute' => 'id', 'visible' => false],
         'event_id',
         [
-            'attribute'=>'user_id',
-            'label'=>'User',
-            'value'=>function ($model)
-            {
+            'attribute' => 'user_id',
+            'label' => 'User',
+            'value' => function ($model) {
                 return $model->user->username;
             },
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>\yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(),'id','username'),
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'User','id'=>'grid--user_id']
+            'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--user_id']
         ],
         'offer_type',
         [
-            'attribute'=>'copro_promoter_id',
-            'label'=>'Copro Promoter',
-            'value'=>function ($model)
-            {
+            'attribute' => 'copro_promoter_id',
+            'label' => 'Copro Promoter',
+            'value' => function ($model) {
                 return $model->coproPromoter->name;
             },
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(),'id','name'),
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Company','id'=>'grid--copro_promoter_id']
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--copro_promoter_id']
         ],
         [
-            'attribute'=>'copro_venue_id',
-            'label'=>'Copro Venue',
-            'value'=>function ($model)
-            {
+            'attribute' => 'copro_venue_id',
+            'label' => 'Copro Venue',
+            'value' => function ($model) {
                 return $model->coproVenue->name;
             },
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(),'id','name'),
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Venue','id'=>'grid--copro_venue_id']
+            'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--copro_venue_id']
         ],
 //        'show_number',
 //        'show_total_num',
         [
-            'attribute'=>'agency_id',
-            'label'=>'Agency',
-            'value'=>function ($model)
-            {
+            'attribute' => 'agency_id',
+            'label' => 'Agency',
+            'value' => function ($model) {
                 return is_object($model->agency) ? $model->agency->name : 'N/A';
             },
-            'filterType'=>GridView::FILTER_SELECT2,
-            'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(),'id','name'),
-            'filterWidgetOptions'=>[
-                'pluginOptions'=>['allowClear'=>true],
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
-            'filterInputOptions'=>['placeholder'=>'Company','id'=>'grid--agency_id']
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--agency_id']
         ],
         [
-                'attribute' => 'agent_id',
-                'label' => 'Agent',
-                'value' => function($model){
-                    return is_object($model->agent)?$model->agent->username:'N/A';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--agent_id']
+            'attribute' => 'agent_id',
+            'label' => 'Agent',
+            'value' => function ($model) {
+                return is_object($model->agent) ? $model->agent->username : 'N/A';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--agent_id']
+        ],
         'status',
         'created_at',
         'updated_at',
         [
-                'attribute' => 'artist_id',
-                'label' => 'Artist',
-                'value' => function($model){
-                    return is_object($model->artist)?$model->artist->username:'N/A';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--artist_id']
+            'attribute' => 'artist_id',
+            'label' => 'Artist',
+            'value' => function ($model) {
+                return is_object($model->artist) ? $model->artist->username : 'N/A';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--artist_id']
+        ],
         [
-                'attribute' => 'venue_id',
-                'label' => 'Venue',
-                'value' => function($model){
-                    return is_object($model->venue)?$model->venue->name:'N/A';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--venue_id']
+            'attribute' => 'venue_id',
+            'label' => 'Venue',
+            'value' => function ($model) {
+                return is_object($model->venue) ? $model->venue->name : 'N/A';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--venue_id']
+        ],
 //        'show_date',
 //        'is_tbd_date',
 //        'show_type',
@@ -266,37 +260,37 @@ $this->registerJs($search);
 //        'kill_note',
 //        'comp_kill_note',
         [
-            'class'=>'yii\grid\ActionColumn',
+            'class' => 'yii\grid\ActionColumn',
         ],
     ];
     ?>
     <?= GridView::widget([
-        'dataProvider'=>$dataProvider,
-        'columns'=>$gridColumn,
-        'pjax'=>true,
-        'pjaxSettings'=>['options'=>['id'=>'kv-pjax-container-offer']],
-        'panel'=>[
-            'type'=>GridView::TYPE_PRIMARY,
-            'heading'=>'<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
+        'dataProvider' => $dataProvider,
+        'columns' => $gridColumn,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-offer']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),
         ],
-        'export'=>false,
+        'export' => false,
         // your toolbar can include the additional full export menu
-        'toolbar'=>[
+        'toolbar' => [
             '{export}',
             ExportMenu::widget([
-                'dataProvider'=>$dataProvider,
-                'columns'=>$gridColumn,
-                'target'=>ExportMenu::TARGET_BLANK,
-                'fontAwesome'=>true,
-                'dropdownOptions'=>[
-                    'label'=>'Full',
-                    'class'=>'btn btn-default',
-                    'itemsBefore'=>[
+                'dataProvider' => $dataProvider,
+                'columns' => $gridColumn,
+                'target' => ExportMenu::TARGET_BLANK,
+                'fontAwesome' => true,
+                'dropdownOptions' => [
+                    'label' => 'Full',
+                    'class' => 'btn btn-default',
+                    'itemsBefore' => [
                         '<li class="dropdown-header">Export All Data</li>',
                     ],
                 ],
-                'exportConfig'=>[
-                    ExportMenu::FORMAT_PDF=>false
+                'exportConfig' => [
+                    ExportMenu::FORMAT_PDF => false
                 ]
             ]),
         ],

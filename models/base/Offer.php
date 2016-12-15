@@ -3,7 +3,6 @@
 namespace app\models\base;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the base model class for table "offer".
@@ -98,6 +97,16 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $kill
  * @property string $kill_note
  * @property string $comp_kill_note
+ * @property string $ascap_0_2500
+ * @property string $ascap_2501_5000
+ * @property string $ascap_5001_10000
+ * @property string $ascap_10001_25000
+ * @property string $ascap_25001_x
+ * @property string $bmi_0_2500
+ * @property string $bmi_2501_5000
+ * @property string $bmi_5001_10000
+ * @property string $bmi_10001_25000
+ * @property string $bmi_25001_x
  *
  * @property \app\models\User $user
  * @property \app\models\Company $agency
@@ -125,7 +134,7 @@ class Offer extends \yii\db\ActiveRecord
             [['user_id', 'copro_promoter_id', 'copro_venue_id', 'show_number', 'show_total_num', 'agency_id', 'agent_id', 'artist_id', 'venue_id', 'is_tbd_date', 'l1_gross_ticket', 'l1_kill', 'l2_gross_ticket', 'l2_kill', 'l3_gross_ticket', 'l3_kill', 'l4_gross_ticket', 'l4_kill', 'l5_gross_ticket', 'l5_kill', 'is_on_sale_date_tbd', 'ticketing_company_id', 'is_artist_production_buyout', 'pre_show_lockout', 'post_show_lockout', 'support_artist_1_id', 'support_artist_2_id', 'support_artist_3_id', 'artist_comp', 'production_comp', 'promotional_comp', 'house_comp', 'kill'], 'integer'],
             [['offer_type', 'status', 'show_type', 'artist_offer_type', 'expense_application', 'radius_clause_metric', 'pre_show_lockout_unit', 'post_show_lockout_unit'], 'string'],
             [['created_at', 'updated_at', 'show_date', 'doors', 'showtime', 'on_sale_date'], 'safe'],
-            [['l1_price', 'l2_price', 'l3_price', 'l4_price', 'l5_price', 'tax', 'tax_per_ticket', 'facility_fee', 'artist_guarantee', 'artist_deposit', 'artist_split', 'promoter_profit', 'radius_clause', 'support_artist_1_total', 'support_artist_2_total', 'support_artist_3_total', 'housenut_total', 'merch_buyout_venue_sell', 'merch_buyout_artist_sell', 'merch_artist_split_venue_sell', 'merch_artist_split_artist_sell', 'merch_artist_split_media_venue_sell', 'merch_artist_split_media_artist_sell'], 'number'],
+            [['l1_price', 'l2_price', 'l3_price', 'l4_price', 'l5_price', 'tax', 'tax_per_ticket', 'facility_fee', 'artist_guarantee', 'artist_deposit', 'artist_split', 'promoter_profit', 'radius_clause', 'support_artist_1_total', 'support_artist_2_total', 'support_artist_3_total', 'housenut_total', 'merch_buyout_venue_sell', 'merch_buyout_artist_sell', 'merch_artist_split_venue_sell', 'merch_artist_split_artist_sell', 'merch_artist_split_media_venue_sell', 'merch_artist_split_media_artist_sell', 'ascap_0_2500', 'ascap_2501_5000', 'ascap_5001_10000', 'ascap_10001_25000', 'ascap_25001_x', 'bmi_0_2500', 'bmi_2501_5000', 'bmi_5001_10000', 'bmi_10001_25000', 'bmi_25001_x'], 'number'],
             [['event_id'], 'string', 'max' => 45],
             [['notes'], 'string', 'max' => 2000],
             [['seating_plan'], 'string', 'max' => 80],
@@ -238,6 +247,16 @@ class Offer extends \yii\db\ActiveRecord
             'kill' => 'Kill',
             'kill_note' => 'Kill Note',
             'comp_kill_note' => 'Comp Kill Note',
+            'ascap_0_2500' => 'Ascap 0 2500',
+            'ascap_2501_5000' => 'Ascap 2501 5000',
+            'ascap_5001_10000' => 'Ascap 5001 10000',
+            'ascap_10001_25000' => 'Ascap 10001 25000',
+            'ascap_25001_x' => 'Ascap 25001 X',
+            'bmi_0_2500' => 'Bmi 0 2500',
+            'bmi_2501_5000' => 'Bmi 2501 5000',
+            'bmi_5001_10000' => 'Bmi 5001 10000',
+            'bmi_10001_25000' => 'Bmi 10001 25000',
+            'bmi_25001_x' => 'Bmi 25001 X',
         ];
     }
     
@@ -328,5 +347,4 @@ class Offer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Venue::className(), ['id' => 'venue_id'])->inverseOf('offers');
     }
-    
-}
+    }
