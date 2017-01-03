@@ -76,11 +76,9 @@ class OfferController extends Controller
     {
         $model = new Offer();
 
-        if($model->loadAll(Yii::$app->request->post()) && $model->saveAll())
-        {
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else
-        {
+        } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -97,11 +95,9 @@ class OfferController extends Controller
     {
         $model = $this->findModel($id);
 
-        if($model->loadAll(Yii::$app->request->post()) && $model->saveAll())
-        {
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
-        } else
-        {
+        } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -121,7 +117,7 @@ class OfferController extends Controller
         return $this->redirect(['index']);
     }
 
-
+    
     /**
      * Finds the Offer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -131,11 +127,9 @@ class OfferController extends Controller
      */
     protected function findModel($id)
     {
-        if(($model = Offer::findOne($id)) !== null)
-        {
+        if (($model = Offer::findOne($id)) !== null) {
             return $model;
-        } else
-        {
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
