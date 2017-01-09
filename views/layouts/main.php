@@ -85,6 +85,10 @@ AppAsset::register($this);
             'label' => 'Offers',
             'url' => '/offer',
         ],
+        [
+            'label' => 'Settlements',
+            'url' => '/settlement',
+        ],
         ['label' => 'Raw User data', 'url' => '/user'],
     ]);
     

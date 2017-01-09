@@ -49,6 +49,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property \app\models\Offer[] $offers
  * @property \app\models\Profile $profile
+ * @property \app\models\Settlement[] $settlements
  * @property \app\models\SocialAccount[] $socialAccounts
  * @property \app\models\Token[] $tokens
  * @property \app\models\Company $company
@@ -153,7 +154,15 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Profile::className(), ['user_id' => 'id'])->inverseOf('user');
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSettlements()
+    {
+        return $this->hasMany(\app\models\Settlement::className(), ['second_party_artist_id' => 'id'])->inverseOf('secondPartyArtist');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

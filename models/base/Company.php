@@ -40,6 +40,7 @@ use Yii;
  * @property string $note
  *
  * @property \app\models\Offer[] $offers
+ * @property \app\models\Settlement[] $settlements
  * @property \app\models\User[] $users
  * @property \app\models\Venue[] $venues
  */
@@ -124,6 +125,14 @@ class Company extends \yii\db\ActiveRecord
     public function getOffers()
     {
         return $this->hasMany(\app\models\Offer::className(), ['ticketing_company_id' => 'id'])->inverseOf('agency')->inverseOf('coproPromoter')->inverseOf('ticketingCompany');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSettlements()
+    {
+        return $this->hasMany(\app\models\Settlement::className(), ['first_party_id' => 'id'])->inverseOf('firstParty');
     }
 
     /**
