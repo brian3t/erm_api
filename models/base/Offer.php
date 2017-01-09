@@ -358,7 +358,7 @@ class Offer extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Venue::className(), ['id' => 'venue_id'])->inverseOf('offers');
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -366,11 +366,11 @@ class Offer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\Settlement::className(), ['second_party_event_id' => 'event_id'])->inverseOf('firstPartyEvent')->inverseOf('secondPartyEvent');
     }
-    
+
 /**
      * @inheritdoc
      * @return array mixed
-     */ 
+     */
     public function behaviors()
     {
         return [
