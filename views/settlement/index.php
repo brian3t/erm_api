@@ -22,7 +22,7 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Settlement', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php
+<?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         [
@@ -56,10 +56,10 @@ $this->registerJs($search);
                 'attribute' => 'first_party_event_id',
                 'label' => 'First Party Event',
                 'value' => function($model){
-                    return $model->firstPartyEvent->id;
+                    return $model->firstPartyEvent->event_id;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'event_id', 'id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
@@ -70,10 +70,10 @@ $this->registerJs($search);
                 'attribute' => 'second_party_event_id',
                 'label' => 'Second Party Event',
                 'value' => function($model){
-                    return $model->secondPartyEvent->id;
+                    return $model->secondPartyEvent->event_id;
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'event_id', 'id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
@@ -115,7 +115,7 @@ $this->registerJs($search);
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ];
+    ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

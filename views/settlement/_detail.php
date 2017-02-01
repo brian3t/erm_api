@@ -17,7 +17,7 @@ use kartik\grid\GridView;
     </div>
 
     <div class="row">
-<?php
+<?php 
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         'settlement_id',
@@ -53,7 +53,7 @@ use kartik\grid\GridView;
     echo DetailView::widget([
         'model' => $model,
         'attributes' => $gridColumn
-    ]);
+    ]); 
 ?>
     </div>
 </div>

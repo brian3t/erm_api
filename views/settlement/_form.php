@@ -28,7 +28,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'first_party_event_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->orderBy('event_id')->asArray()->all(), 'event_id', 'event_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->orderBy('id')->asArray()->all(), 'id', 'event_id'),
         'options' => ['placeholder' => 'Choose Offer'],
         'pluginOptions' => [
             'allowClear' => true
@@ -38,7 +38,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'first_party_capacity')->textInput(['placeholder' => 'First Party Capacity']) ?>
 
     <?= $form->field($model, 'second_party_event_id')->widget(\kartik\widgets\Select2::classname(), [
-        'data' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->orderBy('event_id')->asArray()->all(), 'event_id', 'event_id'),
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->orderBy('id')->asArray()->all(), 'id', 'event_id'),
         'options' => ['placeholder' => 'Choose Offer'],
         'pluginOptions' => [
             'allowClear' => true
