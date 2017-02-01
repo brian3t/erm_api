@@ -41,7 +41,7 @@ class Settlement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['settlement_id', 'first_party_event_id', 'second_party_event_id'], 'required'],
+            [['settlement_id'], 'required'],
             [['created_at', 'updated_at', 'second_party_date'], 'safe'],
             [['first_party_id', 'first_party_event_id', 'first_party_capacity', 'second_party_event_id', 'second_party_capacity', 'second_party_artist_id', 'second_party_venue_id'], 'integer'],
             [['artist_walkout_final', 'ad_plan_final', 'promoter_revenue_final', 'ticket_sales_final'], 'number'],

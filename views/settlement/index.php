@@ -43,7 +43,7 @@ $this->registerJs($search);
                 'attribute' => 'first_party_id',
                 'label' => 'First Party',
                 'value' => function($model){
-                    return $model->firstParty->name;
+                    return $model->firstParty?$model->firstParty->name:'N/A';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
@@ -70,7 +70,7 @@ $this->registerJs($search);
                 'attribute' => 'second_party_event_id',
                 'label' => 'Second Party Event',
                 'value' => function($model){
-                    return $model->secondPartyEvent->event_id;
+                    return $model->secondPartyEvent?$model->secondPartyEvent->event_id:'N/A';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),

@@ -43,13 +43,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'firstPartyEvent.id',
                 'label' => 'First Party Event',
-                'value' => $model->firstPartyEvent->event_id
+                'value' => $model->firstPartyEvent?$model->firstPartyEvent->event_id:'N/A'
             ],
             'first_party_capacity',
             [
                 'attribute' => 'secondPartyEvent.id',
                 'label' => 'Second Party Event',
-                'value' => $model->secondPartyEvent->event_id
+                'value' => $model->secondPartyEvent?$model->secondPartyEvent->event_id:'N/A'
             ],
             'second_party_capacity',
             'second_party_date',
