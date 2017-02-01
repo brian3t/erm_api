@@ -22,7 +22,7 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Settlement', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php 
+<?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         [
@@ -115,7 +115,7 @@ $this->registerJs($search);
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

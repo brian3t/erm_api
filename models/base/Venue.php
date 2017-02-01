@@ -48,6 +48,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $google
  *
  * @property \app\models\Offer[] $offers
+ * @property \app\models\Settlement[] $settlements
  * @property \app\models\Company $company
  * @property \app\models\Company $primaryTicketingCompany
  */
@@ -135,6 +136,14 @@ class Venue extends \yii\db\ActiveRecord
     public function getOffers()
     {
         return $this->hasMany(\app\models\Offer::className(), ['venue_id' => 'id'])->inverseOf('coproVenue')->inverseOf('venue');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSettlements()
+    {
+        return $this->hasMany(\app\models\Settlement::className(), ['second_party_venue_id' => 'id'])->inverseOf('secondPartyVenue');
     }
 
     /**
