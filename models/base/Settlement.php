@@ -66,7 +66,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'settlement_id' => 'Settlement',
+            'settlement_id' => 'Settlement ID',
             'first_party_id' => 'First Party',
             'first_party_event_id' => 'First Party Event',
             'first_party_capacity' => 'First Party Capacity',

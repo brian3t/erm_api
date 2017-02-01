@@ -77,17 +77,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
-    <?= $form->field($model, 'artist_walkout_final')->textInput(['maxlength' => true, 'placeholder' => 'Artist Walkout Final']) ?>
+    <?= $form->field($model, 'artist_walkout_final')->input('number', ['value' => $model->artist_walkout_final ?? 0, 'maxlength' => true, 'placeholder' => 'Artist Walkout Final']) ?>
 
-    <?= $form->field($model, 'ad_plan_final')->textInput(['maxlength' => true, 'placeholder' => 'Ad Plan Final']) ?>
+    <?= $form->field($model, 'ad_plan_final')->input('number', ['value' => $model->ad_plan_final??0, 'maxlength' => true, 'placeholder' => 'Ad Plan Final']) ?>
 
-    <?= $form->field($model, 'promoter_revenue_final')->textInput(['maxlength' => true, 'placeholder' => 'Promoter Revenue Final']) ?>
+    <?= $form->field($model, 'promoter_revenue_final')->input('number', ['value' => $model->promoter_revenue_final??0, 'maxlength' => true, 'placeholder' => 'Promoter Revenue Final']) ?>
 
-    <?= $form->field($model, 'ticket_sales_final')->textInput(['maxlength' => true, 'placeholder' => 'Ticket Sales Final']) ?>
+    <?= $form->field($model, 'ticket_sales_final')->input('number', ['value' => $model->ticket_sales_final??0, 'maxlength' => true, 'placeholder' => 'Ticket Sales Final']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer, ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -85,7 +85,7 @@ $this->registerJs($search);
                 'attribute' => 'second_party_artist_id',
                 'label' => 'Second Party Artist',
                 'value' => function($model){
-                    return $model->secondPartyArtist->username;
+                    return $model->secondPartyArtist?$model->secondPartyArtist->username:'';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
@@ -98,7 +98,7 @@ $this->registerJs($search);
                 'attribute' => 'second_party_venue_id',
                 'label' => 'Second Party Venue',
                 'value' => function($model){
-                    return $model->secondPartyVenue->name;
+                    return $model->secondPartyVenue?$model->secondPartyVenue->name:'';
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
