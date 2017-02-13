@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Dompdf\Dompdf;
+use phpQuery;
 
 /**
  * OfferController implements the CRUD actions for Offer model.
@@ -32,6 +34,9 @@ class OfferController extends Controller
                         'roles' => ['@']
                     ],
                     [
+                        'allow' => true,
+                        'actions' => ['pdf'],
+                    ], [
                         'allow' => false
                     ]
                 ]
@@ -117,7 +122,7 @@ class OfferController extends Controller
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Offer model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -132,5 +137,58 @@ class OfferController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionPdf($id = 0, $browser = 0)
+    {
+        ob_start();
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+<!--            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
+            <link href="http://admin.ermlocal/css/bootstrap_print.css" rel="stylesheet" crossorigin="anonymous">
+        </head>
+        <body>
+
+        <?php
+        // instantiate and use the dompdf class
+        $pdf = new Dompdf();
+
+        // Create a HTML object with a basic div container
+        phpQuery::newDocument();
+
+        $body = pq('<div>');
+        $div = pq('<div>');
+        $div->addClass('row')->append(pq('<span>')->addClass('col-xs-6')->text('left'))->append(pq('<span>')->addClass('col-xs-6')->text('right'));
+
+        $div2 = pq('<div>');
+        $div2->addClass('row')->text('hi again');
+
+        $body->append($div);
+//        $body->append('<br/>');
+        $body->append($div2);
+
+        // (Optional) Setup the paper size and orientation
+        $pdf->setPaper('A4', 'landscape');
+
+        // Render the HTML to ob
+        echo $body->html();
+
+        $output = ob_get_clean();
+        $pdf->loadHtml($output);
+        $pdf->render();
+
+        // Output the generated PDF to Browser
+        if (!$browser) {
+            $pdf->stream();
+        }
+
+        ?>
+        </body>
+        </html>
+        <?php
+        return $output;
     }
 }

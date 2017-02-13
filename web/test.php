@@ -1,35 +1,50 @@
 <?php
+ob_start();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen"/>
+</head>
+<body>
 
-try valhook dparse
-
-//require_once dirname(__DIR__) . '/vendor/dompdf/dompdf/autoload.inc.php';
-
-require_once realpath('../vendor/autoload.php');
+<?php
+require_once ('../vendor/autoload.php');
 
 use Dompdf\Dompdf;
-use pQuery;
+use phpQuery;
 
 // instantiate and use the dompdf class
-$dompdf = new Dompdf();
+$pdf = new Dompdf();
+
 // Create a HTML object with a basic div container
-$div = pQuery::parseStr('<div></div>');
+phpQuery::newDocument();
 
-// Add some CSS class to the div
-$div->addClass('container');
+$body = pq('<div>');
+$div = pq('<div>');
+$div->addClass('row')->text('hi there');
 
-$td = pQuery::parseStr('<td></td>');
-$td->setInnerText('Test2');
-$div->append($td->html());
+$div2 = pq('<div>');
+$div2->addClass('row')->text('hi again');
 
-// Insert content into the div
-$div->html('Inner html of the element ...');
+$body->append($div)->append($div2);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$pdf->setPaper('A4', 'landscape');
 
-// Render the HTML as PDF
-$dompdf->loadHtml($div->html());
-$dompdf->render();
+// Render the HTML to ob
+echo $body->html();
+
+$output = ob_get_clean();
+$pdf->loadHtml($output);
+echo $output;
+$pdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream();
+$pdf->stream();
+
+?>
+</body>
+</html>
+
