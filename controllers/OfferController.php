@@ -139,7 +139,7 @@ class OfferController extends Controller
         }
     }
 
-    public function actionPdf($id = 0, $browser = 0)
+    public function actionPdf($id = 2, $browser = 0)
     {
         ob_start();
         ?>
@@ -174,7 +174,8 @@ class OfferController extends Controller
         $pdf->setPaper('A4', 'landscape');
 
         // Render the HTML to ob
-        echo $body->html();
+//        echo $body->html();
+        echo $this->renderAjax('print', ['model' => $this->findModel($id)]);
 
         $output = ob_get_clean();
         $pdf->loadHtml($output);
