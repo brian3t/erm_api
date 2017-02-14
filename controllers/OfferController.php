@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Dompdf\Dompdf;
 use phpQuery;
+use mPDF;
 
 /**
  * OfferController implements the CRUD actions for Offer model.
@@ -147,7 +148,41 @@ class OfferController extends Controller
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-<!--            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
+            <!--            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
+            <link href="http://admin.ermlocal/css/bootstrap_print.css" rel="stylesheet" crossorigin="anonymous">
+        </head>
+        <body>
+
+        <?php
+        // instantiate and use the dompdf class
+        $pdf = new mPDF();
+        echo $this->renderAjax('print', ['model' => $this->findModel($id)]);
+
+        $output = ob_get_clean();
+
+        // Output the generated PDF to Browser
+        if (!$browser) {
+            $pdf->WriteHTML(file_get_contents(__DIR__ . "/../web/css/bootstrap_print.css"), 1);
+            $pdf->WriteHTML($output, 2);
+            $pdf->Output();
+        }
+
+        ?>
+        </body>
+    </html>
+        <?php
+        return $output;
+    }
+
+    public function actionPdf_dompdf($id = 2, $browser = 0)
+    {
+        ob_start();
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <!--            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
             <link href="http://admin.ermlocal/css/bootstrap_print.css" rel="stylesheet" crossorigin="anonymous">
         </head>
         <body>
@@ -167,14 +202,14 @@ class OfferController extends Controller
         $div2->addClass('row')->text('hi again');
 
         $body->append($div);
-//        $body->append('<br/>');
+        //        $body->append('<br/>');
         $body->append($div2);
 
         // (Optional) Setup the paper size and orientation
         $pdf->setPaper('A4', 'landscape');
 
         // Render the HTML to ob
-//        echo $body->html();
+        //        echo $body->html();
         echo $this->renderAjax('print', ['model' => $this->findModel($id)]);
 
         $output = ob_get_clean();

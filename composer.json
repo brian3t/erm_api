@@ -38,9 +38,9 @@
     "dektrium/yii2-user": "0.9.*@dev",
     "voskobovich/yii2-many-many-behavior": "^3.2",
     "vakorovin/yii2-datetimepicker": "dev-master",
-    "dompdf/dompdf": "^0.7.0",
     "electrolinux/phpquery": "^0.9.6",
-    "kartik-v/yii2-mpdf": "*"
+    "kartik-v/yii2-mpdf": "*",
+    "mpdf/mpdf": "^6.1"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "*",

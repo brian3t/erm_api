@@ -10,14 +10,17 @@ ob_start();
 <body>
 
 <?php
-require_once ('../vendor/autoload.php');
+require_once __DIR__. '/../vendor/autoload.php';
 
-use Dompdf\Dompdf;
-use phpQuery;
+use mPDF;
+//use phpQuery;
 
 // instantiate and use the dompdf class
-$pdf = new Dompdf();
+$pdf = new mPDF();
+$pdf->WriteHTML('<h1>Hello world!</h1>');
+$pdf->Output();
 
+exit(1);
 // Create a HTML object with a basic div container
 phpQuery::newDocument();
 
