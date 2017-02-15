@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use Faker\Provider\cs_CZ\DateTime;
 use Yii;
 use app\models\Offer;
 use yii\data\ActiveDataProvider;
@@ -168,7 +169,8 @@ class OfferController extends Controller
 <span style="font-size: 150%">Entertainment Direct Metrics</span>&emsp;&emsp; Offer '.$model->event_id);
             $pdf->WriteHTML(file_get_contents(__DIR__ . "/../web/css/bootstrap_print.css"), 1);
             $pdf->WriteHTML($output, 2);
-            $pdf->Output();
+            $date = (new \DateTime())->format('Ymd_h_i_s');
+            $pdf->Output("ERM_Offer_{$model->event_id}_$date.pdf", 'I');
         }
 
         ?>

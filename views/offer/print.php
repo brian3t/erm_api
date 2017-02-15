@@ -52,7 +52,7 @@ function money($s)
 
 ?>
 
-<? //= print_r($model->attributes);?>
+<?php //= print_r($model->attributes);?>
 <table cellspacing="0" cellpadding="6">
     <thead>
     <!--    <tr>-->
