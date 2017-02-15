@@ -13,7 +13,7 @@ phpQuery::newDocument();
 $booked_by = $model->user ? $model->user->username : '';
 /**
  * @param string $json
- *
+ * @return string text
  */
 function array_2_text($json, $is_money = true)
 {
@@ -34,14 +34,20 @@ function array_2_text($json, $is_money = true)
             //create new tr
             $tr = pq('<tr>');
         }
-        if ($is_money){
+        if ($is_money) {
             $v = money_format('$%(#8n', $v);
         }
+        $k = ucwords(str_replace(["_"], " ", $k));
         $tr->append(pq('<td>')->html($k))->append(pq('<td>')->attr('align', 'right')->html($v));
         $i++;
     }
     $wrapper->append($d);
     return $wrapper->html();
+}
+
+function money($s)
+{
+    return money_format('$%(#8n', $s);
 }
 
 ?>
@@ -232,7 +238,10 @@ function array_2_text($json, $is_money = true)
         <td><?= $model->support_artist_3_total ?></td>
         <td colspan="3"></td>
     </tr>
-    <tr class="row ">
+    <tr class="row  no_border">
+        <td colspan="9">&nbsp;</td>
+    </tr>
+    <tr class="row  no_border">
         <td colspan="9">&nbsp;</td>
     </tr>
     <tr style="border-bottom: none">
@@ -260,64 +269,97 @@ function array_2_text($json, $is_money = true)
         <td>General Expense Note</td>
         <td colspan="8"><?= $model->general_expense_note ?></td>
     </tr>
-    <tr class="row ">
+    <tr class="row no_border">
         <td colspan="9">&nbsp;</td>
     </tr>
+    <tr class="row  no_border">
+        <td colspan="9">&nbsp;</td>
+    </tr>
+    <tr class="row  no_border">
+        <td colspan="9">&nbsp;</td>
+    </tr>
+    <tr class="row  no_border">
+        <td colspan="9">&nbsp;</td>
+    </tr>
+
     <tr style="border-bottom: none">
         <td colspan="9" class="bold">Variable Expense</td>
     </tr>
     <tr style="border-top: none;">
         <td colspan="9">    <?= array_2_text($model->variable_expense, false) ?>        </td>
     </tr>
+    <tr style="border-bottom: none">
+        <td colspan="9" class="bold">Merchandise</td>
+    </tr>
+    <tr style="border-top: none">
+        <td>Buyout Venue Sell</td>
+        <td><?= money($model->merch_buyout_venue_sell) ?></td>
+        <td>Buyout Artist Sell</td>
+        <td><?= money($model->merch_buyout_artist_sell) ?></td>
+        <td></td>
+        <td>Artist split Venue sell</td>
+        <td><?= money($model->merch_artist_split_venue_sell) ?></td>
+        <td>Artist split Artist sell</td>
+        <td><?= money($model->merch_artist_split_artist_sell) ?></td>
+    </tr>
+    <tr>
+        <td>Venue Split Venue Sell</td>
+        <td><?= money($model->merch_venue_split_venue_sell) ?></td>
+        <td>Venue Split Artist Sell</td>
+        <td><?= money($model->merch_venue_split_artist_sell) ?></td>
+        <td></td>
+        <td>Artist split Media venue sell</td>
+        <td><?= money($model->merch_artist_split_media_venue_sell) ?></td>
+        <td>Artist split Media artist sell</td>
+        <td><?= money($model->merch_artist_split_media_artist_sell) ?></td>
+    </tr>
+    <tr>
+        <td>Venue Split Media venue Sell</td>
+        <td><?= money($model->merch_venue_split_media_venue_sell) ?></td>
+        <td>Venue Split Media artist Sell</td>
+        <td><?= money($model->merch_venue_split_media_artist_sell) ?></td>
+        <td></td>
+        <td>Note</td>
+        <td colspan="3"><?= $model->merch_note ?></td>
+    </tr>
 
-    <!--        --><? //= $form->field($model, 'merch_buyout_venue_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Buyout Venue Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_buyout_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Buyout Artist Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_artist_split_venue_sell', ['options' => ['class' => 'form-group col-sm-2 col-sm-offset-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Artist Split Venue Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_artist_split_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Artist Split Artist Sell']) ?>
-    <!---->
-    <!--    <td class="clearfix"></tr>-->
-    <!---->
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_venue_split_venue_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Venue Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_venue_split_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Artist Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_artist_split_media_venue_sell', ['options' => ['class' => 'form-group col-sm-2 col-sm-offset-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Artist Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_artist_split_media_artist_sell', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Artist Split Media Artist Sell']) ?>
-    <!---->
-    <!--    <td class="clearfix"></tr>-->
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_venue_split_media_venue_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Media Venue Sell']) ?>
-    <!--        --><? //= $form->field($model, 'merch_venue_split_media_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Media Artist Sell']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'merch_note', ['options' => ['class' => 'form-group col-sm-6']])->textarea(['maxlength' => true, 'placeholder' => 'Merch Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'artist_comp', ['options' => ['class' => 'form-group col-sm-5']])->textInput(['placeholder' => 'Artist Comp']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'artist_comp_note', ['options' => ['class' => 'form-group col-sm-5']])->textarea(['maxlength' => true, 'placeholder' => 'Artist Comp Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'production_comp', ['options' => ['class' => 'form-group col-sm-5']])->textInput(['placeholder' => 'Production Comp']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'production_comp_note', ['options' => ['class' => 'form-group col-sm-5']])->textarea(['maxlength' => true, 'placeholder' => 'Production Comp Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'promotional_comp', ['options' => ['class' => 'form-group col-sm-5']])->textInput(['placeholder' => 'Promotional Comp']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'promotional_comp_note', ['options' => ['class' => 'form-group col-sm-5']])->textarea(['maxlength' => true, 'placeholder' => 'Promotional Comp Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'house_comp', ['options' => ['class' => 'form-group col-sm-5']])->textInput(['placeholder' => 'House Comp']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'house_comp_note', ['options' => ['class' => 'form-group col-sm-5']])->textarea(['maxlength' => true, 'placeholder' => 'House Comp Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'kill', ['options' => ['class' => 'form-group col-sm-5']])->textInput(['placeholder' => 'Kill']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'kill_note', ['options' => ['class' => 'form-group col-sm-5']])->textarea(['maxlength' => true, 'placeholder' => 'Kill Note']) ?>
-    <!---->
-    <!--        --><? //= $form->field($model, 'comp_kill_note', ['options' => ['class' => 'form-group col-sm-10']])->textarea(['maxlength' => true, 'placeholder' => 'Comp Kill Note']) ?>
-    <!--    <td class="clearfix"></tr>-->
+    <tr class="row no_border">
+        <td colspan="9">&nbsp;</td>
+    </tr>
+    <tr style="border-bottom: none">
+        <td colspan="9" class="bold">Comps and Kills</td>
+    </tr>
+    <tr style="border-top: none">
+        <td>Artist Comps</td>
+        <td><?= $model->artist_comp ?></td>
+        <td colspan="7"><?= $model->artist_comp_note ?></td>
+    </tr>
+    <tr style="border-top: none">
+        <td>Production Comps</td>
+        <td><?= $model->production_comp ?></td>
+        <td colspan="7"><?= $model->production_comp_note ?></td>
+    </tr>
+    <tr style="border-top: none">
+        <td>Promotional Comps</td>
+        <td><?= $model->promotional_comp ?></td>
+        <td colspan="7"><?= $model->promotional_comp_note ?></td>
+    </tr>
+    <tr style="border-top: none">
+        <td>House Comps</td>
+        <td><?= $model->house_comp ?></td>
+        <td colspan="7"><?= $model->house_comp_note ?></td>
+    </tr>
+    <tr style="border-top: none">
+        <td>Kills</td>
+        <td><?= $model->kill ?></td>
+        <td colspan="7"><?= $model->kill_note ?></td>
+    </tr>
+    <tr style="border-top: none">
+        <td colspan="2">Note</td>
+        <td colspan="8"><?= $model->comp_kill_note ?></td>
+    </tr>
+
+
     <!---->
     <!--        --><? //= $form->field($model, 'ascap_0_2500', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 0 2500']) ?>
     <!--        --><? //= $form->field($model, 'ascap_2501_5000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Ascap 2501 5000']) ?>

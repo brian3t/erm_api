@@ -142,6 +142,7 @@ class OfferController extends Controller
 
     public function actionPdf($id = 2, $browser = 0)
     {
+        ini_set('display_errors', '0');
         ob_start();
         ?>
         <!DOCTYPE html>
@@ -156,12 +157,15 @@ class OfferController extends Controller
         <?php
         // instantiate and use the dompdf class
         $pdf = new mPDF();
-        echo $this->renderAjax('print', ['model' => $this->findModel($id)]);
+        $model = $this->findModel($id);
+        echo $this->renderAjax('print', ['model' => $model]);
 
         $output = ob_get_clean();
 
         // Output the generated PDF to Browser
         if (!$browser) {
+            $pdf->setHTMLHeader('<img src="http://admin.entertainmentdirectmetrics.com/img/logo_sml.png" alt="logo"> 
+<span style="font-size: 150%">Entertainment Direct Metrics</span>&emsp;&emsp; Offer '.$model->event_id);
             $pdf->WriteHTML(file_get_contents(__DIR__ . "/../web/css/bootstrap_print.css"), 1);
             $pdf->WriteHTML($output, 2);
             $pdf->Output();
@@ -171,6 +175,7 @@ class OfferController extends Controller
         </body>
     </html>
         <?php
+        ini_set('display_errors', '1');
         return $output;
     }
 
