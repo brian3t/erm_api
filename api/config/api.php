@@ -55,6 +55,7 @@ $config = [
                         'POST pull' => 'pull',
                         'POST acknowledge' => 'acknowledge',
                         'GET pull' => 'pull', // 'confirm' refers to 'actionConfirm'
+                        'GET search_by_company' => 'search_by_company',
                         'POST push' => 'push'
                     ],
                 ],
@@ -70,7 +71,7 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
         ],
-    
+
     ],
     'modules' => [
         'user' => [
