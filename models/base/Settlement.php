@@ -8,6 +8,7 @@ use Yii;
  * This is the base model class for table "settlement".
  *
  * @property integer $id
+ * @property integer $company_id
  * @property string $settlement_id
  * @property string $created_at
  * @property string $updated_at
@@ -25,6 +26,7 @@ use Yii;
  * @property string $promoter_revenue_final
  * @property string $ticket_sales_final
  *
+ * @property \app\models\Company $company
  * @property \app\models\Company $firstParty
  * @property \app\models\User $secondPartyArtist
  * @property \app\models\Venue $secondPartyVenue
@@ -41,16 +43,16 @@ class Settlement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['settlement_id'], 'required'],
+            [['company_id', 'settlement_id'], 'required'],
+            [['company_id', 'first_party_id', 'first_party_event_id', 'first_party_capacity', 'second_party_event_id', 'second_party_capacity', 'second_party_artist_id', 'second_party_venue_id'], 'integer'],
             [['created_at', 'updated_at', 'second_party_date'], 'safe'],
-            [['first_party_id', 'first_party_event_id', 'first_party_capacity', 'second_party_event_id', 'second_party_capacity', 'second_party_artist_id', 'second_party_venue_id'], 'integer'],
             [['artist_walkout_final', 'ad_plan_final', 'promoter_revenue_final', 'ticket_sales_final'], 'number'],
             [['settlement_id'], 'string', 'max' => 45],
             [['note'], 'string', 'max' => 8000],
             [['settlement_id'], 'unique']
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -66,6 +68,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'company_id' => 'Company ID',
             'settlement_id' => 'Settlement ID',
             'first_party_id' => 'First Party',
             'first_party_event_id' => 'First Party Event',
@@ -82,7 +85,15 @@ class Settlement extends \yii\db\ActiveRecord
             'ticket_sales_final' => 'Ticket Sales Final',
         ];
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompany()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('settlements');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -90,7 +101,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Company::className(), ['id' => 'first_party_id'])->inverseOf('settlements');
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -98,7 +109,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\User::className(), ['id' => 'second_party_artist_id'])->inverseOf('settlements');
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -106,7 +117,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Venue::className(), ['id' => 'second_party_venue_id'])->inverseOf('settlements');
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -114,7 +125,7 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Offer::className(), ['id' => 'first_party_event_id'])->inverseOf('settlements');
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -122,4 +133,4 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Offer::className(), ['id' => 'second_party_event_id'])->inverseOf('settlements');
     }
-    }
+}

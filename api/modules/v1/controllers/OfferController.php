@@ -15,11 +15,13 @@ class OfferController extends BaseActiveController
 
     public function actionSearch_by_company($company_id)
     {
-        if (is_null($company_id) || empty($company_id)){
+        if (is_null($company_id) || empty($company_id)) {
             return (\app\models\Offer::find())->all();
         }
         $result = [];
-        $result = \Yii::$app->db->createCommand('SELECT * FROM offer INNER JOIN user ON offer.user_id = user.id WHERE user.company_id = ' . $company_id)->queryAll();
-        return $result;
+        $result = \Yii::$app->db->createCommand('SELECT * FROM offer INNER JOIN (SELECT id AS user_id FROM user WHERE user.company_id = ' . $company_id . ') user 
+        ON offer.user_id = user.user_id ')
+            ->queryAll();
+        RETURN $result;
     }
 }

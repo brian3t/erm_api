@@ -22,7 +22,7 @@ $this->registerJs($search);
     <p>
         <?= Html::a('Create Settlement', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-<?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         [
@@ -38,75 +38,81 @@ $this->registerJs($search);
             'expandOneOnly' => true
         ],
         ['attribute' => 'id', 'visible' => false],
+        ['attribute' => 'company_id',
+            'label' => 'Company',
+            'value' => function ($model) {
+                return $model->company?$model->company->name:'';
+            },
+        ],
         'settlement_id',
         [
-                'attribute' => 'first_party_id',
-                'label' => 'First Party',
-                'value' => function($model){
-                    return $model->firstParty?$model->firstParty->name:'N/A';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--first_party_id']
+            'attribute' => 'first_party_id',
+            'label' => 'First Party',
+            'value' => function ($model) {
+                return $model->firstParty ? $model->firstParty->name : 'N/A';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--first_party_id']
+        ],
         [
-                'attribute' => 'first_party_event_id',
-                'label' => 'First Party Event',
-                'value' => function($model){
-                    return $model->firstPartyEvent->event_id;
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--first_party_event_id']
+            'attribute' => 'first_party_event_id',
+            'label' => 'First Party Event',
+            'value' => function ($model) {
+                return $model->firstPartyEvent?$model->firstPartyEvent->event_id:'';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--first_party_event_id']
+        ],
         'first_party_capacity',
         [
-                'attribute' => 'second_party_event_id',
-                'label' => 'Second Party Event',
-                'value' => function($model){
-                    return $model->secondPartyEvent?$model->secondPartyEvent->event_id:'N/A';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--second_party_event_id']
+            'attribute' => 'second_party_event_id',
+            'label' => 'Second Party Event',
+            'value' => function ($model) {
+                return $model->secondPartyEvent ? $model->secondPartyEvent->event_id : 'N/A';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--second_party_event_id']
+        ],
         'second_party_capacity',
         'second_party_date',
         [
-                'attribute' => 'second_party_artist_id',
-                'label' => 'Second Party Artist',
-                'value' => function($model){
-                    return $model->secondPartyArtist?$model->secondPartyArtist->username:'';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--second_party_artist_id']
+            'attribute' => 'second_party_artist_id',
+            'label' => 'Second Party Artist',
+            'value' => function ($model) {
+                return $model->secondPartyArtist ? $model->secondPartyArtist->username : '';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--second_party_artist_id']
+        ],
         [
-                'attribute' => 'second_party_venue_id',
-                'label' => 'Second Party Venue',
-                'value' => function($model){
-                    return $model->secondPartyVenue?$model->secondPartyVenue->name:'';
-                },
-                'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
-                'filterWidgetOptions' => [
-                    'pluginOptions' => ['allowClear' => true],
-                ],
-                'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--second_party_venue_id']
+            'attribute' => 'second_party_venue_id',
+            'label' => 'Second Party Venue',
+            'value' => function ($model) {
+                return $model->secondPartyVenue ? $model->secondPartyVenue->name : '';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
             ],
+            'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--second_party_venue_id']
+        ],
         'note',
         'artist_walkout_final',
         'ad_plan_final',
@@ -115,7 +121,7 @@ $this->registerJs($search);
         [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -145,7 +151,7 @@ $this->registerJs($search);
                 'exportConfig' => [
                     ExportMenu::FORMAT_PDF => false
                 ]
-            ]) ,
+            ]),
         ],
     ]); ?>
 
