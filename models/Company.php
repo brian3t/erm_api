@@ -38,4 +38,12 @@ class Company extends BaseCompany
     //         return $user_full;
     //     }]);
     // }
+
+    public function beforeSave($insert)
+    {
+        if (empty($this->line_of_business)){
+            $this->line_of_business = null;
+        }
+        return parent::beforeSave($insert);
+    }
 }
