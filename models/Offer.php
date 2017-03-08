@@ -49,4 +49,12 @@ class Offer extends BaseOffer
         return $labels;
     }
 
+    public function beforeSave($insert)
+    {
+        if (empty($this->expense_application)){
+            $this->expense_application = '';
+        }
+        return parent::beforeSave($insert);
+    }
+
 }
