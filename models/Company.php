@@ -10,6 +10,7 @@ use \app\models\base\Company as BaseCompany;
  */
 class Company extends BaseCompany
 {
+    public static $order_by_col='name';
     /**
      * @inheritdoc
      */
