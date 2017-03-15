@@ -58,4 +58,9 @@ class Offer extends BaseOffer
         return parent::beforeSave($insert);
     }
 
+    public function beforeValidate()
+    {
+        $this->event_id = strval($this->event_id);
+        return parent::beforeValidate();
+    }
 }
