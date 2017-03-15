@@ -11,6 +11,7 @@ use \app\models\base\User as BaseUser;
  */
 class User extends BaseUser {
 //    private $_union_memberships;
+    public static $order_by_col='first_name';
     /**
      * @inheritdoc
      */

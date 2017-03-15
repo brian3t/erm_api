@@ -9,6 +9,7 @@ use \app\models\base\Offer as BaseOffer;
  */
 class Offer extends BaseOffer
 {
+    public static $order_by_col='event_id';
     /**
      * @inheritdoc
      */

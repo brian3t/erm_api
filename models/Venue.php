@@ -9,6 +9,7 @@ use \app\models\base\Venue as BaseVenue;
  */
 class Venue extends BaseVenue
 {
+    public static $order_by_col='name';
     /**
      * @inheritdoc
      */

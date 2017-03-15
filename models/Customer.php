@@ -10,6 +10,8 @@ use \app\models\base\Customer as BaseCustomer;
  */
 class Customer extends BaseCustomer
 {
+    public static $order_by_col='first_name';
+
     /**
      * @inheritdoc
      */

@@ -10,6 +10,7 @@ use \app\models\base\SocialAccount as BaseSocialAccount;
  */
 class SocialAccount extends BaseSocialAccount
 {
+    public static $order_by_col='username';
     /**
      * @inheritdoc
      */
