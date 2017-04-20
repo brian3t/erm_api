@@ -38,7 +38,11 @@ use Yii;
  * @property string $instagram
  * @property string $google
  * @property string $note
+ * @property integer $belong_company_id
  *
+ * @property \app\models\Company $belongCompany
+ * @property \app\models\Company $usersBelongToThis
+ * @property \app\models\Company[] $companies
  * @property \app\models\Offer[] $offers
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\User[] $users
@@ -55,8 +59,7 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['annual_revenue', 'facebook_fans', 'twitter_followers'], 'integer'],
-            [['timezone', 'line_of_business'], 'string'],
+            [['annual_revenue', 'facebook_fans', 'twitter_followers', 'belong_company_id'], 'integer'],            [['timezone', 'line_of_business'], 'string'],
             [['name', 'website'], 'string', 'max' => 200],
             [['headline'], 'string', 'max' => 400],
             [['industry', 'state', 'twitter_handle', 'linkedin_company_page'], 'string', 'max' => 80],
@@ -116,7 +119,32 @@ class Company extends \yii\db\ActiveRecord
             'instagram' => 'Instagram',
             'google' => 'Google',
             'note' => 'Note',
+            'belong_company_id' => 'Belongs to Company',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBelongCompany()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'belong_company_id'])->inverseOf('companies');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsersBelongToThis()
+    {
+        return $this->hasMany(\app\models\User::className(), ['id' => 'belong_company_id'])->inverseOf('belongCompany');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanies()
+    {
+        return $this->hasMany(\app\models\Company::className(), ['belong_company_id' => 'id'])->inverseOf('belongCompany');
     }
 
     /**

@@ -65,6 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'instagram',
         'google',
         'note',
+        [
+            'attribute' => 'belongCompany.name',
+            'label' => 'Belong to Company',
+        ],
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -72,7 +76,58 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); 
 ?>
     </div>
-    
+
+    <div class="row">
+        <?php
+        if($providerCompany->totalCount){
+            $gridColumnCompany = [
+                ['class' => 'yii\grid\SerialColumn'],
+                ['attribute' => 'id', 'visible' => false],
+                'name',
+                'website',
+                'headline',
+                'industry',
+                'phone_number',
+                'address1',
+                'address2',
+                'city',
+                'state',
+                'postal_code',
+                'num_of_employee',
+                'annual_revenue',
+                'facebook_fans',
+                'twitter_handle',
+                'twitter_followers',
+                'timezone',
+                'description',
+                'line_of_business',
+                'general_email:email',
+                'country',
+                'work_phone',
+                'fax',
+                'webpage',
+                'facebook',
+                'linkedin_company_page',
+                'yahoo',
+                'twitter',
+                'instagram',
+                'google',
+                'note',
+            ];
+            echo Gridview::widget([
+                'dataProvider' => $providerCompany,
+                'pjax' => true,
+                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-company']],
+                'panel' => [
+                    'type' => GridView::TYPE_PRIMARY,
+                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Company'),
+                ],
+                'columns' => $gridColumnCompany
+            ]);
+        }
+        ?>
+    </div>
+
     <div class="row">
 <?php
 if($providerUser->totalCount){

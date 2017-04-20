@@ -112,7 +112,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'zipcode')->textInput(['maxlength' => true, 'placeholder' => 'Zipcode']) ?>
     
     <?= $form->field($model, 'country')->textInput(['maxlength' => true, 'placeholder' => 'Country']) ?>
-    
+
+    <?= $form->field($model, 'belong_company_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Company'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
     <?php
     // $forms = [
     //     [

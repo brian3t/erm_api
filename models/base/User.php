@@ -46,12 +46,14 @@ use yii\behaviors\TimestampBehavior;
  * @property string $state
  * @property string $zipcode
  * @property string $country
+ * @property integer $belong_company_id
  *
  * @property \app\models\Offer[] $offers
  * @property \app\models\Profile $profile
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\SocialAccount[] $socialAccounts
  * @property \app\models\Token[] $tokens
+ * @property \app\models\Company $belongCompany
  * @property \app\models\Company $company
  */
 class User extends \yii\db\ActiveRecord
@@ -65,7 +67,7 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username'], 'required'],
-            [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
+            [['company_id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at', 'belong_company_id'], 'integer'],
             [['created_at', 'updated_at', 'birthdate'], 'safe'],
             [['line_of_business', 'phone_number_type'], 'string'],
             [['birthdate'], 'safe'],
@@ -73,7 +75,7 @@ class User extends \yii\db\ActiveRecord
             [['password_hash'], 'string', 'max' => 60],
             [['auth_key'], 'string', 'max' => 32],
             [['registration_ip'], 'string', 'max' => 45],
-            [['first_name', 'last_name', 'twitter_id', 'facebook_id', 'instagram_id', 'google_id', 'yahoo_id', 'linkedin_id'], 'string', 'max' => 80],
+            [['first_name', 'last_name', 'twitter_id', 'facebook_id', 'instagram_id', 'google_id', 'yahoo_id', 'linkedin_id', 'state', 'country'], 'string', 'max' => 80],
             [['job_title'], 'string', 'max' => 100],
             [['union_memberships', 'address2'], 'string', 'max' => 800],
             [['note', 'address1'], 'string', 'max' => 2000],
@@ -136,6 +138,7 @@ class User extends \yii\db\ActiveRecord
             'state' => 'State',
             'zipcode' => 'Zip/Postal code',
             'country' => 'Country/Region',
+            'belong_company_id' => 'Belongs to Company',
         ];
     }
 
@@ -187,7 +190,15 @@ class User extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('users');
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBelongCompany()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'belong_company_id'])->inverseOf('usersBelongToThis');
+    }
+
     /**
      * @inheritdoc
      * @return array mixed

@@ -75,6 +75,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'note')->textarea(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
+    <?= $form->field($model, 'belong_company_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Company'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
     <?php
     $forms = [
         [

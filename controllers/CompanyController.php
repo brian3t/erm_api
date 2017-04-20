@@ -28,8 +28,7 @@ class CompanyController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-user', 'add-venue'],
-                        'roles' => ['@']
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-company', 'add-company-user', 'add-offer', 'add-settlement', 'add-user', 'add-venue'], 'roles' => ['@']
                     ],
                     [
                         'allow' => false
@@ -62,6 +61,15 @@ class CompanyController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerCompany = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->companies,
+        ]);
+        $providerOffer = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->offers,
+        ]);
+        $providerSettlement = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->settlements,
+        ]);
         $providerUser = new \yii\data\ArrayDataProvider([
             'allModels' => $model->users,
         ]);
@@ -70,6 +78,9 @@ class CompanyController extends Controller
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerCompany' => $providerCompany,
+            'providerOffer' => $providerOffer,
+            'providerSettlement' => $providerSettlement,
             'providerUser' => $providerUser,
             'providerVenue' => $providerVenue,
         ]);
@@ -125,7 +136,7 @@ class CompanyController extends Controller
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Company model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -141,40 +152,40 @@ class CompanyController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+
     /**
-    * Action to load a tabular form grid
-    * for User
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for User
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
     public function actionAddUser()
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('User');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formUser', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
+
     /**
-    * Action to load a tabular form grid
-    * for Venue
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for Venue
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @return mixed
+     */
     public function actionAddVenue()
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('Venue');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formVenue', ['row' => $row]);
         } else {

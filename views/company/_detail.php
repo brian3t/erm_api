@@ -50,6 +50,10 @@ use kartik\grid\GridView;
         'instagram',
         'google',
         'note',
+        [
+            'attribute' => 'belongCompany.name',
+            'label' => 'Belong Company',
+        ],
     ];
     echo DetailView::widget([
         'model' => $model,
