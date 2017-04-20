@@ -22,3 +22,8 @@ table.kv-grid-table th {
 form.responsive div.form-group {
   width: 45%;
 }
+
+/* line 26, ../sass/custom.scss */
+table.kv-grid-table input.form-control {
+  width: initial;
+}
