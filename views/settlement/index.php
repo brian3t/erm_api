@@ -71,7 +71,7 @@ $this->registerJs($search);
             ],
             'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--first_party_event_id']
         ],
-        'first_party_capacity',
+//        'first_party_capacity',
         [
             'attribute' => 'second_party_event_id',
             'label' => 'Second Party Event',
@@ -85,7 +85,7 @@ $this->registerJs($search);
             ],
             'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--second_party_event_id']
         ],
-        'second_party_capacity',
+//        'second_party_capacity',
         'second_party_date',
         [
             'attribute' => 'second_party_artist_id',
@@ -113,11 +113,24 @@ $this->registerJs($search);
             ],
             'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--second_party_venue_id']
         ],
-        'note',
+//        'note',
         'artist_walkout_final',
         'ad_plan_final',
         'promoter_revenue_final',
         'ticket_sales_final',
+        [
+            'attribute' => 'belong_company_id',
+            'label' => 'Belong to Company',
+            'value' => function($model){
+                return $model->belongCompany->name;
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--belong_company_id']
+        ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],

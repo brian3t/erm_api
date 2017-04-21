@@ -57,7 +57,7 @@ $this->registerJs($search);
             'attribute' => 'copro_promoter_id',
             'label' => 'Copro Promoter',
             'value' => function ($model) {
-                return $model->coproPromoter->name;
+                return $model->coproPromoter->name??'';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
@@ -70,7 +70,7 @@ $this->registerJs($search);
             'attribute' => 'copro_venue_id',
             'label' => 'Copro Venue',
             'value' => function ($model) {
-                return $model->coproVenue->name;
+                return $model->coproVenue->name??'';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Venue::find()->asArray()->all(), 'id', 'name'),
@@ -135,6 +135,19 @@ $this->registerJs($search);
                 'pluginOptions' => ['allowClear' => true],
             ],
             'filterInputOptions' => ['placeholder' => 'Venue', 'id' => 'grid--venue_id']
+        ],
+        [
+            'attribute' => 'belong_company_id',
+            'label' => 'Belong Company',
+            'value' => function($model){
+                return $model->belongCompany->name;
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--belong_company_id']
         ],
 //        'show_date',
 //        'is_tbd_date',

@@ -93,6 +93,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ticket_sales_final')->input('number', ['value' => $model->ticket_sales_final??0, 'maxlength' => true, 'placeholder' => 'Ticket Sales Final']) ?>
 
+    <?= $form->field($model, 'belong_company_id')->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Company'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer, ['class' => 'btn btn-danger']) ?>

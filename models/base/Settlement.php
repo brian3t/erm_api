@@ -25,6 +25,7 @@ use Yii;
  * @property string $ad_plan_final
  * @property string $promoter_revenue_final
  * @property string $ticket_sales_final
+ * @property integer $belong_company_id
  *
  * @property \app\models\Company $company
  * @property \app\models\Company $firstParty
@@ -32,6 +33,7 @@ use Yii;
  * @property \app\models\Venue $secondPartyVenue
  * @property \app\models\Offer $firstPartyEvent
  * @property \app\models\Offer $secondPartyEvent
+ * @property \app\models\Company $belongCompany
  */
 class Settlement extends \yii\db\ActiveRecord
 {
@@ -44,7 +46,8 @@ class Settlement extends \yii\db\ActiveRecord
     {
         return [
             [['company_id', 'settlement_id'], 'required'],
-            [['company_id', 'first_party_id', 'first_party_event_id', 'first_party_capacity', 'second_party_event_id', 'second_party_capacity', 'second_party_artist_id', 'second_party_venue_id'], 'integer'],
+            [['company_id', 'first_party_id', 'first_party_event_id', 'first_party_capacity', 'second_party_event_id', 'second_party_capacity'
+                , 'second_party_artist_id', 'second_party_venue_id', 'belong_company_id'], 'integer'],
             [['created_at', 'updated_at', 'second_party_date'], 'safe'],
             [['artist_walkout_final', 'ad_plan_final', 'promoter_revenue_final', 'ticket_sales_final'], 'number'],
             [['settlement_id'], 'string', 'max' => 45],
@@ -83,6 +86,7 @@ class Settlement extends \yii\db\ActiveRecord
             'ad_plan_final' => 'Ad Plan Final',
             'promoter_revenue_final' => 'Promoter Revenue Final',
             'ticket_sales_final' => 'Ticket Sales Final',
+            'belong_company_id' => 'Belong to Company',
         ];
     }
 
@@ -131,6 +135,15 @@ class Settlement extends \yii\db\ActiveRecord
      */
     public function getSecondPartyEvent()
     {
-        return $this->hasOne(\app\models\Offer::className(), ['id' => 'second_party_event_id'])->inverseOf('settlements');
+        return $this->hasOne(\app\models\Offer::className(), ['id' => 'second_party_event_id']);
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBelongCompany()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'belong_company_id'])->inverseOf('settlementsBelongToThis');
+    }
+
 }

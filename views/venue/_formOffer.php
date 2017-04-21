@@ -302,6 +302,26 @@ echo TabularForm::widget([
         'kill' => ['type' => TabularForm::INPUT_TEXT],
         'kill_note' => ['type' => TabularForm::INPUT_TEXT],
         'comp_kill_note' => ['type' => TabularForm::INPUT_TEXT],
+        'ascap_0_2500' => ['type' => TabularForm::INPUT_TEXT],
+        'ascap_2501_5000' => ['type' => TabularForm::INPUT_TEXT],
+        'ascap_5001_10000' => ['type' => TabularForm::INPUT_TEXT],
+        'ascap_10001_25000' => ['type' => TabularForm::INPUT_TEXT],
+        'ascap_25001_x' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_0_2500' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_2501_5000' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_5001_10000' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_10001_25000' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_25001_x' => ['type' => TabularForm::INPUT_TEXT],
+        'belong_company_id' => [
+            'label' => 'Company',
+            'type' => TabularForm::INPUT_WIDGET,
+            'widgetClass' => \kartik\widgets\Select2::className(),
+            'options' => [
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('name')->asArray()->all(), 'id', 'name'),
+                'options' => ['placeholder' => 'Choose Company'],
+            ],
+            'columnOptions' => ['width' => '200px']
+        ],
         'del' => [
             'type' => 'raw',
             'label' => '',

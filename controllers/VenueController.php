@@ -28,7 +28,7 @@ class VenueController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'add-offer', 'add-settlement'],
                         'roles' => ['@']
                     ],
                     [
@@ -62,8 +62,16 @@ class VenueController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerOffer = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->offers,
+        ]);
+        $providerSettlement = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->settlements,
+        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerOffer' => $providerOffer,
+            'providerSettlement' => $providerSettlement,
         ]);
     }
 

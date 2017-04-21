@@ -351,6 +351,14 @@ use vakorovin\datetimepicker\Datetimepicker;
     <?= $form->field($model, 'bmi_10001_25000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 10001 25000']) ?>
     <?= $form->field($model, 'bmi_25001_x', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 25001 X']) ?>
     <div class="clearfix"></div>
+    <?= $form->field($model, 'belong_company_id',['options' => ['class' => 'form-group col-sm-5']])->widget(\kartik\widgets\Select2::classname(), [
+        'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
+        'options' => ['placeholder' => 'Choose Company'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]); ?>
+    <div class="clearfix"></div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer, ['class' => 'btn btn-danger']) ?>

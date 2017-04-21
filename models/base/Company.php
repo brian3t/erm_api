@@ -47,6 +47,8 @@ use Yii;
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\User[] $users
  * @property \app\models\Venue[] $venues
+ * @property \app\models\Venue[] $venuesBelongToThis
+ * @property \app\models\Venue[] $settlementsBelongToThis
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -137,6 +139,22 @@ class Company extends \yii\db\ActiveRecord
     public function getUsersBelongToThis()
     {
         return $this->hasMany(\app\models\User::className(), ['id' => 'belong_company_id'])->inverseOf('belongCompany');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVenuesBelongToThis()
+    {
+        return $this->hasMany(\app\models\Venue::className(), ['id' => 'belong_company_id'])->inverseOf('belongCompany');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSettlementsBelongToThis()
+    {
+        return $this->hasMany(\app\models\Settlement::className(), ['id' => 'belong_company_id'])->inverseOf('belongCompany');
     }
 
     /**

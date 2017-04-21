@@ -174,6 +174,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'bmi_5001_10000',
             'bmi_10001_25000',
             'bmi_25001_x',
+            [
+                'attribute' => 'belongCompany.name',
+                'label' => 'Belong Company',
+            ],
         ];
         echo DetailView::widget([
             'model' => $model,

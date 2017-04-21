@@ -42,23 +42,23 @@ $this->registerJs($search);
         ],
         'created_at',
         'updated_at',
-        'previous_name',
-        'note',
-        'ticket_rebate',
-        'other_deal',
+//        'previous_name',
+//        'note',
+//        'ticket_rebate',
+//        'other_deal',
         'address1',
-        'address2',
+//        'address2',
         'city',
         'state',
         'zipcode',
-        'country',
-        'timezone',
+//        'country',
+//        'timezone',
         'owner',
         'general_info_email:email',
-        'main_office_phone',
+/*        'main_office_phone',
         'box_office_phone',
         'fax_phone',
-        'other_phone',
+        'other_phone',*/
         [
                 'attribute' => 'primary_ticketing_company_id',
                 'label' => 'Primary Ticketing Company',
@@ -72,7 +72,7 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--primary_ticketing_company_id']
             ],
-        'other_seating_capacity',
+        /*'other_seating_capacity',
         'end_stage_seating_capacity',
         'full_stage_seating_capacity',
         'half_stage_seating_capacity',
@@ -85,7 +85,20 @@ $this->registerJs($search);
         'linkedin',
         'twitter',
         'instagram',
-        'google',
+        'google',*/
+        [
+            'attribute' => 'belong_company_id',
+            'label' => 'Belong to Company',
+            'value' => function($model){
+                return $model->belongCompany->name;
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--belong_company_id']
+        ],
         [
             'class' => 'yii\grid\ActionColumn',
         ],

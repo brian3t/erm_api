@@ -46,11 +46,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string $twitter
  * @property string $instagram
  * @property string $google
+ * @property integer $belong_company_id
  *
  * @property \app\models\Offer[] $offers
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\Company $company
  * @property \app\models\Company $primaryTicketingCompany
+ * @property \app\models\Company $belongCompany
  */
 class Venue extends \yii\db\ActiveRecord
 {
@@ -65,7 +67,8 @@ class Venue extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['venue_type', 'timezone'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['company_id', 'primary_ticketing_company_id', 'other_seating_capacity', 'end_stage_seating_capacity', 'full_stage_seating_capacity', 'half_stage_seating_capacity', 'in_the_round_seating_capacity', 'other_seating_capacity_value'], 'integer'],
+            [['company_id', 'primary_ticketing_company_id', 'other_seating_capacity', 'end_stage_seating_capacity', 'full_stage_seating_capacity',
+                'half_stage_seating_capacity', 'in_the_round_seating_capacity', 'other_seating_capacity_value', 'belong_company_id'], 'integer'],
             [['name', 'previous_name', 'city', 'other_seating_capacity_name'], 'string', 'max' => 255],
             [['note', 'address1'], 'string', 'max' => 2000],
             [['ticket_rebate', 'other_deal'], 'string', 'max' => 8000],
@@ -127,6 +130,7 @@ class Venue extends \yii\db\ActiveRecord
             'twitter' => 'Twitter',
             'instagram' => 'Instagram',
             'google' => 'Google',
+            'belong_company_id' => 'Belong to Company',
         ];
     }
 
@@ -169,7 +173,14 @@ class Venue extends \yii\db\ActiveRecord
     {
         return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('venues');
     }
-    
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBelongCompany()
+    {
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'belong_company_id'])->inverseOf('venuesBelongToThis');
+    }
     /**
      * @inheritdoc
      * @return array mixed

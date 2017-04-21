@@ -70,6 +70,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'ad_plan_final',
             'promoter_revenue_final',
             'ticket_sales_final',
+            [
+                'attribute' => 'belongCompany.name',
+                'label' => 'Belong Company',
+            ],
         ];
         echo DetailView::widget([
             'model' => $model,
