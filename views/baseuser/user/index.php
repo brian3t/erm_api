@@ -53,9 +53,21 @@ $this->registerJs($search);
         'birthdate:date',
         'website_url:url',
         [
+            'attribute' => 'belong_company_id',
+            'label' => 'Belongs to',
+            'value' => function($model){
+                return $model->belongCompany->name??'';
+            },
+            'filterType' => GridView::FILTER_SELECT2,
+            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+            'filterWidgetOptions' => [
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--belong_company_id']
+        ],[
             'class' => 'yii\grid\ActionColumn',
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
