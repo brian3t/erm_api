@@ -38,12 +38,6 @@ $this->registerJs($search);
             'expandOneOnly' => true
         ],
         ['attribute' => 'id', 'visible' => false],
-        ['attribute' => 'company_id',
-            'label' => 'Company',
-            'value' => function ($model) {
-                return $model->company?$model->company->name:'';
-            },
-        ],
         'settlement_id',
         [
             'attribute' => 'first_party_id',

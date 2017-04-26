@@ -35,10 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         $gridColumn = [
             ['attribute' => 'id', 'visible' => false],
-            [
-                'attribute' => 'company.name',
-                'label' => 'Company',
-            ],
             'settlement_id',
             [
                 'attribute' => 'firstParty.name',
