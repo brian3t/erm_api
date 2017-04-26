@@ -10,6 +10,14 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="be17f428-c749-4529-9387-5188f3eee226" name="ermapi_leadfollow" url="http://leadfollowapp.com">
+        <fileTransfer host="leadfollowapp.com" port="21" rootFolder="/ermapi">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
