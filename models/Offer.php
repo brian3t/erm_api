@@ -40,6 +40,19 @@ class Offer extends BaseOffer
     public function beforeValidate()
     {
         $this->event_id = strval($this->event_id);
+        if ($this->is_artist_production_buyout == 'No') {
+            $this->is_artist_production_buyout = 0;
+        }
+        if ($this->is_artist_production_buyout == 'Yes') {
+            $this->is_artist_production_buyout = 1;
+        }
+        $this->housenut_total = floatval($this->housenut_total);
+        $this->artist_comp_note = strval($this->artist_comp_note);
+        $this->production_comp_note = strval($this->production_comp_note);
+        $this->promotional_comp_note = strval($this->promotional_comp_note);
+        $this->house_comp_note = strval($this->house_comp_note);
+        $this->kill_note = strval($this->kill_note);
+
         return parent::beforeValidate();
     }
 }
