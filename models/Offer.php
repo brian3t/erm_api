@@ -46,6 +46,12 @@ class Offer extends BaseOffer
         if ($this->is_artist_production_buyout == 'Yes') {
             $this->is_artist_production_buyout = 1;
         }
+        $this->l1_price = floatval($this->l1_price);
+        $this->l2_price = floatval($this->l1_price);
+        $this->l3_price = floatval($this->l1_price);
+        $this->l4_price = floatval($this->l1_price);
+        $this->l5_price = floatval($this->l1_price);
+        $this->artist_guarantee = floatval($this->artist_guarantee);
         $this->housenut_total = floatval($this->housenut_total);
         $this->artist_comp_note = strval($this->artist_comp_note);
         $this->production_comp_note = strval($this->production_comp_note);
