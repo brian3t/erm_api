@@ -151,7 +151,7 @@ class OfferController extends Controller
         <head>
             <meta charset="UTF-8">
             <!--            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
-            <link href="http://admin.ermlocal/css/bootstrap_print.css" rel="stylesheet" crossorigin="anonymous">
+            <link href="http://admin.entertainmentdirectmetrics.com/css/bootstrap_print.css" rel="stylesheet" crossorigin="anonymous">
         </head>
         <body>
 
