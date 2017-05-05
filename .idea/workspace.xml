@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4d9975fb-001f-4bb4-a984-d6044440682f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/OfferController.php" afterPath="$PROJECT_DIR$/controllers/OfferController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layouts/main.php" afterPath="$PROJECT_DIR$/views/layouts/main.php" />
     </list>
     <ignored path="ermapi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -110,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OfferController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OfferController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/OfferController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="148" column="23" lean-forward="true" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+            <state relative-caret-position="243">
+              <caret line="143" column="32" lean-forward="false" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
               <folding>
                 <marker date="1493836376817" expanded="true" signature="4692:4707" ph="..." />
                 <marker date="1493836376817" expanded="true" signature="4744:4750" ph=" " />
@@ -166,11 +166,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+            <state relative-caret-position="338">
+              <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -198,7 +198,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>post show</find>
       <find>artist</find>
       <find>&lt;? //=</find>
       <find>1</find>
@@ -228,6 +227,7 @@
       <find>ngx</find>
       <find>ngxtr</find>
       <find>ngxtri</find>
+      <find>1.4</find>
     </findStrings>
     <replaceStrings>
       <replace>col-sm-4b</replace>
@@ -320,10 +320,10 @@
         <option value="$PROJECT_DIR$/runtime/logs/api.log" />
         <option value="$PROJECT_DIR$/models/Settlement.php" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_17.json" />
-        <option value="$PROJECT_DIR$/views/layouts/main.php" />
         <option value="$PROJECT_DIR$/models/Offer.php" />
         <option value="$PROJECT_DIR$/config/web.php" />
         <option value="$PROJECT_DIR$/controllers/OfferController.php" />
+        <option value="$PROJECT_DIR$/views/layouts/main.php" />
       </list>
     </option>
   </component>
@@ -450,7 +450,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -819,6 +818,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1208,7 +1208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493834335160</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="V 1.4.3.1 fix variable expense update.">
+      <created>1494007814126</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1494007814126</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1277,7 +1284,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Offer API part 4/5. Artist walkout. ASCAP BMI." />
     <MESSAGE value="ERM Offer finished." />
     <MESSAGE value="Redid first party event and 2nd party event. They link to offer id only. Linking to offer's event id is bad architect." />
     <MESSAGE value="Allow first party and second party to be null." />
@@ -1302,7 +1308,8 @@
     <MESSAGE value="V 1.4.3" />
     <MESSAGE value="V 1.4.3 minor fixes;." />
     <MESSAGE value="V 1.4.3 add James as admin." />
-    <option name="LAST_COMMIT_MESSAGE" value="V 1.4.3 add James as admin." />
+    <MESSAGE value="V 1.4.3.1 fix variable expense update." />
+    <option name="LAST_COMMIT_MESSAGE" value="V 1.4.3.1 fix variable expense update." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2623,14 +2630,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/Offer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -2649,13 +2648,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/OfferController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="148" column="23" lean-forward="true" selection-start-line="148" selection-start-column="23" selection-end-line="148" selection-end-column="23" />
+        <state relative-caret-position="243">
+          <caret line="143" column="32" lean-forward="false" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
           <folding>
             <marker date="1493836376817" expanded="true" signature="4692:4707" ph="..." />
             <marker date="1493836376817" expanded="true" signature="4744:4750" ph=" " />
             <marker date="1493836376817" expanded="true" signature="4750:4756" ph=" " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="38" column="43" lean-forward="false" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
