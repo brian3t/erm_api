@@ -51,6 +51,11 @@ class Offer extends BaseOffer
         } else {
             $this->is_tbd_date = 0;
         }
+        if ($this->is_on_sale_date_tbd == 'on'){
+            $this->is_on_sale_date_tbd = 1;
+        }else{
+            $this->is_on_sale_date_tbd = 0;
+        }
         $this->l1_price = floatval($this->l1_price);
         $this->l2_price = floatval($this->l1_price);
         $this->l3_price = floatval($this->l1_price);
