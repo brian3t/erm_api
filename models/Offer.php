@@ -46,6 +46,11 @@ class Offer extends BaseOffer
         if ($this->is_artist_production_buyout == 'Yes') {
             $this->is_artist_production_buyout = 1;
         }
+        if ($this->is_tbd_date == 'on'){
+            $this->is_tbd_date = 1;
+        } else {
+            $this->is_tbd_date = 0;
+        }
         $this->l1_price = floatval($this->l1_price);
         $this->l2_price = floatval($this->l1_price);
         $this->l3_price = floatval($this->l1_price);
