@@ -57,10 +57,10 @@ class Offer extends BaseOffer
             $this->is_on_sale_date_tbd = 0;
         }
         $this->l1_price = floatval($this->l1_price);
-        $this->l2_price = floatval($this->l1_price);
-        $this->l3_price = floatval($this->l1_price);
-        $this->l4_price = floatval($this->l1_price);
-        $this->l5_price = floatval($this->l1_price);
+        $this->l2_price = floatval($this->l2_price);
+        $this->l3_price = floatval($this->l3_price);
+        $this->l4_price = floatval($this->l4_price);
+        $this->l5_price = floatval($this->l5_price);
         $this->artist_guarantee = floatval($this->artist_guarantee);
         $this->housenut_total = floatval($this->housenut_total);
         $this->artist_comp_note = strval($this->artist_comp_note);
