@@ -40,20 +40,35 @@ class Offer extends BaseOffer
     public function beforeValidate()
     {
         $this->event_id = strval($this->event_id);
+        $s = $this->support_artist_1_total;
+        if (strpos($s, ',') !== false) {
+            $s = str_replace(',', '', $s);
+        }
+        $this->support_artist_1_total = $s;
+        $s = $this->support_artist_2_total;
+        if (strpos($s, ',') !== false) {
+            $s = str_replace(',', '', $s);
+        }
+        $this->support_artist_2_total = $s;
+        $s = $this->support_artist_3_total;
+        if (strpos($s, ',') !== false) {
+            $s = str_replace(',', '', $s);
+        }
+        $this->support_artist_3_total = $s;
         if ($this->is_artist_production_buyout === 'No') {
             $this->is_artist_production_buyout = 0;
         }
         if ($this->is_artist_production_buyout === 'Yes') {
             $this->is_artist_production_buyout = 1;
         }
-        if ($this->is_tbd_date === 'on'){
+        if ($this->is_tbd_date === 'on') {
             $this->is_tbd_date = 1;
         } else {
             $this->is_tbd_date = 0;
         }
-        if ($this->is_on_sale_date_tbd === 'on'){
+        if ($this->is_on_sale_date_tbd === 'on') {
             $this->is_on_sale_date_tbd = 1;
-        }else{
+        } else {
             $this->is_on_sale_date_tbd = 0;
         }
         $this->l1_price = floatval($this->l1_price);
