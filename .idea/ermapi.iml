@@ -42,6 +42,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
@@ -90,6 +91,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/mootensai/yii2-uuid-behavior" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />
@@ -130,6 +133,7 @@
           <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+          <root url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
           <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
           <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
           <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
@@ -178,6 +182,8 @@
           <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-uuid-behavior" />
           <root url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
+          <root url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
           <root url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />
@@ -214,6 +220,7 @@
           <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+          <root url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
           <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
           <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
           <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
@@ -262,6 +269,8 @@
           <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-uuid-behavior" />
           <root url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
           <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
+          <root url="file://$MODULE_DIR$/vendor/phenx/php-font-lib" />
+          <root url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
           <root url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />

@@ -40,18 +40,18 @@ class Offer extends BaseOffer
     public function beforeValidate()
     {
         $this->event_id = strval($this->event_id);
-        if ($this->is_artist_production_buyout == 'No') {
+        if ($this->is_artist_production_buyout === 'No') {
             $this->is_artist_production_buyout = 0;
         }
-        if ($this->is_artist_production_buyout == 'Yes') {
+        if ($this->is_artist_production_buyout === 'Yes') {
             $this->is_artist_production_buyout = 1;
         }
-        if ($this->is_tbd_date == 'on'){
+        if ($this->is_tbd_date === 'on'){
             $this->is_tbd_date = 1;
         } else {
             $this->is_tbd_date = 0;
         }
-        if ($this->is_on_sale_date_tbd == 'on'){
+        if ($this->is_on_sale_date_tbd === 'on'){
             $this->is_on_sale_date_tbd = 1;
         }else{
             $this->is_on_sale_date_tbd = 0;
