@@ -42,6 +42,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
@@ -118,6 +119,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="compass-library" level="project" />
     <orderEntry type="module-library">
       <library name="PHP" type="php">
         <CLASSES>
@@ -133,6 +135,7 @@
           <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+          <root url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
           <root url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
           <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
           <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
@@ -220,6 +223,7 @@
           <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
           <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
+          <root url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
           <root url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
           <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
           <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
@@ -295,6 +299,5 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" name="compass-library" level="project" />
   </component>
 </module>
