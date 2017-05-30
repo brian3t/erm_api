@@ -346,10 +346,10 @@ use vakorovin\datetimepicker\Datetimepicker;
     <div class="clearfix"></div>
 
     <?= $form->field($model, 'bmi_0_2500', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 0 2500']) ?>
-    <?= $form->field($model, 'bmi_2501_5000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 2501 5000']) ?>
+    <?= $form->field($model, 'bmi_2501_3500', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 2501 3500']) ?>
+    <?= $form->field($model, 'bmi_3501_5000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 3501 5000']) ?>
     <?= $form->field($model, 'bmi_5001_10000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 5001 10000']) ?>
-    <?= $form->field($model, 'bmi_10001_25000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 10001 25000']) ?>
-    <?= $form->field($model, 'bmi_25001_x', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 25001 X']) ?>
+    <?= $form->field($model, 'bmi_10001_x', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 10001 X']) ?>
     <div class="clearfix"></div>
     <?= $form->field($model, 'belong_company_id',['options' => ['class' => 'form-group col-sm-5']])->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),

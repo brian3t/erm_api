@@ -217,10 +217,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'ascap_10001_25000',
                 'ascap_25001_x',
                 'bmi_0_2500',
-                'bmi_2501_5000',
+                'bmi_2501_3500',
+                'bmi_3501_5000',
                 'bmi_5001_10000',
-                'bmi_10001_25000',
-                'bmi_25001_x',
+                'bmi_10001_x',
                 [
                     'attribute' => 'belongCompany.name',
                     'label' => 'Belong Company'

@@ -140,7 +140,7 @@ $this->registerJs($search);
             'attribute' => 'belong_company_id',
             'label' => 'Belong Company',
             'value' => function($model){
-                return $model->belongCompany->name;
+                return $model->belongCompany?$model->belongCompany->name:'N/A';
             },
             'filterType' => GridView::FILTER_SELECT2,
             'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),

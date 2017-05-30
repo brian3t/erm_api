@@ -308,10 +308,10 @@ echo TabularForm::widget([
         'ascap_10001_25000' => ['type' => TabularForm::INPUT_TEXT],
         'ascap_25001_x' => ['type' => TabularForm::INPUT_TEXT],
         'bmi_0_2500' => ['type' => TabularForm::INPUT_TEXT],
-        'bmi_2501_5000' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_2501_3500' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_3501_5000' => ['type' => TabularForm::INPUT_TEXT],
         'bmi_5001_10000' => ['type' => TabularForm::INPUT_TEXT],
-        'bmi_10001_25000' => ['type' => TabularForm::INPUT_TEXT],
-        'bmi_25001_x' => ['type' => TabularForm::INPUT_TEXT],
+        'bmi_10001_x' => ['type' => TabularForm::INPUT_TEXT],
         'belong_company_id' => [
             'label' => 'Company',
             'type' => TabularForm::INPUT_WIDGET,
