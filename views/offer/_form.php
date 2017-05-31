@@ -302,8 +302,6 @@ use vakorovin\datetimepicker\Datetimepicker;
 
     <?= $form->field($model, 'merch_venue_split_venue_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Venue Sell']) ?>
 
-    <?= $form->field($model, 'merch_venue_split_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Artist Sell']) ?>
-
     <?= $form->field($model, 'merch_artist_split_media_venue_sell', ['options' => ['class' => 'form-group col-sm-2 col-sm-offset-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Artist Sell']) ?>
 
     <?= $form->field($model, 'merch_artist_split_media_artist_sell', ['options' => ['class' => 'form-group col-sm-2 ']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Artist Split Media Artist Sell']) ?>
@@ -311,7 +309,6 @@ use vakorovin\datetimepicker\Datetimepicker;
     <div class="clearfix"></div>
 
     <?= $form->field($model, 'merch_venue_split_media_venue_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Media Venue Sell']) ?>
-    <?= $form->field($model, 'merch_venue_split_media_artist_sell', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Merch Venue Split Media Artist Sell']) ?>
 
     <?= $form->field($model, 'merch_note', ['options' => ['class' => 'form-group col-sm-6']])->textarea(['maxlength' => true, 'placeholder' => 'Merch Note']) ?>
 

@@ -301,24 +301,24 @@ function money($s)
         <td>Artist split Venue sell</td>
         <td><?= money($model->merch_artist_split_venue_sell) ?></td>
         <td>Artist split Artist sell</td>
-        <td><?= money($model->merch_artist_split_artist_sell) ?></td>
+        <td><?= $model->merch_artist_split_artist_sell ?></td>
     </tr>
     <tr>
         <td>Venue Split Venue Sell</td>
         <td><?= money($model->merch_venue_split_venue_sell) ?></td>
         <td>Venue Split Artist Sell</td>
-        <td><?= money($model->merch_venue_split_artist_sell) ?></td>
+        <td><?= 100 - $model->merch_artist_split_artist_sell ?></td>
         <td></td>
         <td>Artist split Media venue sell</td>
         <td><?= money($model->merch_artist_split_media_venue_sell) ?></td>
         <td>Artist split Media artist sell</td>
-        <td><?= money($model->merch_artist_split_media_artist_sell) ?></td>
+        <td><?= $model->merch_artist_split_media_artist_sell ?></td>
     </tr>
     <tr>
         <td>Venue Split Media venue Sell</td>
         <td><?= money($model->merch_venue_split_media_venue_sell) ?></td>
         <td>Venue Split Media artist Sell</td>
-        <td><?= money($model->merch_venue_split_media_artist_sell) ?></td>
+        <td><?= 100 - $model->merch_artist_split_media_artist_sell ?></td>
         <td></td>
         <td>Note</td>
         <td colspan="3"><?= $model->merch_note ?></td>

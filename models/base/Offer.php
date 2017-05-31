@@ -85,11 +85,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string $merch_artist_split_venue_sell
  * @property string $merch_artist_split_artist_sell
  * @property string $merch_venue_split_venue_sell
- * @property string $merch_venue_split_artist_sell
  * @property string $merch_artist_split_media_venue_sell
  * @property string $merch_artist_split_media_artist_sell
  * @property string $merch_venue_split_media_venue_sell
- * @property string $merch_venue_split_media_artist_sell
  * @property string $merch_note
  * @property integer $artist_comp
  * @property string $artist_comp_note
@@ -147,8 +145,8 @@ class Offer extends \yii\db\ActiveRecord
             [['created_at', 'updated_at', 'show_date', 'doors', 'showtime', 'on_sale_date'], 'safe'],
             [['l1_price', 'l2_price', 'l3_price', 'l4_price', 'l5_price', 'tax', 'tax_per_ticket', 'facility_fee', 'artist_guarantee', 'artist_deposit', 'artist_split',
                 'promoter_profit', 'radius_clause', 'support_artist_1_total', 'support_artist_2_total', 'support_artist_3_total', 'housenut_total', 'merch_buyout_venue_sell',
-                'merch_buyout_artist_sell', 'merch_artist_split_venue_sell', 'merch_artist_split_artist_sell', 'merch_venue_split_venue_sell', 'merch_venue_split_artist_sell',
-                'merch_artist_split_media_venue_sell', 'merch_artist_split_media_artist_sell', 'merch_venue_split_media_venue_sell', 'merch_venue_split_media_artist_sell',
+                'merch_buyout_artist_sell', 'merch_artist_split_venue_sell', 'merch_artist_split_artist_sell', 'merch_venue_split_venue_sell',
+                'merch_artist_split_media_venue_sell', 'merch_artist_split_media_artist_sell', 'merch_venue_split_media_venue_sell',
                 'ascap_0_2500', 'ascap_2501_5000', 'ascap_5001_10000', 'ascap_10001_25000', 'ascap_25001_x',
                 'bmi_0_2500', 'bmi_2501_3500', 'bmi_3501_5000', 'bmi_5001_10000', 'bmi_10001_x'], 'number'],
             [['event_id'], 'string', 'max' => 45],
@@ -251,11 +249,9 @@ class Offer extends \yii\db\ActiveRecord
             'merch_artist_split_venue_sell' => 'Merch Artist Split Venue Sell',
             'merch_artist_split_artist_sell' => 'Merch Artist Split Artist Sell',
             'merch_venue_split_venue_sell' => 'Merch Venue Split Venue Sell',
-            'merch_venue_split_artist_sell' => 'Merch Venue Split Artist Sell',
             'merch_artist_split_media_venue_sell' => 'Merch Artist Split Media Venue Sell',
             'merch_artist_split_media_artist_sell' => 'Merch Artist Split Media Artist Sell',
             'merch_venue_split_media_venue_sell' => 'Merch Venue Split Media Venue Sell',
-            'merch_venue_split_media_artist_sell' => 'Merch Venue Split Media Artist Sell',
             'merch_note' => 'Merch Note',
             'artist_comp' => 'Artist Comp',
             'artist_comp_note' => 'Artist Comp Note',
