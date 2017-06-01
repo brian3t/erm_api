@@ -10,4 +10,10 @@ use \app\models\base\Venue as BaseVenue;
 class Venue extends BaseVenue
 {
     public static $order_by_col='name';
+
+    public function beforeValidate()
+    {
+        $this->zipcode = strval($this->zipcode);
+        return parent::beforeValidate();
+    }
 }
