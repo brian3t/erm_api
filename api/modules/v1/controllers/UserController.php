@@ -120,7 +120,7 @@ class UserController extends BaseActiveController
                 $entity_body['union_memberships']=implode(',',$entity_body['union_memberships']);
             }
         }
-        if($user->loadAll(['User'=>$entity_body]) && $user->saveAll())
+        if($user->loadAll(['User'=>$entity_body]) && $user->save(false))
         {
             return json_encode($user->getAttributes());
         } else
