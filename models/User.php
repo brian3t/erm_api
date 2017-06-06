@@ -63,6 +63,8 @@ class User extends BaseUser {
     }
 
     public function beforeValidate() {
+        $this->mobile_phone = strval($this->mobile_phone);
+        $this->home_phone = strval($this->home_phone);
         if(is_int($this->created_at)) {
 
         }
