@@ -61,6 +61,12 @@ class Offer extends BaseOffer
         if ($this->is_artist_production_buyout === 'Yes') {
             $this->is_artist_production_buyout = 1;
         }
+        if (preg_match('/^\d{1,2}:\d\d\s[AP]M$/', $this->doors)) {
+            $this->doors = (date_create_from_format('h:i A', $this->doors))->format('H:i:s');
+        }
+        if (preg_match('/^\d{1,2}:\d\d\s[AP]M$/', $this->showtime)) {
+            $this->showtime = (date_create_from_format('h:i A', $this->showtime))->format('H:i:s');
+        }
         if ($this->is_tbd_date === 'on') {
             $this->is_tbd_date = 1;
         } else {
