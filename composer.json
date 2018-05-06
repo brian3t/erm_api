@@ -25,7 +25,6 @@
     "yiisoft/yii2-swiftmailer": "*",
     "kartik-v/yii2-widgets": "*",
     "kartik-v/yii2-field-range": "*",
-    "mitalcoi/yii2-cronjobs": "dev-master",
     "vova07/yii2-console-runner-extension": "*",
     "kartik-v/yii2-widget-growl": "^1.1",
     "mootensai/yii2-enhanced-gii": "dev-master",
@@ -37,10 +36,10 @@
     "kartik-v/yii2-tree-manager": "dev-master",
     "dektrium/yii2-user": "0.9.*@dev",
     "voskobovich/yii2-many-many-behavior": "^3.2",
-    "vakorovin/yii2-datetimepicker": "dev-master",
     "electrolinux/phpquery": "^0.9.6",
     "kartik-v/yii2-mpdf": "*",
-    "mpdf/mpdf": "^6.1"
+    "mpdf/mpdf": "^6.1",
+    "kartik-v/yii2-widget-datetimepicker": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "*",

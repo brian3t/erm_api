@@ -4,11 +4,6 @@
     <option name="compassConfigPath" value="$MODULE_DIR$/web/less/config.rb" />
     <option name="compassExecutableFilePath" value="/usr/local/bin/compass" />
     <option name="compassSupportEnabled" value="true" />
-    <option name="importPaths">
-      <list>
-        <option value="$MODULE_DIR$/../../lib/gems/2.3.0/gems/compass-core-1.0.3/stylesheets" />
-      </list>
-    </option>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -32,8 +27,8 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/dektrium" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/bootstrap3-dialog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/inputmask" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/jquery" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/bower/jquery.inputmask" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/punycode" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/typeahead.js" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bower/yii2-pjax" />
@@ -43,7 +38,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/egulias/email-validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
@@ -56,12 +53,14 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-date-range" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-datecontrol" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-dialog" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-dynagrid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-export" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-field-range" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-grid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-helpers" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-krajee-base" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-mpdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-sortable" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tabs-x" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tree-manager" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-activeform" />
@@ -84,7 +83,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-typeahead" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widgets" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mikevanriel/text-to-latex" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/mitalcoi/yii2-cronjobs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mootensai/yii2-enhanced-gii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mootensai/yii2-jsblock" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mootensai/yii2-optimistic-lock-validator" />
@@ -96,13 +94,13 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phenx/php-svg-lib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/phpoffice/phpspreadsheet" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/simple-cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/scrivo/highlight.php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/setasign/fpdi" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/vakorovin/yii2-datetimepicker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voskobovich/yii2-many-many-behavior" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vova07/yii2-console-runner-extension" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yiisoft/yii2" />
@@ -119,179 +117,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="compass-library" level="project" />
-    <orderEntry type="module-library">
-      <library name="PHP" type="php">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bower/bootstrap" />
-          <root url="file://$MODULE_DIR$/vendor/bower/bootstrap3-dialog" />
-          <root url="file://$MODULE_DIR$/vendor/bower/jquery" />
-          <root url="file://$MODULE_DIR$/vendor/bower/jquery.inputmask" />
-          <root url="file://$MODULE_DIR$/vendor/bower/punycode" />
-          <root url="file://$MODULE_DIR$/vendor/bower/typeahead.js" />
-          <root url="file://$MODULE_DIR$/vendor/bower/yii2-pjax" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/js-search" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/markdown" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
-          <root url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
-          <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
-          <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
-          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-fileinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-tabs-x" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/dependent-dropdown" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/php-date-formatter" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-builder" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-date-range" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-datecontrol" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-dialog" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-export" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-field-range" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-grid" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-helpers" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-krajee-base" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-mpdf" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tabs-x" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tree-manager" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-activeform" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-affix" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-alert" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-colorinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-datepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-datetimepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-depdrop" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-fileinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-growl" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-rangeinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-rating" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-select2" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-sidenav" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-spinner" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-switchinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-timepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-touchspin" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-typeahead" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widgets" />
-          <root url="file://$MODULE_DIR$/vendor/mikevanriel/text-to-latex" />
-          <root url="file://$MODULE_DIR$/vendor/mitalcoi/yii2-cronjobs" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-enhanced-gii" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-jsblock" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-optimistic-lock-validator" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-relation-trait" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-uuid-behavior" />
-          <root url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
-          <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
-          <root url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />
-          <root url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/scrivo/highlight.php" />
-          <root url="file://$MODULE_DIR$/vendor/setasign/fpdi" />
-          <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-          <root url="file://$MODULE_DIR$/vendor/vakorovin/yii2-datetimepicker" />
-          <root url="file://$MODULE_DIR$/vendor/voskobovich/yii2-many-many-behavior" />
-          <root url="file://$MODULE_DIR$/vendor/vova07/yii2-console-runner-extension" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-apidoc" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-authclient" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-bootstrap" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-composer" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-debug" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-faker" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-gii" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-httpclient" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-swiftmailer" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bower/bootstrap" />
-          <root url="file://$MODULE_DIR$/vendor/bower/bootstrap3-dialog" />
-          <root url="file://$MODULE_DIR$/vendor/bower/jquery" />
-          <root url="file://$MODULE_DIR$/vendor/bower/jquery.inputmask" />
-          <root url="file://$MODULE_DIR$/vendor/bower/punycode" />
-          <root url="file://$MODULE_DIR$/vendor/bower/typeahead.js" />
-          <root url="file://$MODULE_DIR$/vendor/bower/yii2-pjax" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/js-search" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/markdown" />
-          <root url="file://$MODULE_DIR$/vendor/cebe/markdown-latex" />
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/creocoder/yii2-nested-sets" />
-          <root url="file://$MODULE_DIR$/vendor/dektrium/yii2-user" />
-          <root url="file://$MODULE_DIR$/vendor/electrolinux/phpquery" />
-          <root url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
-          <root url="file://$MODULE_DIR$/vendor/fzaninotto/faker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-fileinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-star-rating" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/bootstrap-tabs-x" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/dependent-dropdown" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/php-date-formatter" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-builder" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-date-range" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-datecontrol" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-dialog" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-export" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-field-range" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-grid" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-helpers" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-krajee-base" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-mpdf" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tabs-x" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-tree-manager" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-activeform" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-affix" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-alert" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-colorinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-datepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-datetimepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-depdrop" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-fileinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-growl" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-rangeinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-rating" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-select2" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-sidenav" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-spinner" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-switchinput" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-timepicker" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-touchspin" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widget-typeahead" />
-          <root url="file://$MODULE_DIR$/vendor/kartik-v/yii2-widgets" />
-          <root url="file://$MODULE_DIR$/vendor/mikevanriel/text-to-latex" />
-          <root url="file://$MODULE_DIR$/vendor/mitalcoi/yii2-cronjobs" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-enhanced-gii" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-jsblock" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-optimistic-lock-validator" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-relation-trait" />
-          <root url="file://$MODULE_DIR$/vendor/mootensai/yii2-uuid-behavior" />
-          <root url="file://$MODULE_DIR$/vendor/mpdf/mpdf" />
-          <root url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection" />
-          <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
-          <root url="file://$MODULE_DIR$/vendor/phpoffice/phpexcel" />
-          <root url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/scrivo/highlight.php" />
-          <root url="file://$MODULE_DIR$/vendor/setasign/fpdi" />
-          <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-          <root url="file://$MODULE_DIR$/vendor/vakorovin/yii2-datetimepicker" />
-          <root url="file://$MODULE_DIR$/vendor/voskobovich/yii2-many-many-behavior" />
-          <root url="file://$MODULE_DIR$/vendor/vova07/yii2-console-runner-extension" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-apidoc" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-authclient" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-bootstrap" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-composer" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-debug" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-faker" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-gii" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-httpclient" />
-          <root url="file://$MODULE_DIR$/vendor/yiisoft/yii2-swiftmailer" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

@@ -1,9 +1,11 @@
 <?php
 
-use yii\helpers\Html;
+use kartik\datetime\DateTimePicker;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+
 //use kartik\time\TimePicker;
-use vakorovin\datetimepicker\Datetimepicker;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Offer */
@@ -124,7 +126,7 @@ use vakorovin\datetimepicker\Datetimepicker;
         'Festival' => 'Festival',
     ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'doors', ['options' => ['class' => 'form-group col-sm-5']])->widget(Datetimepicker::className(), [
+    <?php /*= $form->field($model, 'doors', ['options' => ['class' => 'form-group col-sm-5']])->widget(Datetimepicker::className(), [
         'options' => [
             'format' => 'H:i',
             'seconds' => false,
@@ -132,9 +134,19 @@ use vakorovin\datetimepicker\Datetimepicker;
             'timepicker' => true,
             'datepicker' => false
         ]
-    ]); ?>
+    ]); */ ?>
+    <?=
+    $form->field($model, 'doors', ['options' => ['class' => 'form-group col-sm-5']])->widget(DateTimePicker::classname(), [
+        'options' => ['placeholder' => 'Select door time ...'],
+        'convertFormat' => true,
+        'pluginOptions' => [
+            'format' => 'H:i',
+            'todayHighlight' => true
+        ]
+    ]);
+    ?>
 
-    <?= $form->field($model, 'showtime', ['options' => ['class' => 'form-group col-sm-5']])->widget(Datetimepicker::className(), [
+    <!--    --><?php /*= $form->field($model, 'showtime', ['options' => ['class' => 'form-group col-sm-5']])->widget(Datetimepicker::className(), [
         'options' => [
             'format' => 'H:i',
             'seconds' => false,
@@ -142,7 +154,20 @@ use vakorovin\datetimepicker\Datetimepicker;
             'timepicker' => true,
             'datepicker' => false
         ]
-    ]); ?>
+    ]); */ ?>
+
+    <?=
+    $form->field($model, 'showtime', ['options' => ['class' => 'form-group col-sm-5']])->widget(Datetimepicker::classname(),
+        [
+            'options' => ['placeholder' => 'Select showtime ...'],
+            'convertFormat' => true,
+            'pluginOptions' => [
+                'format' => 'H:i',
+                'todayHighlight' => true
+            ]
+        ]);
+
+    ?>
 
     <?= $form->field($model, 'notes', ['options' => ['class' => 'form-group col-sm-10']])->textarea(['maxlength' => true, 'placeholder' => 'Notes']) ?>
 
@@ -348,7 +373,7 @@ use vakorovin\datetimepicker\Datetimepicker;
     <?= $form->field($model, 'bmi_5001_10000', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 5001 10000']) ?>
     <?= $form->field($model, 'bmi_10001_x', ['options' => ['class' => 'form-group col-sm-2']])->textInput(['maxlength' => true, 'placeholder' => 'Bmi 10001 X']) ?>
     <div class="clearfix"></div>
-    <?= $form->field($model, 'belong_company_id',['options' => ['class' => 'form-group col-sm-5']])->widget(\kartik\widgets\Select2::classname(), [
+    <?= $form->field($model, 'belong_company_id', ['options' => ['class' => 'form-group col-sm-5']])->widget(\kartik\widgets\Select2::classname(), [
         'data' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
         'options' => ['placeholder' => 'Choose Company'],
         'pluginOptions' => [
