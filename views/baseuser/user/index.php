@@ -3,9 +3,9 @@
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use yii\helpers\Html;
 
 $this->title = 'User';
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,7 +27,7 @@ $this->registerJs($search);
         ['attribute' => 'id'],
         'username',
         [
-                'attribute' => 'company_id',
+                'attribute' => 'company_id',//todob here
                 'label' => 'Company',
                 'value' => function($model){
                     return $model->company->name;
