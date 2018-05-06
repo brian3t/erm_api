@@ -3,7 +3,7 @@
 namespace app\api\base;
 
 
-use yii\base\Object;
+use yii\base\BaseObject;
 use yii\db\ActiveRecord;
 
 /**
@@ -14,7 +14,7 @@ use yii\db\ActiveRecord;
  * @property string $status
  * @property integer $count
  */
-class RopResponse extends Object
+class RopResponse extends BaseObject
 {
     public $errors;
     protected $status = 'success';

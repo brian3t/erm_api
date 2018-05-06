@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d9975fb-001f-4bb4-a984-d6044440682f" name="Default" comment="Fix time to am/pm format.">
-      <change afterPath="$PROJECT_DIR$/.idea/yii2settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ermapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ermapi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/compass_library.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/offer/_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/offer/_form.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/base/RopResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/base/RopResponse.php" afterDir="false" />
     </list>
     <ignored path="ermapi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +73,8 @@
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+            <state relative-caret-position="555">
+              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -87,8 +82,8 @@
       <file leaf-file-name="params.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/params.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -96,21 +91,34 @@
       <file leaf-file-name="db.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="120">
+              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/runtime/logs/api.log">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="RopResponse.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/base/RopResponse.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+              <folding>
+                <element signature="e#33#53#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/offer/_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
-              <caret line="161" column="36" lean-forward="true" selection-start-line="161" selection-start-column="36" selection-end-line="161" selection-end-column="36" />
-              <folding>
-                <element signature="e#7#28#0#PHP" expanded="true" />
-                <element signature="e#6262#6589#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="2520">
+              <caret line="186" selection-start-line="186" selection-end-line="186" />
             </state>
           </provider>
         </entry>
@@ -118,8 +126,8 @@
       <file leaf-file-name="Offer.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Offer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
-              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+            <state relative-caret-position="1230">
+              <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -171,7 +179,7 @@
       <replace>col-sm-4b</replace>
       <replace>col-sm-4</replace>
       <replace>col-sm-3</replace>
-      <replace>col-sm-3 col-sm-offset-1</replace>
+      <replace />
       <replace>col-sm-5</replace>
       <replace>created_at</replace>
       <replace>updated_at</replace>
@@ -202,7 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/t.html" />
         <option value="$PROJECT_DIR$/web/css/bootstrap_print.less" />
         <option value="$PROJECT_DIR$/web/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/web/css/bootstrap_kartik.css" />
@@ -230,7 +237,6 @@
         <option value="$PROJECT_DIR$/views/settlement/index.php" />
         <option value="$PROJECT_DIR$/views/settlement/view.php" />
         <option value="$PROJECT_DIR$/models/base/Settlement.php" />
-        <option value="$PROJECT_DIR$/runtime/logs/api.log" />
         <option value="$PROJECT_DIR$/models/Settlement.php" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_17.json" />
         <option value="$PROJECT_DIR$/config/web.php" />
@@ -253,6 +259,8 @@
         <option value="$PROJECT_DIR$/config/params.php" />
         <option value="$PROJECT_DIR$/controllers/CompanyController.php" />
         <option value="$PROJECT_DIR$/views/offer/_form.php" />
+        <option value="$PROJECT_DIR$/runtime/logs/api.log" />
+        <option value="$PROJECT_DIR$/api/base/RopResponse.php" />
       </list>
     </option>
   </component>
@@ -264,8 +272,15 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/web/assets/d216ea5a/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/e8e43579/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/220e2e4f/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/6511cc0d/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/980d9e62/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/9c09ee1c/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/a0a4337c/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/b87978db/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/bfd97dc7/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/c56c2c13/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/e2794e30/package.json" />
     </packageJsonPaths>
   </component>
   <component name="PhpDebugGeneral" notify_if_session_was_finished_without_being_paused="false" />
@@ -382,6 +397,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -392,12 +408,34 @@
             <path>
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
               <item name="ermapi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
               <item name="ermapi" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
+              <item name="runtime" type="462c0819:PsiDirectoryNode" />
+              <item name="logs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
@@ -446,7 +484,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -905,24 +942,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1054" extended-state="6" />
+    <frame x="0" y="0" width="2560" height="1419" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32983193" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3272727" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.7080808" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3272727" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21770833" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.13802083" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21757813" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.13789062" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32883817" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25520834" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6026971" />
       <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.6026971" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Remote Host" order="5" weight="0.22552083" />
@@ -1009,13 +1046,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/Company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/company/_expand.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1147,7 +1177,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runtime/logs/api.log" />
     <entry file="file://$PROJECT_DIR$/models/Settlement.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1266,8 +1295,8 @@
     <entry file="dbDummy://dbtable:/eaf83e09/8af9d57b-160d-468d-bf90-b3c39e10ceeb/erm.offer" />
     <entry file="file://$PROJECT_DIR$/models/Offer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+        <state relative-caret-position="1230">
+          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1282,22 +1311,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+        <state relative-caret-position="555">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/params.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -1308,20 +1330,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/base/BaseObject.php">
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/base/BaseObject.php" />
+    <entry file="file://$PROJECT_DIR$/views/offer/_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+        <state relative-caret-position="2520">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/offer/_form.php">
+    <entry file="file://$PROJECT_DIR$/config/db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="161" column="36" lean-forward="true" selection-start-line="161" selection-start-column="36" selection-end-line="161" selection-end-column="36" />
+        <state relative-caret-position="120">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtime/logs/api.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/base/RopResponse.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="38" lean-forward="true" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
           <folding>
-            <element signature="e#7#28#0#PHP" expanded="true" />
-            <element signature="e#6262#6589#0#PHP" expanded="true" />
+            <element signature="e#33#53#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
