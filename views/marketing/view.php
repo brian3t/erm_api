@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= 'Marketing'.' '. Html::encode($this->title) ?></h2>
+            <h2><?= 'Marketing plan for offer: '.' '. Html::encode($model->offer->event_id) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
             
@@ -35,12 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         [
-            'attribute' => 'offer.id',
+            'attribute' => 'offer.event_id',
             'label' => 'Offer',
         ],
         [
             'attribute' => 'user.username',
-            'label' => 'User',
+            'label' => 'Created by',
         ],
         'created_at',
         'updated_at',

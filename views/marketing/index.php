@@ -7,7 +7,7 @@ use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 
-$this->title = 'Marketing';
+$this->title = 'Marketing plans';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -30,7 +30,7 @@ $this->registerJs($search);
                 'attribute' => 'offer_id',
                 'label' => 'Offer',
                 'value' => function($model){                   
-                    return $model->offer->id;                   
+                    return $model->offer->event_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
@@ -41,7 +41,7 @@ $this->registerJs($search);
             ],
         [
                 'attribute' => 'user_id',
-                'label' => 'User',
+                'label' => 'Created by',
                 'value' => function($model){                   
                     return $model->user->username;                   
                 },
