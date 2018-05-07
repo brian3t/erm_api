@@ -2,7 +2,6 @@
 
 namespace app\models\base;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -112,6 +111,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $bmi_10001_x
  * @property integer $belong_company_id
  *
+ * @property \app\models\Marketing $marketing
  * @property \app\models\User $user
  * @property \app\models\Company $agency
  * @property \app\models\User $agent
@@ -129,6 +129,30 @@ use yii\behaviors\TimestampBehavior;
 class Offer extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
+
+
+    /**
+     * This function helps \mootensai\relation\RelationTrait runs faster
+     * @return array relation names of this model
+     */
+    public function relationNames()
+    {
+        return [
+            'marketing',
+            'user',
+            'agency',
+            'agent',
+            'artist',
+            'coproPromoter',
+            'coproVenue',
+            'supportArtist1',
+            'supportArtist2',
+            'supportArtist3',
+            'ticketingCompany',
+            'venue',
+            'belongCompany'
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -276,6 +300,14 @@ class Offer extends \yii\db\ActiveRecord
             'bmi_10001_x' => 'Bmi 10001 X',
             'belong_company_id' => 'Belong to Company',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMarketing()
+    {
+        return $this->hasOne(\app\models\Marketing::className(), ['offer_id' => 'id'])->inverseOf('offer');
     }
 
     /**

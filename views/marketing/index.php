@@ -7,7 +7,7 @@ use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 
-$this->title = 'User';
+$this->title = 'Marketing';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -15,70 +15,67 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="user-index">
+<div class="marketing-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Marketing', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php 
     $gridColumn = [
-        ['attribute' => 'id'],
-        ['attribute'=>'username',
-            'value' => function($model){
-                return "<a href=/baseuser/update?id={$model->id}>{$model->username}</a>";
-            },
-            'format'=>'html'
-            ],
+        ['class' => 'yii\grid\SerialColumn'],
+        ['attribute' => 'id', 'visible' => false],
         [
-                'attribute' => 'company_id',
-                'label' => 'Company',
-                'value' => function($model){
-                    return $model->company->name;
+                'attribute' => 'offer_id',
+                'label' => 'Offer',
+                'value' => function($model){                   
+                    return $model->offer->id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
+                'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--offer_id']
             ],
-        'job_title',
-        'email:email',
-        'registration_ip',
-        'created_at:datetime',
-        'updated_at:datetime',
-        'first_name',
-        'last_name',
-        'line_of_business',
-        'union_memberships',
-        ['attribute'=>'phone_number_type','label'=>'Phone Type'],
-        ['attribute'=>'phone_number','label'=> 'Phone'],
-        'birthdate:date',
-        'website_url:url',
         [
-            'attribute' => 'belong_company_id',
-            'label' => 'Belongs to',
-            'value' => function($model){
-                return $model->belongCompany->name??'';
-            },
-            'filterType' => GridView::FILTER_SELECT2,
-            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
-            'filterWidgetOptions' => [
-                'pluginOptions' => ['allowClear' => true],
+                'attribute' => 'user_id',
+                'label' => 'User',
+                'value' => function($model){                   
+                    return $model->user->username;                   
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--user_id']
             ],
-            'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--belong_company_id']
-        ],[
+        'created_at',
+        'updated_at',
+        'radio',
+        'tv',
+        'graphic_artist',
+        'newsprint',
+        'internet',
+        'street_team',
+        'printing',
+        'billboards',
+        'spots',
+        'admat',
+        'postage',
+        'others',
+        [
             'class' => 'yii\grid\ActionColumn',
         ],
-    ];
+    ]; 
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-user']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-marketing']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

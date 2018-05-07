@@ -1,14 +1,15 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
-use yii\helpers\Html;
+use app\assets\AppAsset;
+use kartik\widgets\Alert;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
-use \kartik\widgets\Alert;
 
 AppAsset::register($this);
 ?>
@@ -39,7 +40,7 @@ AppAsset::register($this);
     echo '<span class="navbar-brand">v1.4.7.4</span>';
     $items = [];
     $admin_items = [
-    
+
     ];
     if (!Yii::$app->user->isGuest) {
         $items[] = [
@@ -66,7 +67,7 @@ AppAsset::register($this);
     } else {
         $items[] = ['label' => 'Sign Up', 'url' => ['/user/registration/register']];
         $items[] = ['label' => 'Login', 'url' => ['/user/security/login']];
-        
+
     }
     $items = array_merge($items, [
         [
@@ -89,19 +90,23 @@ AppAsset::register($this);
             'label' => 'Settlements',
             'url' => '/settlement',
         ],
+        [
+            'label' => 'Marketing Plan',
+            'url' => '/marketing',
+        ],
         ['label' => 'Raw User data', 'url' => '/user'],
     ]);
-    
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,
     ]);
     ?>
-    
+
     <?php
     NavBar::end();
     ?>
-    
+
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -124,7 +129,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Entertainment Direct Metrics <?= date('Y') ?></p>
-    
+
     </div>
 </footer>
 

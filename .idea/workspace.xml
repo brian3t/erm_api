@@ -1,13 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d9975fb-001f-4bb4-a984-d6044440682f" name="Default" comment="">
+    <list default="true" id="8ee8795b-c842-4856-96a6-9d03d848b641" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ermapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ermapi.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/base/Offer.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/base/Offer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/baseuser/user/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/baseuser/user/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/layouts/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/main.php" afterDir="false" />
     </list>
-    <ignored path="ermapi.iws" />
-    <ignored path=".idea/workspace.xml" />
-    <ignored path=".idea/dataSources.local.xml" />
-    <ignored path="web/output/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/bootstrap/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/bootstrap3-dialog/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/inputmask/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/jquery/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/punycode/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/typeahead.js/" />
+    <ignored path="$PROJECT_DIR$/vendor/bower/yii2-pjax/" />
+    <ignored path="$PROJECT_DIR$/vendor/cebe/js-search/" />
+    <ignored path="$PROJECT_DIR$/vendor/cebe/markdown/" />
+    <ignored path="$PROJECT_DIR$/vendor/cebe/markdown-latex/" />
+    <ignored path="$PROJECT_DIR$/vendor/composer/" />
+    <ignored path="$PROJECT_DIR$/vendor/creocoder/yii2-nested-sets/" />
+    <ignored path="$PROJECT_DIR$/vendor/dektrium/yii2-user/" />
+    <ignored path="$PROJECT_DIR$/vendor/doctrine/lexer/" />
+    <ignored path="$PROJECT_DIR$/vendor/dompdf/dompdf/" />
+    <ignored path="$PROJECT_DIR$/vendor/egulias/email-validator/" />
+    <ignored path="$PROJECT_DIR$/vendor/electrolinux/phpquery/" />
+    <ignored path="$PROJECT_DIR$/vendor/ezyang/htmlpurifier/" />
+    <ignored path="$PROJECT_DIR$/vendor/fzaninotto/faker/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/bootstrap-fileinput/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/bootstrap-star-rating/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/bootstrap-tabs-x/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/dependent-dropdown/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/php-date-formatter/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-builder/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-date-range/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-datecontrol/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-dialog/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-dynagrid/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-export/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-field-range/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-grid/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-helpers/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-krajee-base/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-mpdf/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-sortable/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-tabs-x/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-tree-manager/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-activeform/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-affix/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-alert/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-colorinput/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-datepicker/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-datetimepicker/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-depdrop/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-fileinput/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-growl/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-rangeinput/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-rating/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-select2/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-sidenav/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-spinner/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-switchinput/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-timepicker/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-touchspin/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-typeahead/" />
+    <ignored path="$PROJECT_DIR$/vendor/kartik-v/yii2-widgets/" />
+    <ignored path="$PROJECT_DIR$/vendor/mikevanriel/text-to-latex/" />
+    <ignored path="$PROJECT_DIR$/vendor/mootensai/yii2-enhanced-gii/" />
+    <ignored path="$PROJECT_DIR$/vendor/mootensai/yii2-jsblock/" />
+    <ignored path="$PROJECT_DIR$/vendor/mootensai/yii2-optimistic-lock-validator/" />
+    <ignored path="$PROJECT_DIR$/vendor/mootensai/yii2-relation-trait/" />
+    <ignored path="$PROJECT_DIR$/vendor/mootensai/yii2-uuid-behavior/" />
+    <ignored path="$PROJECT_DIR$/vendor/mpdf/mpdf/" />
+    <ignored path="$PROJECT_DIR$/vendor/nikic/php-parser/" />
+    <ignored path="$PROJECT_DIR$/vendor/phenx/php-font-lib/" />
+    <ignored path="$PROJECT_DIR$/vendor/phenx/php-svg-lib/" />
+    <ignored path="$PROJECT_DIR$/vendor/phpdocumentor/reflection/" />
+    <ignored path="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock/" />
+    <ignored path="$PROJECT_DIR$/vendor/phpoffice/phpspreadsheet/" />
+    <ignored path="$PROJECT_DIR$/vendor/phpspec/php-diff/" />
+    <ignored path="$PROJECT_DIR$/vendor/psr/log/" />
+    <ignored path="$PROJECT_DIR$/vendor/psr/simple-cache/" />
+    <ignored path="$PROJECT_DIR$/vendor/scrivo/highlight.php/" />
+    <ignored path="$PROJECT_DIR$/vendor/setasign/fpdi/" />
+    <ignored path="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer/" />
+    <ignored path="$PROJECT_DIR$/vendor/voskobovich/yii2-many-many-behavior/" />
+    <ignored path="$PROJECT_DIR$/vendor/vova07/yii2-console-runner-extension/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-apidoc/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-authclient/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-bootstrap/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-composer/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-debug/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-faker/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-gii/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-httpclient/" />
+    <ignored path="$PROJECT_DIR$/vendor/yiisoft/yii2-swiftmailer/" />
+    <ignored path="$PROJECT_DIR$/web/less/.sass-cache/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,249 +107,80 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="DONT_SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="erm@localhost" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="erm@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="erm: schema" type="c314c289:MysqlImplModel$Schema" />
-      </path>
-    </expand>
-    <select />
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="ermapi" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
+      <file leaf-file-name="Offer.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/base/Offer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="317">
+              <caret line="308" column="34" lean-forward="true" selection-start-line="308" selection-start-column="34" selection-end-line="308" selection-end-column="34" />
+              <folding>
+                <element signature="e#7337#12564#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+      <file leaf-file-name="Marketing.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/base/Marketing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="params.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/params.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/db.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/runtime/logs/api.log">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="RopResponse.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/base/RopResponse.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
+            <state relative-caret-position="644">
+              <caret line="98" column="80" selection-start-line="98" selection-start-column="80" selection-end-line="98" selection-end-column="80" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/index.php">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/views/baseuser/user/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="39" selection-end-column="57" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/config/api.php">
+      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state relative-caret-position="330">
+              <caret line="87" column="10" lean-forward="true" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/offer/_form.php">
+        <entry file="file://$PROJECT_DIR$/views/marketing/_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2520">
-              <caret line="186" selection-start-line="186" selection-end-line="186" />
+            <state relative-caret-position="299">
+              <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Offer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Offer.php">
+      <file leaf-file-name="view.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/marketing/view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+            <state relative-caret-position="359">
+              <caret line="71" column="50" lean-forward="true" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Less File" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>email</find>
-      <find>settlement_id</find>
-      <find>housenut_</find>
-      <find>artist_comp</find>
-      <find>n</find>
-      <find>ngx</find>
-      <find>ngxtr</find>
-      <find>ngxtri</find>
-      <find>1.4</find>
-      <find>ac</find>
-      <find>action</find>
-      <find>actionI</find>
-      <find>actionIn</find>
-      <find>actionInd</find>
-      <find>actionInde</find>
-      <find>actionIndex</find>
-      <find>actionIndex(</find>
-      <find>H</find>
-      <find>HE</find>
-      <find>HEA</find>
-      <find>HEAD</find>
-      <find>1.4.</find>
-      <find>bmi_2501_5000</find>
-      <find>merch_venue_split_artist_sell</find>
-      <find>merch_venue_split_media_artist_sell</find>
-      <find>mitalcoi/yii2-cronjobs</find>
-      <find>datetime</find>
-      <find>classname</find>
-      <find>render</find>
-      <find>yii\base\Object</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>col-sm-4b</replace>
-      <replace>col-sm-4</replace>
-      <replace>col-sm-3</replace>
-      <replace>col-sm-3 col-sm-offset-1</replace>
-      <replace>col-sm-5</replace>
-      <replace>created_at</replace>
-      <replace>updated_at</replace>
-      <replace>$dom</replace>
-      <replace>l2</replace>
-      <replace>l3</replace>
-      <replace>l4</replace>
-      <replace>l5</replace>
-      <replace>&lt;/tr&gt;</replace>
-      <replace>&lt;tr&gt;</replace>
-      <replace>td</replace>
-      <replace>colspan=&quot;2&quot;</replace>
-      <replace>&lt;?=</replace>
-      <replace>&lt;?//=</replace>
-      <replace>2</replace>
-      <replace>3</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/views/offer</dir>
-      <dir>$PROJECT_DIR$/vendor/kartik-v</dir>
-    </dirStrings>
-  </component>
   <component name="FrameworkRootSettings" id="Yii" />
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/css/bootstrap_print.less" />
-        <option value="$PROJECT_DIR$/web/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/web/css/bootstrap_kartik.css" />
-        <option value="$PROJECT_DIR$/web/test.php" />
-        <option value="$PROJECT_DIR$/web/css/bootstrap_print.css" />
-        <option value="$PROJECT_DIR$/api/config/api.php" />
-        <option value="$PROJECT_DIR$/api/modules/v1/controllers/OfferController.php" />
-        <option value="&lt;40acc72d-b6c1-4f48-a7aa-5a9c62faceb6&gt;/ermapi/web/index.php" />
-        <option value="$PROJECT_DIR$/web/index.php" />
-        <option value="$PROJECT_DIR$/models/Company.php" />
-        <option value="$PROJECT_DIR$/views/company/_form.php" />
-        <option value="$PROJECT_DIR$/views/company/_detail.php" />
-        <option value="$PROJECT_DIR$/views/company/view.php" />
-        <option value="$PROJECT_DIR$/models/base/User.php" />
-        <option value="$PROJECT_DIR$/controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/views/baseuser/user/_form.php" />
-        <option value="$PROJECT_DIR$/models/base/Venue.php" />
-        <option value="$PROJECT_DIR$/models/Venue.php" />
-        <option value="$PROJECT_DIR$/controllers/VenueController.php" />
-        <option value="$PROJECT_DIR$/views/venue/_form.php" />
-        <option value="$PROJECT_DIR$/models/base/Company.php" />
-        <option value="$PROJECT_DIR$/views/venue/index.php" />
-        <option value="$PROJECT_DIR$/views/company/index.php" />
-        <option value="$PROJECT_DIR$/views/settlement/_form.php" />
-        <option value="$PROJECT_DIR$/views/settlement/index.php" />
-        <option value="$PROJECT_DIR$/views/settlement/view.php" />
-        <option value="$PROJECT_DIR$/models/base/Settlement.php" />
-        <option value="$PROJECT_DIR$/models/Settlement.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch_17.json" />
-        <option value="$PROJECT_DIR$/config/web.php" />
-        <option value="$PROJECT_DIR$/controllers/OfferController.php" />
-        <option value="$PROJECT_DIR$/api/base/BaseIndexAction.php" />
-        <option value="$PROJECT_DIR$/views/venue/_formOffer.php" />
-        <option value="$PROJECT_DIR$/runtime/logs/app.log" />
-        <option value="$PROJECT_DIR$/views/offer/index.php" />
-        <option value="$PROJECT_DIR$/views/offer/_detail.php" />
-        <option value="$PROJECT_DIR$/views/offer/view.php" />
-        <option value="$PROJECT_DIR$/views/venue/view.php" />
-        <option value="$PROJECT_DIR$/views/offer/print.php" />
-        <option value="$PROJECT_DIR$/models/base/Offer.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/8af9d57b-160d-468d-bf90-b3c39e10ceeb/console.sql" />
-        <option value="$PROJECT_DIR$/api/modules/v1/controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/models/User.php" />
-        <option value="$PROJECT_DIR$/models/Offer.php" />
+        <option value="$PROJECT_DIR$/views/baseuser/user/index.php" />
         <option value="$PROJECT_DIR$/views/layouts/main.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/config/params.php" />
-        <option value="$PROJECT_DIR$/controllers/CompanyController.php" />
-        <option value="$PROJECT_DIR$/views/offer/_form.php" />
-        <option value="$PROJECT_DIR$/runtime/logs/api.log" />
-        <option value="$PROJECT_DIR$/api/base/RopResponse.php" />
+        <option value="$PROJECT_DIR$/views/marketing/_form.php" />
+        <option value="$PROJECT_DIR$/models/base/Offer.php" />
+        <option value="$PROJECT_DIR$/models/base/Marketing.php" />
+        <option value="$PROJECT_DIR$/views/marketing/view.php" />
       </list>
     </option>
   </component>
@@ -272,24 +192,9 @@
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
-      <path value="$PROJECT_DIR$/web/assets/220e2e4f/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/6511cc0d/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/980d9e62/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/9c09ee1c/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/a0a4337c/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/b87978db/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/bfd97dc7/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/c56c2c13/package.json" />
-      <path value="$PROJECT_DIR$/web/assets/e2794e30/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/d216ea5a/package.json" />
+      <path value="$PROJECT_DIR$/web/assets/e8e43579/package.json" />
     </packageJsonPaths>
-  </component>
-  <component name="PhpDebugGeneral" notify_if_session_was_finished_without_being_paused="false" />
-  <component name="PhpServers">
-    <servers>
-      <server host="api.ermlocal" id="16f591ec-5b1d-400a-b8b5-670e7e70ec74" name="api.ermlocal" port="443" />
-      <server host="admin.ermlocal" id="1e92dcb9-9956-4aab-908e-7073da074638" name="admin.ermlocal" />
-      <server host="api.ermapi" id="eebea934-a5cb-4a20-bbb2-3cd8f6a190df" name="api.ermapi" port="443" />
-    </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -387,99 +292,19 @@
     <option name="width" value="1922" />
     <option name="height" value="1061" />
   </component>
-  <component name="ProjectLevelVcsManager">
-    <OptionsSetting value="false" id="Update" />
-  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
-      <autoscrollToSource ProjectPane="true" />
-      <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
               <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="avatar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="v1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="runtime" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="runtime" type="462c0819:PsiDirectoryNode" />
-              <item name="logs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="yiisoft" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="yiisoft" type="462c0819:PsiDirectoryNode" />
-              <item name="yii2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
-              <item name="vendor" type="462c0819:PsiDirectoryNode" />
-              <item name="yiisoft" type="462c0819:PsiDirectoryNode" />
-              <item name="yii2" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
@@ -496,45 +321,23 @@
               <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
               <item name="ermapi" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="offer" type="462c0819:PsiDirectoryNode" />
+              <item name="marketing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ermapi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ermapi" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="JSON" />
-    <property name="editor.config.accepted" value="true" />
-    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
-    <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="list.type.of.created.stylesheet" value="Less" />
-    <property name="nodejs_interpreter_path" value="node" />
-    <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="Yii2Support.SettingsForm" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/web/css" />
-      <recent name="$PROJECT_DIR$/api/modules/v1/controllers" />
-    </key>
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.PHP" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -549,909 +352,116 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
-    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration name="&lt;template&gt;" type="JUnit" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-    </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-      <method />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
-      <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-    </configuration>
-    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4d9975fb-001f-4bb4-a984-d6044440682f" name="Default" comment="" />
-      <created>1479481023772</created>
+      <changelist id="8ee8795b-c842-4856-96a6-9d03d848b641" name="Default" comment="" />
+      <created>1525659778899</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1479481023772</updated>
+      <updated>1525659778899</updated>
     </task>
-    <task id="LOCAL-00001" summary="Offer API.">
-      <created>1480372437051</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1480372437051</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Offer API continued.">
-      <created>1480458391929</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1480458391929</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Offer API continued.">
-      <created>1480546180414</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1480546180414</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Offer API part 3/5.">
-      <created>1480631008521</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1480631008521</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Offer API part 4/5. Artist walkout. ASCAP BMI.">
-      <created>1481841833147</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1481841833147</updated>
-    </task>
-    <task id="LOCAL-00006" summary="ERM Offer finished.">
-      <created>1483483282599</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1483483282599</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Redid first party event and 2nd party event. They link to offer id only. Linking to offer's event id is bad architect.">
-      <created>1485961214604</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1485961214604</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Allow first party and second party to be null.">
-      <created>1485968042514</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1485968042514</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Allow first party and second party to be null.">
-      <created>1485974514277</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1485974514277</updated>
-    </task>
-    <task id="LOCAL-00010" summary="ERM generate pdf">
-      <created>1486766954390</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1486766954390</updated>
-    </task>
-    <task id="LOCAL-00011" summary="ERM pdf: dompdf, electrolinux phpquery. Next: print offer detail">
-      <created>1487007308536</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1487007308536</updated>
-    </task>
-    <task id="LOCAL-00012" summary="ERM pdf: print offer detail.. fixing weird printing issue">
-      <created>1487026179419</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1487026179419</updated>
-    </task>
-    <task id="LOCAL-00013" summary="ERM pdf: print offer detail.. continue">
-      <created>1487112204546</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1487112204546</updated>
-    </task>
-    <task id="LOCAL-00014" summary="ERM pdf: done.">
-      <created>1487187876268</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1487187876268</updated>
-    </task>
-    <task id="LOCAL-00015" summary="ERM pdf minor fixes..filename">
-      <created>1487189933190</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1487189933190</updated>
-    </task>
-    <task id="LOCAL-00016" summary="ERM pdf minor fixes..phpquery include">
-      <created>1487258069601</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1487258069601</updated>
-    </task>
-    <task id="LOCAL-00017" summary="ERM company line biz null.">
-      <created>1488944843769</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1488944843769</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Offer filter by company">
-      <created>1489008175293</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1489008175293</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Settlement filter by company">
-      <created>1489012047553</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1489012047553</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Settlement filter by company">
-      <created>1489013262362</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1489013262362</updated>
-    </task>
-    <task id="LOCAL-00021" summary="MIssing filter?">
-      <created>1489588124128</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1489588124128</updated>
-    </task>
-    <task id="LOCAL-00022" summary="MIssing order_by.">
-      <created>1489589065836</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1489589065836</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Big update.">
-      <created>1492724990278</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1492724990278</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Big update. Include venue, offer, and settlement too.">
-      <created>1492789961750</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1492789961750</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Fix settlement create.">
-      <created>1493242658380</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1493242658380</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Version.">
-      <created>1493242831238</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1493242831238</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fix settlement validate.">
-      <created>1493408306700</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1493408306700</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Fix offer validate.">
-      <created>1493761622833</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1493761622833</updated>
-    </task>
-    <task id="LOCAL-00029" summary="V 1.4.3">
-      <created>1493831948148</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1493831948148</updated>
-    </task>
-    <task id="LOCAL-00030" summary="V 1.4.3 minor fixes;.">
-      <created>1493833102766</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1493833102766</updated>
-    </task>
-    <task id="LOCAL-00031" summary="V 1.4.3 add James as admin.">
-      <created>1493834335160</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1493834335160</updated>
-    </task>
-    <task id="LOCAL-00032" summary="V 1.4.3.1 fix variable expense update.">
-      <created>1494007814126</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1494007814126</updated>
-    </task>
-    <task id="LOCAL-00033" summary="V 1.4.4">
-      <created>1494011843211</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1494011843211</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Remove limit.">
-      <created>1494441828981</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1494441828981</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Remove limit.">
-      <created>1494442998959</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1494442998959</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Fix checkbox.">
-      <created>1494538776155</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1494538776155</updated>
-    </task>
-    <task id="LOCAL-00037" summary="Fix checkbox.">
-      <created>1494539175163</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1494539175163</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Version 1.4.5.">
-      <created>1494948340032</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1494948340032</updated>
-    </task>
-    <task id="LOCAL-00039" summary="Merge branch 'master' of github.com:brian3t/erm_api&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1495605845642</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1495605845642</updated>
-    </task>
-    <task id="LOCAL-00040" summary="Version 1.4.7.1 Fix 53, 81, 87, 88, 89">
-      <created>1495770815417</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1495770815418</updated>
-    </task>
-    <task id="LOCAL-00041" summary="Upgrade saveall many-to-many relationship.">
-      <created>1496719514584</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1496719514584</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Version 1.4.7.3. Fix issues 100,103,99,57,55,54,46,42,74">
-      <created>1496770071165</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1496770071165</updated>
-    </task>
-    <task id="LOCAL-00043" summary="Fix time to am/pm format.">
-      <created>1497456070035</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1497456070035</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Upgrade yii 2.0.15">
-      <created>1525623496534</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1525623496534</updated>
-    </task>
-    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1419" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1054" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32983193" />
-      <window_info anchor="bottom" id="Database Changes" order="11" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.7080808" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3272727" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="right" id="Remote Host" order="3" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21757813" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.13789062" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32883817" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25520834" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6026971" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Remote Host" order="5" weight="0.22552083" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.32987553" />
-      <window_info anchor="bottom" id="Database Console" order="11" visible="true" weight="0.32848233" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="File Transfer" order="11" visible="true" weight="0.32572615" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnknownFeatures">
-    <option featureType="com.intellij.fileTypeFactory" implementationName="*.rb" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
-  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ERM company line biz null." />
-    <MESSAGE value="Offer filter by company" />
-    <MESSAGE value="Settlement filter by company" />
-    <MESSAGE value="MIssing filter?" />
-    <MESSAGE value="MIssing order_by." />
-    <MESSAGE value="Big update." />
-    <MESSAGE value="Big update. Include venue, offer, and settlement too." />
-    <MESSAGE value="Fix settlement create." />
-    <MESSAGE value="Version." />
-    <MESSAGE value="Fix settlement validate." />
-    <MESSAGE value="Fix offer validate." />
-    <MESSAGE value="V 1.4.3" />
-    <MESSAGE value="V 1.4.3 minor fixes;." />
-    <MESSAGE value="V 1.4.3 add James as admin." />
-    <MESSAGE value="V 1.4.3.1 fix variable expense update." />
-    <MESSAGE value="V 1.4.4" />
-    <MESSAGE value="Remove limit." />
-    <MESSAGE value="Fix checkbox." />
-    <MESSAGE value="Version 1.4.5." />
-    <MESSAGE value="Merge branch 'master' of github.com:brian3t/erm_api&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <MESSAGE value="Version 1.4.7.1 Fix 53, 81, 87, 88, 89" />
-    <MESSAGE value="Upgrade saveall many-to-many relationship." />
-    <MESSAGE value="Version 1.4.7.3. Fix issues 100,103,99,57,55,54,46,42,74" />
-    <MESSAGE value="Fix time to am/pm format." />
-    <MESSAGE value="Upgrade yii 2.0.15" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upgrade yii 2.0.15" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="25" />
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="index.php">
-        <watch expression="$model-&gt;offers" />
-      </configuration>
-    </watches-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/company/_detail.php">
+    <entry file="file://$PROJECT_DIR$/views/baseuser/user/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="405">
+          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/company/view.php">
+    <entry file="file://$PROJECT_DIR$/views/site/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/baseuser/user/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1407">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+        <state relative-caret-position="540">
+          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="39" selection-end-column="57" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/company/_form.php">
+    <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1617">
-          <caret line="78" column="51" selection-start-line="78" selection-start-column="51" selection-end-line="78" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/user/admin/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/baseuser/user/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2016">
-          <caret line="97" column="66" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/VenueController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="69" column="11" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Venue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/base/Venue.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-855">
-          <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/venue/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6111">
-          <caret line="292" selection-start-line="292" selection-end-line="292" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/venue/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="90" column="38" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/company/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1029">
-          <caret line="51" column="18" selection-start-line="51" selection-start-column="18" selection-end-line="51" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/settlement/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/settlement/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="40" column="10" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/settlement/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="30" column="110" selection-start-line="30" selection-start-column="110" selection-end-line="30" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/base/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="81" column="22" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/base/Company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/base/Settlement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/Settlement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/OfferController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2814">
-          <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/modules/v1/controllers/VenueController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/base/controllers/BaseActiveController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="45" column="23" lean-forward="true" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_17.json" />
-    <entry file="file://$PROJECT_DIR$/api/base/BaseIndexAction.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/runtime/logs/app.log" />
-    <entry file="file://$PROJECT_DIR$/views/offer/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2940">
-          <caret line="142" column="79" selection-start-line="142" selection-start-column="79" selection-end-line="142" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/offer/_detail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2751">
-          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/offer/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3129">
-          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/offer/print.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="317" column="36" selection-start-line="317" selection-start-column="36" selection-end-line="317" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/venue/view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="199" column="17" selection-start-line="199" selection-start-column="17" selection-end-line="199" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/venue/_formOffer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6489">
-          <caret line="313" column="15" selection-start-line="313" selection-start-column="15" selection-end-line="313" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/modules/v1/controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="125" column="14" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8af9d57b-160d-468d-bf90-b3c39e10ceeb/console.sql" />
-    <entry file="file://$PROJECT_DIR$/models/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+        <state relative-caret-position="330">
+          <caret line="87" column="10" lean-forward="true" selection-start-line="87" selection-start-column="10" selection-end-line="87" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/base/Offer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2250">
-          <caret line="151" column="41" selection-start-line="151" selection-start-column="41" selection-end-line="151" selection-end-column="41" />
+        <state relative-caret-position="317">
+          <caret line="308" column="34" lean-forward="true" selection-start-line="308" selection-start-column="34" selection-end-line="308" selection-end-column="34" />
+          <folding>
+            <element signature="e#7337#12564#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/eaf83e09/8af9d57b-160d-468d-bf90-b3c39e10ceeb/erm.offer" />
-    <entry file="file://$PROJECT_DIR$/models/Offer.php">
+    <entry file="file://$PROJECT_DIR$/models/base/Marketing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+        <state relative-caret-position="644">
+          <caret line="98" column="80" selection-start-line="98" selection-start-column="80" selection-end-line="98" selection-end-column="80" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/.htaccess" />
-    <entry file="file://$PROJECT_DIR$/api/.htaccess" />
-    <entry file="file://$PROJECT_DIR$/views/layouts/main.php">
+    <entry file="file://$PROJECT_DIR$/views/marketing/_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="299">
+          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/views/marketing/view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+        <state relative-caret-position="359">
+          <caret line="71" column="50" lean-forward="true" selection-start-line="71" selection-start-column="50" selection-end-line="71" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/params.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/CompanyController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="82" column="52" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/base/BaseObject.php" />
-    <entry file="file://$PROJECT_DIR$/views/offer/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="186" selection-start-line="186" selection-end-line="186" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/runtime/logs/api.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/base/RopResponse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="38" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/index.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/config/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>backbone-DefinitelyTyped</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>ermapi</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>Go 1.6.2</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>compass-library</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
