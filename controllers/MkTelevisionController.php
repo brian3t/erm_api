@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Marketing;
+use app\models\MkTelevision;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MarketingController implements the CRUD actions for Marketing model.
+ * MkTelevisionController implements the CRUD actions for MkTelevision model.
  */
-class MarketingController extends Controller
+class MkTelevisionController extends Controller
 {
     public function behaviors()
     {
@@ -27,13 +27,13 @@ class MarketingController extends Controller
     }
 
     /**
-     * Lists all Marketing models.
+     * Lists all MkTelevision models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Marketing::find(),
+            'query' => MkTelevision::find(),
         ]);
 
         return $this->render('index', [
@@ -42,34 +42,26 @@ class MarketingController extends Controller
     }
 
     /**
-     * Displays a single Marketing model.
+     * Displays a single MkTelevision model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        $providerMkRadio = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->mkRadios,
-        ]);
-        $providerMkTelevision = new \yii\data\ArrayDataProvider([
-            'allModels' => $model->mkTelevisions,
-        ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'providerMkRadio' => $providerMkRadio,
-            'providerMkTelevision' => $providerMkTelevision,
         ]);
     }
 
     /**
-     * Creates a new Marketing model.
+     * Creates a new MkTelevision model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Marketing();
+        $model = new MkTelevision();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -81,7 +73,7 @@ class MarketingController extends Controller
     }
 
     /**
-     * Updates an existing Marketing model.
+     * Updates an existing MkTelevision model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,7 +92,7 @@ class MarketingController extends Controller
     }
 
     /**
-     * Deletes an existing Marketing model.
+     * Deletes an existing MkTelevision model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -114,56 +106,16 @@ class MarketingController extends Controller
 
     
     /**
-     * Finds the Marketing model based on its primary key value.
+     * Finds the MkTelevision model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Marketing the loaded model
+     * @return MkTelevision the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Marketing::findOne($id)) !== null) {
+        if (($model = MkTelevision::findOne($id)) !== null) {
             return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for MkRadio
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddMkRadio()
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('MkRadio');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formMkRadio', ['row' => $row]);
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-    
-    /**
-    * Action to load a tabular form grid
-    * for MkTelevision
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
-    public function actionAddMkTelevision()
-    {
-        if (Yii::$app->request->isAjax) {
-            $row = Yii::$app->request->post('MkTelevision');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
-            return $this->renderAjax('_formMkTelevision', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

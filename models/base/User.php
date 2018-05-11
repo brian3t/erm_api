@@ -48,6 +48,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $country
  * @property integer $belong_company_id
  *
+ * @property \app\models\Marketing[] $marketings 
  * @property \app\models\Offer[] $offers
  * @property \app\models\Profile $profile
  * @property \app\models\Settlement[] $settlements
@@ -60,7 +61,26 @@ class User extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
     
-    /**
+	/**
+	   * This function helps \mootensai\relation\RelationTrait runs faster
+	   * @return array relation names of this model
+	   */
+	   public function relationNames()
+	   {
+		   return [
+			   'companyUser',
+			   'marketings',
+			   'offers',
+			   'profile',
+			   'settlements',
+			   'socialAccounts',
+			   'tokens',
+			   'belongCompany',
+			   'company'
+		   ];
+	   }
+
+   /**
      * @inheritdoc
      */
     public function rules()
@@ -142,6 +162,14 @@ class User extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMarketings()
+   {
+       return $this->hasMany(\app\models\Marketing::className(), ['user_id' => 'id'])->inverseOf('user');
+   }
+       
     /**
      * @return \yii\db\ActiveQuery
      */

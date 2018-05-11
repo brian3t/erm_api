@@ -43,6 +43,8 @@ use Yii;
  * @property \app\models\Company $belongCompany
  * @property \app\models\Company $usersBelongToThis
  * @property \app\models\Company[] $companies
+ * @property \app\models\MkRadio[] $mkRadios 
+ * @property \app\models\MkTelevision[] $mkTelevisions 
  * @property \app\models\Offer[] $offers
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\User[] $users
@@ -165,7 +167,24 @@ class Company extends \yii\db\ActiveRecord
         return $this->hasMany(\app\models\Company::className(), ['belong_company_id' => 'id'])->inverseOf('belongCompany');
     }
 
-    /**
+	       
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkRadios()
+   {
+       return $this->hasMany(\app\models\MkRadio::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
+       
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkTelevisions()
+   {
+       return $this->hasMany(\app\models\MkTelevision::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
+
+   /**
      * @return \yii\db\ActiveQuery
      */
     public function getOffers()

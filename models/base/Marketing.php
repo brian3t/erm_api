@@ -2,6 +2,8 @@
 
 namespace app\models\base;
 
+use Yii;
+
 /**
  * This is the base model class for table "marketing".
  *
@@ -10,8 +12,6 @@ namespace app\models\base;
  * @property integer $user_id
  * @property string $created_at
  * @property string $updated_at
- * @property string $radio
- * @property string $tv
  * @property string $graphic_artist
  * @property string $newsprint
  * @property string $internet
@@ -25,6 +25,8 @@ namespace app\models\base;
  *
  * @property \app\models\User $user
  * @property \app\models\Offer $offer
+ * @property \app\models\MkRadio[] $mkRadios
+ * @property \app\models\MkTelevision[] $mkTelevisions
  */
 class Marketing extends \yii\db\ActiveRecord
 {
@@ -39,7 +41,9 @@ class Marketing extends \yii\db\ActiveRecord
     {
         return [
             'user',
-            'offer'
+            'offer',
+            'mkRadios',
+            'mkTelevisions'
         ];
     }
 
@@ -52,7 +56,7 @@ class Marketing extends \yii\db\ActiveRecord
             [['offer_id', 'user_id'], 'required'],
             [['offer_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['radio', 'tv', 'graphic_artist', 'newsprint', 'internet', 'street_team', 'printing', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
+            [['graphic_artist', 'newsprint', 'internet', 'street_team', 'printing', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
             [['offer_id'], 'unique']
         ];
     }
@@ -74,8 +78,6 @@ class Marketing extends \yii\db\ActiveRecord
             'id' => 'ID',
             'offer_id' => 'Offer ID',
             'user_id' => 'User ID',
-            'radio' => 'Radio',
-            'tv' => 'Tv',
             'graphic_artist' => 'Graphic Artist',
             'newsprint' => 'Newsprint',
             'internet' => 'Internet',
@@ -94,7 +96,7 @@ class Marketing extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(\app\models\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\app\models\User::className(), ['id' => 'user_id'])->inverseOf('marketings');
     }
         
     /**
@@ -103,5 +105,21 @@ class Marketing extends \yii\db\ActiveRecord
     public function getOffer()
     {
         return $this->hasOne(\app\models\Offer::className(), ['id' => 'offer_id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMkRadios()
+    {
+        return $this->hasMany(\app\models\MkRadio::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMkTelevisions()
+    {
+        return $this->hasMany(\app\models\MkTelevision::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
     }
     }

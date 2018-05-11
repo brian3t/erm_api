@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Marketing */
 
-$this->title = $model->id;
+$this->title = $model->offer->event_id;
 $this->params['breadcrumbs'][] = ['label' => 'Marketing', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -14,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= 'Marketing plan for offer: '.' '. Html::encode($model->offer->event_id) ?></h2>
+            <h2><?= 'Marketing for '.' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
             
@@ -35,27 +36,15 @@ $this->params['breadcrumbs'][] = $this->title;
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         [
-            'attribute' => 'offer.event_id',
+            'attribute' => 'offer.id',
             'label' => 'Offer',
         ],
         [
             'attribute' => 'user.username',
-            'label' => 'Created by',
+            'label' => 'User',
         ],
-        'created_at',
-        'updated_at',
-        'radio',
-        'tv',
-        'graphic_artist',
-        'newsprint',
-        'internet',
-        'street_team',
-        'printing',
-        'billboards',
-        'spots',
-        'admat',
-        'postage',
-        'others',
+		'created_at',
+		'updated_at'
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -72,8 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'username',
         'company_id',
         'email',
-        'first_name',
-        'belong_company_id',
     ];
     echo DetailView::widget([
         'model' => $model->user,
@@ -85,16 +72,95 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php 
     $gridColumnOffer = [
         ['attribute' => 'id', 'visible' => false],
-        [
-            'attribute' => 'user.username',
-            'label' => 'User',
-        ],
         'offer_type',
         'event_id',
-        'status',
     ];
     echo DetailView::widget([
         'model' => $model->offer,
         'attributes' => $gridColumnOffer    ]);
     ?>
+    
+    <div class="row">
+<?php
+if($providerMkRadio->totalCount){
+    $gridColumnMkRadio = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'station',
+            'format',
+            'contact',
+            'contact_phone_email:email',
+            'promo_mentions',
+            'promo_tickets',
+            'promo_value',
+            'promo_run_from',
+            'promo_run_to',
+            'paid_run_from',
+            'paid_run_to',
+            'paid_spots',
+            'thirty',
+            'sixty',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkRadio,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-radio']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Radio'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkRadio
+    ]);
+}
+?>
+
+    </div>
+    
+    <div class="row">
+<?php
+if($providerMkTelevision->totalCount){
+    $gridColumnMkTelevision = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'format',
+            'contact',
+            'phone_email:email',
+            'impressions',
+            'promo_tickets',
+            'promo_value',
+            'promo_run_from',
+            'promo_run_to',
+            'paid_run_from',
+            'paid_run_to',
+            'qty',
+            'dg_code',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkTelevision,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-television']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Television'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkTelevision
+    ]);
+}
+?>
+
+    </div>
 </div>

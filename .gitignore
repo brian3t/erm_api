@@ -33,3 +33,6 @@ api/assets/
 .sass-cache/*
 /web/.sass-cache/
 /web/less/.sass-cache/
+
+web/index.php
+api/index.php
