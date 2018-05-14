@@ -14,9 +14,7 @@ use Yii;
  * @property string $updated_at
  * @property string $graphic_artist
  * @property string $newsprint
- * @property string $internet
  * @property string $street_team
- * @property string $printing
  * @property string $billboards
  * @property string $spots
  * @property string $admat
@@ -25,6 +23,8 @@ use Yii;
  *
  * @property \app\models\User $user
  * @property \app\models\Offer $offer
+ * @property \app\models\MkInternet[] $mkInternets
+ * @property \app\models\MkPrint[] $mkPrints
  * @property \app\models\MkRadio[] $mkRadios
  * @property \app\models\MkTelevision[] $mkTelevisions
  */
@@ -42,6 +42,8 @@ class Marketing extends \yii\db\ActiveRecord
         return [
             'user',
             'offer',
+            'mkInternets',
+            'mkPrints',
             'mkRadios',
             'mkTelevisions'
         ];
@@ -56,7 +58,7 @@ class Marketing extends \yii\db\ActiveRecord
             [['offer_id', 'user_id'], 'required'],
             [['offer_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['graphic_artist', 'newsprint', 'internet', 'street_team', 'printing', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
+            [['graphic_artist', 'newsprint', 'street_team', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
             [['offer_id'], 'unique']
         ];
     }
@@ -80,9 +82,7 @@ class Marketing extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'graphic_artist' => 'Graphic Artist',
             'newsprint' => 'Newsprint',
-            'internet' => 'Internet',
             'street_team' => 'Street Team',
-            'printing' => 'Printing',
             'billboards' => 'Billboards',
             'spots' => 'Spots',
             'admat' => 'Admat',
@@ -105,6 +105,22 @@ class Marketing extends \yii\db\ActiveRecord
     public function getOffer()
     {
         return $this->hasOne(\app\models\Offer::className(), ['id' => 'offer_id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMkInternets()
+    {
+        return $this->hasMany(\app\models\MkInternet::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMkPrints()
+    {
+        return $this->hasMany(\app\models\MkPrint::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
     }
         
     /**

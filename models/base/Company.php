@@ -43,7 +43,9 @@ use Yii;
  * @property \app\models\Company $belongCompany
  * @property \app\models\Company $usersBelongToThis
  * @property \app\models\Company[] $companies
+ * @property \app\models\MkPrint[] $mkPrints
  * @property \app\models\MkRadio[] $mkRadios 
+ * @property \app\models\MkInternet[] $mkInternets
  * @property \app\models\MkTelevision[] $mkTelevisions 
  * @property \app\models\Offer[] $offers
  * @property \app\models\Settlement[] $settlements
@@ -166,8 +168,23 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasMany(\app\models\Company::className(), ['belong_company_id' => 'id'])->inverseOf('belongCompany');
     }
-
+       
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkInternets()
+   {
+       return $this->hasMany(\app\models\MkInternet::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
 	       
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkPrints()
+   {
+       return $this->hasMany(\app\models\MkPrint::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
+       
    /**
     * @return \yii\db\ActiveQuery
     */

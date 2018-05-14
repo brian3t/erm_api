@@ -49,6 +49,12 @@ class MarketingController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $providerMkInternet = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->mkInternets,
+        ]);
+        $providerMkPrint = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->mkPrints,
+        ]);
         $providerMkRadio = new \yii\data\ArrayDataProvider([
             'allModels' => $model->mkRadios,
         ]);
@@ -57,6 +63,8 @@ class MarketingController extends Controller
         ]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'providerMkInternet' => $providerMkInternet,
+            'providerMkPrint' => $providerMkPrint,
             'providerMkRadio' => $providerMkRadio,
             'providerMkTelevision' => $providerMkTelevision,
         ]);
@@ -124,6 +132,46 @@ class MarketingController extends Controller
     {
         if (($model = Marketing::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for MkInternet
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddMkInternet()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('MkInternet');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formMkInternet', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for MkPrint
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddMkPrint()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('MkPrint');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formMkPrint', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

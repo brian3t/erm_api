@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = 'Marketing';
+$this->title = 'Mk Print';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -15,63 +15,64 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="marketing-index">
+<div class="mk-print-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Marketing', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Mk Print', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php 
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
-        [
-            'class' => 'kartik\grid\ExpandRowColumn',
-            'width' => '50px',
-            'value' => function ($model, $key, $index, $column) {
-                return GridView::ROW_COLLAPSED;
-            },
-            'detail' => function ($model, $key, $index, $column) {
-                return Yii::$app->controller->renderPartial('_expand', ['model' => $model]);
-            },
-            'headerOptions' => ['class' => 'kartik-sheet-style'],
-            'expandOneOnly' => true
-        ],
         ['attribute' => 'id', 'visible' => false],
         [
-                'attribute' => 'offer_id',
-                'label' => 'Offer',
+                'attribute' => 'marketing_id',
+                'label' => 'Marketing',
                 'value' => function($model){                   
-                    return $model->offer->id;                   
+                    return $model->marketing->id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Marketing::find()->asArray()->all(), 'id', 'id'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'Offer', 'id' => 'grid--offer_id']
+                'filterInputOptions' => ['placeholder' => 'Marketing', 'id' => 'grid--marketing_id']
             ],
         [
-                'attribute' => 'user_id',
-                'label' => 'User',
+                'attribute' => 'company_id',
+                'label' => 'Company',
                 'value' => function($model){                   
-                    return $model->user->username;                   
+                    return $model->company->name;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => \yii\helpers\ArrayHelper::map(\app\models\User::find()->asArray()->all(), 'id', 'username'),
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Company::find()->asArray()->all(), 'id', 'name'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
-                'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--user_id']
+                'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
             ],
-        'graphic_artist',
-        'newsprint',
-        'street_team',
-        'billboards',
-        'spots',
-        'admat',
-        'postage',
-        'others',
+        'provider_company',
+        'type',
+        'contact',
+        'phone_email:email',
+        'size',
+        'promo_tickets',
+        'promo_value',
+        'paid_run_from',
+        'paid_run_to',
+        'promo_run_from',
+        'promo_run_to',
+        'qty',
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+        'gross',
+        'net',
         [
             'class' => 'yii\grid\ActionColumn',
         ],
@@ -81,7 +82,7 @@ $this->registerJs($search);
         'dataProvider' => $dataProvider,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-marketing']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-print']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

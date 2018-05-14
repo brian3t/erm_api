@@ -10,6 +10,20 @@ $items = [
         ]),
     ],
                 [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Mk Internet'),
+        'content' => $this->render('_dataMkInternet', [
+            'model' => $model,
+            'row' => $model->mkInternets,
+        ]),
+    ],
+            [
+        'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Mk Print'),
+        'content' => $this->render('_dataMkPrint', [
+            'model' => $model,
+            'row' => $model->mkPrints,
+        ]),
+    ],
+            [
         'label' => '<i class="glyphicon glyphicon-book"></i> '. Html::encode('Mk Radio'),
         'content' => $this->render('_dataMkRadio', [
             'model' => $model,
