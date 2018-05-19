@@ -37,7 +37,7 @@ AppAsset::register($this);
             'class' => 'navbar navbar-fixed-top',
         ],
     ]);
-    echo '<span class="navbar-brand">v1.4.7.4</span>';
+    echo '<span class="navbar-brand">v1.4.7.5</span>';
     $items = [];
     $admin_items = [
 

@@ -10,6 +10,9 @@ use Yii;
  * @property integer $id
  * @property integer $marketing_id
  * @property integer $company_id
+ * @property string $provider_company
+ * @property string $created_at
+ * @property string $updated_at
  * @property string $format
  * @property string $contact
  * @property string $phone_email
@@ -53,10 +56,10 @@ class MkInternet extends \yii\db\ActiveRecord
         return [
             [['marketing_id', 'company_id'], 'required'],
             [['marketing_id', 'company_id', 'promo_tickets', 'qty'], 'integer'],
+            [['created_at', 'updated_at', 'promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
             [['impressions', 'promo_value', 'gross', 'net'], 'number'],
-            [['promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
-            [['format', 'phone_email', 'comments'], 'string', 'max' => 800],
-            [['contact'], 'string', 'max' => 255]
+            [['provider_company', 'contact'], 'string', 'max' => 255],
+            [['format', 'phone_email', 'comments'], 'string', 'max' => 800]
         ];
     }
 
@@ -77,6 +80,7 @@ class MkInternet extends \yii\db\ActiveRecord
             'id' => 'ID',
             'marketing_id' => 'Marketing ID',
             'company_id' => 'Company ID',
+            'provider_company' => 'Provider Company',
             'format' => 'Format',
             'contact' => 'Contact',
             'phone_email' => 'Phone Email',

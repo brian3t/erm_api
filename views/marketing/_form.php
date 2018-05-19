@@ -15,13 +15,29 @@ use yii\widgets\ActiveForm;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END,  
-   'viewParams' => [ 
-       'class' => 'MkPrint',  
-       'relID' => 'mk-print',  
-       'value' => \yii\helpers\Json::encode($model->mkPrints), 
-       'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-   ]
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'MkMisc', 
+        'relID' => 'mk-misc', 
+        'value' => \yii\helpers\Json::encode($model->mkMiscs),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'MkPrint', 
+        'relID' => 'mk-print', 
+        'value' => \yii\helpers\Json::encode($model->mkPrints),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
+]);
+\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
+    'viewParams' => [
+        'class' => 'MkProduction', 
+        'relID' => 'mk-production', 
+        'value' => \yii\helpers\Json::encode($model->mkProductions),
+        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
+    ]
 ]);
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
@@ -65,30 +81,12 @@ use yii\widgets\ActiveForm;
         ],
     ])->label('Created by'); ?>
 
-    <?= $form->field($model, 'graphic_artist')->textInput(['maxlength' => true, 'placeholder' => 'Graphic Artist']) ?>
+    <?= $form->field($model, 'budget')->textInput(['maxlength' => true, 'placeholder' => 'Budget']) ?>
 
-    <?= $form->field($model, 'newsprint')->textInput(['maxlength' => true, 'placeholder' => 'Newsprint']) ?>
-
-    <?= $form->field($model, 'street_team')->textInput(['maxlength' => true, 'placeholder' => 'Street Team']) ?>
-
-    <?= $form->field($model, 'billboards')->textInput(['maxlength' => true, 'placeholder' => 'Billboards']) ?>
-
-    <?= $form->field($model, 'spots')->textInput(['maxlength' => true, 'placeholder' => 'Spots']) ?>
-
-    <?= $form->field($model, 'admat')->textInput(['maxlength' => true, 'placeholder' => 'Admat']) ?>
-
-    <?= $form->field($model, 'postage')->textInput(['maxlength' => true, 'placeholder' => 'Postage']) ?>
-
-    <?= $form->field($model, 'others')->textInput(['maxlength' => true, 'placeholder' => 'Others']) ?>
+    <?= $form->field($model, 'note')->textInput(['maxlength' => true, 'placeholder' => 'Note']) ?>
 
     <?php
     $forms = [
-        [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkInternet'),
-            'content' => $this->render('_formMkInternet', [
-                'row' => \yii\helpers\ArrayHelper::toArray($model->mkInternets),
-            ]),
-        ],
         [
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkRadio'),
             'content' => $this->render('_formMkRadio', [
@@ -101,12 +99,30 @@ use yii\widgets\ActiveForm;
                 'row' => \yii\helpers\ArrayHelper::toArray($model->mkTelevisions),
             ]),
         ],
-		[ 
-           'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkPrint'), 
-           'content' => $this->render('_formMkPrint', [ 
-               'row' => \yii\helpers\ArrayHelper::toArray($model->mkPrints), 
-           ]),
-		],
+		[
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkInternet'),
+            'content' => $this->render('_formMkInternet', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->mkInternets),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkPrint'),
+            'content' => $this->render('_formMkPrint', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->mkPrints),
+            ]),
+        ],
+        [
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkProduction'),
+            'content' => $this->render('_formMkProduction', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->mkProductions),
+            ]),
+        ],
+		[
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode('MkMisc'),
+            'content' => $this->render('_formMkMisc', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->mkMiscs),
+            ]),
+        ],
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,
@@ -121,6 +137,7 @@ use yii\widgets\ActiveForm;
     ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Cancel'), Yii::$app->request->referrer , ['class'=> 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

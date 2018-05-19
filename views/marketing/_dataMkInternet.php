@@ -13,6 +13,7 @@ use yii\data\ArrayDataProvider;
                 'attribute' => 'company.name',
                 'label' => 'Company'
             ],
+        'provider_company',
         'format',
         'contact',
         'phone_email:email',

@@ -23,7 +23,7 @@ echo TabularForm::widget([
     'attributes' => [
         "id" => ['type' => TabularForm::INPUT_HIDDEN, 'columnOptions' => ['hidden'=>true]],
         'company_id' => [
-            'label' => 'Paid By Company',
+            'label' => 'Paid by Company',
             'type' => TabularForm::INPUT_WIDGET,
             'widgetClass' => \kartik\widgets\Select2::className(),
             'options' => [
@@ -32,6 +32,7 @@ echo TabularForm::widget([
             ],
             'columnOptions' => ['width' => '200px']
         ],
+        'tv_company' => ['type' => TabularForm::INPUT_TEXT],
         'format' => ['type' => TabularForm::INPUT_TEXT],
         'contact' => ['type' => TabularForm::INPUT_TEXT],
         'phone_email' => ['type' => TabularForm::INPUT_TEXT],

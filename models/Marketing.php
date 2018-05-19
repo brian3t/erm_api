@@ -20,7 +20,8 @@ class Marketing extends BaseMarketing
             [['offer_id', 'user_id'], 'required'],
             [['offer_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['graphic_artist', 'newsprint', 'street_team', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
+            [['budget'], 'number'],
+            [['note'], 'string', 'max' => 2000],
             [['offer_id'], 'unique']
         ]);
     }

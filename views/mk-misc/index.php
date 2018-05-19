@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 
-$this->title = 'Mk Television';
+$this->title = 'Mk Misc';
 $this->params['breadcrumbs'][] = $this->title;
 $search = "$('.search-button').click(function(){
 	$('.search-form').toggle(1000);
@@ -15,12 +15,12 @@ $search = "$('.search-button').click(function(){
 });";
 $this->registerJs($search);
 ?>
-<div class="mk-television-index">
+<div class="mk-misc-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Mk Television', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Mk Misc', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php 
     $gridColumn = [
@@ -52,19 +52,8 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
             ],
-        'tv_company',
-        'format',
-        'contact',
-        'phone_email:email',
-        'impressions',
-        'promo_tickets',
-        'promo_value',
-        'promo_run_from',
-        'promo_run_to',
-        'paid_run_from',
-        'paid_run_to',
-        'qty',
-        'dg_code',
+        'provider_company',
+        'description',
         'gross',
         'net',
         [
@@ -76,7 +65,7 @@ $this->registerJs($search);
         'dataProvider' => $dataProvider,
         'columns' => $gridColumn,
         'pjax' => true,
-        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-television']],
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-misc']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
             'heading' => '<span class="glyphicon glyphicon-book"></span>  ' . Html::encode($this->title),

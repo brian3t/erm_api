@@ -3,7 +3,7 @@ use kartik\grid\GridView;
 use yii\data\ArrayDataProvider;
 
     $dataProvider = new ArrayDataProvider([
-        'allModels' => $model->mkTelevisions,
+        'allModels' => $model->mkProductions,
         'key' => 'id'
     ]);
     $gridColumns = [
@@ -13,24 +13,15 @@ use yii\data\ArrayDataProvider;
                 'attribute' => 'company.name',
                 'label' => 'Company'
             ],
-        'tv_company',
-        'format',
+        'provider_company',
+        'type',
         'contact',
         'phone_email:email',
-        'impressions',
-        'promo_tickets',
-        'promo_value',
-        'promo_run_from',
-        'promo_run_to',
-        'paid_run_from',
-        'paid_run_to',
-        'qty',
-        'dg_code',
         'gross',
         'net',
         [
             'class' => 'yii\grid\ActionColumn',
-            'controller' => 'mk-television'
+            'controller' => 'mk-production'
         ],
     ];
     

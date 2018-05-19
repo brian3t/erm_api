@@ -5,17 +5,17 @@ use yii\widgets\DetailView;
 use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\MkInternet */
+/* @var $model app\models\MkProduction */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Mk Internet', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Mk Production', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mk-internet-view">
+<div class="mk-production-view">
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= 'Mk Internet'.' '. Html::encode($this->title) ?></h2>
+            <h2><?= 'Mk Production'.' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
             
@@ -43,25 +43,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'company.name',
             'label' => 'Company',
         ],
-        'print_media',
+        'provider_company',
         'type',
         'contact',
         'phone_email:email',
-        'size',
-        'promo_tickets',
-        'promo_value',
-        'paid_run_from',
-        'paid_run_to',
-        'promo_run_from',
-        'promo_run_to',
-        'qty',
-        'monday',
-        'tuesday',
-        'wednesday',
-        'thursday',
-        'friday',
-        'saturday',
-        'sunday',
         'gross',
         'net',
     ];

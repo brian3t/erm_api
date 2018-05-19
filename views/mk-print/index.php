@@ -52,7 +52,7 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'Company', 'id' => 'grid--company_id']
             ],
-        'provider_company',
+        'print_media',
         'type',
         'contact',
         'phone_email:email',

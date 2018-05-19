@@ -5,33 +5,24 @@ namespace app\models\base;
 use Yii;
 
 /**
- * This is the base model class for table "mk_television".
+ * This is the base model class for table "mk_production".
  *
  * @property integer $id
  * @property integer $marketing_id
  * @property integer $company_id
- * @property string $tv_company
+ * @property string $provider_company
  * @property string $created_at
  * @property string $updated_at
- * @property string $format
+ * @property string $type
  * @property string $contact
  * @property string $phone_email
- * @property string $impressions
- * @property integer $promo_tickets
- * @property string $promo_value
- * @property string $promo_run_from
- * @property string $promo_run_to
- * @property string $paid_run_from
- * @property string $paid_run_to
- * @property integer $qty
- * @property string $dg_code
  * @property string $gross
  * @property string $net
  *
  * @property \app\models\Marketing $marketing
  * @property \app\models\Company $company
  */
-class MkTelevision extends \yii\db\ActiveRecord
+class MkProduction extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
 
@@ -55,11 +46,11 @@ class MkTelevision extends \yii\db\ActiveRecord
     {
         return [
             [['marketing_id', 'company_id'], 'required'],
-            [['marketing_id', 'company_id', 'promo_tickets', 'qty'], 'integer'],
-            [['created_at', 'updated_at', 'promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
-            [['impressions', 'promo_value', 'gross', 'net'], 'number'],
-            [['tv_company', 'contact', 'dg_code'], 'string', 'max' => 255],
-            [['format', 'phone_email'], 'string', 'max' => 800]
+            [['marketing_id', 'company_id'], 'integer'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['gross', 'net'], 'number'],
+            [['provider_company'], 'string', 'max' => 500],
+            [['type', 'contact', 'phone_email'], 'string', 'max' => 255]
         ];
     }
 
@@ -68,7 +59,7 @@ class MkTelevision extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'mk_television';
+        return 'mk_production';
     }
 
     /**
@@ -80,19 +71,10 @@ class MkTelevision extends \yii\db\ActiveRecord
             'id' => 'ID',
             'marketing_id' => 'Marketing ID',
             'company_id' => 'Company ID',
-            'tv_company' => 'Tv Company',
-            'format' => 'Format',
+            'provider_company' => 'Provider Company',
+            'type' => 'Type',
             'contact' => 'Contact',
             'phone_email' => 'Phone Email',
-            'impressions' => 'Impressions',
-            'promo_tickets' => 'Promo Tickets',
-            'promo_value' => 'Promo Value',
-            'promo_run_from' => 'Promo Run From',
-            'promo_run_to' => 'Promo Run To',
-            'paid_run_from' => 'Paid Run From',
-            'paid_run_to' => 'Paid Run To',
-            'qty' => 'Qty',
-            'dg_code' => 'Dg Code',
             'gross' => 'Gross',
             'net' => 'Net',
         ];
@@ -103,7 +85,7 @@ class MkTelevision extends \yii\db\ActiveRecord
      */
     public function getMarketing()
     {
-        return $this->hasOne(\app\models\Marketing::className(), ['id' => 'marketing_id'])->inverseOf('mkTelevisions');
+        return $this->hasOne(\app\models\Marketing::className(), ['id' => 'marketing_id'])->inverseOf('mkProductions');
     }
         
     /**
@@ -111,6 +93,6 @@ class MkTelevision extends \yii\db\ActiveRecord
      */
     public function getCompany()
     {
-        return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('mkTelevisions');
+        return $this->hasOne(\app\models\Company::className(), ['id' => 'company_id'])->inverseOf('mkProductions');
     }
     }

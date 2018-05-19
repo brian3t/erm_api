@@ -17,13 +17,19 @@ class MkRadio extends BaseMkRadio
     {
         return array_replace_recursive(parent::rules(),
 	    [
-            [['marketing_id', 'company_id', 'gross'], 'required'],
+            [['marketing_id', 'company_id'], 'required'],
             [['marketing_id', 'company_id', 'promo_mentions', 'promo_tickets', 'paid_spots'], 'integer'],
+            [['created_at', 'updated_at', 'promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
             [['promo_value', 'gross', 'net'], 'number'],
-            [['promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
             [['station', 'format'], 'string', 'max' => 800],
             [['contact', 'contact_phone_email', 'thirty', 'sixty'], 'string', 'max' => 255]
         ]);
     }
 	
+	public function beforeValidate(){
+		if (empty($this->gross)){
+			$this->gross = 0;
+		}
+		return parent::beforeValidate();
+	}
 }

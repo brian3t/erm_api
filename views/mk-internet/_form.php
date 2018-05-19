@@ -33,41 +33,19 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'format')->textInput(['maxlength' => true, 'placeholder' => 'Format']) ?>
+    <?= $form->field($model, 'print_media')->textInput(['maxlength' => true, 'placeholder' => 'Print Media']) ?>
+
+    <?= $form->field($model, 'type')->textInput(['maxlength' => true, 'placeholder' => 'Type']) ?>
 
     <?= $form->field($model, 'contact')->textInput(['maxlength' => true, 'placeholder' => 'Contact']) ?>
 
     <?= $form->field($model, 'phone_email')->textInput(['maxlength' => true, 'placeholder' => 'Phone Email']) ?>
 
-    <?= $form->field($model, 'impressions')->textInput(['maxlength' => true, 'placeholder' => 'Impressions']) ?>
+    <?= $form->field($model, 'size')->textInput(['maxlength' => true, 'placeholder' => 'Size']) ?>
 
     <?= $form->field($model, 'promo_tickets')->textInput(['placeholder' => 'Promo Tickets']) ?>
 
     <?= $form->field($model, 'promo_value')->textInput(['maxlength' => true, 'placeholder' => 'Promo Value']) ?>
-
-    <?= $form->field($model, 'promo_run_from')->widget(\kartik\datecontrol\DateControl::classname(), [
-        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-        'saveFormat' => 'php:Y-m-d',
-        'ajaxConversion' => true,
-        'options' => [
-            'pluginOptions' => [
-                'placeholder' => 'Choose Promo Run From',
-                'autoclose' => true
-            ]
-        ],
-    ]); ?>
-
-    <?= $form->field($model, 'promo_run_to')->widget(\kartik\datecontrol\DateControl::classname(), [
-        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-        'saveFormat' => 'php:Y-m-d',
-        'ajaxConversion' => true,
-        'options' => [
-            'pluginOptions' => [
-                'placeholder' => 'Choose Promo Run To',
-                'autoclose' => true
-            ]
-        ],
-    ]); ?>
 
     <?= $form->field($model, 'paid_run_from')->widget(\kartik\datecontrol\DateControl::classname(), [
         'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
@@ -93,9 +71,45 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
+    <?= $form->field($model, 'promo_run_from')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+        'saveFormat' => 'php:Y-m-d',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Promo Run From',
+                'autoclose' => true
+            ]
+        ],
+    ]); ?>
+
+    <?= $form->field($model, 'promo_run_to')->widget(\kartik\datecontrol\DateControl::classname(), [
+        'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
+        'saveFormat' => 'php:Y-m-d',
+        'ajaxConversion' => true,
+        'options' => [
+            'pluginOptions' => [
+                'placeholder' => 'Choose Promo Run To',
+                'autoclose' => true
+            ]
+        ],
+    ]); ?>
+
     <?= $form->field($model, 'qty')->textInput(['placeholder' => 'Qty']) ?>
 
-    <?= $form->field($model, 'comments')->textInput(['maxlength' => true, 'placeholder' => 'Comments']) ?>
+    <?= $form->field($model, 'monday')->textInput(['maxlength' => true, 'placeholder' => 'Monday']) ?>
+
+    <?= $form->field($model, 'tuesday')->textInput(['maxlength' => true, 'placeholder' => 'Tuesday']) ?>
+
+    <?= $form->field($model, 'wednesday')->textInput(['maxlength' => true, 'placeholder' => 'Wednesday']) ?>
+
+    <?= $form->field($model, 'thursday')->textInput(['maxlength' => true, 'placeholder' => 'Thursday']) ?>
+
+    <?= $form->field($model, 'friday')->textInput(['maxlength' => true, 'placeholder' => 'Friday']) ?>
+
+    <?= $form->field($model, 'saturday')->textInput(['maxlength' => true, 'placeholder' => 'Saturday']) ?>
+
+    <?= $form->field($model, 'sunday')->textInput(['maxlength' => true, 'placeholder' => 'Sunday']) ?>
 
     <?= $form->field($model, 'gross')->textInput(['maxlength' => true, 'placeholder' => 'Gross']) ?>
 

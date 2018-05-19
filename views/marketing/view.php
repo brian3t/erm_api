@@ -8,14 +8,14 @@ use kartik\grid\GridView;
 /* @var $model app\models\Marketing */
 
 $this->title = $model->offer->event_id;
-$this->params['breadcrumbs'][] = ['label' => 'Marketing', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Marketing for', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="marketing-view">
 
     <div class="row">
         <div class="col-sm-9">
-            <h2><?= 'Marketing for '.' '. Html::encode($this->title) ?></h2>
+            <h2><?= 'Marketing'.' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-3" style="margin-top: 15px">
             
@@ -43,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'user.username',
             'label' => 'User',
         ],
-		'created_at',
-		'updated_at'
+        'budget',
+        'note',
     ];
     echo DetailView::widget([
         'model' => $model,
@@ -61,6 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'username',
         'company_id',
         'email',
+        'first_name',
+        'belong_company_id',
     ];
     echo DetailView::widget([
         'model' => $model->user,
@@ -72,13 +74,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php 
     $gridColumnOffer = [
         ['attribute' => 'id', 'visible' => false],
+        [
+            'attribute' => 'user.username',
+            'label' => 'User',
+        ],
         'offer_type',
-        'event_id',
+        'show_date',
+        'on_sale_date',
+        'belong_company_id',
     ];
     echo DetailView::widget([
         'model' => $model->offer,
         'attributes' => $gridColumnOffer    ]);
     ?>
+ 
     
     <div class="row">
 <?php
@@ -113,7 +122,7 @@ if($providerMkRadio->totalCount){
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-radio']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Radio'),
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Radio'),
         ],
         'export' => false,
         'columns' => $gridColumnMkRadio
@@ -123,7 +132,7 @@ if($providerMkRadio->totalCount){
 
     </div>
     
-    <div class="row">
+   <div class="row">
 <?php
 if($providerMkTelevision->totalCount){
     $gridColumnMkTelevision = [
@@ -133,6 +142,7 @@ if($providerMkTelevision->totalCount){
                 'attribute' => 'company.name',
                 'label' => 'Company'
             ],
+            'tv_company',
             'format',
             'contact',
             'phone_email:email',
@@ -154,7 +164,7 @@ if($providerMkTelevision->totalCount){
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-television']],
         'panel' => [
             'type' => GridView::TYPE_PRIMARY,
-            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Television'),
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Television'),
         ],
         'export' => false,
         'columns' => $gridColumnMkTelevision
@@ -164,92 +174,158 @@ if($providerMkTelevision->totalCount){
 
     </div>
 	
-	   <div class="row"> 
-<?php 
-if($providerMkInternet->totalCount){ 
-   $gridColumnMkInternet = [ 
-       ['class' => 'yii\grid\SerialColumn'], 
-           ['attribute' => 'id', 'visible' => false], 
-                       [ 
-               'attribute' => 'company.name', 
-               'label' => 'Company' 
-           ], 
-           'format', 
-           'contact', 
-           'phone_email:email', 
-           'impressions', 
-           'promo_tickets', 
-           'promo_value', 
-           'promo_run_from', 
-           'promo_run_to', 
-           'paid_run_from', 
-           'paid_run_to', 
-           'qty', 
-           'comments', 
-           'gross', 
-           'net', 
-   ]; 
-   echo Gridview::widget([ 
-       'dataProvider' => $providerMkInternet, 
-       'pjax' => true, 
-       'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-internet']], 
-       'panel' => [ 
-           'type' => GridView::TYPE_PRIMARY, 
-           'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Internet'), 
-       ], 
-       'export' => false, 
-       'columns' => $gridColumnMkInternet 
-   ]); 
-} 
-?> 
- 
-   </div> 
+    <div class="row">
+<?php
+if($providerMkInternet->totalCount){
+    $gridColumnMkInternet = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'provider_company',
+            'format',
+            'contact',
+            'phone_email:email',
+            'impressions',
+            'promo_tickets',
+            'promo_value',
+            'promo_run_from',
+            'promo_run_to',
+            'paid_run_from',
+            'paid_run_to',
+            'qty',
+            'comments',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkInternet,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-internet']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Internet'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkInternet
+    ]);
+}
+?>
+
+    </div>
+  
+    <div class="row">
+<?php
+if($providerMkPrint->totalCount){
+    $gridColumnMkPrint = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'print_media',
+            'type',
+            'contact',
+            'phone_email:email',
+            'size',
+            'promo_tickets',
+            'promo_value',
+            'paid_run_from',
+            'paid_run_to',
+            'promo_run_from',
+            'promo_run_to',
+            'qty',
+            'monday',
+            'tuesday',
+            'wednesday',
+            'thursday',
+            'friday',
+            'saturday',
+            'sunday',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkPrint,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-print']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Print'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkPrint
+    ]);
+}
+?>
+
+    </div>
+    
+    <div class="row">
+<?php
+if($providerMkProduction->totalCount){
+    $gridColumnMkProduction = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'provider_company',
+            'type',
+            'contact',
+            'phone_email:email',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkProduction,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-production']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Production'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkProduction
+    ]);
+}
+?>
+
+    </div>
    
-      <div class="row"> 
-<?php 
-if($providerMkPrint->totalCount){ 
-   $gridColumnMkPrint = [ 
-       ['class' => 'yii\grid\SerialColumn'], 
-           ['attribute' => 'id', 'visible' => false], 
-                       [ 
-               'attribute' => 'company.name', 
-               'label' => 'Company' 
-           ], 
-           'provider_company', 
-           'type', 
-           'contact', 
-           'phone_email:email', 
-           'size', 
-           'promo_tickets', 
-           'promo_value', 
-           'paid_run_from', 
-           'paid_run_to', 
-           'promo_run_from', 
-           'promo_run_to', 
-           'qty', 
-           'monday', 
-           'tuesday', 
-           'wednesday', 
-           'thursday', 
-           'friday', 
-           'saturday', 
-           'sunday', 
-           'gross', 
-           'net', 
-   ]; 
-   echo Gridview::widget([ 
-       'dataProvider' => $providerMkPrint, 
-       'pjax' => true, 
-       'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-print']], 
-       'panel' => [ 
-           'type' => GridView::TYPE_PRIMARY, 
-           'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Mk Print'), 
-       ], 
-       'export' => false, 
-       'columns' => $gridColumnMkPrint 
-   ]); 
-} 
-?> 
- 
-   </div> 
+    <div class="row">
+<?php
+if($providerMkMisc->totalCount){
+    $gridColumnMkMisc = [
+        ['class' => 'yii\grid\SerialColumn'],
+            ['attribute' => 'id', 'visible' => false],
+                        [
+                'attribute' => 'company.name',
+                'label' => 'Company'
+            ],
+            'provider_company',
+            'description',
+            'gross',
+            'net',
+    ];
+    echo Gridview::widget([
+        'dataProvider' => $providerMkMisc,
+        'pjax' => true,
+        'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-mk-misc']],
+        'panel' => [
+            'type' => GridView::TYPE_PRIMARY,
+            'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode('Misc'),
+        ],
+        'export' => false,
+        'columns' => $gridColumnMkMisc
+    ]);
+}
+?>
+
+    </div>
+   
 </div>

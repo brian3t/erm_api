@@ -32,7 +32,7 @@ echo TabularForm::widget([
             ],
             'columnOptions' => ['width' => '200px']
         ],
-        'provider_company' => ['type' => TabularForm::INPUT_TEXT, 'label'=>'Print Media'],
+        'print_media' => ['type' => TabularForm::INPUT_TEXT],
         'type' => ['type' => TabularForm::INPUT_TEXT],
         'contact' => ['type' => TabularForm::INPUT_TEXT],
         'phone_email' => ['type' => TabularForm::INPUT_TEXT],

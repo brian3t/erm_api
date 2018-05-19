@@ -19,19 +19,20 @@ class MkInternet extends BaseMkInternet
 	    [
             [['marketing_id', 'company_id'], 'required'],
             [['marketing_id', 'company_id', 'promo_tickets', 'qty'], 'integer'],
+            [['created_at', 'updated_at', 'promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
             [['impressions', 'promo_value', 'gross', 'net'], 'number'],
-            [['promo_run_from', 'promo_run_to', 'paid_run_from', 'paid_run_to'], 'safe'],
-            [['format', 'phone_email', 'comments'], 'string', 'max' => 800],
-            [['contact'], 'string', 'max' => 255]
+            [['provider_company', 'contact'], 'string', 'max' => 255],
+            [['format', 'phone_email', 'comments'], 'string', 'max' => 800]
         ]);
     }
-	public function beforeValidate() 
-	{
-	 if(empty($this->gross))
-	 {
-		$this->gross = 0;
-	 }
-	 
-	 return parent::beforeValidate();
-	}
+	
+	public function beforeValidate()
+   {
+    if(empty($this->gross))
+    {
+       $this->gross = 0;
+    }
+   
+    return parent::beforeValidate();
+   }
 }

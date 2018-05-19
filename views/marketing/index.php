@@ -42,7 +42,7 @@ $this->registerJs($search);
                 'attribute' => 'offer_id',
                 'label' => 'Offer',
                 'value' => function($model){                   
-                    return $model->offer->id;                   
+                    return $model->offer->event_id;                   
                 },
                 'filterType' => GridView::FILTER_SELECT2,
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Offer::find()->asArray()->all(), 'id', 'id'),
@@ -64,16 +64,13 @@ $this->registerJs($search);
                 ],
                 'filterInputOptions' => ['placeholder' => 'User', 'id' => 'grid--user_id']
             ],
-        'graphic_artist',
-        'newsprint',
-        'street_team',
-        'billboards',
-        'spots',
-        'admat',
-        'postage',
-        'others',
+        'budget',
+        'note',
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => '\kartik\grid\ActionColumn',
+			'header'=>'Actions',
+			'viewOptions' => ['icon'=>false],
+			'updateOptions' => ['icon'=>false],
         ],
     ]; 
     ?>

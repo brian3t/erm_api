@@ -47,6 +47,8 @@ use Yii;
  * @property \app\models\MkRadio[] $mkRadios 
  * @property \app\models\MkInternet[] $mkInternets
  * @property \app\models\MkTelevision[] $mkTelevisions 
+ * @property \app\models\MkProduction[] $mkProductions
+ * @property \app\models\MkMisc[] $mkMiscs 
  * @property \app\models\Offer[] $offers
  * @property \app\models\Settlement[] $settlements
  * @property \app\models\User[] $users
@@ -57,6 +59,29 @@ use Yii;
 class Company extends \yii\db\ActiveRecord
 {
     use \mootensai\relation\RelationTrait;
+	
+   /**
+   * This function helps \mootensai\relation\RelationTrait runs faster
+   * @return array relation names of this model
+   */
+   public function relationNames()
+   {
+       return [
+           'belongCompany',
+           'companies',
+           'companyUsers',
+           'mkInternets',
+           'mkMiscs',
+           'mkPrints',
+           'mkProductions',
+           'mkRadios',
+           'mkTelevisions',
+           'offers',
+           'settlements',
+           'users',
+           'venues'
+       ];
+   }
     
     /**
      * @inheritdoc
@@ -199,6 +224,22 @@ class Company extends \yii\db\ActiveRecord
    public function getMkTelevisions()
    {
        return $this->hasMany(\app\models\MkTelevision::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
+
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkMiscs()
+   {
+       return $this->hasMany(\app\models\MkMisc::className(), ['company_id' => 'id'])->inverseOf('company');
+   }
+              
+   /**
+    * @return \yii\db\ActiveQuery
+    */
+   public function getMkProductions()
+   {
+       return $this->hasMany(\app\models\MkProduction::className(), ['company_id' => 'id'])->inverseOf('company');
    }
 
    /**

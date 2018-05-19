@@ -12,19 +12,15 @@ use Yii;
  * @property integer $user_id
  * @property string $created_at
  * @property string $updated_at
- * @property string $graphic_artist
- * @property string $newsprint
- * @property string $street_team
- * @property string $billboards
- * @property string $spots
- * @property string $admat
- * @property string $postage
- * @property string $others
+ * @property string $budget
+ * @property string $note
  *
  * @property \app\models\User $user
  * @property \app\models\Offer $offer
  * @property \app\models\MkInternet[] $mkInternets
+ * @property \app\models\MkMisc[] $mkMiscs
  * @property \app\models\MkPrint[] $mkPrints
+ * @property \app\models\MkProduction[] $mkProductions
  * @property \app\models\MkRadio[] $mkRadios
  * @property \app\models\MkTelevision[] $mkTelevisions
  */
@@ -43,7 +39,9 @@ class Marketing extends \yii\db\ActiveRecord
             'user',
             'offer',
             'mkInternets',
+            'mkMiscs',
             'mkPrints',
+            'mkProductions',
             'mkRadios',
             'mkTelevisions'
         ];
@@ -58,7 +56,8 @@ class Marketing extends \yii\db\ActiveRecord
             [['offer_id', 'user_id'], 'required'],
             [['offer_id', 'user_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['graphic_artist', 'newsprint', 'street_team', 'billboards', 'spots', 'admat', 'postage', 'others'], 'number'],
+            [['budget'], 'number'],
+            [['note'], 'string', 'max' => 2000],
             [['offer_id'], 'unique']
         ];
     }
@@ -80,14 +79,8 @@ class Marketing extends \yii\db\ActiveRecord
             'id' => 'ID',
             'offer_id' => 'Offer ID',
             'user_id' => 'User ID',
-            'graphic_artist' => 'Graphic Artist',
-            'newsprint' => 'Newsprint',
-            'street_team' => 'Street Team',
-            'billboards' => 'Billboards',
-            'spots' => 'Spots',
-            'admat' => 'Admat',
-            'postage' => 'Postage',
-            'others' => 'Others',
+            'budget' => 'Budget',
+            'note' => 'Note',
         ];
     }
     
@@ -118,9 +111,25 @@ class Marketing extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getMkMiscs()
+    {
+        return $this->hasMany(\app\models\MkMisc::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getMkPrints()
     {
         return $this->hasMany(\app\models\MkPrint::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
+    }
+        
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMkProductions()
+    {
+        return $this->hasMany(\app\models\MkProduction::className(), ['marketing_id' => 'id'])->inverseOf('marketing');
     }
         
     /**

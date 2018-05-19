@@ -10,7 +10,9 @@ use Yii;
  * @property integer $id
  * @property integer $marketing_id
  * @property integer $company_id
- * @property string $provider_company
+ * @property string $print_media
+ * @property string $created_at
+ * @property string $updated_at
  * @property string $type
  * @property string $contact
  * @property string $phone_email
@@ -60,9 +62,9 @@ class MkPrint extends \yii\db\ActiveRecord
         return [
             [['marketing_id', 'company_id'], 'required'],
             [['marketing_id', 'company_id', 'promo_tickets', 'qty'], 'integer'],
+            [['created_at', 'updated_at', 'paid_run_from', 'paid_run_to', 'promo_run_from', 'promo_run_to'], 'safe'],
             [['promo_value', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'gross', 'net'], 'number'],
-            [['paid_run_from', 'paid_run_to', 'promo_run_from', 'promo_run_to'], 'safe'],
-            [['provider_company', 'type', 'contact'], 'string', 'max' => 255],
+            [['print_media', 'type', 'contact'], 'string', 'max' => 255],
             [['phone_email'], 'string', 'max' => 800],
             [['size'], 'string', 'max' => 80]
         ];
@@ -85,7 +87,7 @@ class MkPrint extends \yii\db\ActiveRecord
             'id' => 'ID',
             'marketing_id' => 'Marketing ID',
             'company_id' => 'Company ID',
-            'provider_company' => 'Provider Company',
+            'print_media' => 'Print Media',
             'type' => 'Type',
             'contact' => 'Contact',
             'phone_email' => 'Phone Email',

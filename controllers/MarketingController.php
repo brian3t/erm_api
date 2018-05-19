@@ -52,8 +52,14 @@ class MarketingController extends Controller
         $providerMkInternet = new \yii\data\ArrayDataProvider([
             'allModels' => $model->mkInternets,
         ]);
+        $providerMkMisc = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->mkMiscs,
+        ]);
         $providerMkPrint = new \yii\data\ArrayDataProvider([
             'allModels' => $model->mkPrints,
+        ]);
+        $providerMkProduction = new \yii\data\ArrayDataProvider([
+            'allModels' => $model->mkProductions,
         ]);
         $providerMkRadio = new \yii\data\ArrayDataProvider([
             'allModels' => $model->mkRadios,
@@ -64,7 +70,9 @@ class MarketingController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'providerMkInternet' => $providerMkInternet,
+            'providerMkMisc' => $providerMkMisc,
             'providerMkPrint' => $providerMkPrint,
+            'providerMkProduction' => $providerMkProduction,
             'providerMkRadio' => $providerMkRadio,
             'providerMkTelevision' => $providerMkTelevision,
         ]);
@@ -159,6 +167,26 @@ class MarketingController extends Controller
     
     /**
     * Action to load a tabular form grid
+    * for MkMisc
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddMkMisc()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('MkMisc');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formMkMisc', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
     * for MkPrint
     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
@@ -172,6 +200,26 @@ class MarketingController extends Controller
             if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formMkPrint', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    /**
+    * Action to load a tabular form grid
+    * for MkProduction
+    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+    *
+    * @return mixed
+    */
+    public function actionAddMkProduction()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('MkProduction');
+            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = [];
+            return $this->renderAjax('_formMkProduction', ['row' => $row]);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }

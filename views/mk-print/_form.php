@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'provider_company')->textInput(['maxlength' => true, 'placeholder' => 'Provider Company']) ?>
+    <?= $form->field($model, 'print_media')->textInput(['maxlength' => true, 'placeholder' => 'Print Media']) ?>
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true, 'placeholder' => 'Type']) ?>
 

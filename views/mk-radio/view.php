@@ -74,16 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ['attribute' => 'id', 'visible' => false],
         'offer_id',
         'user_id',
-        'graphic_artist',
-        'newsprint',
-        'internet',
-        'street_team',
-        'printing',
-        'billboards',
-        'spots',
-        'admat',
-        'postage',
-        'others',
+        'budget',
+        'note',
     ];
     echo DetailView::widget([
         'model' => $model->marketing,

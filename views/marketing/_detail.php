@@ -28,14 +28,8 @@ use kartik\grid\GridView;
             'attribute' => 'user.username',
             'label' => 'User',
         ],
-        'graphic_artist',
-        'newsprint',
-        'street_team',
-        'billboards',
-        'spots',
-        'admat',
-        'postage',
-        'others',
+        'budget',
+        'note',
     ];
     echo DetailView::widget([
         'model' => $model,
