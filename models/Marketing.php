@@ -25,5 +25,22 @@ class Marketing extends BaseMarketing
             [['offer_id'], 'unique']
         ]);
     }
-	
+
+    /**
+     * @return array Fields for REST API calls
+     */
+    public function fields()
+    {
+        $extra = [];
+        return [
+                'id',
+                'offer_id',
+                'user_id',
+                /*'currency_code' => function () {
+                    return $this->mp->currency_code;
+                },*/
+                'offer' => 'offer',
+                'mk_radio' => 'mkRadios'
+            ] + $extra;
+    }
 }
