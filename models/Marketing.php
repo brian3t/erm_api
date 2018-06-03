@@ -2,8 +2,7 @@
 
 namespace app\models;
 
-use Yii;
-use \app\models\base\Marketing as BaseMarketing;
+use app\models\base\Marketing as BaseMarketing;
 
 /**
  * This is the model class for table "marketing".
@@ -36,11 +35,12 @@ class Marketing extends BaseMarketing
                 'id',
                 'offer_id',
                 'user_id',
+                'budget',
                 /*'currency_code' => function () {
                     return $this->mp->currency_code;
                 },*/
                 'offer' => 'offer',
-                'mk_radio' => 'mkRadios'
+                'mk_radios' => 'mkRadios'
             ] + $extra;
     }
 }
