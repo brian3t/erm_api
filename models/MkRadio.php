@@ -32,4 +32,11 @@ class MkRadio extends BaseMkRadio
 		}
 		return parent::beforeValidate();
 	}
+
+	/*public function beforeSave($insert){
+        if ($insert){
+            var_dump($this->id);
+        }
+        return parent::beforeSave($insert);
+    }*/
 }
