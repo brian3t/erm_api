@@ -18,6 +18,9 @@
           <option name="port" value="21" />
         </fileTransfer>
       </webServer>
+      <webServer id="ce652a08-584e-4af1-b18c-4bcd90e18fdc" name="erm_mapped" url="http://entertainmentdirectmetrics.com">
+        <fileTransfer port="0" mountedRoot="/Volumes/www/ermapi" accessType="MOUNT" />
+      </webServer>
     </option>
   </component>
 </project>
