@@ -40,7 +40,8 @@ class Marketing extends BaseMarketing
                     return $this->mp->currency_code;
                 },*/
                 'offer' => 'offer',
-                'mk_radios' => 'mkRadios'
+                'mk_radios' => 'mkRadios',
+                'mk_televisions' => 'mkTelevisions'
             ] + $extra;
     }
 }
