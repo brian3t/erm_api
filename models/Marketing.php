@@ -41,7 +41,9 @@ class Marketing extends BaseMarketing
                 },*/
                 'offer' => 'offer',
                 'mk_radios' => 'mkRadios',
-                'mk_televisions' => 'mkTelevisions'
+                'mk_televisions' => 'mkTelevisions',
+                'mk_internets' => 'mkInternets',
+                'mk_prints' => 'mkPrints'
             ] + $extra;
     }
 }
