@@ -43,7 +43,9 @@ class User extends BaseUser {
                 return is_object($model->company) ? $model->company->attributes : ['name' => ''];
             },
             'profile' => function ($model) {
-                return $model->profile ? $model->profile->attributes : null;
+                $attributes = $model->profile ? $model->profile->attributes : null;
+//                unset($attributes['user_id']);
+                return $attributes;
             },
             'union_memberships' => function () {
                 return $this->getUnionMemberships();

@@ -1,64 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="10d5326a-5858-423d-9b8e-d0d75b1c1237" name="Default" comment="Ignore deployment">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+    <list default="true" id="10d5326a-5858-423d-9b8e-d0d75b1c1237" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap-theme.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/100df73b/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/8dfdade3/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/8dfdade3/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/8dfdade3/jquery.min.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/9a5709a2/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/c19e72f3/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/e0d85f81/yii.activeForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/e0d85f81/yii.captcha.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/e0d85f81/yii.gridView.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/e0d85f81/yii.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/assets/e0d85f81/yii.validation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/config/params.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/config/params.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/db.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Marketing.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Marketing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/User.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/bower/bootstrap/" />
     <ignored path="$PROJECT_DIR$/vendor/bower/bootstrap3-dialog/" />
@@ -161,11 +106,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Marketing.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Marketing.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/Marketing.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+            <state relative-caret-position="345">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -196,6 +141,20 @@
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
+      <file leaf-file-name="app.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/runtime/logs/app.log">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FrameworkRootSettings" id="Yii" />
@@ -210,8 +169,9 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/params.php" />
         <option value="$PROJECT_DIR$/api/config/params.php" />
-        <option value="$PROJECT_DIR$/runtime/logs/app.log" />
         <option value="$PROJECT_DIR$/models/Marketing.php" />
+        <option value="$PROJECT_DIR$/runtime/logs/app.log" />
+        <option value="$PROJECT_DIR$/models/User.php" />
       </list>
     </option>
   </component>
@@ -327,9 +287,11 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
     <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -444,10 +406,18 @@
       <option name="presentableId" value="Default" />
       <updated>1526834339367</updated>
     </task>
+    <task id="LOCAL-00001" summary="06/05 a">
+      <created>1528236173228</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1528236173228</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="0" width="1920" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -485,17 +455,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Ignore deployment" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ignore deployment" />
+    <MESSAGE value="06/05 a" />
+    <option name="LAST_COMMIT_MESSAGE" value="06/05 a" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/img/avatar/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/modules/v1/controllers/VenueController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -709,9 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runtime/logs/app.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/MkRadio.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -738,8 +701,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/Marketing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="48" selection-start-line="44" selection-start-column="48" selection-end-line="44" selection-end-column="48" />
+        <state relative-caret-position="345">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runtime/logs/app.log">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
         </state>
       </provider>
     </entry>
