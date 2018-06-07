@@ -1,5 +1,11 @@
+#if directory, show default
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ default.png [L]
+
+#else, try to match exact dir/file
 RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^(.+) - [PT,L]
 
-  RewriteRule ^(.*)$ default.png [L]
+#else, show default
+RewriteRule ^(.*)$ default.png [L]
