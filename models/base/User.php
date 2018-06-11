@@ -68,7 +68,6 @@ class User extends \yii\db\ActiveRecord
 	   public function relationNames()
 	   {
 		   return [
-			   'companyUser',
 			   'marketings',
 			   'offers',
 			   'profile',
