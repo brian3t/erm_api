@@ -9,14 +9,6 @@ use yii\widgets\ActiveForm;
 
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
     'viewParams' => [
-        'class' => 'SocialAccount', 
-        'relID' => 'social-account', 
-        'value' => \yii\helpers\Json::encode($model->socialAccounts),
-        'isNewRecord' => ($model->isNewRecord) ? 1 : 0
-    ]
-]);
-\mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos'=> \yii\web\View::POS_END, 
-    'viewParams' => [
         'class' => 'Token', 
         'relID' => 'token', 
         'value' => \yii\helpers\Json::encode($model->tokens),
@@ -46,18 +38,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'placeholder' => 'Email']) ?>
 
     <?= $form->field($model, 'confirmed_at')->textInput(['placeholder' => 'Confirmed At']) ?>
-
-    <?= $form->field($model, 'unconfirmed_email')->textInput(['maxlength' => true, 'placeholder' => 'Unconfirmed Email']) ?>
-
-    <?= $form->field($model, 'blocked_at')->textInput(['placeholder' => 'Blocked At']) ?>
-
-    <?= $form->field($model, 'registration_ip')->textInput(['maxlength' => true, 'placeholder' => 'Registration Ip']) ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['placeholder' => 'Created At']) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['placeholder' => 'Updated At']) ?>
-
-    <?= $form->field($model, 'flags')->textInput(['placeholder' => 'Flags']) ?>
 
     <?= $form->field($model, 'first_name')->textInput(['maxlength' => true, 'placeholder' => 'First Name']) ?>
 

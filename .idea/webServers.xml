@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="40acc72d-b6c1-4f48-a7aa-5a9c62faceb6" name="erm_aws" url="http://entertainmentdirectmetrics.com">
-        <fileTransfer host="entertainmentdirectmetrics.com" port="21">
+        <fileTransfer host="entertainmentdirectmetrics.com" port="21" rootFolder="/ermapi">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>

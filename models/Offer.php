@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use \app\models\base\Offer as BaseOffer;
+use app\models\base\Offer as BaseOffer;
 
 /**
  * This is the model class for table "offer".
@@ -92,4 +92,10 @@ class Offer extends BaseOffer
 
         return parent::beforeValidate();
     }
+
+    public function fields()
+    {
+        return parent::fields() + ['venue'];
+    }
+
 }
