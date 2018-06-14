@@ -21,4 +21,6 @@ require(dirname(__DIR__) . '/vendor/yiisoft/yii2/Yii.php');
 // Use a distinct configuration for the API
 $config = require(__DIR__ . '/config/api.php');
 
+//sleep(1);//debugging
+
 (new yii\web\Application($config))->run();
