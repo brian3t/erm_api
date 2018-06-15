@@ -26,11 +26,21 @@ class MkPrint extends BaseMkPrint
             [['size'], 'string', 'max' => 80]
         ]);
     }
-	
-	public function beforeValidate(){
-		if (empty($this->gross)){
-			$this->gross = 0;
-		}
-		return parent::beforeValidate();
-	}
+
+    /**
+     * Simulate db auto value of gross and net. Problem is, after save() is called on model, model doesn't get database default values into it yet
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (empty($this->gross)) {
+            $this->gross = 0;
+        }
+        if (empty($this->net)) {
+            $this->net = 0;
+        }
+        return parent::afterSave($insert, $changedAttributes);
+    }
+
 }

@@ -26,13 +26,20 @@ class MkInternet extends BaseMkInternet
         ]);
     }
 	
-	public function beforeValidate()
-   {
-    if(empty($this->gross))
+    /**
+     * Simulate db auto value of gross and net. Problem is, after save() is called on model, model doesn't get database default values into it yet
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
     {
-       $this->gross = 0;
+        if (empty($this->gross)) {
+            $this->gross = 0;
+        }
+        if (empty($this->net)) {
+            $this->net = 0;
+        }
+        return parent::afterSave($insert, $changedAttributes);
     }
-   
-    return parent::beforeValidate();
-   }
+
 }
