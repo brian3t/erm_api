@@ -1,6 +1,6 @@
 REST Api for ERM mobile app
 
-Built with Yii 2.0.14
+Built with Yii 2.0.14 MVC framework
 
 Screenshot:
 
